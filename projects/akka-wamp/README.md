@@ -308,7 +308,7 @@ Examples:
   
 ```scala
 transport ! Subscribe(requestId = 34, "myapp.tick.topic")
-
+```
 
 ### Subscribed
 TBD
