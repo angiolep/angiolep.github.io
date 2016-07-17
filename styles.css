@@ -1,3 +1,29 @@
-a {
-    text-decoration: none;
+.angiolep {
+    text-align: center;
+}
+.angiolep h1 {
+    color: gray;
+}
+.angiolep p {
+    padding: 24px;
+    text-align: justify;
+}
+.angiolep-span {
+    color: darkred;
+    text-shadow: 2px 2px red;
+}
+.angiolep-img {
+    background: black;
+}
+.angiolep-img img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    margin: 0 auto;
+}
+
+.projects {
+    text-align: center;
+    background: #eeeeee;
+    padding: 8px 0;
 }
