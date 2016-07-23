@@ -1,0 +1,7 @@
+*.iml
+bower_components/*
+!bower_components/jquery/dist/jquery.min.js
+!bower_components/flatdoc/legacy.js
+!bower_components/flatdoc/flatdoc.js
+!bower_components/flatdoc/theme-white/style.css
+!bower_components/flatdoc/theme-white/script.js
