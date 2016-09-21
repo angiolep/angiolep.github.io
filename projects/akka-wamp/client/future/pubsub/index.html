@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <meta name="author" content="Paolo Angioletti">  
+    <link rel="shortcut icon" href="../../../img/favicon.ico">
+
+    <title>Publish Subscribe - akka-wamp-0.8.0</title>
+
+    <link href="../../../css/bootstrap-custom.min.css" rel="stylesheet">
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/font-hack/2.018/css/hack.min.css">
+    <link href='//fonts.googleapis.com/css?family=PT+Sans:400,400italic,700,700italic&subset=latin-ext,latin' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,700italic,400,300,600,700&subset=latin-ext,latin' rel='stylesheet' type='text/css'>
+    <link href="../../../css/base.css" rel="stylesheet">
+    <link href="../../../css/cinder.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../../css/highlight.css">
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+        <![endif]-->
+
+    <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.5.18/webfont.js"></script>
+    <script>
+    WebFont.load({
+        google: {
+            families: ['Open Sans', 'PT Sans']
+        }
+    });
+    </script>
+
+    
+</head>
+
+<body>
+
+    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+
+        <!-- Collapsed navigation -->
+        <div class="navbar-header">
+            
+            <!-- Expander button -->
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            
+
+            <!-- Main title -->
+            <a class="navbar-brand" href="../../..">akka-wamp-0.8.0</a>
+        </div>
+
+        <!-- Expanded navigation -->
+        <div class="navbar-collapse collapse">
+            
+                <!-- Main navigation -->
+                <ul class="nav navbar-nav">
+                
+                
+                    <li >
+                        <a href="../../..">Home</a>
+                    </li>
+                
+                
+                
+                    <li >
+                        <a href="../../../router/">Router</a>
+                    </li>
+                
+                
+                
+                    <li class="dropdown active">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Client <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../../actor/">Actor based API</a>
+</li>
+
+                        
+                            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">Future based API</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../overview/">For the impatients</a>
+</li>
+
+        
+            
+<li >
+    <a href="../session/">Session Handling</a>
+</li>
+
+        
+            
+<li class="active">
+    <a href="./">Publish Subscribe</a>
+</li>
+
+        
+            
+<li >
+    <a href="../rpc/">Remote Procedure Call</a>
+</li>
+
+        
+            
+<li >
+    <a href="../payload/">Payload Handling</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                        
+                            
+<li >
+    <a href="../../stream/">Stream based API</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../config/">Configuration</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                
+                    <li >
+                        <a href="../../../messages/">Messages</a>
+                    </li>
+                
+                
+                </ul>
+            
+
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+                        <i class="fa fa-search"></i> Search
+                    </a>
+                </li>
+                
+                    <li >
+                        <a rel="next" href="../session/">
+                            <i class="fa fa-arrow-left"></i> Previous
+                        </a>
+                    </li>
+                    <li >
+                        <a rel="prev" href="../rpc/">
+                            Next <i class="fa fa-arrow-right"></i>
+                        </a>
+                    </li>
+                
+                
+            </ul>
+        </div>
+    </div>
+</div>
+
+    <div class="container">
+        
+        <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
+    <ul class="nav bs-sidenav">
+    
+        <li class="first-level active"><a href="#publish-subscribe">Publish Subscribe</a></li>
+        
+            <li class="second-level"><a href="#subscribe-topics">Subscribe topics</a></li>
+            
+                <li class="third-level"><a href="#recover">Recover</a></li>
+            
+        
+            <li class="second-level"><a href="#unsubscribe-topics">Unsubscribe topics</a></li>
+            
+        
+            <li class="second-level"><a href="#publish-events">Publish events</a></li>
+            
+                <li class="third-level"><a href="#acknowledge">Acknowledge</a></li>
+            
+                <li class="third-level"><a href="#recover_1">Recover</a></li>
+            
+        
+    
+    </ul>
+</div></div>
+        <div class="col-md-9" role="main">
+
+<h1 id="publish-subscribe">Publish Subscribe</h1>
+<p>TBD</p>
+<h2 id="subscribe-topics">Subscribe topics</h2>
+<pre><code class="scala">import akka.wamp._
+import akka.wamp.message._
+
+// implicit val executionContext = ...
+// val session = ... 
+
+val subscription: Future[Subscription] = session.flatMap(
+  _.subscribe(
+    topic = &quot;myapp.topic&quot;,
+    options = Dict()) { 
+    event =&gt;
+      log.info(s&quot;${event.publicationId}&quot;)
+      event.payload.map(_.arguments.map(println))
+    })
+</code></pre>
+
+<p>A (future of) session can be mapped to a (future of) subscription by just invoking the <code>subscribe</code> method. It is a curried method with two parameter lists.</p>
+<pre><code class="scala">def subscribe(topic: Uri, options: Dict)(handler: InvocationHandler)
+</code></pre>
+
+<p>The first parameter list accepts <code>topic</code> and <code>options</code> arguments as documented for the <a href="../../../messages#Subscribe"><code>Subscribe</code></a> message constructor. The second parameter list accept a callback handler function of type <code>EventHandler</code> which gets invoked to process each event from the topic. </p>
+<p>The <code>event</code> object provides a (option of) <code>payload</code> which in turn provides both (future of) <code>arguments</code> and <code>argumentsKw</code>. Receiving arguments is better explained in the <a href="../payload">Payload</a> section.  </p>
+<h3 id="recover">Recover</h3>
+<p>You can either recover or <em>"give up"</em> when the (future of) subscription fails. To recover from failures (such as <code>SessionException</code> thrown when session turns out to be closed) you can compose <code>recoverWith</code> to attempt another session opening (maybe to a fallback realm and/or to a fallback topic):</p>
+<pre><code class="scala">val subscription = session.flatMap(
+  _.subscribe(&quot;myapp.topic&quot;)(handler)
+  .recoverWith { 
+    case ex: SessionException =&gt; session.flatMap(
+      _.subscribe(&quot;myapp.topic.heartbeat&quot;)(handler)
+  }
+</code></pre>
+
+<p>As last resort, instead of recovering, you could decide to <em>"give up"</em> a callback function <code>onFailure</code> that just prints a log message:</p>
+<pre><code class="scala">session.onFailure {
+  case ex: Throwable =&gt; 
+    log.error(ex.getMessage, ex)
+}
+</code></pre>
+
+<h2 id="unsubscribe-topics">Unsubscribe topics</h2>
+<p>TODO</p>
+<h2 id="publish-events">Publish events</h2>
+<pre><code class="scala">import akka.Done
+import akka.wamp.serialization._
+
+val publication: Future[Either[Done, Publication]] = session.flatMap(
+  _.publish(
+    topic = &quot;myapp.topic&quot;,
+    payload = Some(Payload(List(&quot;paolo&quot;, 40, true))),
+    ack = true
+  ))
+</code></pre>
+
+<p>A (future of) session can be mapped to a (future of) either done or publication by just invoking the <code>publish</code> method which accepts <code>topic</code>, <code>ack</code> and (option of) <code>payload</code> arguments as documented for the <a href="../../../messages#Publish"><code>Publish</code></a> message constructor.</p>
+<h3 id="acknowledge">Acknowledge</h3>
+<p>Note that if you leave <code>ack</code> switched off (as by default) then Akka Wamp will not expect to receive the <a href="../../../messages#Publish"><code>Published</code></a> message back from the router and the (future of either of) publication or done immediately completes with (left of) <code>Done</code>. Otherwise, if you switch <code>ack</code> on then the (future of either of) publication or done later completes with (right of) <code>Publication</code> (if no exception were thrown).</p>
+<p>You could pass a callback <code>onSuccess</code> to better understand what really happens:</p>
+<pre><code class="scala">// ack = true
+publication.onSuccess {
+  case Success(Left(Done)) =&gt;
+    println(s&quot;Publication done&quot;) 
+}
+
+// ack = false
+publication.onSuccess {
+  case Success(Right(p)) =&gt;
+    println(s&quot;Published with ${p.publicationId}&quot;)
+}
+</code></pre>
+
+<h3 id="recover_1">Recover</h3>
+<p>You can either recover or <em>"give up"</em> when the (future of) publication fails. To recover from failures (such as <code>SessionException</code> when session turns out to be closed as you try to publish) you can compose <code>recoverWith</code>  to attempt another session opening (maybe to a fallback realm and to a fallback topic):</p>
+<pre><code class="scala">val publication = session1.flatMap(_.publish(&quot;myapp.topic.ticking&quot;)
+  .recoverWith { 
+    case ex: SessionException =&gt;
+      for {
+        session2 &lt;- client.openSession()
+        publication2 &lt;- session2.publish(&quot;myapp.topic.heartbeat&quot;)
+      }
+      yield publication2
+  }
+</code></pre>
+
+<p>As last resort, instead of recovering, you could decide to <em>"give up"</em> a callback function <code>onFailure</code> that just prints a log message:</p>
+<pre><code class="scala">publication.onFailure {
+  case ex: Throwable =&gt; 
+    log.error(ex.getMessage, ex)
+}
+</code></pre></div>
+        
+    </div>
+
+    <footer class="col-md-12 text-center">
+        <hr>
+        <p>
+        <small>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a>.</p></small>
+    </footer>
+
+    <script src="../../../js/jquery-1.10.2.min.js"></script>
+    <script src="../../../js/bootstrap-3.0.3.min.js"></script>
+    <script src="../../../js/highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script>
+    var base_url = '../../..';
+    </script>
+    <script data-main="../../../mkdocs/js/search.js" src="../../../mkdocs/js/require.js"></script>
+    <script src="../../../js/base.js"></script>
+
+    <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span aria-hidden="true">&times;</span>
+                        <span class="sr-only">Close</span>
+                    </button>
+                    <h4 class="modal-title" id="exampleModalLabel">Search</h4>
+                </div>
+                <div class="modal-body">
+                    <p>
+                        From here you can search these documents. Enter your search terms below.
+                    </p>
+                    <form role="form">
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query">
+                        </div>
+                    </form>
+                    <div id="mkdocs-search-results"></div>
+                </div>
+                <div class="modal-footer">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    </body>
+
+</html>

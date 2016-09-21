@@ -1,0 +1,364 @@
+{
+    "docs": [
+        {
+            "location": "/", 
+            "text": "Akka Wamp\n\n\nAkka Wamp is a WAMP - \nWeb Application Messaging Protocol\n implementation written in \nScala\n with \nAkka\n\n\nEasy to download as \nSBT\n library dependency.\n\n\nlibraryDependencies ++= Seq(\n  \ncom.github.angiolep\n % \nakka-wamp_2.11\n % \n0.8.0\n\n)  \n\n\n\n\nClient\n\n\nConnect a transport, open a session, subscribe a topic, receive events, register a procedure and call it in few lines of Scala!\n\n\nPublish Subscribe\n\n\nobject PubSubApp extends App {\n\n  import akka.wamp.client._\n  val client = Client()\n\n  import scala.concurrent.Future\n  implicit val ec = client.executionContext\n\n  for {\n    session \n- client\n      .openSession(\n        url = \nws://localhost:8080/router\n,\n        subprotocol = \nwamp.2.json\n,\n        realm = \nakka.wamp.realm\n,\n        roles = Set(\nsubscriber\n))\n    subscription \n- session\n      .subscribe(\n        topic = \nmyapp.topic\n,\n        options = Dict()) {\n        event =\n\n          event.payload.map(_.arguments.map(println))\n        }\n    } yield ()\n}\n\n\n\n\nRemote Procedure Call\n\n\nComing soon ...\n\n\nRouter\n\n\nAkka Wamp provides you with a router that can be either embedded into your application or launched as standalone server process.\n\n\nLimitations\n\n\n\n\nScala 2.11 only (no older Scala)\n\n\nWebSocket transport only (no raw TCP and no SSL/TLS yet) \n\n\nProvide WAMP Basic Profile only (no Advanced Profile yet)\n\n\nProvide Publish/Subscribe only (no routed RPC yet)\n\n\nProvide JSON serialization only (no MsgPack yet)\n\n\n\n\nLicence\n\n\nThis software comes with \nApache License 2.0", 
+            "title": "Home"
+        }, 
+        {
+            "location": "/#akka-wamp", 
+            "text": "Akka Wamp is a WAMP -  Web Application Messaging Protocol  implementation written in  Scala  with  Akka  Easy to download as  SBT  library dependency.  libraryDependencies ++= Seq(\n   com.github.angiolep  %  akka-wamp_2.11  %  0.8.0 \n)", 
+            "title": "Akka Wamp"
+        }, 
+        {
+            "location": "/#client", 
+            "text": "Connect a transport, open a session, subscribe a topic, receive events, register a procedure and call it in few lines of Scala!", 
+            "title": "Client"
+        }, 
+        {
+            "location": "/#publish-subscribe", 
+            "text": "object PubSubApp extends App {\n\n  import akka.wamp.client._\n  val client = Client()\n\n  import scala.concurrent.Future\n  implicit val ec = client.executionContext\n\n  for {\n    session  - client\n      .openSession(\n        url =  ws://localhost:8080/router ,\n        subprotocol =  wamp.2.json ,\n        realm =  akka.wamp.realm ,\n        roles = Set( subscriber ))\n    subscription  - session\n      .subscribe(\n        topic =  myapp.topic ,\n        options = Dict()) {\n        event = \n          event.payload.map(_.arguments.map(println))\n        }\n    } yield ()\n}", 
+            "title": "Publish Subscribe"
+        }, 
+        {
+            "location": "/#remote-procedure-call", 
+            "text": "Coming soon ...", 
+            "title": "Remote Procedure Call"
+        }, 
+        {
+            "location": "/#router", 
+            "text": "Akka Wamp provides you with a router that can be either embedded into your application or launched as standalone server process.", 
+            "title": "Router"
+        }, 
+        {
+            "location": "/#limitations", 
+            "text": "Scala 2.11 only (no older Scala)  WebSocket transport only (no raw TCP and no SSL/TLS yet)   Provide WAMP Basic Profile only (no Advanced Profile yet)  Provide Publish/Subscribe only (no routed RPC yet)  Provide JSON serialization only (no MsgPack yet)", 
+            "title": "Limitations"
+        }, 
+        {
+            "location": "/#licence", 
+            "text": "This software comes with  Apache License 2.0", 
+            "title": "Licence"
+        }, 
+        {
+            "location": "/router/", 
+            "text": "Akka Wamp provides you with a router that can be either embedded into your application or launched as standalone server process.\n\n\nEmbedded\n\n\nMake your SBT build depend on akka-wamp:\n\n\nscalaVersion := \n2.11.8\n\n\nlibraryDependencies ++= Seq(\n  \ncom.github.angiolep\n %% \nakka-wamp\n % \n0.8.0\n\n  // ...\n)\n\n\n\n\nCreate the Akka \nActorSystem\n and the Akka Wamp \nRouter\n actor as follows:\n\n\nimport akka.actor._\nimport akka.wamp.router._\n\nimplicit val system = ActorSystem(\nwamp\n)\nval router = system.actorOf(Router.props(), \nrouter\n)\n\n\n\n\nThen send a \nBind\n message to the \nIO(Wamp)\n manager\n\n\nIO(Wamp) ! Bind(router)\n\n\n\n\nDone ;-)\n\n\nStandalone \n\n\nDownload and launch the router as standalone application:\n\n\ncurl https://dl.bintray.com/angiolep/universal/akka-wamp-0.8.0.tgz\ntar xvfz akka-wamp-0.8.0.tar.gz\ncd akka-wamp-0.8.0\n./bin/akka-wamp -Dakka.loglevel=DEBUG\n\n\n\n\nConfiguration\n\n\nEither the embedded or the standalone router can be configured by applying the following configuration:\n\n\nakka {\n  wamp {\n    router {\n      # The TCP interface to bind to\n      #\n      iface = \n127.0.0.1\n\n\n      # The TCP port number (between 0 and 65536) to bind to\n      #\n      port = 8080\n\n      # The URL path incoming HTTP Upgrade request are\n      # expected to be addressed to\n      #\n      path = \nrouter\n\n\n      # The boolean switch to validate against strict URIs \n      # rather than loose URIs\n      #\n      validate-strict-uris = false\n\n      # The boolean switch to NOT automatically create \n      # realms if they don't exist yet.\n      #\n      abort-unknown-realms = false\n\n      # The boolean switch to disconnect those peers that send \n      # offending messages (e.g. not deserializable or causing\n      # session failures)\n      #\n      # By default, offending messages are just dropped and \n      # the router resumes processing next incoming messages\n      #\n      disconnect-offending-peers = false\n    }\n  }\n}\n\n\n\n\nAbove settings can be overridden by\n\n\n\n\nproviding a TypeSafe Config \napplication.conf\n file right in the classpath,\n\n\nor passing Java system properties (e.g. \n-Dakka.wamp.router.port=7070\n) to the Java interpreter on the command line", 
+            "title": "Router"
+        }, 
+        {
+            "location": "/router/#embedded", 
+            "text": "Make your SBT build depend on akka-wamp:  scalaVersion :=  2.11.8 \n\nlibraryDependencies ++= Seq(\n   com.github.angiolep  %%  akka-wamp  %  0.8.0 \n  // ...\n)  Create the Akka  ActorSystem  and the Akka Wamp  Router  actor as follows:  import akka.actor._\nimport akka.wamp.router._\n\nimplicit val system = ActorSystem( wamp )\nval router = system.actorOf(Router.props(),  router )  Then send a  Bind  message to the  IO(Wamp)  manager  IO(Wamp) ! Bind(router)  Done ;-)", 
+            "title": "Embedded"
+        }, 
+        {
+            "location": "/router/#standalone", 
+            "text": "Download and launch the router as standalone application:  curl https://dl.bintray.com/angiolep/universal/akka-wamp-0.8.0.tgz\ntar xvfz akka-wamp-0.8.0.tar.gz\ncd akka-wamp-0.8.0\n./bin/akka-wamp -Dakka.loglevel=DEBUG", 
+            "title": "Standalone"
+        }, 
+        {
+            "location": "/router/#configuration", 
+            "text": "Either the embedded or the standalone router can be configured by applying the following configuration:  akka {\n  wamp {\n    router {\n      # The TCP interface to bind to\n      #\n      iface =  127.0.0.1 \n\n      # The TCP port number (between 0 and 65536) to bind to\n      #\n      port = 8080\n\n      # The URL path incoming HTTP Upgrade request are\n      # expected to be addressed to\n      #\n      path =  router \n\n      # The boolean switch to validate against strict URIs \n      # rather than loose URIs\n      #\n      validate-strict-uris = false\n\n      # The boolean switch to NOT automatically create \n      # realms if they don't exist yet.\n      #\n      abort-unknown-realms = false\n\n      # The boolean switch to disconnect those peers that send \n      # offending messages (e.g. not deserializable or causing\n      # session failures)\n      #\n      # By default, offending messages are just dropped and \n      # the router resumes processing next incoming messages\n      #\n      disconnect-offending-peers = false\n    }\n  }\n}  Above settings can be overridden by   providing a TypeSafe Config  application.conf  file right in the classpath,  or passing Java system properties (e.g.  -Dakka.wamp.router.port=7070 ) to the Java interpreter on the command line", 
+            "title": "Configuration"
+        }, 
+        {
+            "location": "/client/actor/", 
+            "text": "Actor based API\n\n\nAkka Wamp provides you with an \nActor\n based API to let you write your client with a low-level API and have full control of it!\n\n\nFor the \nimpatients\n\n\nLet's connect a transport, open a session, subscribe a topic and receive events:\n\n\nimport akka.actor._\nimport akka.io._\nimport akka.wamp._\n\nimplicit val system = ActorSystem(\nmyapp\n)\n\nval client = system.actorOf(Props[MyClient])\nIO(Wamp) ! Wamp.Connect(client, \nws://localhost:8080/router\n)\n\nclass MyClient extends Actor {\n  var router: ActorRef = _\n  def receive = {\n    case signal @ Wamp.Connected(r) =\n\n      router = r\n      IO(Wamp) ! Wamp.Disconnect\n  }\n}", 
+            "title": "Actor based API"
+        }, 
+        {
+            "location": "/client/actor/#actor-based-api", 
+            "text": "Akka Wamp provides you with an  Actor  based API to let you write your client with a low-level API and have full control of it!", 
+            "title": "Actor based API"
+        }, 
+        {
+            "location": "/client/actor/#for-the-impatients", 
+            "text": "Let's connect a transport, open a session, subscribe a topic and receive events:  import akka.actor._\nimport akka.io._\nimport akka.wamp._\n\nimplicit val system = ActorSystem( myapp )\n\nval client = system.actorOf(Props[MyClient])\nIO(Wamp) ! Wamp.Connect(client,  ws://localhost:8080/router )\n\nclass MyClient extends Actor {\n  var router: ActorRef = _\n  def receive = {\n    case signal @ Wamp.Connected(r) = \n      router = r\n      IO(Wamp) ! Wamp.Disconnect\n  }\n}", 
+            "title": "For the impatients"
+        }, 
+        {
+            "location": "/client/future/overview/", 
+            "text": "Future based API\n\n\nAkka Wamp provides you with an \nAkka Future\n based API, built on top of \nAkka Wamp Actor based API\n, to let you write your client with a high-level API and few lines of Scala!\n\n\nFor the \nimpatients\n\n\nLet's connect a transport, open a session, subscribe to a topic and receive events:\n\n\nobject PubSubApp extends App {\n\n  import akka.wamp._\n  import akka.wamp.client._\n\n  val client = Client()\n  implicit val ec = client.executionContext\n\n  for {\n    session \n- client\n      .openSession(\n        url = \nws://localhost:8080/router\n,\n        subprotocol = \nwamp.2.json\n,\n        realm = \nakka.wamp.realm\n,\n        roles = Set(\nsubscriber\n))\n    subscription \n- session\n      .subscribe(\n        topic = \nmyapp.topic\n,\n        options = Dict()) {\n        event =\n\n          event.payload.map(_.arguments.map(println))\n        }\n    } yield ()\n}\n\n\n\n\nCreate the client and invoke its \nopenSession()\n method to get a (future of) session. Then yield a (future of) subscription by invoking the \nsubscribe()()\n method. That's a curried method which accepts the topic URI in its first parameters list and an \nEventHandler\n handler in its second parameters list. The event handler maps the (option of) payload to get the (future of) \narguments\n just received.\n\n\nPlease, read on for a deeper explanation and further details.", 
+            "title": "For the impatients"
+        }, 
+        {
+            "location": "/client/future/overview/#future-based-api", 
+            "text": "Akka Wamp provides you with an  Akka Future  based API, built on top of  Akka Wamp Actor based API , to let you write your client with a high-level API and few lines of Scala!", 
+            "title": "Future based API"
+        }, 
+        {
+            "location": "/client/future/overview/#for-the-impatients", 
+            "text": "Let's connect a transport, open a session, subscribe to a topic and receive events:  object PubSubApp extends App {\n\n  import akka.wamp._\n  import akka.wamp.client._\n\n  val client = Client()\n  implicit val ec = client.executionContext\n\n  for {\n    session  - client\n      .openSession(\n        url =  ws://localhost:8080/router ,\n        subprotocol =  wamp.2.json ,\n        realm =  akka.wamp.realm ,\n        roles = Set( subscriber ))\n    subscription  - session\n      .subscribe(\n        topic =  myapp.topic ,\n        options = Dict()) {\n        event = \n          event.payload.map(_.arguments.map(println))\n        }\n    } yield ()\n}  Create the client and invoke its  openSession()  method to get a (future of) session. Then yield a (future of) subscription by invoking the  subscribe()()  method. That's a curried method which accepts the topic URI in its first parameters list and an  EventHandler  handler in its second parameters list. The event handler maps the (option of) payload to get the (future of)  arguments  just received.  Please, read on for a deeper explanation and further details.", 
+            "title": "For the impatients"
+        }, 
+        {
+            "location": "/client/future/session/", 
+            "text": "Session Handling\n\n\nimport akka.wamp.client._\nval client = Client(\nmyapp\n)\n\nimplicit val ec = client.executionContext\n\nval session = client\n  .connect(\n    url = \nws://localhost:8080/router\n,\n    subprotocol = \nwamp.2.json\n)\n  .openSession(\n    realm = \nakka.wamp.realm\n,\n    roles = Set(\nsubscriber\n)\n  )\n}\n\n\n\n\nCreate the client and establish connections to open sessions.\n\n\nCreate clients\n\n\nimport akka.wamp.client._\nval client = Client(\nmyapp\n)\n\n\n\n\nCreate the client by invoking the \nClient\n companion object factory method with the following arguments\n\n\n\n\n\n\nname\n\n   The unique name of the client (default is \n\"default\"\n)\n\n\n\n\n\n\nconfig\n\n   The configuration object (default is \nConfigFactory.load()\n as per standard behaviour of \nTypeSafe Config\n)\n\n\n\n\n\n\nThe factory method creates an \nAkka ActorSystem\n named after the client and configured with the given configuration object. \n\n\nConfiguration\n\n\nTBD\n\n\nMultiplicity\n\n\nIn Akka Wamp, one client can establish many connections but each connection can open only one session.\n\n\n    ,--------.  1      0..n  ,------------.  1      0..1  ,---------. \n    | Client |  -----------  | Connection |  -----------  | Session | \n    `--------'               `------------'               `---------'\n\n\n\n\nBear in mind that, though you could create as many client as you wish, its actor system is a heavyweight structure that allocates 1..n threads. So you're advised to create \none client per logical application\n.\n\n\nExecution context\n\n\nAll of the operation provided by client, connection and sessions objects always return futures. In order to execute callbacks and operations, futures need something called an \nExecutionContext\n. You can import the existing \nclient.executionContext\n as implicit in scope:\n\n\nimplicit val ec = client.executionContext\n\n\n\n\nor create your own.\n\n\nEstablish connections\n\n\nimport scala.concurrent.Future\n\nval conn1: Future[Connection] = client\n  .connect(\n    url = \nws://localhost:8080/router\n,\n    subprotocol = \nwamp.2.json\n)\n\nval conn2 = client\n  .connect(\n    url = \nwss://secure.host.net:443/wamp\n,\n    subprotocol = \nwamp.2.msgpack\n)    \n\n\n\n\nEstablish a connection to a router invoking the client \nconnect()\n method which accepts \nurl\n and \nsubprotocol\n arguments as documented for the \nConnect\n message constructor. \n\n\nYou can establish as many connections as you wish (to the same or to different routers) as the connect method returns a distinct (future of) connection.\n\n\nRecover\n\n\nYou can either recover or \n\"give up\"\n when the (future of) connection fails. To recover from failures (such as \nConnectionException\n thrown when router cannot accept connection) you can compose \nrecoverWith\n to attempt another connection (maybe to a fallback router):\n\n\nval conn1: Future[Connection] = client\n  .connect(\n    url = \nws://localhost:8080/router\n)\n  .recoverWith { \n    case ex: ConnectionException =\n client\n      .connect(\n        url = \nws://fallback.host.net:9999/path\n)\n  }\n\n\n\n\nAs last resort, instead of recovering, you could decide to \n\"give up\"\n a callback function \nonFailure\n that terminates the application:\n\n\nconn.onFailure {\n  case ex: Throwable =\n\n    client.terminate().map(_ =\n System.exit(-1))\n}\n\n\n\n\nOpen sessions\n\n\nval session1: Future[Session] = conn1.flatMap(\n  _.openSession(\n    realm = \nakka.wamp.realm\n,\n    roles = Set(\nsubscriber\n)))\n\nval session2 = conn2.flatMap(\n  _.openSession(\n    roles = Set(\npublisher\n, \ncallee\n)))    \n\n\n\n\nA (future of) connection can be mapped to a (future of) session by just invoking the connection \nopenSession()\n method which accepts \nrealm\n and \nroles\n arguments as documented for the \nHello\n message constructor. \n\n\nYou can open only one session per connection. Therefore, if you wish to open a second session then you must establish a second connection (using the same client or a different one).\n\n\nShortcut\n\n\nYou can shortcut connection establishment and session opening in one single concise statement by invoking \nopenSession()\n on the client rather than on the connection:\n\n\nval session1: Future[Session] = client\n  .openSession(\n    url = \nws://some.host.net:8080/ws\n,\n    subprotocol = \nwamp.2.json\n,\n    realm = \nakka.wamp.realm\n,\n    roles = Set(\nsubscriber\n, \ncaller\n))\n\n\n\n\nThe client \nopenSession()\n method accepts all of the \nurl\n, \nsubprotocol\n, \nrealm\n and \ndetails\n arguments mentioned above. It establishes a new connection and opens a new session each time you call it.\n\n\nRecover\n\n\nYou can either recover or \n\"give up\"\n when the (future of) session fails. To recover from failures (such as \nAbortException\n thrown when router doesn't attach to a realm) you can compose \nrecoverWith\n to attempt another session opening (maybe to a fallback realm):\n\n\nval session: Future[Session] = client\n  .openSession(\n    realm = \nakka.wamp.realm\n)\n  .recoverWith { \n    case ex: AbortException =\n client\n      .openSession(\n        realm = \nfallback.realm\n)\n  }\n\n\n\n\nAs last resort, instead of recovering, you could decide to \n\"give up\"\n a callback function \nonFailure\n that just prints a log message:\n\n\nsession.onFailure {\n  case ex: Throwable =\n \n    log.error(ex.getMessage, ex)\n}\n\n\n\n\nClose sessions\n\n\nTBD\n\n\nDisconnect transports\n\n\nTBD\n\n\nTerminate the client\n\n\nTBD", 
+            "title": "Session Handling"
+        }, 
+        {
+            "location": "/client/future/session/#session-handling", 
+            "text": "import akka.wamp.client._\nval client = Client( myapp )\n\nimplicit val ec = client.executionContext\n\nval session = client\n  .connect(\n    url =  ws://localhost:8080/router ,\n    subprotocol =  wamp.2.json )\n  .openSession(\n    realm =  akka.wamp.realm ,\n    roles = Set( subscriber )\n  )\n}  Create the client and establish connections to open sessions.", 
+            "title": "Session Handling"
+        }, 
+        {
+            "location": "/client/future/session/#create-clients", 
+            "text": "import akka.wamp.client._\nval client = Client( myapp )  Create the client by invoking the  Client  companion object factory method with the following arguments    name \n   The unique name of the client (default is  \"default\" )    config \n   The configuration object (default is  ConfigFactory.load()  as per standard behaviour of  TypeSafe Config )    The factory method creates an  Akka ActorSystem  named after the client and configured with the given configuration object.", 
+            "title": "Create clients"
+        }, 
+        {
+            "location": "/client/future/session/#configuration", 
+            "text": "TBD", 
+            "title": "Configuration"
+        }, 
+        {
+            "location": "/client/future/session/#multiplicity", 
+            "text": "In Akka Wamp, one client can establish many connections but each connection can open only one session.      ,--------.  1      0..n  ,------------.  1      0..1  ,---------. \n    | Client |  -----------  | Connection |  -----------  | Session | \n    `--------'               `------------'               `---------'  Bear in mind that, though you could create as many client as you wish, its actor system is a heavyweight structure that allocates 1..n threads. So you're advised to create  one client per logical application .", 
+            "title": "Multiplicity"
+        }, 
+        {
+            "location": "/client/future/session/#execution-context", 
+            "text": "All of the operation provided by client, connection and sessions objects always return futures. In order to execute callbacks and operations, futures need something called an  ExecutionContext . You can import the existing  client.executionContext  as implicit in scope:  implicit val ec = client.executionContext  or create your own.", 
+            "title": "Execution context"
+        }, 
+        {
+            "location": "/client/future/session/#establish-connections", 
+            "text": "import scala.concurrent.Future\n\nval conn1: Future[Connection] = client\n  .connect(\n    url =  ws://localhost:8080/router ,\n    subprotocol =  wamp.2.json )\n\nval conn2 = client\n  .connect(\n    url =  wss://secure.host.net:443/wamp ,\n    subprotocol =  wamp.2.msgpack )      Establish a connection to a router invoking the client  connect()  method which accepts  url  and  subprotocol  arguments as documented for the  Connect  message constructor.   You can establish as many connections as you wish (to the same or to different routers) as the connect method returns a distinct (future of) connection.", 
+            "title": "Establish connections"
+        }, 
+        {
+            "location": "/client/future/session/#recover", 
+            "text": "You can either recover or  \"give up\"  when the (future of) connection fails. To recover from failures (such as  ConnectionException  thrown when router cannot accept connection) you can compose  recoverWith  to attempt another connection (maybe to a fallback router):  val conn1: Future[Connection] = client\n  .connect(\n    url =  ws://localhost:8080/router )\n  .recoverWith { \n    case ex: ConnectionException =  client\n      .connect(\n        url =  ws://fallback.host.net:9999/path )\n  }  As last resort, instead of recovering, you could decide to  \"give up\"  a callback function  onFailure  that terminates the application:  conn.onFailure {\n  case ex: Throwable = \n    client.terminate().map(_ =  System.exit(-1))\n}", 
+            "title": "Recover"
+        }, 
+        {
+            "location": "/client/future/session/#open-sessions", 
+            "text": "val session1: Future[Session] = conn1.flatMap(\n  _.openSession(\n    realm =  akka.wamp.realm ,\n    roles = Set( subscriber )))\n\nval session2 = conn2.flatMap(\n  _.openSession(\n    roles = Set( publisher ,  callee )))      A (future of) connection can be mapped to a (future of) session by just invoking the connection  openSession()  method which accepts  realm  and  roles  arguments as documented for the  Hello  message constructor.   You can open only one session per connection. Therefore, if you wish to open a second session then you must establish a second connection (using the same client or a different one).", 
+            "title": "Open sessions"
+        }, 
+        {
+            "location": "/client/future/session/#shortcut", 
+            "text": "You can shortcut connection establishment and session opening in one single concise statement by invoking  openSession()  on the client rather than on the connection:  val session1: Future[Session] = client\n  .openSession(\n    url =  ws://some.host.net:8080/ws ,\n    subprotocol =  wamp.2.json ,\n    realm =  akka.wamp.realm ,\n    roles = Set( subscriber ,  caller ))  The client  openSession()  method accepts all of the  url ,  subprotocol ,  realm  and  details  arguments mentioned above. It establishes a new connection and opens a new session each time you call it.", 
+            "title": "Shortcut"
+        }, 
+        {
+            "location": "/client/future/session/#recover_1", 
+            "text": "You can either recover or  \"give up\"  when the (future of) session fails. To recover from failures (such as  AbortException  thrown when router doesn't attach to a realm) you can compose  recoverWith  to attempt another session opening (maybe to a fallback realm):  val session: Future[Session] = client\n  .openSession(\n    realm =  akka.wamp.realm )\n  .recoverWith { \n    case ex: AbortException =  client\n      .openSession(\n        realm =  fallback.realm )\n  }  As last resort, instead of recovering, you could decide to  \"give up\"  a callback function  onFailure  that just prints a log message:  session.onFailure {\n  case ex: Throwable =  \n    log.error(ex.getMessage, ex)\n}", 
+            "title": "Recover"
+        }, 
+        {
+            "location": "/client/future/session/#close-sessions", 
+            "text": "TBD", 
+            "title": "Close sessions"
+        }, 
+        {
+            "location": "/client/future/session/#disconnect-transports", 
+            "text": "TBD", 
+            "title": "Disconnect transports"
+        }, 
+        {
+            "location": "/client/future/session/#terminate-the-client", 
+            "text": "TBD", 
+            "title": "Terminate the client"
+        }, 
+        {
+            "location": "/client/future/pubsub/", 
+            "text": "Publish Subscribe\n\n\nTBD\n\n\nSubscribe topics\n\n\nimport akka.wamp._\nimport akka.wamp.message._\n\n// implicit val executionContext = ...\n// val session = ... \n\nval subscription: Future[Subscription] = session.flatMap(\n  _.subscribe(\n    topic = \nmyapp.topic\n,\n    options = Dict()) { \n    event =\n\n      log.info(s\n${event.publicationId}\n)\n      event.payload.map(_.arguments.map(println))\n    })\n\n\n\n\nA (future of) session can be mapped to a (future of) subscription by just invoking the \nsubscribe\n method. It is a curried method with two parameter lists.\n\n\ndef subscribe(topic: Uri, options: Dict)(handler: InvocationHandler)\n\n\n\n\nThe first parameter list accepts \ntopic\n and \noptions\n arguments as documented for the \nSubscribe\n message constructor. The second parameter list accept a callback handler function of type \nEventHandler\n which gets invoked to process each event from the topic. \n\n\nThe \nevent\n object provides a (option of) \npayload\n which in turn provides both (future of) \narguments\n and \nargumentsKw\n. Receiving arguments is better explained in the \nPayload\n section.  \n\n\nRecover\n\n\nYou can either recover or \n\"give up\"\n when the (future of) subscription fails. To recover from failures (such as \nSessionException\n thrown when session turns out to be closed) you can compose \nrecoverWith\n to attempt another session opening (maybe to a fallback realm and/or to a fallback topic):\n\n\nval subscription = session.flatMap(\n  _.subscribe(\nmyapp.topic\n)(handler)\n  .recoverWith { \n    case ex: SessionException =\n session.flatMap(\n      _.subscribe(\nmyapp.topic.heartbeat\n)(handler)\n  }\n\n\n\n\nAs last resort, instead of recovering, you could decide to \n\"give up\"\n a callback function \nonFailure\n that just prints a log message:\n\n\nsession.onFailure {\n  case ex: Throwable =\n \n    log.error(ex.getMessage, ex)\n}\n\n\n\n\nUnsubscribe topics\n\n\nTODO\n\n\nPublish events\n\n\nimport akka.Done\nimport akka.wamp.serialization._\n\nval publication: Future[Either[Done, Publication]] = session.flatMap(\n  _.publish(\n    topic = \nmyapp.topic\n,\n    payload = Some(Payload(List(\npaolo\n, 40, true))),\n    ack = true\n  ))\n\n\n\n\nA (future of) session can be mapped to a (future of) either done or publication by just invoking the \npublish\n method which accepts \ntopic\n, \nack\n and (option of) \npayload\n arguments as documented for the \nPublish\n message constructor.\n\n\nAcknowledge\n\n\nNote that if you leave \nack\n switched off (as by default) then Akka Wamp will not expect to receive the \nPublished\n message back from the router and the (future of either of) publication or done immediately completes with (left of) \nDone\n. Otherwise, if you switch \nack\n on then the (future of either of) publication or done later completes with (right of) \nPublication\n (if no exception were thrown).\n\n\nYou could pass a callback \nonSuccess\n to better understand what really happens:\n\n\n// ack = true\npublication.onSuccess {\n  case Success(Left(Done)) =\n\n    println(s\nPublication done\n) \n}\n\n// ack = false\npublication.onSuccess {\n  case Success(Right(p)) =\n\n    println(s\nPublished with ${p.publicationId}\n)\n}\n\n\n\n\nRecover\n\n\nYou can either recover or \n\"give up\"\n when the (future of) publication fails. To recover from failures (such as \nSessionException\n when session turns out to be closed as you try to publish) you can compose \nrecoverWith\n  to attempt another session opening (maybe to a fallback realm and to a fallback topic):\n\n\nval publication = session1.flatMap(_.publish(\nmyapp.topic.ticking\n)\n  .recoverWith { \n    case ex: SessionException =\n\n      for {\n        session2 \n- client.openSession()\n        publication2 \n- session2.publish(\nmyapp.topic.heartbeat\n)\n      }\n      yield publication2\n  }\n\n\n\n\nAs last resort, instead of recovering, you could decide to \n\"give up\"\n a callback function \nonFailure\n that just prints a log message:\n\n\npublication.onFailure {\n  case ex: Throwable =\n \n    log.error(ex.getMessage, ex)\n}", 
+            "title": "Publish Subscribe"
+        }, 
+        {
+            "location": "/client/future/pubsub/#publish-subscribe", 
+            "text": "TBD", 
+            "title": "Publish Subscribe"
+        }, 
+        {
+            "location": "/client/future/pubsub/#subscribe-topics", 
+            "text": "import akka.wamp._\nimport akka.wamp.message._\n\n// implicit val executionContext = ...\n// val session = ... \n\nval subscription: Future[Subscription] = session.flatMap(\n  _.subscribe(\n    topic =  myapp.topic ,\n    options = Dict()) { \n    event = \n      log.info(s ${event.publicationId} )\n      event.payload.map(_.arguments.map(println))\n    })  A (future of) session can be mapped to a (future of) subscription by just invoking the  subscribe  method. It is a curried method with two parameter lists.  def subscribe(topic: Uri, options: Dict)(handler: InvocationHandler)  The first parameter list accepts  topic  and  options  arguments as documented for the  Subscribe  message constructor. The second parameter list accept a callback handler function of type  EventHandler  which gets invoked to process each event from the topic.   The  event  object provides a (option of)  payload  which in turn provides both (future of)  arguments  and  argumentsKw . Receiving arguments is better explained in the  Payload  section.", 
+            "title": "Subscribe topics"
+        }, 
+        {
+            "location": "/client/future/pubsub/#recover", 
+            "text": "You can either recover or  \"give up\"  when the (future of) subscription fails. To recover from failures (such as  SessionException  thrown when session turns out to be closed) you can compose  recoverWith  to attempt another session opening (maybe to a fallback realm and/or to a fallback topic):  val subscription = session.flatMap(\n  _.subscribe( myapp.topic )(handler)\n  .recoverWith { \n    case ex: SessionException =  session.flatMap(\n      _.subscribe( myapp.topic.heartbeat )(handler)\n  }  As last resort, instead of recovering, you could decide to  \"give up\"  a callback function  onFailure  that just prints a log message:  session.onFailure {\n  case ex: Throwable =  \n    log.error(ex.getMessage, ex)\n}", 
+            "title": "Recover"
+        }, 
+        {
+            "location": "/client/future/pubsub/#unsubscribe-topics", 
+            "text": "TODO", 
+            "title": "Unsubscribe topics"
+        }, 
+        {
+            "location": "/client/future/pubsub/#publish-events", 
+            "text": "import akka.Done\nimport akka.wamp.serialization._\n\nval publication: Future[Either[Done, Publication]] = session.flatMap(\n  _.publish(\n    topic =  myapp.topic ,\n    payload = Some(Payload(List( paolo , 40, true))),\n    ack = true\n  ))  A (future of) session can be mapped to a (future of) either done or publication by just invoking the  publish  method which accepts  topic ,  ack  and (option of)  payload  arguments as documented for the  Publish  message constructor.", 
+            "title": "Publish events"
+        }, 
+        {
+            "location": "/client/future/pubsub/#acknowledge", 
+            "text": "Note that if you leave  ack  switched off (as by default) then Akka Wamp will not expect to receive the  Published  message back from the router and the (future of either of) publication or done immediately completes with (left of)  Done . Otherwise, if you switch  ack  on then the (future of either of) publication or done later completes with (right of)  Publication  (if no exception were thrown).  You could pass a callback  onSuccess  to better understand what really happens:  // ack = true\npublication.onSuccess {\n  case Success(Left(Done)) = \n    println(s Publication done ) \n}\n\n// ack = false\npublication.onSuccess {\n  case Success(Right(p)) = \n    println(s Published with ${p.publicationId} )\n}", 
+            "title": "Acknowledge"
+        }, 
+        {
+            "location": "/client/future/pubsub/#recover_1", 
+            "text": "You can either recover or  \"give up\"  when the (future of) publication fails. To recover from failures (such as  SessionException  when session turns out to be closed as you try to publish) you can compose  recoverWith   to attempt another session opening (maybe to a fallback realm and to a fallback topic):  val publication = session1.flatMap(_.publish( myapp.topic.ticking )\n  .recoverWith { \n    case ex: SessionException = \n      for {\n        session2  - client.openSession()\n        publication2  - session2.publish( myapp.topic.heartbeat )\n      }\n      yield publication2\n  }  As last resort, instead of recovering, you could decide to  \"give up\"  a callback function  onFailure  that just prints a log message:  publication.onFailure {\n  case ex: Throwable =  \n    log.error(ex.getMessage, ex)\n}", 
+            "title": "Recover"
+        }, 
+        {
+            "location": "/client/future/rpc/", 
+            "text": "Remote Procedure Calls\n\n\nTODO\n\n\nRegister procedures\n\n\nimport akka.wamp._\nimport akka.wamp.client._\nimport scala.concurrent._\n\n// implicit val executionContext = ...\n// val session = ... \n\nval registration: Future[Registration] = session.flatMap(\n  _.register(\n    procedure = \nmyapp.procedure\n,\n    options = Dict()) {\n    invocation =\n\n      log.info(s\n${invocation.registrationId}\n)\n      invocation.payload.map(_.arguments.map(println))\n    })\n\n\n\n\nA (future of) session can be mapped to a (future of) registration by just invoking the \nregister\n method. It is a curried method with two parameter lists.\n\n\ndef register(procedure: Uri, options: Dict)(handler: InvocationHandler)\n\n\n\n\nThe first parameter list accepts \nprocedure\n and \noptions\n arguments as documented for the \nRegister\n message constructor. The second parameter list accept a callback handler function of type \nInvocationHandler\n which gets invoked to process each invocation for the procedure. \n\n\nThe \ninvocation\n object provides a (option of) \npayload\n which in turn provides both (future of) \narguments\n and \nargumentsKw\n. Receiving arguments is better explained in the \nPayload Handling\n section. \n\n\nRecover\n\n\nYou can either recover or \n\"give up\"\n when the (future of) registration fails. To recover from failures (such as \nSessionException\n thrown when the procedure has been already registered by some other callee or when the session turns out to be closed) you can compose \nrecoverWith\n to attempt registering the procedure with a different name or to attempt another session (maybe to a fallback realm):\n\n\nval registration = session.flatMap(\n  _.register(\nmyapp.procedure\n)(handler)\n  .recoverWith { \n    case ex: SessionException =\n session.flatMap(\n      _.register(\nmyapp.procedure.renamed\n)(handler)\n  }\n\n\n\n\nAs last resort, instead of recovering, you could decide to \n\"give up\"\n a callback function \nonFailure\n that just prints a log message:\n\n\nsession.onFailure {\n  case ex: Throwable =\n \n    log.error(ex.getMessage, ex)\n}\n\n\n\n\nUnregister procedures\n\n\nTBD\n\n\nRecover\n\n\nTBD\n\n\nCall procedures\n\n\nTBD\n\n\nRecover\n\n\nTBD", 
+            "title": "Remote Procedure Call"
+        }, 
+        {
+            "location": "/client/future/rpc/#remote-procedure-calls", 
+            "text": "TODO", 
+            "title": "Remote Procedure Calls"
+        }, 
+        {
+            "location": "/client/future/rpc/#register-procedures", 
+            "text": "import akka.wamp._\nimport akka.wamp.client._\nimport scala.concurrent._\n\n// implicit val executionContext = ...\n// val session = ... \n\nval registration: Future[Registration] = session.flatMap(\n  _.register(\n    procedure =  myapp.procedure ,\n    options = Dict()) {\n    invocation = \n      log.info(s ${invocation.registrationId} )\n      invocation.payload.map(_.arguments.map(println))\n    })  A (future of) session can be mapped to a (future of) registration by just invoking the  register  method. It is a curried method with two parameter lists.  def register(procedure: Uri, options: Dict)(handler: InvocationHandler)  The first parameter list accepts  procedure  and  options  arguments as documented for the  Register  message constructor. The second parameter list accept a callback handler function of type  InvocationHandler  which gets invoked to process each invocation for the procedure.   The  invocation  object provides a (option of)  payload  which in turn provides both (future of)  arguments  and  argumentsKw . Receiving arguments is better explained in the  Payload Handling  section.", 
+            "title": "Register procedures"
+        }, 
+        {
+            "location": "/client/future/rpc/#recover", 
+            "text": "You can either recover or  \"give up\"  when the (future of) registration fails. To recover from failures (such as  SessionException  thrown when the procedure has been already registered by some other callee or when the session turns out to be closed) you can compose  recoverWith  to attempt registering the procedure with a different name or to attempt another session (maybe to a fallback realm):  val registration = session.flatMap(\n  _.register( myapp.procedure )(handler)\n  .recoverWith { \n    case ex: SessionException =  session.flatMap(\n      _.register( myapp.procedure.renamed )(handler)\n  }  As last resort, instead of recovering, you could decide to  \"give up\"  a callback function  onFailure  that just prints a log message:  session.onFailure {\n  case ex: Throwable =  \n    log.error(ex.getMessage, ex)\n}", 
+            "title": "Recover"
+        }, 
+        {
+            "location": "/client/future/rpc/#unregister-procedures", 
+            "text": "TBD", 
+            "title": "Unregister procedures"
+        }, 
+        {
+            "location": "/client/future/rpc/#recover_1", 
+            "text": "TBD", 
+            "title": "Recover"
+        }, 
+        {
+            "location": "/client/future/rpc/#call-procedures", 
+            "text": "TBD", 
+            "title": "Call procedures"
+        }, 
+        {
+            "location": "/client/future/rpc/#recover_2", 
+            "text": "TBD", 
+            "title": "Recover"
+        }, 
+        {
+            "location": "/client/future/payload/", 
+            "text": "Payload Handling\n\n\nTBD\n\n\nReceiving\n\n\nTBD\n\n\nSending\n\n\nTBD", 
+            "title": "Payload Handling"
+        }, 
+        {
+            "location": "/client/future/payload/#payload-handling", 
+            "text": "TBD", 
+            "title": "Payload Handling"
+        }, 
+        {
+            "location": "/client/future/payload/#receiving", 
+            "text": "TBD", 
+            "title": "Receiving"
+        }, 
+        {
+            "location": "/client/future/payload/#sending", 
+            "text": "TBD", 
+            "title": "Sending"
+        }, 
+        {
+            "location": "/client/stream/", 
+            "text": "Stream based API\n\n\nTBD", 
+            "title": "Stream based API"
+        }, 
+        {
+            "location": "/client/stream/#stream-based-api", 
+            "text": "TBD", 
+            "title": "Stream based API"
+        }, 
+        {
+            "location": "/client/config/", 
+            "text": "Configuration\n\n\nakka {\n  wamp {\n    client {\n      # The boolean switch to validate against strict URIs \n      # rather than loose URIs\n      #\n      validate-strict-uris = false\n\n      # The boolean switch to disconnect those peers that send \n      # offending messages (e.g. not deserializable or causing\n      # session failures)\n      #\n      # By default, offending messages are just dropped and \n      # the router resumes processing next incoming messages\n      #\n      disconnect-offending-peers = false\n    }\n  }\n}", 
+            "title": "Configuration"
+        }, 
+        {
+            "location": "/client/config/#configuration", 
+            "text": "akka {\n  wamp {\n    client {\n      # The boolean switch to validate against strict URIs \n      # rather than loose URIs\n      #\n      validate-strict-uris = false\n\n      # The boolean switch to disconnect those peers that send \n      # offending messages (e.g. not deserializable or causing\n      # session failures)\n      #\n      # By default, offending messages are just dropped and \n      # the router resumes processing next incoming messages\n      #\n      disconnect-offending-peers = false\n    }\n  }\n}", 
+            "title": "Configuration"
+        }, 
+        {
+            "location": "/messages/", 
+            "text": "Connections and Sessions\n\n\n   ,------.                                    ,------.\n   | Peer |                                    | Peer |\n   `--+---'                                    `--+---'\n      |               TCP established             |\n      |\n-----------------------------------------\n|\n      |                                           |\n      |               TLS established             |\n      |+\n---------------------------------------\n+|\n      |+                                         +|\n      |+           WebSocket established         +|\n      |+|\n-------------------------------------\n|+|\n      |+|                                       |+|\n      |+|            WAMP established           |+|\n      |+|+\n-----------------------------------\n+|+|\n      |+|+                                     +|+|\n      |+|+                                     +|+|\n      |+|+            WAMP closed              +|+|\n      |+|+\n-----------------------------------\n+|+|\n      |+|                                       |+|\n      |+|                                       |+|\n      |+|            WAMP established           |+|\n      |+|+\n-----------------------------------\n+|+|\n      |+|+                                     +|+|\n      |+|+                                     +|+|\n      |+|+            WAMP closed              +|+|\n      |+|+\n-----------------------------------\n+|+|\n      |+|                                       |+|\n      |+|           WebSocket closed            |+|\n      |+|\n-------------------------------------\n|+|\n      |+                                         +|\n      |+              TLS closed                 +|\n      |+\n---------------------------------------\n+|\n      |                                           |\n      |               TCP closed                  |\n      |\n-----------------------------------------\n|\n      |                                           |\n   ,--+---.                                    ,--+---.\n   | Peer |                                    | Peer |\n   `------'                                    `------'\n\n\n\n\n\n\nConnect\n\n\nIt is the message you send to the Akka IO entry point to establish a WAMP connection to a router. It can be constructed passing the following parameters:\n\n\n\n\n\n\nclient\n\n  It is your client actor reference to which messages from the remote router are delivered while the connection is established.\n\n\n\n\n\n\nurl\n\n  It is the \nURL\n to the remote router. By default Akka Wamp makes use of \nws://127.0.0.1:8080/ws\n and it currently supports the following protocols:\n\n\n\n\n\n\nws\n\n    It is the WebSocket protocol.\n\n\n\n\n\n\nsubprotocol\n\n  It is the \nsubprotocol\n you wish to negotiate with the remote router.\n\n\n\n\n\n\nExamples:\n\n\nIO(Wamp) ! Connect(client)\nIO(Wamp) ! Connect(client, url = \nws://router.host.net:8080/path/to/ws\n)\nIO(Wamp) ! Connect(client, subprotocol = \nwamp.2.mgspack\n)\n\n\n\n\nHello\n\n\nIt is the message you send to the transport to request a new session being opened with the given realm attached plus additional details. It can be constructed passing the following parameters:\n\n\n\n\n\n\nrealm\n\n  It is the realm identifier given as \nURI\n. By default, Akka Wamp sends \nakka.wamp.realm\n\n\n\n\n\n\ndetails\n\n   It is a dictionary of additional details. By default, Akka Wamp makes a dictionary with all possible client roles its supports:\n\n\n\n\nsubscriber\n\n\npublisher\n\n\n\n\n\n\n\n\nExamples:\n\n\nconnection ! Hello()\nconnection ! Hello(\nmyapp.realm\n)\nconnection ! Hello(details = Dict().withRoles(\nsubscriber\n))\nconnection ! Hello(\nmyapp.realm\n, Dict().withRoles(\npublisher\n))\n\n\n\n\n\n\nAbort\n\n\nTBD\n\n\n\n\nWelcome\n\n\nIt is the message you receive from the remote router upon session opening. It can be deconstructed (via Scala pattern matching) to the following parameters:\n\n\n\n\n\n\nsessionId\n\n  It is the session identifier as generated by the remote router.\n\n\n\n\n\n\ndetails\n\n  It is a dictionary with additional details (for example the remote router agent identifier)\n\n\n\n\n\n\nExamples:\n\n\nval sessionId: Long = _\n\ndef receive: Receive = {\n  case Welcome(sessionId, details) =\n\n    log info s\nSession $sessionId opened with $details\n\n    this.sessionId = sessionId\n    context become opened\n}\n\ndef opened: Receive = {\n  case Goodbye =\n\n    this.sessionId = 0\n\n  // case ...  \n}\n\n\n\n\n\n\nGoodbye\n\n\nIt is the message either you send to the transport or receive from the remote router to request session closing. It can be constructed (deconstructed) with (to) the following parameters:\n\n\n\n\n\n\nreason\n\n  It is the reason identifier given as \nsession close URI\n. By default, Akka Wamp sends \nwamp.error.close_realm\n\n\n\n\n\n\ndetails\n\n  It is a dictionary of additional details. By default, Akka Wamp sends an empty dictionary.\n\n\n\n\n\n\nSome sending snippets are:\n\n\nconnection ! Goodbye()\nconnection ! Goodbye(\nwamp.error.system_shutdown\n)\nconnection ! Goodbye(details = Dict().withEntry(reason -\n \nSerious error occured!\n))\n\n\n\n\nA receiving snippet is:\n\n\ndef opened: Receive = {\n  case Goodbye(reason, details) =\n\n    log warn s\nRouter closed session because of $details\n\n    connection ! Goodbye(\nwamp.error.goodbye_and_out\n)\n    if (reason != \nwamp.error.system_shutdown\n)\n      // why not requesting a new session \n      connection ! Hello\n    else\n      IO(Wamp) ! Connect(self)\n}\n\n\n\n\n\n\nNOTE: there's an open [issue#242]((https://github.com/wamp-proto/wamp-proto/issues/242) on GitHub about the \nGoodbye\n message to warn you that some remote routers could decide to disconnect the transport in addition to close the session. If that happens the you'll be forced to reconnect.\n\n\n\n\nSubscriber and Publisher\n\n\n\n\nSubscribe\n\n\nIt is the message you send to the transport to subscribe to a topic. It can be constructed passing the following parameters:\n\n\n\n\n\n\nrequestId\n\n  It is the request identifier you have to generate in \n\"session scope\"\n. AkkaWamp provides you with a \nScope.Session\n trait you can mixin to invoke \nnextId()\n\n\n\n\n\n\ntopic\n\n  It is the topic URI you want to subscribe to.\n\n\n\n\n\n\noptions\n\n  It is a dictionary of additional details. By default, Akka Wamp sends an empty dictionary.\n\n\n\n\n\n\nExamples:\n\n\nconnection ! Subscribe(requestId = 34, \nmyapp.tick.topic\n)\n\n\n\n\n\n\nSubscribed\n\n\nTBD\n\n\n\n\nPublish\n\n\nIt is the message you send to the transport to publish an event. It can be constructed passing the following parameters:\n\n\n\n\n\n\nrequestId\n\n  It is the request identifier you have to generate in \n\"session scope\"\n. AkkaWamp provides you with a \nScope.Session\n trait you can mixin to invoke \nnextId()\n\n\n\n\n\n\ntopic\n\n  It is the topic URI to which you wish to publish to\n\n\n\n\n\n\npayload\n\n  It is the (option of) payload you could provide to send data arguments. By default, Akka Wamp sends none but you could create some as documented in the \nPayload\n section below.\n\n\n\n\n\n\noptions\n\n  It is a dictionary of additional details (for example with the \n\"acknowledge\" -\n true\n entry if you wish to receive the \nPublished\n message from the router). By default, Akka Wamp sends an empty dictionary.\n\n\n\n\n\n\nExamples:\n\n\nconnection ! Publish(requestId = 34, \nmyapp.tick.topic\n)\n\nval list = Payload(\npaolo\n, 40, true)\nconnection ! Publish(nextId(), \nmyapp.topic1\n, Some(list))\n\nval mixed = Payload(\npaolo\n, \nage\n-\n40, true)\nconnection ! Publish(nextId(), \nmyapp.topic1\n, Some(mixed))\n\nconnection ! Publish(89, \nmyapp.topic3\n, options = Dict().withAcknowledge(true))\n\n\n\n\n\n\nError\n\n\nTBD\n\n\n\n\nEvent\n\n\nIt is the message you receive from the remote router each time other clients have published to the same topics you subscribed to. It can be deconstructed (via Scala pattern matching) to the following parameters:\n\n\n\n\n\n\nsubscriptionId\n  \n\n  It is the subscription identifier you could use to figure out which topic the event has been fired for.\n\n\n\n\n\n\npublicationId\n  \n\n   It is the publication identifier generated by the remote router in global scope.\n\n\n\n\n\n\npayload\n  \n\n  It is the (option of) payload with data arguments you could read as documented in the \nPayload\n section below.\n\n\n\n\n\n\ndetails\n\n  It is a dictionary with additional details.\n\n\n\n\n\n\nExamples:\n\n\nval subscriptionId: Long = _\n\ndef opened: Receive = {\n  case Event(subscriptionId, publicationId, None, details) =\n\n    log debug s\nEvent received for subscription $subscriptionId\n\n\n  case Event(_, _, Some(payload), _) =\n\n    log debug s\nEvent receive with payload $payload\n\n}\n\n\n\n\n\n\nCaller  and Callee\n\n\n\n\nRegister\n\n\nTBD\n\n\nSerialization\n\n\nPayload\n\n\nAn (option of) Payload is carried by either \nError\n, \nPublish\n or \nEvent\n messages. Akka Wamp provides easy ways to both create and handle payloads.\n\n\nYou can create some outgoing payload for the \nPublish\n message by invoking the following factory method\n\n\nobject Payload {\n  def apply(arguments: Any*): Payload\n}\n\n\n\n\nwhich means you can pass in any number of arguments in any type you like. For example:\n\n\nval payload = Payload(\npaolo\n, 40, true)\nconnection ! Publish(nextId(), Some(payload)\n// serializes to [... , [\npaolo\n, 40, true]]\n\n\n\n\nYou can even pass any number of key-value pairs alongside with any (or no) value. For example:\n\n\nval payload = Payload(\npaolo\n, 40, \nheight\n-\n1.65, true)\n// serializes to [... , [\npaolo\n, 40, true], {\nheight\n-\n1.65}]\n\n\n\n\nAkka Wamp will take care of serializing the arguments you pass in the right way.\n\n\nYou can handle some incoming payload carried by either \nError\n or \nEvent\n messages and turn it into a list or into a dictionary as follows:\n\n\nval args: List[Any] = for (p \n- message.payload) p.asList\n\n// OR turn it into dictionary\n\nval args: Map[String, Any] = for (p \n- message.payload) p.asDict", 
+            "title": "Messages"
+        }, 
+        {
+            "location": "/messages/#connections-and-sessions", 
+            "text": ",------.                                    ,------.\n   | Peer |                                    | Peer |\n   `--+---'                                    `--+---'\n      |               TCP established             |\n      | ----------------------------------------- |\n      |                                           |\n      |               TLS established             |\n      |+ --------------------------------------- +|\n      |+                                         +|\n      |+           WebSocket established         +|\n      |+| ------------------------------------- |+|\n      |+|                                       |+|\n      |+|            WAMP established           |+|\n      |+|+ ----------------------------------- +|+|\n      |+|+                                     +|+|\n      |+|+                                     +|+|\n      |+|+            WAMP closed              +|+|\n      |+|+ ----------------------------------- +|+|\n      |+|                                       |+|\n      |+|                                       |+|\n      |+|            WAMP established           |+|\n      |+|+ ----------------------------------- +|+|\n      |+|+                                     +|+|\n      |+|+                                     +|+|\n      |+|+            WAMP closed              +|+|\n      |+|+ ----------------------------------- +|+|\n      |+|                                       |+|\n      |+|           WebSocket closed            |+|\n      |+| ------------------------------------- |+|\n      |+                                         +|\n      |+              TLS closed                 +|\n      |+ --------------------------------------- +|\n      |                                           |\n      |               TCP closed                  |\n      | ----------------------------------------- |\n      |                                           |\n   ,--+---.                                    ,--+---.\n   | Peer |                                    | Peer |\n   `------'                                    `------'", 
+            "title": "Connections and Sessions"
+        }, 
+        {
+            "location": "/messages/#connect", 
+            "text": "It is the message you send to the Akka IO entry point to establish a WAMP connection to a router. It can be constructed passing the following parameters:    client \n  It is your client actor reference to which messages from the remote router are delivered while the connection is established.    url \n  It is the  URL  to the remote router. By default Akka Wamp makes use of  ws://127.0.0.1:8080/ws  and it currently supports the following protocols:    ws \n    It is the WebSocket protocol.    subprotocol \n  It is the  subprotocol  you wish to negotiate with the remote router.    Examples:  IO(Wamp) ! Connect(client)\nIO(Wamp) ! Connect(client, url =  ws://router.host.net:8080/path/to/ws )\nIO(Wamp) ! Connect(client, subprotocol =  wamp.2.mgspack )", 
+            "title": "Connect"
+        }, 
+        {
+            "location": "/messages/#abort", 
+            "text": "TBD", 
+            "title": "Abort"
+        }, 
+        {
+            "location": "/messages/#welcome", 
+            "text": "It is the message you receive from the remote router upon session opening. It can be deconstructed (via Scala pattern matching) to the following parameters:    sessionId \n  It is the session identifier as generated by the remote router.    details \n  It is a dictionary with additional details (for example the remote router agent identifier)    Examples:  val sessionId: Long = _\n\ndef receive: Receive = {\n  case Welcome(sessionId, details) = \n    log info s Session $sessionId opened with $details \n    this.sessionId = sessionId\n    context become opened\n}\n\ndef opened: Receive = {\n  case Goodbye = \n    this.sessionId = 0\n\n  // case ...  \n}", 
+            "title": "Welcome"
+        }, 
+        {
+            "location": "/messages/#goodbye", 
+            "text": "It is the message either you send to the transport or receive from the remote router to request session closing. It can be constructed (deconstructed) with (to) the following parameters:    reason \n  It is the reason identifier given as  session close URI . By default, Akka Wamp sends  wamp.error.close_realm    details \n  It is a dictionary of additional details. By default, Akka Wamp sends an empty dictionary.    Some sending snippets are:  connection ! Goodbye()\nconnection ! Goodbye( wamp.error.system_shutdown )\nconnection ! Goodbye(details = Dict().withEntry(reason -   Serious error occured! ))  A receiving snippet is:  def opened: Receive = {\n  case Goodbye(reason, details) = \n    log warn s Router closed session because of $details \n    connection ! Goodbye( wamp.error.goodbye_and_out )\n    if (reason !=  wamp.error.system_shutdown )\n      // why not requesting a new session \n      connection ! Hello\n    else\n      IO(Wamp) ! Connect(self)\n}   NOTE: there's an open [issue#242]((https://github.com/wamp-proto/wamp-proto/issues/242) on GitHub about the  Goodbye  message to warn you that some remote routers could decide to disconnect the transport in addition to close the session. If that happens the you'll be forced to reconnect.", 
+            "title": "Goodbye"
+        }, 
+        {
+            "location": "/messages/#subscriber-and-publisher", 
+            "text": "", 
+            "title": "Subscriber and Publisher"
+        }, 
+        {
+            "location": "/messages/#subscribe", 
+            "text": "It is the message you send to the transport to subscribe to a topic. It can be constructed passing the following parameters:    requestId \n  It is the request identifier you have to generate in  \"session scope\" . AkkaWamp provides you with a  Scope.Session  trait you can mixin to invoke  nextId()    topic \n  It is the topic URI you want to subscribe to.    options \n  It is a dictionary of additional details. By default, Akka Wamp sends an empty dictionary.    Examples:  connection ! Subscribe(requestId = 34,  myapp.tick.topic )", 
+            "title": "Subscribe"
+        }, 
+        {
+            "location": "/messages/#subscribed", 
+            "text": "TBD", 
+            "title": "Subscribed"
+        }, 
+        {
+            "location": "/messages/#publish", 
+            "text": "It is the message you send to the transport to publish an event. It can be constructed passing the following parameters:    requestId \n  It is the request identifier you have to generate in  \"session scope\" . AkkaWamp provides you with a  Scope.Session  trait you can mixin to invoke  nextId()    topic \n  It is the topic URI to which you wish to publish to    payload \n  It is the (option of) payload you could provide to send data arguments. By default, Akka Wamp sends none but you could create some as documented in the  Payload  section below.    options \n  It is a dictionary of additional details (for example with the  \"acknowledge\" -  true  entry if you wish to receive the  Published  message from the router). By default, Akka Wamp sends an empty dictionary.    Examples:  connection ! Publish(requestId = 34,  myapp.tick.topic )\n\nval list = Payload( paolo , 40, true)\nconnection ! Publish(nextId(),  myapp.topic1 , Some(list))\n\nval mixed = Payload( paolo ,  age - 40, true)\nconnection ! Publish(nextId(),  myapp.topic1 , Some(mixed))\n\nconnection ! Publish(89,  myapp.topic3 , options = Dict().withAcknowledge(true))", 
+            "title": "Publish"
+        }, 
+        {
+            "location": "/messages/#error", 
+            "text": "TBD", 
+            "title": "Error"
+        }, 
+        {
+            "location": "/messages/#event", 
+            "text": "It is the message you receive from the remote router each time other clients have published to the same topics you subscribed to. It can be deconstructed (via Scala pattern matching) to the following parameters:    subscriptionId    \n  It is the subscription identifier you could use to figure out which topic the event has been fired for.    publicationId    \n   It is the publication identifier generated by the remote router in global scope.    payload    \n  It is the (option of) payload with data arguments you could read as documented in the  Payload  section below.    details \n  It is a dictionary with additional details.    Examples:  val subscriptionId: Long = _\n\ndef opened: Receive = {\n  case Event(subscriptionId, publicationId, None, details) = \n    log debug s Event received for subscription $subscriptionId \n\n  case Event(_, _, Some(payload), _) = \n    log debug s Event receive with payload $payload \n}", 
+            "title": "Event"
+        }, 
+        {
+            "location": "/messages/#caller-and-callee", 
+            "text": "", 
+            "title": "Caller  and Callee"
+        }, 
+        {
+            "location": "/messages/#register", 
+            "text": "TBD", 
+            "title": "Register"
+        }, 
+        {
+            "location": "/messages/#serialization", 
+            "text": "", 
+            "title": "Serialization"
+        }, 
+        {
+            "location": "/messages/#payload", 
+            "text": "An (option of) Payload is carried by either  Error ,  Publish  or  Event  messages. Akka Wamp provides easy ways to both create and handle payloads.  You can create some outgoing payload for the  Publish  message by invoking the following factory method  object Payload {\n  def apply(arguments: Any*): Payload\n}  which means you can pass in any number of arguments in any type you like. For example:  val payload = Payload( paolo , 40, true)\nconnection ! Publish(nextId(), Some(payload)\n// serializes to [... , [ paolo , 40, true]]  You can even pass any number of key-value pairs alongside with any (or no) value. For example:  val payload = Payload( paolo , 40,  height - 1.65, true)\n// serializes to [... , [ paolo , 40, true], { height - 1.65}]  Akka Wamp will take care of serializing the arguments you pass in the right way.  You can handle some incoming payload carried by either  Error  or  Event  messages and turn it into a list or into a dictionary as follows:  val args: List[Any] = for (p  - message.payload) p.asList\n\n// OR turn it into dictionary\n\nval args: Map[String, Any] = for (p  - message.payload) p.asDict", 
+            "title": "Payload"
+        }
+    ]
+}

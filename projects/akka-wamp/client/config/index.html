@@ -6,18 +6,18 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
     <meta name="author" content="Paolo Angioletti">  
-    <link rel="shortcut icon" href="./img/favicon.ico">
+    <link rel="shortcut icon" href="../../img/favicon.ico">
 
-    <title>akka-wamp-0.8.0</title>
+    <title>Configuration - akka-wamp-0.8.0</title>
 
-    <link href="./css/bootstrap-custom.min.css" rel="stylesheet">
+    <link href="../../css/bootstrap-custom.min.css" rel="stylesheet">
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet">
     <link rel="stylesheet" href="//cdn.jsdelivr.net/font-hack/2.018/css/hack.min.css">
     <link href='//fonts.googleapis.com/css?family=PT+Sans:400,400italic,700,700italic&subset=latin-ext,latin' rel='stylesheet' type='text/css'>
     <link href='//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,700italic,400,300,600,700&subset=latin-ext,latin' rel='stylesheet' type='text/css'>
-    <link href="./css/base.css" rel="stylesheet">
-    <link href="./css/cinder.css" rel="stylesheet">
-    <link rel="stylesheet" href="./css/highlight.css">
+    <link href="../../css/base.css" rel="stylesheet">
+    <link href="../../css/cinder.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../css/highlight.css">
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -37,7 +37,7 @@
     
 </head>
 
-<body class="homepage" >
+<body>
 
     <div class="navbar navbar-default navbar-fixed-top" role="navigation">
     <div class="container">
@@ -55,7 +55,7 @@
             
 
             <!-- Main title -->
-            <a class="navbar-brand" href=".">akka-wamp-0.8.0</a>
+            <a class="navbar-brand" href="../..">akka-wamp-0.8.0</a>
         </div>
 
         <!-- Expanded navigation -->
@@ -65,25 +65,25 @@
                 <ul class="nav navbar-nav">
                 
                 
-                    <li class="active">
-                        <a href=".">Home</a>
+                    <li >
+                        <a href="../..">Home</a>
                     </li>
                 
                 
                 
                     <li >
-                        <a href="router/">Router</a>
+                        <a href="../../router/">Router</a>
                     </li>
                 
                 
                 
-                    <li class="dropdown">
+                    <li class="dropdown active">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Client <b class="caret"></b></a>
                         <ul class="dropdown-menu">
                         
                             
 <li >
-    <a href="client/actor/">Actor based API</a>
+    <a href="../actor/">Actor based API</a>
 </li>
 
                         
@@ -94,31 +94,31 @@
         
             
 <li >
-    <a href="client/future/overview/">For the impatients</a>
+    <a href="../future/overview/">For the impatients</a>
 </li>
 
         
             
 <li >
-    <a href="client/future/session/">Session Handling</a>
+    <a href="../future/session/">Session Handling</a>
 </li>
 
         
             
 <li >
-    <a href="client/future/pubsub/">Publish Subscribe</a>
+    <a href="../future/pubsub/">Publish Subscribe</a>
 </li>
 
         
             
 <li >
-    <a href="client/future/rpc/">Remote Procedure Call</a>
+    <a href="../future/rpc/">Remote Procedure Call</a>
 </li>
 
         
             
 <li >
-    <a href="client/future/payload/">Payload Handling</a>
+    <a href="../future/payload/">Payload Handling</a>
 </li>
 
         
@@ -128,13 +128,13 @@
                         
                             
 <li >
-    <a href="client/stream/">Stream based API</a>
+    <a href="../stream/">Stream based API</a>
 </li>
 
                         
                             
-<li >
-    <a href="client/config/">Configuration</a>
+<li class="active">
+    <a href="./">Configuration</a>
 </li>
 
                         
@@ -144,7 +144,7 @@
                 
                 
                     <li >
-                        <a href="messages/">Messages</a>
+                        <a href="../../messages/">Messages</a>
                     </li>
                 
                 
@@ -158,13 +158,13 @@
                     </a>
                 </li>
                 
-                    <li class="disabled">
-                        <a rel="next" >
+                    <li >
+                        <a rel="next" href="../stream/">
                             <i class="fa fa-arrow-left"></i> Previous
                         </a>
                     </li>
                     <li >
-                        <a rel="prev" href="router/">
+                        <a rel="prev" href="../../messages/">
                             Next <i class="fa fa-arrow-right"></i>
                         </a>
                     </li>
@@ -180,81 +180,34 @@
         <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
     <ul class="nav bs-sidenav">
     
-        <li class="first-level active"><a href="#akka-wamp">Akka Wamp</a></li>
-        
-            <li class="second-level"><a href="#client">Client</a></li>
-            
-                <li class="third-level"><a href="#publish-subscribe">Publish Subscribe</a></li>
-            
-                <li class="third-level"><a href="#remote-procedure-call">Remote Procedure Call</a></li>
-            
-        
-            <li class="second-level"><a href="#router">Router</a></li>
-            
-        
-            <li class="second-level"><a href="#limitations">Limitations</a></li>
-            
-        
-            <li class="second-level"><a href="#licence">Licence</a></li>
-            
+        <li class="first-level active"><a href="#configuration">Configuration</a></li>
         
     
     </ul>
 </div></div>
         <div class="col-md-9" role="main">
 
-<p><a href="https://github.com/angiolep/akka-wamp"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/38ef81f8aca64bb9a64448d0d70f1308ef5341ab/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6461726b626c75655f3132313632312e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png"></a></p>
-<h1 id="akka-wamp">Akka Wamp</h1>
-<p>Akka Wamp is a WAMP - <a href="http://wamp-proto.org/">Web Application Messaging Protocol</a> implementation written in <a href="http://scala-lang.org/">Scala</a> with <a href="http://akka.io/">Akka</a></p>
-<p>Easy to download as <a href="http://www.scala-sbt.org/">SBT</a> library dependency.</p>
-<pre><code class="scala">libraryDependencies ++= Seq(
-  &quot;com.github.angiolep&quot; % &quot;akka-wamp_2.11&quot; % &quot;0.8.0&quot;
-)  
-</code></pre>
+<h1 id="configuration">Configuration</h1>
+<pre><code class="bash">akka {
+  wamp {
+    client {
+      # The boolean switch to validate against strict URIs 
+      # rather than loose URIs
+      #
+      validate-strict-uris = false
 
-<h2 id="client">Client</h2>
-<p>Connect a transport, open a session, subscribe a topic, receive events, register a procedure and call it in few lines of Scala!</p>
-<h3 id="publish-subscribe">Publish Subscribe</h3>
-<pre><code class="scala">object PubSubApp extends App {
-
-  import akka.wamp.client._
-  val client = Client()
-
-  import scala.concurrent.Future
-  implicit val ec = client.executionContext
-
-  for {
-    session &lt;- client
-      .openSession(
-        url = &quot;ws://localhost:8080/router&quot;,
-        subprotocol = &quot;wamp.2.json&quot;,
-        realm = &quot;akka.wamp.realm&quot;,
-        roles = Set(&quot;subscriber&quot;))
-    subscription &lt;- session
-      .subscribe(
-        topic = &quot;myapp.topic&quot;,
-        options = Dict()) {
-        event =&gt;
-          event.payload.map(_.arguments.map(println))
-        }
-    } yield ()
+      # The boolean switch to disconnect those peers that send 
+      # offending messages (e.g. not deserializable or causing
+      # session failures)
+      #
+      # By default, offending messages are just dropped and 
+      # the router resumes processing next incoming messages
+      #
+      disconnect-offending-peers = false
+    }
+  }
 }
-</code></pre>
-
-<h3 id="remote-procedure-call">Remote Procedure Call</h3>
-<p>Coming soon ...</p>
-<h2 id="router">Router</h2>
-<p>Akka Wamp provides you with a router that can be either embedded into your application or launched as standalone server process.</p>
-<h2 id="limitations">Limitations</h2>
-<ul>
-<li>Scala 2.11 only (no older Scala)</li>
-<li>WebSocket transport only (no raw TCP and no SSL/TLS yet) </li>
-<li>Provide WAMP Basic Profile only (no Advanced Profile yet)</li>
-<li>Provide Publish/Subscribe only (no routed RPC yet)</li>
-<li>Provide JSON serialization only (no MsgPack yet)</li>
-</ul>
-<h2 id="licence">Licence</h2>
-<p>This software comes with <a href="http://www.apache.org/licenses/LICENSE-2.0">Apache License 2.0</a></p></div>
+</code></pre></div>
         
     </div>
 
@@ -264,15 +217,15 @@
         <small>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a>.</p></small>
     </footer>
 
-    <script src="./js/jquery-1.10.2.min.js"></script>
-    <script src="./js/bootstrap-3.0.3.min.js"></script>
-    <script src="./js/highlight.pack.js"></script>
+    <script src="../../js/jquery-1.10.2.min.js"></script>
+    <script src="../../js/bootstrap-3.0.3.min.js"></script>
+    <script src="../../js/highlight.pack.js"></script>
     <script>hljs.initHighlightingOnLoad();</script>
     <script>
-    var base_url = '.';
+    var base_url = '../..';
     </script>
-    <script data-main="./mkdocs/js/search.js" src="./mkdocs/js/require.js"></script>
-    <script src="./js/base.js"></script>
+    <script data-main="../../mkdocs/js/search.js" src="../../mkdocs/js/require.js"></script>
+    <script src="../../js/base.js"></script>
 
     <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
         <div class="modal-dialog">
@@ -304,8 +257,3 @@
     </body>
 
 </html>
-
-<!--
-MkDocs version : 0.15.3
-Build Date UTC : 2016-09-21 08:20:03.627842
--->
