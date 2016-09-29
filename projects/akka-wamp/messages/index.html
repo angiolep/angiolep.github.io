@@ -8,7 +8,7 @@
     <meta name="author" content="Paolo Angioletti">  
     <link rel="shortcut icon" href="../img/favicon.ico">
 
-    <title>Messages - akka-wamp-0.8.0</title>
+    <title>Messages - akka-wamp-0.9.0</title>
 
     <link href="../css/bootstrap-custom.min.css" rel="stylesheet">
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet">
@@ -55,7 +55,7 @@
             
 
             <!-- Main title -->
-            <a class="navbar-brand" href="..">akka-wamp-0.8.0</a>
+            <a class="navbar-brand" href="..">akka-wamp-0.9.0</a>
         </div>
 
         <!-- Expanded navigation -->
@@ -94,7 +94,7 @@
         
             
 <li >
-    <a href="../client/future/overview/">For the impatients</a>
+    <a href="../client/future/overview/">Overview</a>
 </li>
 
         
@@ -106,13 +106,13 @@
         
             
 <li >
-    <a href="../client/future/pubsub/">Publish Subscribe</a>
+    <a href="../client/future/pubsub/">Publish and Subscribe</a>
 </li>
 
         
             
 <li >
-    <a href="../client/future/rpc/">Remote Procedure Call</a>
+    <a href="../client/future/rpc/">Remote Procedure Calls</a>
 </li>
 
         
@@ -180,46 +180,45 @@
         <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
     <ul class="nav bs-sidenav">
     
-        <li class="first-level active"><a href="#connections-and-sessions">Connections and Sessions</a></li>
+        <li class="first-level active"><a href="#messages">Messages</a></li>
         
-            <li class="second-level"><a href="#connect">Connect</a></li>
+            <li class="second-level"><a href="#session-handling">Session Handling</a></li>
+            
+                <li class="third-level"><a href="#connect">Connect</a></li>
+            
+                <li class="third-level"><a href="#hello">Hello</a></li>
+            
+                <li class="third-level"><a href="#abort">Abort</a></li>
+            
+                <li class="third-level"><a href="#welcome">Welcome</a></li>
+            
+                <li class="third-level"><a href="#goodbye">Goodbye</a></li>
+            
+                <li class="third-level"><a href="#error">Error</a></li>
             
         
-            <li class="second-level"><a href="#abort">Abort</a></li>
+            <li class="second-level"><a href="#publish-subscribe">Publish Subscribe</a></li>
+            
+                <li class="third-level"><a href="#subscribe">Subscribe</a></li>
+            
+                <li class="third-level"><a href="#subscribed">Subscribed</a></li>
+            
+                <li class="third-level"><a href="#publish">Publish</a></li>
+            
+                <li class="third-level"><a href="#event">Event</a></li>
             
         
-            <li class="second-level"><a href="#welcome">Welcome</a></li>
-            
-        
-            <li class="second-level"><a href="#goodbye">Goodbye</a></li>
-            
-        
-    
-        <li class="first-level "><a href="#subscriber-and-publisher">Subscriber and Publisher</a></li>
-        
-            <li class="second-level"><a href="#subscribe">Subscribe</a></li>
-            
-        
-            <li class="second-level"><a href="#subscribed">Subscribed</a></li>
-            
-        
-            <li class="second-level"><a href="#publish">Publish</a></li>
-            
-        
-            <li class="second-level"><a href="#error">Error</a></li>
-            
-        
-            <li class="second-level"><a href="#event">Event</a></li>
-            
-        
-            <li class="second-level"><a href="#caller-and-callee">Caller  and Callee</a></li>
+            <li class="second-level"><a href="#remote-procedure-calls">Remote Procedure Calls</a></li>
             
                 <li class="third-level"><a href="#register">Register</a></li>
             
-        
-            <li class="second-level"><a href="#serialization">Serialization</a></li>
+                <li class="third-level"><a href="#call">Call</a></li>
             
-                <li class="third-level"><a href="#payload">Payload</a></li>
+                <li class="third-level"><a href="#invoke">Invoke</a></li>
+            
+                <li class="third-level"><a href="#yield">Yield</a></li>
+            
+                <li class="third-level"><a href="#result">Result</a></li>
             
         
     
@@ -227,7 +226,9 @@
 </div></div>
         <div class="col-md-9" role="main">
 
-<h2 id="connections-and-sessions">Connections and Sessions</h2>
+<h1 id="messages">Messages</h1>
+<p>TBD </p>
+<h2 id="session-handling">Session Handling</h2>
 <pre><code>   ,------.                                    ,------.
    | Peer |                                    | Peer |
    `--+---'                                    `--+---'
@@ -296,7 +297,8 @@ IO(Wamp) ! Connect(client, url = &quot;ws://router.host.net:8080/path/to/ws&quot
 IO(Wamp) ! Connect(client, subprotocol = &quot;wamp.2.mgspack&quot;)
 </code></pre>
 
-<h3 id="hello"><a name="Hello"></a>Hello</h3>
+<p><a name="Hello"></a></p>
+<h3 id="hello">Hello</h3>
 <p>It is the message you send to the transport to request a new session being opened with the given realm attached plus additional details. It can be constructed passing the following parameters:</p>
 <ul>
 <li>
@@ -388,7 +390,10 @@ connection ! Goodbye(details = Dict().withEntry(reason -&gt; &quot;Serious error
 <blockquote>
 <p>NOTE: there's an open [issue#242]((https://github.com/wamp-proto/wamp-proto/issues/242) on GitHub about the <code>Goodbye</code> message to warn you that some remote routers could decide to disconnect the transport in addition to close the session. If that happens the you'll be forced to reconnect.</p>
 </blockquote>
-<h1 id="subscriber-and-publisher">Subscriber and Publisher</h1>
+<p><a name="Error"></a></p>
+<h3 id="error">Error</h3>
+<p>TBD</p>
+<h2 id="publish-subscribe">Publish Subscribe</h2>
 <p><a name="Subscribe"></a></p>
 <h3 id="subscribe">Subscribe</h3>
 <p>It is the message you send to the transport to subscribe to a topic. It can be constructed passing the following parameters:</p>
@@ -446,9 +451,6 @@ connection ! Publish(nextId(), &quot;myapp.topic1&quot;, Some(mixed))
 connection ! Publish(89, &quot;myapp.topic3&quot;, options = Dict().withAcknowledge(true))
 </code></pre>
 
-<p><a name="Error"></a></p>
-<h3 id="error">Error</h3>
-<p>TBD</p>
 <p><a name="Event"></a></p>
 <h3 id="event">Event</h3>
 <p>It is the message you receive from the remote router each time other clients have published to the same topics you subscribed to. It can be deconstructed (via Scala pattern matching) to the following parameters:</p>
@@ -482,39 +484,22 @@ def opened: Receive = {
 }
 </code></pre>
 
-<p><a name="Payload"></a></p>
-<h2 id="caller-and-callee">Caller  and Callee</h2>
+<h2 id="remote-procedure-calls">Remote Procedure Calls</h2>
 <p><a name="Register"></a></p>
 <h3 id="register">Register</h3>
 <p>TBD</p>
-<h2 id="serialization">Serialization</h2>
-<h3 id="payload">Payload</h3>
-<p>An (option of) Payload is carried by either <a href="#error">Error</a>, <a href="#publish">Publish</a> or <a href="#event">Event</a> messages. Akka Wamp provides easy ways to both create and handle payloads.</p>
-<p>You can create some outgoing payload for the <a href="#publish">Publish</a> message by invoking the following factory method</p>
-<pre><code class="scala">object Payload {
-  def apply(arguments: Any*): Payload
-}
-</code></pre>
-
-<p>which means you can pass in any number of arguments in any type you like. For example:</p>
-<pre><code class="scala">val payload = Payload(&quot;paolo&quot;, 40, true)
-connection ! Publish(nextId(), Some(payload)
-// serializes to [... , [&quot;paolo&quot;, 40, true]]
-</code></pre>
-
-<p>You can even pass any number of key-value pairs alongside with any (or no) value. For example:</p>
-<pre><code class="scala">val payload = Payload(&quot;paolo&quot;, 40, &quot;height&quot;-&gt;1.65, true)
-// serializes to [... , [&quot;paolo&quot;, 40, true], {&quot;height&quot;-&gt;1.65}]
-</code></pre>
-
-<p>Akka Wamp will take care of serializing the arguments you pass in the right way.</p>
-<p>You can handle some incoming payload carried by either <a href="#error">Error</a> or <a href="#event">Event</a> messages and turn it into a list or into a dictionary as follows:</p>
-<pre><code class="scala">val args: List[Any] = for (p &lt;- message.payload) p.asList
-
-// OR turn it into dictionary
-
-val args: Map[String, Any] = for (p &lt;- message.payload) p.asDict
-</code></pre></div>
+<p><a name="Call"></a></p>
+<h3 id="call">Call</h3>
+<p>TBD</p>
+<p><a name="Invoke"></a></p>
+<h3 id="invoke">Invoke</h3>
+<p>TBD</p>
+<p><a name="Yield"></a></p>
+<h3 id="yield">Yield</h3>
+<p>TBD</p>
+<p><a name="Result"></a></p>
+<h3 id="result">Result</h3>
+<p>TBD</p></div>
         
     </div>
 

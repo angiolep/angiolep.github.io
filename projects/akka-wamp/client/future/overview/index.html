@@ -8,7 +8,7 @@
     <meta name="author" content="Paolo Angioletti">  
     <link rel="shortcut icon" href="../../../img/favicon.ico">
 
-    <title>For the impatients - akka-wamp-0.8.0</title>
+    <title>Overview - akka-wamp-0.9.0</title>
 
     <link href="../../../css/bootstrap-custom.min.css" rel="stylesheet">
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet">
@@ -55,7 +55,7 @@
             
 
             <!-- Main title -->
-            <a class="navbar-brand" href="../../..">akka-wamp-0.8.0</a>
+            <a class="navbar-brand" href="../../..">akka-wamp-0.9.0</a>
         </div>
 
         <!-- Expanded navigation -->
@@ -94,7 +94,7 @@
         
             
 <li class="active">
-    <a href="./">For the impatients</a>
+    <a href="./">Overview</a>
 </li>
 
         
@@ -106,13 +106,13 @@
         
             
 <li >
-    <a href="../pubsub/">Publish Subscribe</a>
+    <a href="../pubsub/">Publish and Subscribe</a>
 </li>
 
         
             
 <li >
-    <a href="../rpc/">Remote Procedure Call</a>
+    <a href="../rpc/">Remote Procedure Calls</a>
 </li>
 
         
@@ -182,46 +182,20 @@
     
         <li class="first-level active"><a href="#future-based-api">Future based API</a></li>
         
-            <li class="second-level"><a href="#for-the-impatients">For the impatients</a></li>
-            
-        
     
     </ul>
 </div></div>
         <div class="col-md-9" role="main">
 
 <h1 id="future-based-api">Future based API</h1>
-<p>Akka Wamp provides you with an <a href="http://doc.akka.io/docs/akka/current/scala/futures.html">Akka Future</a> based API, built on top of <a href="../../client/actor">Akka Wamp Actor based API</a>, to let you write your client with a high-level API and few lines of Scala!</p>
-<h2 id="for-the-impatients">For the <em>impatients</em></h2>
-<p>Let's connect a transport, open a session, subscribe to a topic and receive events:</p>
-<pre><code class="scala">object PubSubApp extends App {
-
-  import akka.wamp._
-  import akka.wamp.client._
-
-  val client = Client()
-  implicit val ec = client.executionContext
-
-  for {
-    session &lt;- client
-      .openSession(
-        url = &quot;ws://localhost:8080/router&quot;,
-        subprotocol = &quot;wamp.2.json&quot;,
-        realm = &quot;akka.wamp.realm&quot;,
-        roles = Set(&quot;subscriber&quot;))
-    subscription &lt;- session
-      .subscribe(
-        topic = &quot;myapp.topic&quot;,
-        options = Dict()) {
-        event =&gt;
-          event.payload.map(_.arguments.map(println))
-        }
-    } yield ()
-}
-</code></pre>
-
-<p>Create the client and invoke its <code>openSession()</code> method to get a (future of) session. Then yield a (future of) subscription by invoking the <code>subscribe()()</code> method. That's a curried method which accepts the topic URI in its first parameters list and an <code>EventHandler</code> handler in its second parameters list. The event handler maps the (option of) payload to get the (future of) <code>arguments</code> just received.</p>
-<p>Please, read on for a deeper explanation and further details.</p></div>
+<p>Akka Wamp provides you with an <a href="http://doc.akka.io/docs/akka/current/scala/futures.html">Akka Future</a> based API, built on top of <a href="../../../client/actor">Akka Wamp Actor based API</a>, to let you write your client with a high-level API and few lines of elegant and succinct Scala!</p>
+<p>It provides:</p>
+<ul>
+<li><a href="../../future/session">Session Handling</a></li>
+<li><a href="../../future/pubsub">Publish Subscribe</a></li>
+<li><a href="../../future/rpc">Remote Procedure Call</a></li>
+<li><a href="../../future/payload">Payload Handling</a></li>
+</ul></div>
         
     </div>
 

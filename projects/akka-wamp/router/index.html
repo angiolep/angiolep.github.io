@@ -8,7 +8,7 @@
     <meta name="author" content="Paolo Angioletti">  
     <link rel="shortcut icon" href="../img/favicon.ico">
 
-    <title>Router - akka-wamp-0.8.0</title>
+    <title>Router - akka-wamp-0.9.0</title>
 
     <link href="../css/bootstrap-custom.min.css" rel="stylesheet">
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet">
@@ -55,7 +55,7 @@
             
 
             <!-- Main title -->
-            <a class="navbar-brand" href="..">akka-wamp-0.8.0</a>
+            <a class="navbar-brand" href="..">akka-wamp-0.9.0</a>
         </div>
 
         <!-- Expanded navigation -->
@@ -94,7 +94,7 @@
         
             
 <li >
-    <a href="../client/future/overview/">For the impatients</a>
+    <a href="../client/future/overview/">Overview</a>
 </li>
 
         
@@ -106,13 +106,13 @@
         
             
 <li >
-    <a href="../client/future/pubsub/">Publish Subscribe</a>
+    <a href="../client/future/pubsub/">Publish and Subscribe</a>
 </li>
 
         
             
 <li >
-    <a href="../client/future/rpc/">Remote Procedure Call</a>
+    <a href="../client/future/rpc/">Remote Procedure Calls</a>
 </li>
 
         
@@ -199,7 +199,7 @@
 <pre><code class="scala">scalaVersion := &quot;2.11.8&quot;
 
 libraryDependencies ++= Seq(
-  &quot;com.github.angiolep&quot; %% &quot;akka-wamp&quot; % &quot;0.8.0&quot;
+  &quot;com.github.angiolep&quot; %% &quot;akka-wamp&quot; % &quot;0.9.0&quot;
   // ...
 )
 </code></pre>
@@ -219,9 +219,9 @@ val router = system.actorOf(Router.props(), &quot;router&quot;)
 <p>Done ;-)</p>
 <h2 id="standalone">Standalone <a href="https://bintray.com/angiolep/universal/akka-wamp/_latestVersion"><img alt="Download" src="https://api.bintray.com/packages/angiolep/universal/akka-wamp/images/download.svg" /></a></h2>
 <p>Download and launch the router as standalone application:</p>
-<pre><code class="bash">curl https://dl.bintray.com/angiolep/universal/akka-wamp-0.8.0.tgz
-tar xvfz akka-wamp-0.8.0.tar.gz
-cd akka-wamp-0.8.0
+<pre><code class="bash">curl https://dl.bintray.com/angiolep/universal/akka-wamp-0.9.0.tgz
+tar xvfz akka-wamp-0.9.0.tar.gz
+cd akka-wamp-0.9.0
 ./bin/akka-wamp -Dakka.loglevel=DEBUG
 </code></pre>
 

@@ -4,7 +4,7 @@
     
     <url>
      <loc>None/</loc>
-     <lastmod>2016-09-21</lastmod>
+     <lastmod>2016-09-29</lastmod>
      <changefreq>daily</changefreq>
     </url>
     
@@ -12,7 +12,7 @@
     
     <url>
      <loc>None/router/</loc>
-     <lastmod>2016-09-21</lastmod>
+     <lastmod>2016-09-29</lastmod>
      <changefreq>daily</changefreq>
     </url>
     
@@ -21,7 +21,7 @@
         
     <url>
      <loc>None/client/actor/</loc>
-     <lastmod>2016-09-21</lastmod>
+     <lastmod>2016-09-29</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
@@ -33,13 +33,13 @@
         
     <url>
      <loc>None/client/stream/</loc>
-     <lastmod>2016-09-21</lastmod>
+     <lastmod>2016-09-29</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
      <loc>None/client/config/</loc>
-     <lastmod>2016-09-21</lastmod>
+     <lastmod>2016-09-29</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
@@ -48,7 +48,7 @@
     
     <url>
      <loc>None/messages/</loc>
-     <lastmod>2016-09-21</lastmod>
+     <lastmod>2016-09-29</lastmod>
      <changefreq>daily</changefreq>
     </url>
     
