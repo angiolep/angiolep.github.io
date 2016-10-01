@@ -8,7 +8,7 @@
     <meta name="author" content="Paolo Angioletti">  
     <link rel="shortcut icon" href="../../../img/favicon.ico">
 
-    <title>Publish and Subscribe - akka-wamp-0.9.0</title>
+    <title>Publish and Subscribe - akka-wamp-0.10.0</title>
 
     <link href="../../../css/bootstrap-custom.min.css" rel="stylesheet">
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet">
@@ -55,7 +55,7 @@
             
 
             <!-- Main title -->
-            <a class="navbar-brand" href="../../..">akka-wamp-0.9.0</a>
+            <a class="navbar-brand" href="../../..">akka-wamp-0.10.0</a>
         </div>
 
         <!-- Expanded navigation -->
@@ -241,7 +241,7 @@
 </code></pre>
 
 <p>The WAMP protocol defines a Publish and Subscribe (PubSub) communication pattern where a client, the subscriber, informs the broker router that it wants to receive events on a topic (i.e., it subscribes to a topic). Another client, a publisher, can then publish events to this topic, and the broker router distributes events to all subscriber.</p>
-<pre><code class="text">  ,---------.          ,------.             ,----------.
+<pre><code>  ,---------.          ,------.             ,----------.
   |Publisher|          |Broker|             |Subscriber|
   `----+----'          `--+---'             `----+-----'
        |                  |                      |

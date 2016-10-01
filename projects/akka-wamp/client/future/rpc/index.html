@@ -8,7 +8,7 @@
     <meta name="author" content="Paolo Angioletti">  
     <link rel="shortcut icon" href="../../../img/favicon.ico">
 
-    <title>Remote Procedure Calls - akka-wamp-0.9.0</title>
+    <title>Remote Procedure Calls - akka-wamp-0.10.0</title>
 
     <link href="../../../css/bootstrap-custom.min.css" rel="stylesheet">
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet">
@@ -55,7 +55,7 @@
             
 
             <!-- Main title -->
-            <a class="navbar-brand" href="../../..">akka-wamp-0.9.0</a>
+            <a class="navbar-brand" href="../../..">akka-wamp-0.10.0</a>
         </div>
 
         <!-- Expanded navigation -->
@@ -241,7 +241,7 @@
 
 <p>The WAMP protocol defines a routed Remote Procedure Call (RPC) mechanism which relies on the same sort of decoupling that is used by the <a href="../../future/pubsub">Publish Subscribe</a> communication pattern. </p>
 <p>A client, the callee, announces to the dealer router that it provides a certain procedure, identified by a procedure name.  Other clients, callers, can then call the procedure, with the dealer router invoking the procedure on the callee, receiving the procedure's result, and then forwarding this result back to the callers. Routed RPC differ from traditional client-server RPC in that the dealer router serves as an intermediary between the callers and the callee.</p>
-<pre><code class="text">   ,------.          ,------.               ,------.
+<pre><code>   ,------.          ,------.               ,------.
    |Caller|          |Dealer|               |Callee|
    `--+---'          `--+---'               `--+---'   
       |                 |             REGISTER |
