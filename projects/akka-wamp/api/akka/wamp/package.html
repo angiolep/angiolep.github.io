@@ -1,0 +1,607 @@
+<!DOCTYPE html >
+<html>
+        <head>
+          <title>wamp - akka.wamp</title>
+          <meta name="description" content="wamp - akka.wamp" />
+          <meta name="keywords" content="wamp akka.wamp" />
+          <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+          
+      <link href="../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
+      <link href="../../lib/diagrams.css" media="screen" type="text/css" rel="stylesheet" id="diagrams-css" />
+      <script type="text/javascript" src="../../lib/jquery.js" id="jquery-js"></script>
+      <script type="text/javascript" src="../../lib/jquery-ui.js"></script>
+      <script type="text/javascript" src="../../lib/template.js"></script>
+      <script type="text/javascript" src="../../lib/tools.tooltip.js"></script>
+      
+      <script type="text/javascript">
+         if(top === self) {
+            var url = '../../index.html';
+            var hash = 'akka.wamp.package';
+            var anchor = window.location.hash;
+            var anchor_opt = '';
+            if (anchor.length >= 1)
+              anchor_opt = '@' + anchor.substring(1);
+            window.location.href = url + '#' + hash + anchor_opt;
+         }
+   	  </script>
+    
+        </head>
+        <body class="value">
+      <div id="definition">
+        <img alt="Package" src="../../lib/package_big.png" />
+        <p id="owner"><a href="../package.html" class="extype" name="akka">akka</a></p>
+        <h1>wamp</h1><span class="permalink">
+      <a href="../../index.html#akka.wamp.package" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      </div>
+
+      <h4 id="signature" class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">package</span>
+      </span>
+      <span class="symbol">
+        <span class="name">wamp</span>
+      </span>
+      </h4>
+      
+          <div id="comment" class="fullcommenttop"><div class="comment cmt"><h4> akka-wamp 0.11.0 </h4><p><a href="http://wamp-proto.org" target="_blank">WAMP - Web Application Messaging Protocol</a> implementation written in Scala with Akka
+</p></div><div class="toggleContainer block">
+          <span class="toggle">Linear Supertypes</span>
+          <div class="superTypes hiddenContent"><span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
+        </div></div>
+        
+
+      <div id="mbrsel">
+        <div id="textfilter"><span class="pre"></span><span class="input"><input id="mbrsel-input" type="text" accesskey="/" /></span><span class="post"></span></div>
+        <div id="order">
+              <span class="filtertype">Ordering</span>
+              <ol>
+                
+                <li class="alpha in"><span>Alphabetic</span></li>
+                <li class="inherit out"><span>By Inheritance</span></li>
+              </ol>
+            </div>
+        <div id="ancestors">
+                <span class="filtertype">Inherited<br />
+                </span>
+                <ol id="linearization">
+                  <li class="in" name="akka.wamp"><span>wamp</span></li><li class="in" name="scala.AnyRef"><span>AnyRef</span></li><li class="in" name="scala.Any"><span>Any</span></li>
+                </ol>
+              </div><div id="ancestors">
+            <span class="filtertype"></span>
+            <ol>
+              <li class="hideall out"><span>Hide All</span></li>
+              <li class="showall in"><span>Show All</span></li>
+            </ol>
+          </div>
+        <div id="visbl">
+            <span class="filtertype">Visibility</span>
+            <ol><li class="public in"><span>Public</span></li><li class="all out"><span>All</span></li></ol>
+          </div>
+      </div>
+
+      <div id="template">
+        <div id="allMembers">
+        
+
+        <div id="types" class="types members">
+              <h3>Type Members</h3>
+              <ol><li name="akka.wamp.Dict" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="Dict=Map[String,Any]"></a>
+      <a id="Dict:Dict"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">type</span>
+      </span>
+      <span class="symbol">
+        <span class="name">Dict</span><span class="result"> = <span class="extype" name="scala.collection.immutable.Map">Map</span>[<span class="extype" name="scala.Predef.String">String</span>, <span class="extype" name="scala.Any">Any</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#akka.wamp.package@Dict=Map[String,Any]" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Dictionary for options and details elements
+</p>
+    </li><li name="akka.wamp.Id" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="Id=Long"></a>
+      <a id="Id:Id"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">type</span>
+      </span>
+      <span class="symbol">
+        <span class="name">Id</span><span class="result"> = <span class="extype" name="scala.Long">Long</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#akka.wamp.package@Id=Long" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Unique identifiers being used to distinguish Sessions, Publications,
+Subscriptions, Registrations and Requests
+</p>
+    </li><li name="akka.wamp.Peer" visbl="pub" data-isabs="true" fullComment="yes" group="Ungrouped">
+      <a id="PeerextendsAnyRef"></a>
+      <a id="Peer:Peer"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a href="Peer.html"><span class="name">Peer</span></a><span class="result"> extends <span class="extype" name="scala.AnyRef">AnyRef</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#akka.wamp.package@PeerextendsAnyRef" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">A Peer communicates with another Peer by exchanging Messages
+during a transient SessionLike established over a Connection.</p><div class="fullcomment"><div class="comment cmt"><p>A Peer communicates with another Peer by exchanging Messages
+during a transient SessionLike established over a Connection.</p><p>A Peer could be either a Client or a Router</p><ul><li>it must implement one <a href="#Role=String" class="extmbr" name="akka.wamp.Role">Role</a>, and</li><li>may implement more <a href="#Role=String" class="extmbr" name="akka.wamp.Role">Role</a>s.
+</li></ul></div></div>
+    </li><li name="akka.wamp.PublicationId" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="PublicationId=Long"></a>
+      <a id="PublicationId:PublicationId"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">type</span>
+      </span>
+      <span class="symbol">
+        <span class="name">PublicationId</span><span class="result"> = <span class="extype" name="scala.Long">Long</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#akka.wamp.package@PublicationId=Long" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="akka.wamp.RegistrationId" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="RegistrationId=Long"></a>
+      <a id="RegistrationId:RegistrationId"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">type</span>
+      </span>
+      <span class="symbol">
+        <span class="name">RegistrationId</span><span class="result"> = <span class="extype" name="scala.Long">Long</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#akka.wamp.package@RegistrationId=Long" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="akka.wamp.RequestId" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="RequestId=Long"></a>
+      <a id="RequestId:RequestId"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">type</span>
+      </span>
+      <span class="symbol">
+        <span class="name">RequestId</span><span class="result"> = <span class="extype" name="scala.Long">Long</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#akka.wamp.package@RequestId=Long" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="akka.wamp.RichDict" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="RichDictextendsAnyRef"></a>
+      <a id="RichDict:RichDict"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">implicit </span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="package$$RichDict.html"><span class="name">RichDict</span></a><span class="result"> extends <span class="extype" name="scala.AnyRef">AnyRef</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#akka.wamp.package@RichDictextendsAnyRef" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="akka.wamp.Role" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="Role=String"></a>
+      <a id="Role:Role"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">type</span>
+      </span>
+      <span class="symbol">
+        <span class="name">Role</span><span class="result"> = <span class="extype" name="java.lang.String">String</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#akka.wamp.package@Role=String" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">A peer could be either a client or a router</p><div class="fullcomment"><div class="comment cmt"><p>A peer could be either a client or a router</p><ul><li>it must implement one role, and</li><li>may implement more roles.
+</li></ul></div></div>
+    </li><li name="akka.wamp.Scope" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="ScopeextendsAnyRef"></a>
+      <a id="Scope:Scope"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a href="Scope.html"><span class="name">Scope</span></a><span class="result"> extends <span class="extype" name="scala.AnyRef">AnyRef</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#akka.wamp.package@ScopeextendsAnyRef" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="akka.wamp.SessionId" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="SessionId=Long"></a>
+      <a id="SessionId:SessionId"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">type</span>
+      </span>
+      <span class="symbol">
+        <span class="name">SessionId</span><span class="result"> = <span class="extype" name="scala.Long">Long</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#akka.wamp.package@SessionId=Long" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="akka.wamp.SessionLike" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="SessionLikeextendsAnyRef"></a>
+      <a id="SessionLike:SessionLike"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a href="SessionLike.html"><span class="name">SessionLike</span></a><span class="result"> extends <span class="extype" name="scala.AnyRef">AnyRef</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#akka.wamp.package@SessionLikeextendsAnyRef" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">It is a transient conversation between two peers (tipically a
+a router and a client) attached to a realm and running over
+a connection.</p>
+    </li><li name="akka.wamp.SubscriptionId" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="SubscriptionId=Long"></a>
+      <a id="SubscriptionId:SubscriptionId"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">type</span>
+      </span>
+      <span class="symbol">
+        <span class="name">SubscriptionId</span><span class="result"> = <span class="extype" name="scala.Long">Long</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#akka.wamp.package@SubscriptionId=Long" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="akka.wamp.TypeCode" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="TypeCode=Int"></a>
+      <a id="TypeCode:TypeCode"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">type</span>
+      </span>
+      <span class="symbol">
+        <span class="name">TypeCode</span><span class="result"> = <span class="extype" name="scala.Int">Int</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#akka.wamp.package@TypeCode=Int" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Specified message type
+</p>
+    </li><li name="akka.wamp.Uri" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="Uri=String"></a>
+      <a id="Uri:Uri"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">type</span>
+      </span>
+      <span class="symbol">
+        <span class="name">Uri</span><span class="result"> = <span class="extype" name="java.lang.String">String</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#akka.wamp.package@Uri=String" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Uniform Resource Identifier
+</p>
+    </li><li name="akka.wamp.Validator" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="ValidatorextendsAnyRef"></a>
+      <a id="Validator:Validator"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="Validator.html"><span class="name">Validator</span></a><span class="result"> extends <span class="extype" name="scala.AnyRef">AnyRef</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#akka.wamp.package@ValidatorextendsAnyRef" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">It validates values against WAMP protocol types
+</p>
+    </li><li name="akka.wamp.WampExtension" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="WampExtensionextendsIO.Extension"></a>
+      <a id="WampExtension:WampExtension"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="WampExtension.html"><span class="name">WampExtension</span></a><span class="result"> extends <span class="extype" name="akka.io.IO.Extension">Extension</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#akka.wamp.package@WampExtensionextendsIO.Extension" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li></ol>
+            </div>
+
+        
+
+        <div id="values" class="values members">
+              <h3>Value Members</h3>
+              <ol><li name="akka.wamp.Dict" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="Dict"></a>
+      <a id="Dict:Dict"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="package$$Dict$.html"><span class="name">Dict</span></a>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#akka.wamp.package@Dict" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="akka.wamp.Id" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="Id"></a>
+      <a id="Id:Id"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="package$$Id$.html"><span class="name">Id</span></a>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#akka.wamp.package@Id" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="akka.wamp.Roles" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="Roles"></a>
+      <a id="Roles:Roles"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="package$$Roles$.html"><span class="name">Roles</span></a>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#akka.wamp.package@Roles" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="akka.wamp.Scope" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="Scope"></a>
+      <a id="Scope:Scope"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="Scope$.html"><span class="name">Scope</span></a>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#akka.wamp.package@Scope" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="akka.wamp.TypeCode" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="TypeCode"></a>
+      <a id="TypeCode:TypeCode"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="package$$TypeCode$.html"><span class="name">TypeCode</span></a>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#akka.wamp.package@TypeCode" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="akka.wamp.Uri" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="Uri"></a>
+      <a id="Uri:Uri"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="package$$Uri$.html"><span class="name">Uri</span></a><span class="result"> extends <span class="extype" name="scala.Serializable">Serializable</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#akka.wamp.package@Uri" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="akka.wamp.Wamp" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="Wamp"></a>
+      <a id="Wamp:Wamp"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="Wamp$.html"><span class="name">Wamp</span></a><span class="result"> extends <span class="extype" name="akka.actor.ExtensionId">ExtensionId</span>[<a href="WampExtension.html" class="extype" name="akka.wamp.WampExtension">WampExtension</a>] with <span class="extype" name="akka.actor.ExtensionIdProvider">ExtensionIdProvider</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#akka.wamp.package@Wamp" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">WAMP Extension for Akka’s IO layer.</p><div class="fullcomment"><div class="comment cmt"><p>WAMP Extension for Akka’s IO layer.</p><p>For a full description of the design and philosophy behind this IO
+implementation please refer to <a href="http://doc.akka.io/">the Akka online documentation</a>.</p><p>In order to open an outbound connection send a <span class="extype" name="Connect">Connect</span> message
+to the <a href="WampExtension.html#manager:akka.actor.ActorRef" class="extmbr" name="akka.wamp.WampExtension#manager">WampExtension#manager</a>.</p><p>In order to start listening for inbound connections send a <span class="extype" name="Bind">Bind</span>
+message to the <a href="WampExtension.html#manager:akka.actor.ActorRef" class="extmbr" name="akka.wamp.WampExtension#manager">WampExtension#manager</a>.
+</p></div></div>
+    </li><li name="akka.wamp.client" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="client"></a>
+      <a id="client:client"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">package</span>
+      </span>
+      <span class="symbol">
+        <a href="client/package.html"><span class="name">client</span></a>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#akka.wamp.package@client" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">This package provides objects, classes and traits you can use to
+write a WAMP Client.</p>
+    </li><li name="akka.wamp.messages" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="messages"></a>
+      <a id="messages:messages"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">package</span>
+      </span>
+      <span class="symbol">
+        <a href="messages/package.html"><span class="name">messages</span></a>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#akka.wamp.package@messages" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="akka.wamp.router" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="router"></a>
+      <a id="router:router"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">package</span>
+      </span>
+      <span class="symbol">
+        <a href="router/package.html"><span class="name">router</span></a>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#akka.wamp.package@router" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="akka.wamp.serialization" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="serialization"></a>
+      <a id="serialization:serialization"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">package</span>
+      </span>
+      <span class="symbol">
+        <a href="serialization/package.html"><span class="name">serialization</span></a>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#akka.wamp.package@serialization" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li></ol>
+            </div>
+
+        
+
+        
+        </div>
+
+        <div id="inheritedMembers">
+        <div class="parent" name="scala.AnyRef">
+              <h3>Inherited from <span class="extype" name="scala.AnyRef">AnyRef</span></h3>
+            </div><div class="parent" name="scala.Any">
+              <h3>Inherited from <span class="extype" name="scala.Any">Any</span></h3>
+            </div>
+        
+        </div>
+
+        <div id="groupedMembers">
+        <div class="group" name="Ungrouped">
+              <h3>Ungrouped</h3>
+              
+            </div>
+        </div>
+
+      </div>
+
+      <div id="tooltip"></div>
+
+      <div id="footer">  </div>
+
+
+    </body>
+      </html>

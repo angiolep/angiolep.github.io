@@ -1,0 +1,361 @@
+<!DOCTYPE html >
+<html>
+        <head>
+          <title>serialization - akka.wamp.serialization</title>
+          <meta name="description" content="serialization - akka.wamp.serialization" />
+          <meta name="keywords" content="serialization akka.wamp.serialization" />
+          <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+          
+      <link href="../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
+      <link href="../../../lib/diagrams.css" media="screen" type="text/css" rel="stylesheet" id="diagrams-css" />
+      <script type="text/javascript" src="../../../lib/jquery.js" id="jquery-js"></script>
+      <script type="text/javascript" src="../../../lib/jquery-ui.js"></script>
+      <script type="text/javascript" src="../../../lib/template.js"></script>
+      <script type="text/javascript" src="../../../lib/tools.tooltip.js"></script>
+      
+      <script type="text/javascript">
+         if(top === self) {
+            var url = '../../../index.html';
+            var hash = 'akka.wamp.serialization.package';
+            var anchor = window.location.hash;
+            var anchor_opt = '';
+            if (anchor.length >= 1)
+              anchor_opt = '@' + anchor.substring(1);
+            window.location.href = url + '#' + hash + anchor_opt;
+         }
+   	  </script>
+    
+        </head>
+        <body class="value">
+      <div id="definition">
+        <img alt="Package" src="../../../lib/package_big.png" />
+        <p id="owner"><a href="../../package.html" class="extype" name="akka">akka</a>.<a href="../package.html" class="extype" name="akka.wamp">wamp</a></p>
+        <h1>serialization</h1><span class="permalink">
+      <a href="../../../index.html#akka.wamp.serialization.package" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      </div>
+
+      <h4 id="signature" class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">package</span>
+      </span>
+      <span class="symbol">
+        <span class="name">serialization</span>
+      </span>
+      </h4>
+      
+          <div id="comment" class="fullcommenttop"></div>
+        
+
+      <div id="mbrsel">
+        <div id="textfilter"><span class="pre"></span><span class="input"><input id="mbrsel-input" type="text" accesskey="/" /></span><span class="post"></span></div>
+        
+        
+        <div id="visbl">
+            <span class="filtertype">Visibility</span>
+            <ol><li class="public in"><span>Public</span></li><li class="all out"><span>All</span></li></ol>
+          </div>
+      </div>
+
+      <div id="template">
+        <div id="allMembers">
+        
+
+        <div id="types" class="types members">
+              <h3>Type Members</h3>
+              <ol><li name="akka.wamp.serialization.BinaryLazyPayload" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="BinaryLazyPayloadextendsLazyPayload[akka.util.ByteString]"></a>
+      <a id="BinaryLazyPayload:BinaryLazyPayload"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a href="BinaryLazyPayload.html"><span class="name">BinaryLazyPayload</span></a><span class="result"> extends <a href="LazyPayload.html" class="extype" name="akka.wamp.serialization.LazyPayload">LazyPayload</a>[<span class="extype" name="akka.util.ByteString">ByteString</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#akka.wamp.serialization.package@BinaryLazyPayloadextendsLazyPayload[akka.util.ByteString]" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">A lazy payload with binary content
+</p>
+    </li><li name="akka.wamp.serialization.DeserializeException" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="DeserializeExceptionextendsException"></a>
+      <a id="DeserializeException:DeserializeException"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="DeserializeException.html"><span class="name">DeserializeException</span></a><span class="result"> extends <span class="extype" name="scala.Exception">Exception</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#akka.wamp.serialization.package@DeserializeExceptionextendsException" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="akka.wamp.serialization.EagerPayload" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="EagerPayloadextendsPayload"></a>
+      <a id="EagerPayload:EagerPayload"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="EagerPayload.html"><span class="name">EagerPayload</span></a><span class="result"> extends <a href="Payload.html" class="extype" name="akka.wamp.serialization.Payload">Payload</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#akka.wamp.serialization.package@EagerPayloadextendsPayload" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">An eager payload with in-memory structured arguments
+ready to be serialized to binary or text formats
+</p>
+    </li><li name="akka.wamp.serialization.JsonSerialization" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="JsonSerializationextendsSerialization"></a>
+      <a id="JsonSerialization:JsonSerialization"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="JsonSerialization.html"><span class="name">JsonSerialization</span></a><span class="result"> extends <a href="Serialization.html" class="extype" name="akka.wamp.serialization.Serialization">Serialization</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#akka.wamp.serialization.package@JsonSerializationextendsSerialization" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="akka.wamp.serialization.JsonSerializationFlows" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="JsonSerializationFlowsextendsSerializationFlows"></a>
+      <a id="JsonSerializationFlows:JsonSerializationFlows"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="JsonSerializationFlows.html"><span class="name">JsonSerializationFlows</span></a><span class="result"> extends <a href="SerializationFlows.html" class="extype" name="akka.wamp.serialization.SerializationFlows">SerializationFlows</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#akka.wamp.serialization.package@JsonSerializationFlowsextendsSerializationFlows" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">The JSON serialization flows
+</p>
+    </li><li name="akka.wamp.serialization.LazyPayload" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="LazyPayload[+T]extendsPayload"></a>
+      <a id="LazyPayload[+T]:LazyPayload[T]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">sealed </span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a href="LazyPayload.html"><span class="name">LazyPayload</span></a><span class="tparams">[<span name="T">+T</span>]</span><span class="result"> extends <a href="Payload.html" class="extype" name="akka.wamp.serialization.Payload">Payload</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#akka.wamp.serialization.package@LazyPayload[+T]extendsPayload" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">A lazy payload
+</p>
+    </li><li name="akka.wamp.serialization.MsgpackSerialization" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="MsgpackSerializationextendsSerialization"></a>
+      <a id="MsgpackSerialization:MsgpackSerialization"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="MsgpackSerialization.html"><span class="name">MsgpackSerialization</span></a><span class="result"> extends <a href="Serialization.html" class="extype" name="akka.wamp.serialization.Serialization">Serialization</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#akka.wamp.serialization.package@MsgpackSerializationextendsSerialization" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="akka.wamp.serialization.MsgpackSerializationFlows" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="MsgpackSerializationFlowsextendsSerializationFlows"></a>
+      <a id="MsgpackSerializationFlows:MsgpackSerializationFlows"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="MsgpackSerializationFlows.html"><span class="name">MsgpackSerializationFlows</span></a><span class="result"> extends <a href="SerializationFlows.html" class="extype" name="akka.wamp.serialization.SerializationFlows">SerializationFlows</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#akka.wamp.serialization.package@MsgpackSerializationFlowsextendsSerializationFlows" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="akka.wamp.serialization.ParsedContent" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="ParsedContentextendsProductwithSerializable"></a>
+      <a id="ParsedContent:ParsedContent"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">case class</span>
+      </span>
+      <span class="symbol">
+        <a href="ParsedContent.html"><span class="name">ParsedContent</span></a><span class="params">(<span name="args">args: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Any">Any</span>]</span>, <span name="kwargs">kwargs: <span class="extype" name="scala.Predef.Map">Map</span>[<span class="extype" name="scala.Predef.String">String</span>, <span class="extype" name="scala.Any">Any</span>]</span>)</span><span class="result"> extends <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#akka.wamp.serialization.package@ParsedContentextendsProductwithSerializable" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Payload content parsed by using either the
+[Jackson JSON Parser](https://github.com/FasterXML/jackson-module-scala)
+(for textual data) or the
+[MsgPack Parser](https://github.com/msgpack/msgpack-scala)
+(for binary data).</p><div class="fullcomment"><div class="comment cmt"><p>Payload content parsed by using either the
+[Jackson JSON Parser](https://github.com/FasterXML/jackson-module-scala)
+(for textual data) or the
+[MsgPack Parser](https://github.com/msgpack/msgpack-scala)
+(for binary data).
+</p></div><dl class="paramcmts block"><dt class="param">args</dt><dd class="cmt"><p>is a list of arbitrary values</p></dd><dt class="param">kwargs</dt><dd class="cmt"><p>is a dictionary of arbitrary values</p></dd></dl></div>
+    </li><li name="akka.wamp.serialization.Payload" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="PayloadextendsAnyRef"></a>
+      <a id="Payload:Payload"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a href="Payload.html"><span class="name">Payload</span></a><span class="result"> extends <span class="extype" name="scala.AnyRef">AnyRef</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#akka.wamp.serialization.package@PayloadextendsAnyRef" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Payload
+</p>
+    </li><li name="akka.wamp.serialization.Serialization" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="SerializationextendsAnyRef"></a>
+      <a id="Serialization:Serialization"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a href="Serialization.html"><span class="name">Serialization</span></a><span class="result"> extends <span class="extype" name="scala.AnyRef">AnyRef</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#akka.wamp.serialization.package@SerializationextendsAnyRef" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="akka.wamp.serialization.SerializationFlows" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="SerializationFlowsextendsAnyRef"></a>
+      <a id="SerializationFlows:SerializationFlows"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a href="SerializationFlows.html"><span class="name">SerializationFlows</span></a><span class="result"> extends <span class="extype" name="scala.AnyRef">AnyRef</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#akka.wamp.serialization.package@SerializationFlowsextendsAnyRef" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Defines Akka Stream flows meant to serialize/deserialize messages
+to/from textual(binary)/object representation
+</p>
+    </li><li name="akka.wamp.serialization.TextLazyPayload" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="TextLazyPayloadextendsLazyPayload[String]"></a>
+      <a id="TextLazyPayload:TextLazyPayload"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a href="TextLazyPayload.html"><span class="name">TextLazyPayload</span></a><span class="result"> extends <a href="LazyPayload.html" class="extype" name="akka.wamp.serialization.LazyPayload">LazyPayload</a>[<span class="extype" name="scala.Predef.String">String</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#akka.wamp.serialization.package@TextLazyPayloadextendsLazyPayload[String]" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">A lazy payload with textual content
+</p>
+    </li></ol>
+            </div>
+
+        
+
+        <div id="values" class="values members">
+              <h3>Value Members</h3>
+              <ol><li name="akka.wamp.serialization.Payload" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="Payload"></a>
+      <a id="Payload:Payload"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="Payload$.html"><span class="name">Payload</span></a>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#akka.wamp.serialization.package@Payload" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">A payload companion object
+</p>
+    </li></ol>
+            </div>
+
+        
+
+        
+        </div>
+
+        <div id="inheritedMembers">
+        
+        
+        </div>
+
+        <div id="groupedMembers">
+        <div class="group" name="Ungrouped">
+              <h3>Ungrouped</h3>
+              
+            </div>
+        </div>
+
+      </div>
+
+      <div id="tooltip"></div>
+
+      <div id="footer">  </div>
+
+
+    </body>
+      </html>

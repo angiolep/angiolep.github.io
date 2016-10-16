@@ -8,7 +8,7 @@
     <meta name="author" content="Paolo Angioletti">  
     <link rel="shortcut icon" href="../../../img/favicon.ico">
 
-    <title>Session Handling - akka-wamp-0.10.0</title>
+    <title>Session Handling - akka-wamp-0.11.0</title>
 
     <link href="../../../css/bootstrap-custom.min.css" rel="stylesheet">
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet">
@@ -55,7 +55,7 @@
             
 
             <!-- Main title -->
-            <a class="navbar-brand" href="../../..">akka-wamp-0.10.0</a>
+            <a class="navbar-brand" href="../../..">akka-wamp-0.11.0</a>
         </div>
 
         <!-- Expanded navigation -->
@@ -78,13 +78,34 @@
                 
                 
                     <li class="dropdown active">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Client <b class="caret"></b></a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Client APIs <b class="caret"></b></a>
                         <ul class="dropdown-menu">
                         
                             
 <li >
-    <a href="../../actor/">Actor based API</a>
+    <a href="../../overview/">Overview</a>
 </li>
+
+                        
+                            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">Actor based API</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../../actor/overview/">Overview</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../actor/session/">Session Handling</a>
+</li>
+
+        
+    </ul>
+  </li>
 
                         
                             
@@ -191,7 +212,7 @@
                 <li class="third-level"><a href="#execution-context">Execution context</a></li>
             
         
-            <li class="second-level"><a href="#establish-connections">Establish connections</a></li>
+            <li class="second-level"><a href="#connect-transports">Connect transports</a></li>
             
                 <li class="third-level"><a href="#recover">Recover</a></li>
             
@@ -218,6 +239,7 @@
         <div class="col-md-9" role="main">
 
 <h1 id="session-handling">Session Handling</h1>
+<p>Create clients, connect transport and open sessions.</p>
 <pre><code class="scala">import akka.wamp.client._
 val client = Client(&quot;myapp&quot;)
 
@@ -228,13 +250,12 @@ val session = client
     url = &quot;ws://localhost:8080/router&quot;,
     subprotocol = &quot;wamp.2.json&quot;)
   .openSession(
-    realm = &quot;akka.wamp.realm&quot;,
+    realm = &quot;default.realm&quot;,
     roles = Set(&quot;subscriber&quot;)
   )
 }
 </code></pre>
 
-<p>Create the client and establish connections to open sessions.</p>
 <h2 id="create-clients">Create clients</h2>
 <pre><code class="scala">import akka.wamp.client._
 val client = Client(&quot;myapp&quot;)
@@ -255,49 +276,49 @@ val client = Client(&quot;myapp&quot;)
 <h3 id="configuration">Configuration</h3>
 <p>TBD</p>
 <h3 id="multiplicity">Multiplicity</h3>
-<p>In Akka Wamp, one client can establish many connections but each connection can open only one session.</p>
+<p>In Akka Wamp, one client can connect many transports but each transport can open only one session.</p>
 <pre><code>    ,--------.  1      0..n  ,------------.  1      0..1  ,---------. 
-    | Client |  -----------  | Connection |  -----------  | Session | 
+    | Client |  -----------  | Transport  |  -----------  | Session | 
     `--------'               `------------'               `---------'
 </code></pre>
 
 <p>Bear in mind that, though you could create as many client as you wish, its actor system is a heavyweight structure that allocates 1..n threads. So you're advised to create <em>one client per logical application</em>.</p>
 <h3 id="execution-context">Execution context</h3>
-<p>All of the operation provided by client, connection and sessions objects always return futures. In order to execute callbacks and operations, futures need something called an <a href="http://doc.akka.io/docs/akka/2.4.10/scala/futures.html">ExecutionContext</a>. You can import the existing <code>client.executionContext</code> as implicit in scope:</p>
+<p>All of the operation provided by client, transport and session objects always return futures. In order to execute callbacks and operations, futures need something called an <a href="http://doc.akka.io/docs/akka/2.4.10/scala/futures.html">ExecutionContext</a>. You can import the existing <code>client.executionContext</code> as implicit in scope:</p>
 <pre><code class="scala">implicit val ec = client.executionContext
 </code></pre>
 
 <p>or create your own.</p>
-<h2 id="establish-connections">Establish connections</h2>
+<h2 id="connect-transports">Connect transports</h2>
 <pre><code class="scala">import scala.concurrent.Future
 
-val conn1: Future[Connection] = client
+val transport1: Future[Transport] = client
   .connect(
     url = &quot;ws://localhost:8080/router&quot;,
     subprotocol = &quot;wamp.2.json&quot;)
 
-val conn2 = client
+val transport2 = client
   .connect(
     url = &quot;wss://secure.host.net:443/wamp&quot;,
     subprotocol = &quot;wamp.2.msgpack&quot;)    
 </code></pre>
 
-<p>Establish a connection to a router invoking the client <code>connect()</code> method which accepts <code>url</code> and <code>subprotocol</code> arguments as documented for the <a href="../../../messages#Connect"><code>Connect</code></a> message constructor. </p>
+<p>Connect a transport by just invoking the client <code>connect()</code> method which accepts <code>url</code> and <code>subprotocol</code> arguments as documented for the <a href="../../../messages#Connect"><code>Connect</code></a> message constructor. </p>
 <p>You can establish as many connections as you wish (to the same or to different routers) as the connect method returns a distinct (future of) connection.</p>
 <h3 id="recover">Recover</h3>
-<p>You can either recover or <em>"give up"</em> when the (future of) connection fails. To recover from failures (such as <code>ConnectionException</code> thrown when router cannot accept connection) you can compose <code>recoverWith</code> to attempt another connection (maybe to a fallback router):</p>
-<pre><code class="scala">val conn1: Future[Connection] = client
+<p>You can either recover or <em>"give up"</em> when the (future of) connection fails. To recover from failures (such as <code>TransportException</code> thrown when router cannot accept connection) you can compose <code>recoverWith</code> to attempt another connection (maybe to a fallback router):</p>
+<pre><code class="scala">val transport1: Future[Transport] = client
   .connect(
     url = &quot;ws://localhost:8080/router&quot;)
   .recoverWith { 
-    case ex: ConnectionException =&gt; client
+    case ex: TransportException =&gt; client
       .connect(
         url = &quot;ws://fallback.host.net:9999/path&quot;)
   }
 </code></pre>
 
 <p>As last resort, instead of recovering, you could decide to <em>"give up"</em> a callback function <code>onFailure</code> that terminates the application:</p>
-<pre><code class="scala">conn.onFailure {
+<pre><code class="scala">transport.onFailure {
   case ex: Throwable =&gt;
     client.terminate().map(_ =&gt; System.exit(-1))
 }
@@ -306,7 +327,7 @@ val conn2 = client
 <h2 id="open-sessions">Open sessions</h2>
 <pre><code class="scala">val session1: Future[Session] = conn1.flatMap(
   _.openSession(
-    realm = &quot;akka.wamp.realm&quot;,
+    realm = &quot;default.realm&quot;,
     roles = Set(&quot;subscriber&quot;)))
 
 val session2 = conn2.flatMap(
@@ -314,24 +335,24 @@ val session2 = conn2.flatMap(
     roles = Set(&quot;publisher&quot;, &quot;callee&quot;)))    
 </code></pre>
 
-<p>A (future of) connection can be mapped to a (future of) session by just invoking the connection <code>openSession()</code> method which accepts <code>realm</code> and <code>roles</code> arguments as documented for the <a href="../../../messages#Hello"><code>Hello</code></a> message constructor. </p>
-<p>You can open only one session per connection. Therefore, if you wish to open a second session then you must establish a second connection (using the same client or a different one).</p>
+<p>A (future of) transport can be mapped to a (future of) session by just invoking the <code>openSession()</code> method which accepts <code>realm</code> and <code>roles</code> arguments as documented for the <a href="../../../messages#Hello"><code>Hello</code></a> message constructor. </p>
+<p>You can open only one session per transport. Therefore, if you wish to open a second session then you must establish a second transport (using the same client or a different one).</p>
 <h3 id="shortcut">Shortcut</h3>
-<p>You can shortcut connection establishment and session opening in one single concise statement by invoking <code>openSession()</code> on the client rather than on the connection:</p>
+<p>You can shortcut transport connection and session opening in one single concise statement by invoking <code>openSession()</code> on the client rather than on the transport:</p>
 <pre><code class="scala">val session: Future[Session] = client
   .openSession(
     url = &quot;ws://some.host.net:8080/ws&quot;,
     subprotocol = &quot;wamp.2.json&quot;,
-    realm = &quot;akka.wamp.realm&quot;,
+    realm = &quot;default.realm&quot;,
     roles = Set(&quot;subscriber&quot;, &quot;caller&quot;))
 </code></pre>
 
-<p>The client <code>openSession()</code> method accepts all of the <code>url</code>, <code>subprotocol</code>, <code>realm</code> and <code>details</code> arguments mentioned above. It establishes a new connection and opens a new session each time you call it.</p>
+<p>The client <code>openSession()</code> method accepts all of the <code>url</code>, <code>subprotocol</code>, <code>realm</code> and <code>details</code> arguments mentioned above. It connects a new transport and opens a new session each time you call it.</p>
 <h3 id="recover_1">Recover</h3>
 <p>You can either recover or <em>"give up"</em> when the (future of) session fails. To recover from failures (such as <code>AbortException</code> thrown when router doesn't attach to a realm) you can compose <code>recoverWith</code> to attempt another session opening (maybe to a fallback realm):</p>
 <pre><code class="scala">val session: Future[Session] = client
   .openSession(
-    realm = &quot;akka.wamp.realm&quot;)
+    realm = &quot;default.realm&quot;)
   .recoverWith { 
     case ex: AbortException =&gt; client
       .openSession(
@@ -347,11 +368,16 @@ val session2 = conn2.flatMap(
 </code></pre>
 
 <h2 id="close-sessions">Close sessions</h2>
-<p>TBD</p>
+<pre><code class="scala">val transport: Future[Transport] = session.close()
+</code></pre>
+
 <h2 id="disconnect-transports">Disconnect transports</h2>
-<p>TBD</p>
+<pre><code class="scala">val d: Future[Disconnected] = transport.disconnect()
+</code></pre>
+
 <h2 id="terminate-clients">Terminate clients</h2>
-<p>TBD</p></div>
+<pre><code class="scala">val t: Future[Terminated] = client.terminate()
+</code></pre></div>
         
     </div>
 

@@ -8,7 +8,7 @@
     <meta name="author" content="Paolo Angioletti">  
     <link rel="shortcut icon" href="./img/favicon.ico">
 
-    <title>akka-wamp-0.10.0</title>
+    <title>akka-wamp-0.11.0</title>
 
     <link href="./css/bootstrap-custom.min.css" rel="stylesheet">
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet">
@@ -55,7 +55,7 @@
             
 
             <!-- Main title -->
-            <a class="navbar-brand" href=".">akka-wamp-0.10.0</a>
+            <a class="navbar-brand" href=".">akka-wamp-0.11.0</a>
         </div>
 
         <!-- Expanded navigation -->
@@ -78,13 +78,34 @@
                 
                 
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Client <b class="caret"></b></a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Client APIs <b class="caret"></b></a>
                         <ul class="dropdown-menu">
                         
                             
 <li >
-    <a href="client/actor/">Actor based API</a>
+    <a href="client/overview/">Overview</a>
 </li>
+
+                        
+                            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">Actor based API</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="client/actor/overview/">Overview</a>
+</li>
+
+        
+            
+<li >
+    <a href="client/actor/session/">Session Handling</a>
+</li>
+
+        
+    </ul>
+  </li>
 
                         
                             
@@ -206,7 +227,7 @@
 <p>Akka Wamp is a WAMP - <a href="http://wamp-proto.org/">Web Application Messaging Protocol</a> implementation written in <a href="http://scala-lang.org/">Scala</a> with <a href="http://akka.io/">Akka</a></p>
 <p>Easy to download as <a href="http://www.scala-sbt.org/">SBT</a> library dependency.</p>
 <pre><code class="scala">libraryDependencies ++= Seq(
-  &quot;com.github.angiolep&quot; % &quot;akka-wamp_2.11&quot; % &quot;0.10.0&quot;
+  &quot;com.github.angiolep&quot; % &quot;akka-wamp_2.11&quot; % &quot;0.11.0&quot;
 )  
 </code></pre>
 
@@ -225,7 +246,7 @@
         .openSession(
           url = &quot;ws://localhost:8080/router&quot;,
           subprotocol = &quot;wamp.2.json&quot;,
-          realm = &quot;akka.wamp.realm&quot;,
+          realm = &quot;default.realm&quot;,
           roles = Set(&quot;subscriber&quot;))
       subscription &lt;- session
         .subscribe(
@@ -245,12 +266,11 @@
 
 <h3 id="major-features">Major features</h3>
 <ul>
-<li>Proper connection and <a href="./client/future/session">Session Handling</a></li>
-<li>Simple and concise <a href="./client/future/pubsub">Publish Subscribe</a></li>
-<li>Simple and concise routed <a href="./client/future/rpc">Remote Procedure Call</a></li>
-<li>Lazy <a href="./client/future/payload">Payload Handling</a> with Streaming support</li>
+<li>Fully compliant with Reactive Manifesto</li>
+<li>Simple and well documented APIs</li>
+<li>Lazy deserialization</li>
 </ul>
-<p>Please, read the docs for <a href="./client/future">further details</a></p>
+<p>Please, read the docs for <a href="./client/overview">further details</a></p>
 <h2 id="router">Router</h2>
 <p>Akka Wamp provides you with a router that can be either embedded into your application or launched as standalone server process.</p>
 <h2 id="limitations">Limitations</h2>
@@ -315,5 +335,5 @@
 
 <!--
 MkDocs version : 0.15.3
-Build Date UTC : 2016-10-01 13:56:57.592413
+Build Date UTC : 2016-10-16 10:17:32.056478
 -->

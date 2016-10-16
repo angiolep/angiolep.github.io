@@ -8,7 +8,7 @@
     <meta name="author" content="Paolo Angioletti">  
     <link rel="shortcut icon" href="../img/favicon.ico">
 
-    <title>Router - akka-wamp-0.10.0</title>
+    <title>Router - akka-wamp-0.11.0</title>
 
     <link href="../css/bootstrap-custom.min.css" rel="stylesheet">
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet">
@@ -55,7 +55,7 @@
             
 
             <!-- Main title -->
-            <a class="navbar-brand" href="..">akka-wamp-0.10.0</a>
+            <a class="navbar-brand" href="..">akka-wamp-0.11.0</a>
         </div>
 
         <!-- Expanded navigation -->
@@ -78,13 +78,34 @@
                 
                 
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Client <b class="caret"></b></a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Client APIs <b class="caret"></b></a>
                         <ul class="dropdown-menu">
                         
                             
 <li >
-    <a href="../client/actor/">Actor based API</a>
+    <a href="../client/overview/">Overview</a>
 </li>
+
+                        
+                            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">Actor based API</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../client/actor/overview/">Overview</a>
+</li>
+
+        
+            
+<li >
+    <a href="../client/actor/session/">Session Handling</a>
+</li>
+
+        
+    </ul>
+  </li>
 
                         
                             
@@ -164,7 +185,7 @@
                         </a>
                     </li>
                     <li >
-                        <a rel="prev" href="../client/actor/">
+                        <a rel="prev" href="../client/overview/">
                             Next <i class="fa fa-arrow-right"></i>
                         </a>
                     </li>
@@ -180,26 +201,159 @@
         <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
     <ul class="nav bs-sidenav">
     
-        <li class="first-level active"><a href="#embedded">Embedded</a></li>
+        <li class="first-level active"><a href="#router">Router</a></li>
         
-    
-        <li class="first-level "><a href="#standalone">Standalone</a></li>
+            <li class="second-level"><a href="#standalone-router">Standalone router</a></li>
+            
         
-    
-        <li class="first-level "><a href="#configuration">Configuration</a></li>
+            <li class="second-level"><a href="#configuration">Configuration</a></li>
+            
+                <li class="third-level"><a href="#logging">Logging</a></li>
+            
+                <li class="third-level"><a href="#security">Security</a></li>
+            
+        
+            <li class="second-level"><a href="#embedded-router">Embedded router</a></li>
+            
+                <li class="third-level"><a href="#bindunbind">Bind/Unbind</a></li>
+            
+                <li class="third-level"><a href="#examples">Examples</a></li>
+            
+        
+            <li class="second-level"><a href="#limitations">Limitations</a></li>
+            
         
     
     </ul>
 </div></div>
         <div class="col-md-9" role="main">
 
-<p>Akka Wamp provides you with a router that can be either embedded into your application or launched as standalone server process.</p>
-<h2 id="embedded">Embedded</h2>
-<p>Make your SBT build depend on akka-wamp:</p>
+<h1 id="router">Router</h1>
+<p>Akka Wamp provides you with a router that can be either launched as standalone server process or embedded into your application.</p>
+<p>It provides:</p>
+<ul>
+<li>Both <strong>broker</strong> (for publish/subscribe) and <strong>dealer</strong> (for routed remote procedure calls) roles.</li>
+<li>JSON serialization</li>
+</ul>
+<h2 id="standalone-router">Standalone router</h2>
+<p><a href="https://bintray.com/angiolep/universal/akka-wamp/_latestVersion"><img alt="Download" src="https://api.bintray.com/packages/angiolep/universal/akka-wamp/images/download.svg" /></a></p>
+<p>Download the latest router version, extract, configure and run it as standalone application:</p>
+<pre><code class="bash">curl https://dl.bintray.com/angiolep/universal/akka-wamp-0.11.0.tgz
+tar xvfz akka-wamp-0.11.0.tar.gz
+cd akka-wamp-0.11.0
+vim ./conf/application.conf
+./bin/akka-wamp -Dakka.loglevel=DEBUG
+</code></pre>
+
+<p><a id="configuration"></a></p>
+<h2 id="configuration">Configuration</h2>
+<p>Either the embedded or the standalone router can be configured by applying the following settings:</p>
+<pre><code class="bash">akka {
+  wamp {
+    router {
+      # The boolean switch to validate against strict URIs 
+      # rather than loose URIs
+      #
+      validate-strict-uris = false
+
+      # The boolean switch to NOT automatically create realms 
+      # if they don't exist yet.
+      #
+      abort-unknown-realms = false
+
+      # The boolean switch to drop offending messages (e.g. 
+      # not deserializable or against the protocol).
+      #
+      # By default, offending messages will cause session to be
+      # closed and transport to be disconnected. Set this switch on 
+      # if you prefer to rather drop offending messages and resume.
+      #
+      drop-offending-messages = false
+
+      # Named transport configurations
+      #
+      transport {
+        default {
+          # Transport protocol can be:
+          #
+          # - tcp
+          #     Raw TCP
+          # - tsl
+          #     Transport Secure Layer
+          # - ws    
+          #     WebSocket 
+          # - wss
+          #     WebSocket over TLS
+          #
+          protocol = &quot;ws&quot;
+
+          # Transport subprotocol can be:
+          # 
+          # - wamp.2.json
+          #   JSON Javascript Object Notation
+          #
+          # - wamp.2.msgpack
+          #   Message Pack
+          #
+          subprotocol = &quot;wamp.2.json&quot;
+
+          # The TCP interface to bind to
+          #
+          iface = &quot;127.0.0.1&quot;
+
+          # The TCP port number (between 0 and 65536) to bind to.
+          # If set to 0 the first available randome port number 
+          # will be chosen
+          #
+          port = 8080
+
+          # (Only for &quot;ws&quot; and &quot;wss&quot; protocols)
+          # The URL path incoming HTTP Upgrade request are expected 
+          # to be addressed to
+          #
+          path = &quot;router&quot;
+        },
+        #secure {
+        #  protocol = &quot;wss&quot;
+        #  iface = &quot;127.0.0.1&quot;
+        #  port = 8443
+        #  path = &quot;router&quot;
+        #}
+      }
+    }
+  }
+}
+</code></pre>
+
+<p>Above default settings can be overridden</p>
+<ul>
+<li>(for standalone router) by editing the <code>conf/application.conf</code> file</li>
+<li>(for embedded router) by providing an <code>application.conf</code> file on the classpath,</li>
+<li>by passing system properties to the Java interpreter (e.g. <code>-Dakka.wamp.router.transport.default.port=9090</code>)</li>
+</ul>
+<h3 id="logging">Logging</h3>
+<pre><code class="bash">akka {
+  #
+  # Following are already set by akka-wamp as default
+  #
+  loggers = [&quot;akka.event.slf4j.Slf4jLogger&quot;]
+  loglevel = &quot;INFO&quot;
+  logging-filter = &quot;akka.event.slf4j.Slf4jLoggingFilter&quot;
+
+  # Just provide an additional logback.xml file on the classpath 
+  # so to customize your loggers, appenders and patterns
+  # 
+}
+</code></pre>
+
+<h3 id="security">Security</h3>
+<p>TBD</p>
+<h2 id="embedded-router">Embedded router</h2>
+<p>Make your build depend on the latest version of akka-wamp: </p>
 <pre><code class="scala">scalaVersion := &quot;2.11.8&quot;
 
 libraryDependencies ++= Seq(
-  &quot;com.github.angiolep&quot; %% &quot;akka-wamp&quot; % &quot;0.10.0&quot;
+  &quot;com.github.angiolep&quot; %% &quot;akka-wamp&quot; % &quot;0.11.0&quot;
   // ...
 )
 </code></pre>
@@ -208,69 +362,42 @@ libraryDependencies ++= Seq(
 <pre><code class="scala">import akka.actor._
 import akka.wamp.router._
 
-implicit val system = ActorSystem(&quot;wamp&quot;)
+implicit val system = ActorSystem(&quot;myapp&quot;)
 val router = system.actorOf(Router.props(), &quot;router&quot;)
 </code></pre>
 
-<p>Then send a <code>Bind</code> message to the <code>IO(Wamp)</code> manager</p>
-<pre><code class="scala">IO(Wamp) ! Bind(router)
+<p><img alt="router" src="../router.png" /></p>
+<h3 id="bindunbind">Bind/Unbind</h3>
+<p>To bind a router a router to a configured transport, just send a <code>Bind</code> command to the <code>IO(Wamp)</code> extension manager:</p>
+<pre><code class="scala">import akka.wamp._
+import akka.wamp.messages._
+
+val manager = IO(Wamp)
+manager ! Bind(router, transport = &quot;default&quot;)
 </code></pre>
 
-<p>Done ;-)</p>
-<h2 id="standalone">Standalone <a href="https://bintray.com/angiolep/universal/akka-wamp/_latestVersion"><img alt="Download" src="https://api.bintray.com/packages/angiolep/universal/akka-wamp/images/download.svg" /></a></h2>
-<p>Download and launch the router as standalone application:</p>
-<pre><code class="bash">curl https://dl.bintray.com/angiolep/universal/akka-wamp-0.10.0.tgz
-tar xvfz akka-wamp-0.10.0.tar.gz
-cd akka-wamp-0.10.0
-./bin/akka-wamp -Dakka.loglevel=DEBUG
+<p>The manager will spawn a new transport listener for the given transport name as per above configuration. Your application actor, the binder, will be notified by the manager about the outcome of the command:</p>
+<pre><code class="scala">override def receive: Receive = {
+  case signal @ CommandFailed(cmd, ex) =&gt;
+    log.warning(s&quot;$cmd failed because of $ex&quot;)
+
+  case signal @ Bound(listener, url) =&gt;
+    log.debug(s&quot;$listener bound to $url&quot;)
+    // ...
+    // listener ! Unbind
+} 
 </code></pre>
 
-<h2 id="configuration">Configuration</h2>
-<p>Either the embedded or the standalone router can be configured by applying the following configuration:</p>
-<pre><code class="bash">akka {
-  wamp {
-    router {
-      # The TCP interface to bind to
-      #
-      iface = &quot;127.0.0.1&quot;
-
-      # The TCP port number (between 0 and 65536) to bind to
-      #
-      port = 8080
-
-      # The URL path incoming HTTP Upgrade request are
-      # expected to be addressed to
-      #
-      path = &quot;router&quot;
-
-      # The boolean switch to validate against strict URIs 
-      # rather than loose URIs
-      #
-      validate-strict-uris = false
-
-      # The boolean switch to NOT automatically create 
-      # realms if they don't exist yet.
-      #
-      abort-unknown-realms = false
-
-      # The boolean switch to disconnect those peers that send 
-      # offending messages (e.g. not deserializable or causing
-      # session failures)
-      #
-      # By default, offending messages are just dropped and 
-      # the router resumes processing next incoming messages
-      #
-      disconnect-offending-peers = false
-    }
-  }
-}
+<p>On successfully bound, you'll be sent the actor reference of the transport listener actor and the URL which that actor is bound to. If you wish to unbind the listener, just the send an <code>Unbind</code> message.</p>
+<pre><code class="scala">listener ! Unbind
 </code></pre>
 
-<p>Above settings can be overridden by</p>
+<h3 id="examples">Examples</h3>
 <ul>
-<li>providing a TypeSafe Config <code>application.conf</code> file right in the classpath,</li>
-<li>or passing Java system properties (e.g. <code>-Dakka.wamp.router.port=7070</code>) to the Java interpreter on the command line</li>
-</ul></div>
+<li><a href="https://github.com/angiolep/akka-wamp/blob/master/examples/src/main/scala/examples/EmbeddedRouterApp.scala">EmbeddedRouterApp</a></li>
+</ul>
+<h2 id="limitations">Limitations</h2>
+<p>TBD</p></div>
         
     </div>
 

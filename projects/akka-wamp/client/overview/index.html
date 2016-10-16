@@ -8,7 +8,7 @@
     <meta name="author" content="Paolo Angioletti">  
     <link rel="shortcut icon" href="../../img/favicon.ico">
 
-    <title>Actor based API - akka-wamp-0.10.0</title>
+    <title>Overview - akka-wamp-0.11.0</title>
 
     <link href="../../css/bootstrap-custom.min.css" rel="stylesheet">
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet">
@@ -55,7 +55,7 @@
             
 
             <!-- Main title -->
-            <a class="navbar-brand" href="../..">akka-wamp-0.10.0</a>
+            <a class="navbar-brand" href="../..">akka-wamp-0.11.0</a>
         </div>
 
         <!-- Expanded navigation -->
@@ -78,13 +78,34 @@
                 
                 
                     <li class="dropdown active">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Client <b class="caret"></b></a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Client APIs <b class="caret"></b></a>
                         <ul class="dropdown-menu">
                         
                             
 <li class="active">
-    <a href="./">Actor based API</a>
+    <a href="./">Overview</a>
 </li>
+
+                        
+                            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">Actor based API</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../actor/overview/">Overview</a>
+</li>
+
+        
+            
+<li >
+    <a href="../actor/session/">Session Handling</a>
+</li>
+
+        
+    </ul>
+  </li>
 
                         
                             
@@ -164,7 +185,7 @@
                         </a>
                     </li>
                     <li >
-                        <a rel="prev" href="../future/overview/">
+                        <a rel="prev" href="../actor/overview/">
                             Next <i class="fa fa-arrow-right"></i>
                         </a>
                     </li>
@@ -180,9 +201,12 @@
         <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
     <ul class="nav bs-sidenav">
     
-        <li class="first-level active"><a href="#actor-based-api">Actor based API</a></li>
+        <li class="first-level active"><a href="#client-apis-overview">Client APIs overview</a></li>
         
-            <li class="second-level"><a href="#for-the-impatients">For the impatients</a></li>
+            <li class="second-level"><a href="#transports-and-sessions">Transports and Sessions</a></li>
+            
+        
+            <li class="second-level"><a href="#read-on">Read on</a></li>
             
         
     
@@ -190,28 +214,46 @@
 </div></div>
         <div class="col-md-9" role="main">
 
-<h1 id="actor-based-api">Actor based API</h1>
-<p>Akka Wamp provides you with an <a href="http://doc.akka.io/docs/akka/2.4.10/scala/actors.html">Actor</a> based API to let you write your client with a low-level API and have full control of it!</p>
-<h2 id="for-the-impatients">For the <em>impatients</em></h2>
-<p>Let's connect a transport, open a session, subscribe a topic and receive events:</p>
-<pre><code class="scala">import akka.actor._
-import akka.io._
-import akka.wamp._
+<h1 id="client-apis-overview">Client APIs overview</h1>
+<p>Akka Wamp provides you with three alternative Client APIs:</p>
+<ul>
+<li><a href="../../client/actor/overview">Actor based API</a></li>
+<li><a href="../../client/future/overview">Future based API</a></li>
+<li><a href="../../client/stream">Stream based API</a></li>
+</ul>
+<p>They all provide easy ways to establish transports and sessions, publish and subscribe topics, register and call procedures. They differ in terms of which <a href="http://doc.akka.io/docs/akka/current/intro/what-is-akka.html">Akka</a> abstractions you'd prefer to use in writing client applications.</p>
+<h2 id="transports-and-sessions">Transports and Sessions</h2>
+<p>The WAMP protocol specification states:</p>
+<blockquote>
+<p>WAMP implementations MAY choose to tie the lifetime of the underlying transport connection for a WAMP connection to that of a WAMP session, i.e. establish a new transport-layer connection as part of each new session establishment.</p>
+</blockquote>
+<p>That's how many WAMP implementations (such AutobahnJS, Crossbar.io, Jawampa, etc.) actually work. But, as you read the spec a little bit further:</p>
+<blockquote>
+<p>They MAY equally choose to allow re-use of a transport connection, allowing subsequent WAMP sessions to be established using the same transport connection.</p>
+</blockquote>
+<p>That's how Akka Wamp works, instead! </p>
+<p>Akka Wamp handles transports and sessions as separate entities, each with their own lifecycle. That gives you a way to keep the transport connection established whatever happens to the session opened onto it. So that, if the session gets closed you can still reuse the transport connection to open a subsequent new session.</p>
+<p>For example, using the future based API, you could:</p>
+<pre><code class="scala">val transport = client.connect()
+val session1 = transport.flatMap(_.openSession())
+// ... 
+session1.close()
 
-implicit val system = ActorSystem(&quot;myapp&quot;)
+// reuse the same transport to open subsequent sessions
+val session2 = conn.flatMap(_.openSession())
+// ... 
+session2.close()
 
-val client = system.actorOf(Props[MyClient])
-IO(Wamp) ! Wamp.Connect(client, &quot;ws://localhost:8080/router&quot;)
+// finally disconnect the transport
+transport.disconnect()
+</code></pre>
 
-class MyClient extends Actor {
-  var router: ActorRef = _
-  def receive = {
-    case signal @ Wamp.Connected(r) =&gt;
-      router = r
-      IO(Wamp) ! Wamp.Disconnect
-  }
-}
-</code></pre></div>
+<h2 id="read-on">Read on</h2>
+<ul>
+<li><a href="../../client/actor/overview">Actor based API</a></li>
+<li><a href="../../client/future/overview">Future based API</a></li>
+<li><a href="../../client/stream">Stream based API</a></li>
+</ul></div>
         
     </div>
 

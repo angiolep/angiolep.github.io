@@ -8,7 +8,7 @@
     <meta name="author" content="Paolo Angioletti">  
     <link rel="shortcut icon" href="../img/favicon.ico">
 
-    <title>Messages - akka-wamp-0.10.0</title>
+    <title>Messages - akka-wamp-0.11.0</title>
 
     <link href="../css/bootstrap-custom.min.css" rel="stylesheet">
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet">
@@ -55,7 +55,7 @@
             
 
             <!-- Main title -->
-            <a class="navbar-brand" href="..">akka-wamp-0.10.0</a>
+            <a class="navbar-brand" href="..">akka-wamp-0.11.0</a>
         </div>
 
         <!-- Expanded navigation -->
@@ -78,13 +78,34 @@
                 
                 
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Client <b class="caret"></b></a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Client APIs <b class="caret"></b></a>
                         <ul class="dropdown-menu">
                         
                             
 <li >
-    <a href="../client/actor/">Actor based API</a>
+    <a href="../client/overview/">Overview</a>
 </li>
+
+                        
+                            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">Actor based API</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../client/actor/overview/">Overview</a>
+</li>
+
+        
+            
+<li >
+    <a href="../client/actor/session/">Session Handling</a>
+</li>
+
+        
+    </ul>
+  </li>
 
                         
                             
@@ -229,7 +250,7 @@
 <h1 id="messages">Messages</h1>
 <p>TBD </p>
 <h2 id="session-handling">Session Handling</h2>
-<pre><code>   ,------.                                    ,------.
+<pre><code class="text">   ,------.                                    ,------.
    | Peer |                                    | Peer |
    `--+---'                                    `--+---'
       |               TCP established             |
@@ -272,38 +293,48 @@
 
 <p><a name="Connect"></a></p>
 <h3 id="connect">Connect</h3>
-<p>It is the message you send to the Akka IO entry point to establish a WAMP connection to a router. It can be constructed passing the following parameters:</p>
+<p>It is the message your client application sends to the <a href="../../client/actor/session/#access-the-manager">Akka I/O extension manager</a> to connect a transport to a remote router. It can be constructed passing the following parameters:</p>
 <ul>
 <li>
 <p><code>client</code><br />
-  It is your client actor reference to which messages from the remote router are delivered while the connection is established.</p>
+  It is your client actor reference to which messages from the router are delivered back.</p>
 </li>
 <li>
 <p><code>url</code><br />
-  It is the <a href="https://www.ietf.org/rfc/rfc1738.txt">URL</a> to the remote router. By default Akka Wamp makes use of <code>ws://127.0.0.1:8080/ws</code> and it currently supports the following protocols:</p>
-</li>
-<li>
-<p><code>ws</code><br />
-    It is the WebSocket protocol.</p>
+  It is the <a href="https://www.ietf.org/rfc/rfc1738.txt">URL</a> of the router listener. By default Akka Wamp makes use of <code>ws://127.0.0.1:8080/ws</code> and it currently supports the following protocols:</p>
+<ul>
+<li><code>tcp</code><br />
+    Raw TCP</li>
+<li><code>tsl</code><br />
+    Transport Secure Layer</li>
+<li><code>ws</code><br />
+    WebSocket </li>
+<li><code>wss</code><br />
+    WebSocket over TLS</li>
+</ul>
 </li>
 <li>
 <p><code>subprotocol</code><br />
-  It is the <a href="https://www.iana.org/assignments/websocket/websocket.xml#subprotocol-name">subprotocol</a> you wish to negotiate with the remote router.</p>
+  It is the <a href="https://www.iana.org/assignments/websocket/websocket.xml#subprotocol-name">subprotocol</a> you wish to negotiate with the router. By default Akka Wamp makes use of <code>wamp.2.json</code> and it currently supports the following subprotocols:</p>
+<ul>
+<li><code>wamp.2.json</code></li>
+<li><code>wamp.2.msgpack</code></li>
+</ul>
 </li>
 </ul>
 <p>Examples:</p>
 <pre><code class="scala">IO(Wamp) ! Connect(client)
-IO(Wamp) ! Connect(client, url = &quot;ws://router.host.net:8080/path/to/ws&quot;)
+IO(Wamp) ! Connect(client, url = &quot;wss://secured.host.net:8433/path/to/router&quot;)
 IO(Wamp) ! Connect(client, subprotocol = &quot;wamp.2.mgspack&quot;)
 </code></pre>
 
 <p><a name="Hello"></a></p>
 <h3 id="hello">Hello</h3>
-<p>It is the message you send to the transport to request a new session being opened with the given realm attached plus additional details. It can be constructed passing the following parameters:</p>
+<p>It is the message your client application sends to the router to request a new session being opened with the given realm attached plus additional details. It can be constructed passing the following parameters:</p>
 <ul>
 <li>
 <p><code>realm</code><br />
-  It is the realm identifier given as <a href="https://tools.ietf.org/html/draft-oberstet-hybi-tavendo-wamp-02#section-5.1.1">URI</a>. By default, Akka Wamp sends <code>akka.wamp.realm</code></p>
+  It is the realm identifier given as <a href="https://tools.ietf.org/html/draft-oberstet-hybi-tavendo-wamp-02#section-5.1.1">URI</a>. By default, Akka Wamp sends <code>default.realm</code></p>
 </li>
 <li>
 <p><code>details</code><br />
@@ -326,15 +357,15 @@ connection ! Hello(&quot;myapp.realm&quot;, Dict().withRoles(&quot;publisher&quo
 <p>TBD</p>
 <p><a name="Welcome"></a></p>
 <h3 id="welcome">Welcome</h3>
-<p>It is the message you receive from the remote router upon session opening. It can be deconstructed (via Scala pattern matching) to the following parameters:</p>
+<p>It is the message you receive from the router upon session opening. It can be deconstructed (via Scala pattern matching) to the following parameters:</p>
 <ul>
 <li>
 <p><code>sessionId</code><br />
-  It is the session identifier as generated by the remote router.</p>
+  It is the session identifier as generated by the router.</p>
 </li>
 <li>
 <p><code>details</code><br />
-  It is a dictionary with additional details (for example the remote router agent identifier)</p>
+  It is a dictionary with additional details (for example the router agent identifier)</p>
 </li>
 </ul>
 <p>Examples:</p>
@@ -357,7 +388,7 @@ def opened: Receive = {
 
 <p><a name="Goodbye"></a></p>
 <h3 id="goodbye">Goodbye</h3>
-<p>It is the message either you send to the transport or receive from the remote router to request session closing. It can be constructed (deconstructed) with (to) the following parameters:</p>
+<p>It is the message either your client application sends to the router or receive from the router to request session closing. It can be constructed (deconstructed) with (to) the following parameters:</p>
 <ul>
 <li>
 <p><code>reason</code><br />
@@ -396,7 +427,7 @@ connection ! Goodbye(details = Dict().withEntry(reason -&gt; &quot;Serious error
 <h2 id="publish-subscribe">Publish Subscribe</h2>
 <p><a name="Subscribe"></a></p>
 <h3 id="subscribe">Subscribe</h3>
-<p>It is the message you send to the transport to subscribe to a topic. It can be constructed passing the following parameters:</p>
+<p>It is the message your client application sends to the router to subscribe to a topic. It can be constructed passing the following parameters:</p>
 <ul>
 <li>
 <p><code>requestId</code>
@@ -420,7 +451,7 @@ connection ! Goodbye(details = Dict().withEntry(reason -&gt; &quot;Serious error
 <p>TBD</p>
 <p><a name="Publish"></a></p>
 <h3 id="publish">Publish</h3>
-<p>It is the message you send to the transport to publish an event. It can be constructed passing the following parameters:</p>
+<p>It is the message your client application sends to the router to publish an event. It can be constructed passing the following parameters:</p>
 <ul>
 <li>
 <p><code>requestId</code><br />
@@ -453,7 +484,7 @@ connection ! Publish(89, &quot;myapp.topic3&quot;, options = Dict().withAcknowle
 
 <p><a name="Event"></a></p>
 <h3 id="event">Event</h3>
-<p>It is the message you receive from the remote router each time other clients have published to the same topics you subscribed to. It can be deconstructed (via Scala pattern matching) to the following parameters:</p>
+<p>It is the message you receive from the router each time other clients have published to the same topics you subscribed to. It can be deconstructed (via Scala pattern matching) to the following parameters:</p>
 <ul>
 <li>
 <p><code>subscriptionId</code>  <br />
@@ -461,7 +492,7 @@ connection ! Publish(89, &quot;myapp.topic3&quot;, options = Dict().withAcknowle
 </li>
 <li>
 <p><code>publicationId</code>  <br />
-   It is the publication identifier generated by the remote router in global scope.</p>
+   It is the publication identifier generated by the router in global scope.</p>
 </li>
 <li>
 <p><code>payload</code>  <br />
