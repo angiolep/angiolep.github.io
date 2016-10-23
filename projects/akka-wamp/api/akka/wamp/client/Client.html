@@ -61,7 +61,7 @@ WAMP connections to a router and open new sessions.</p><pre><span class="kw">imp
 
 <span class="kw">val</span> conn: Future[Connection] = client
   .connect(
-    url = <span class="lit">"ws://localhost:8080/router"</span>,
+    url = <span class="lit">"ws://localhost:8080/ws"</span>,
     subprotocol = <span class="lit">"wamp.2.json"</span>
   )</pre></div><div class="toggleContainer block">
           <span class="toggle">Linear Supertypes</span>
@@ -219,7 +219,7 @@ WAMP connections to a router and open new sessions.</p><pre><span class="kw">imp
 the given URL and negotiate the given subprotocol
 </p><div class="fullcomment"><div class="comment cmt"><p>Establish a WAMP connection to a router which is listening at
 the given URL and negotiate the given subprotocol
-</p></div><dl class="paramcmts block"><dt class="param">url</dt><dd class="cmt"><p>is the URL to connect to (default is &quot;ws://localhost:8080/router&quot;)</p></dd><dt class="param">subprotocol</dt><dd class="cmt"><p>is the subprotocol to negotiate (default is &quot;wamp.2.json&quot;)</p></dd><dt class="param">maxAttempts</dt><dd class="cmt"><p>is the maximum number of attempts before giving up (default is 1)</p></dd><dt>returns</dt><dd class="cmt"><p>the (future of) connection or <a href="TransportException.html" class="extype" name="akka.wamp.client.TransportException">TransportException</a></p></dd></dl></div>
+</p></div><dl class="paramcmts block"><dt class="param">url</dt><dd class="cmt"><p>is the URL to connect to (default is &quot;ws://localhost:8080/ws&quot;)</p></dd><dt class="param">subprotocol</dt><dd class="cmt"><p>is the subprotocol to negotiate (default is &quot;wamp.2.json&quot;)</p></dd><dt class="param">maxAttempts</dt><dd class="cmt"><p>is the maximum number of attempts before giving up (default is 1)</p></dd><dt>returns</dt><dd class="cmt"><p>the (future of) connection or <a href="TransportException.html" class="extype" name="akka.wamp.client.TransportException">TransportException</a></p></dd></dl></div>
     </li><li name="scala.AnyRef#eq" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="eq(x$1:AnyRef):Boolean"></a>
       <a id="eq(AnyRef):Boolean"></a>
@@ -450,7 +450,7 @@ the given URL and negotiate the given subprotocol
     </span>
       <p class="shortcomment cmt">Establish a WAMP connection to a router and open a new session
 </p><div class="fullcomment"><div class="comment cmt"><p>Establish a WAMP connection to a router and open a new session
-</p></div><dl class="paramcmts block"><dt class="param">url</dt><dd class="cmt"><p>is the URL to connect to (default is &quot;ws://localhost:8080/router&quot;)</p></dd><dt class="param">subprotocol</dt><dd class="cmt"><p>is the subprotocol to negotiate (default is &quot;wamp.2.json&quot;)</p></dd><dt class="param">realm</dt><dd class="cmt"><p>is the realm to attach the session to (default is &quot;default.realm&quot;)</p></dd><dt class="param">roles</dt><dd class="cmt"><p>is this client roles set (default is all possible client roles)</p></dd><dt>returns</dt><dd class="cmt"><p>the (future of) session or <a href="TransportException.html" class="extype" name="akka.wamp.client.TransportException">TransportException</a> or <a href="AbortException.html" class="extype" name="akka.wamp.client.AbortException">AbortException</a></p></dd></dl></div>
+</p></div><dl class="paramcmts block"><dt class="param">url</dt><dd class="cmt"><p>is the URL to connect to (default is &quot;ws://localhost:8080/ws&quot;)</p></dd><dt class="param">subprotocol</dt><dd class="cmt"><p>is the subprotocol to negotiate (default is &quot;wamp.2.json&quot;)</p></dd><dt class="param">realm</dt><dd class="cmt"><p>is the realm to attach the session to (default is &quot;default.realm&quot;)</p></dd><dt class="param">roles</dt><dd class="cmt"><p>is this client roles set (default is all possible client roles)</p></dd><dt>returns</dt><dd class="cmt"><p>the (future of) session or <a href="TransportException.html" class="extype" name="akka.wamp.client.TransportException">TransportException</a> or <a href="AbortException.html" class="extype" name="akka.wamp.client.AbortException">AbortException</a></p></dd></dl></div>
     </li><li name="scala.AnyRef#synchronized" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="synchronized[T0](x$1:=&gt;T0):T0"></a>
       <a id="synchronized[T0](⇒T0):T0"></a>

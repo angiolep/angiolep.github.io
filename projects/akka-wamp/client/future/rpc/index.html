@@ -8,7 +8,7 @@
     <meta name="author" content="Paolo Angioletti">  
     <link rel="shortcut icon" href="../../../img/favicon.ico">
 
-    <title>Remote Procedure Calls - akka-wamp-0.11.0</title>
+    <title>Remote Procedure Calls - akka-wamp-0.12.0</title>
 
     <link href="../../../css/bootstrap-custom.min.css" rel="stylesheet">
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet">
@@ -55,7 +55,7 @@
             
 
             <!-- Main title -->
-            <a class="navbar-brand" href="../../..">akka-wamp-0.11.0</a>
+            <a class="navbar-brand" href="../../..">akka-wamp-0.12.0</a>
         </div>
 
         <!-- Expanded navigation -->
@@ -71,8 +71,23 @@
                 
                 
                 
-                    <li >
-                        <a href="../../../router/">Router</a>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Router <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../../../router/overview/">Overview</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../router/config/">Configuration</a>
+</li>
+
+                        
+                        </ul>
                     </li>
                 
                 
@@ -205,19 +220,21 @@
         
             <li class="second-level"><a href="#register-procedures">Register procedures</a></li>
             
-                <li class="third-level"><a href="#invocation-handlers">Invocation handlers</a></li>
+                <li class="third-level"><a href="#handle-with-scalafunction">Handle with scala.Function</a></li>
             
-                <li class="third-level"><a href="#recover">Recover</a></li>
+                <li class="third-level"><a href="#handle-with-invocationhandler">Handle with InvocationHandler</a></li>
+            
+                <li class="third-level"><a href="#recover-exceptions">Recover exceptions</a></li>
             
         
             <li class="second-level"><a href="#unregister-procedures">Unregister procedures</a></li>
             
-                <li class="third-level"><a href="#recover_1">Recover</a></li>
+                <li class="third-level"><a href="#recover-exceptions_1">Recover exceptions</a></li>
             
         
             <li class="second-level"><a href="#call-procedures">Call procedures</a></li>
             
-                <li class="third-level"><a href="#recover_2">Recover</a></li>
+                <li class="third-level"><a href="#recover-exceptions_2">Recover exceptions</a></li>
             
         
     
@@ -226,35 +243,30 @@
         <div class="col-md-9" role="main">
 
 <h1 id="remote-procedure-calls">Remote Procedure Calls</h1>
-<pre><code class="scala">object RpcApp extends App {
+<pre><code class="scala">import akka.wamp.client._
+import akka.wamp.serialization._
 
-  import akka.wamp.client._
-  import akka.wamp.serialization._
-  val client = Client()
-
+object MyClientApp extends App {
+  val client = Client()  
   implicit val ec = client.executionContext
 
   val data = 
     for {
       session &lt;- client
         .openSession(
-          url = &quot;ws://localhost:8080/router&quot;,
-          subprotocol = &quot;wamp.2.json&quot;,
-          realm = &quot;default.realm&quot;,
-          roles = Set(&quot;callee&quot;))
+          url = &quot;ws://localhost:8080/ws&quot;,
+          realm = &quot;myapp.realm&quot;)
       registration &lt;- session
         .register(
-          procedure = &quot;myapp.procedure&quot;)(
-          _.args.map { args =&gt;
-            Payload(args)
-          })
+          procedure = &quot;myapp.procedure.sum&quot;,
+          handler = (a: Int, b: Int) =&gt; a + b)
       result &lt;- session
         .call(
-          procedure = &quot;myapp.procedure&quot;,
-          args = List(&quot;paolo&quot;, 40, true))
+          procedure = &quot;myapp.procedure.multiply&quot;,
+          args = List(23.5, 12.89))
       data &lt;- result.data
     } 
-    yield (data)
+    yield data
 
   data.map(println)
 }
@@ -262,7 +274,7 @@
 
 <p>The WAMP protocol defines a routed Remote Procedure Call (RPC) mechanism which relies on the same sort of decoupling that is used by the <a href="../../future/pubsub">Publish Subscribe</a> communication pattern. </p>
 <p>A client, the callee, announces to the dealer router that it provides a certain procedure, identified by a procedure name.  Other clients, callers, can then call the procedure, with the dealer router invoking the procedure on the callee, receiving the procedure's result, and then forwarding this result back to the callers. Routed RPC differ from traditional client-server RPC in that the dealer router serves as an intermediary between the callers and the callee.</p>
-<pre><code>   ,------.          ,------.               ,------.
+<pre><code class="text">   ,------.          ,------.               ,------.
    |Caller|          |Dealer|               |Callee|
    `--+---'          `--+---'               `--+---'   
       |                 |             REGISTER |
@@ -289,41 +301,91 @@
 
 <p>Akka Wamp provides you with an <a href="http://docs.scala-lang.org/overviews/core/futures.html">Future</a> based API to easily write both kind of clients: callee (those registering procedures) and callers (those calling them).</p>
 <h2 id="register-procedures">Register procedures</h2>
-<p>Once you got a callee session as documented in the <a href="../../future/session">Session Handling</a> section, you can finally register a procedure and its invocation handler:</p>
+<p>Once you got a session, you can register procedures:</p>
 <pre><code class="scala">// val session = ... 
 
-val registration: Future[Registration] = session.flatMap(
+for {
+  ssn &lt;- session
+  registration1 &lt;- ssn.register(
+    procedure = &quot;myapp.procedure.sum&quot;,
+    handler = (a: Int, b: Int) =&gt; a + b)
+  registration2 &lt;- ssn.register(
+    procedure = &quot;myapp.procedure.echo&quot;,
+    handler = { i: Invocation =&gt; i.args.map(Payload(_)) })
+} 
+yield ()
+</code></pre>
+
+<p>A (future of) session can be mapped to a (future of) registration by invoking one of the provided <code>register()</code> methods. </p>
+<pre><code class="scala">// passing any of the scala.Function as handler
+def register[F](procedure: Uri, handler: F)
+
+// passing an AkkaWamp invocation handler
+def register(procedure: Uri, handler: InvocationHandler)
+</code></pre>
+
+<p>They accept </p>
+<ul>
+<li><code>procedure</code> URI as documented for the <a href="../../../messages#Register"><code>Register</code></a> message</li>
+<li>and they accept either      <ul>
+<li>any of the <code>scala.Function</code> types</li>
+<li>or an <code>akka.wamp.InvocationHandler</code></li>
+</ul>
+</li>
+</ul>
+<h3 id="handle-with-scalafunction">Handle with <code>scala.Function</code></h3>
+<p>As you probably know, following are some alternative ways to define functions and partially applied functions in Scala. </p>
+<pre><code class="scala">// equivalent functions
+def sum (a: Int, b: Int): Int = a + b
+val total = (a: Int, b: Int): Int =&gt; a + b
+val add: Function2[Int, Int, Int] = a + b
+val plus: (Int, Int) =&gt; Int = a + b
+
+// partially applied functions
+val a = add(8, _)
+val p = plus(_, 12)
+val s = sum _
+</code></pre>
+
+<p>You can register a procedure URI with either an anonymous function or a named partially applied function as handler.</p>
+<pre><code class="scala">val registration1: Future[Registration] = session.flatMap(
   _.register(
-    procedure = &quot;myapp.procedure.echo&quot;) {
-    invocation =&gt;
-      invocation.args.map( args =&gt;
-        Payload(args)
-      )})
+    procedure = &quot;myapp.procedure.sum1&quot;,
+    handler = (Int, Int) =&gt; Int = a + b ))
+
+val registration2: Future[Registration] = session.flatMap(
+  _.register(
+    procedure = &quot;myapp.procedure.sum2&quot;,
+    handler = sum _ ))
 </code></pre>
 
-<p>A (future of) session can be mapped to a (future of) registration by just invoking the <code>register</code> method. It is a curried method with two parameter lists.</p>
-<pre><code class="scala">// as defined by Akka Wamp
-def register(procedure: Uri)(handler: InvocationHandler)
+<p>Akka Wamp will dinamically invoke the function you provide as handler (e.g. <code>sum _</code>) upon receiving invocations addressed to the registered procedure URI (e.g. <code>"myapp.procedure.sum"</code>). It will lazily deserialize the <code>args</code> list from incoming payloads by using its default type bindings as documented in the <a href="../payload/#default-type-bindings">Payload Handling</a> section. </p>
+<blockquote>
+<p>Notice<br />
+Lazy deserialization from incoming <code>kwargs</code> and dynamic invocation passing input values to named arguments is not yet supported (see <a href="https://github.com/angiolep/akka-wamp/issues/41">issue/41</a>)</p>
+</blockquote>
+<h3 id="handle-with-invocationhandler">Handle with <code>InvocationHandler</code></h3>
+<p>An invocation handler is a function that transforms an <a href="../../../messages#Invocation"><code>Invocation</code></a> message to a (future of) <code>Payload</code> to be replied back to the caller in a <a href="../../../messages#Invocation"><code>Result</code></a> message.</p>
+<pre><code class="scala">type InvocationHandler = (Invocation) =&gt; Future[Payload]
 </code></pre>
 
-<p>The first parameter list accepts <code>procedure</code> as documented for the <a href="../../../messages#Register"><code>Register</code></a> message constructor. The second parameter list accepts a callback function of type <code>InvocationHandler</code>.</p>
-<h3 id="invocation-handlers">Invocation handlers</h3>
-<pre><code class="scala">// as defined by Akka Wamp
-type InvocationHandler = (Invocation) =&gt; Future[Payload]
-</code></pre>
-
-<p>The invocation handler is a function that transforms an invocation to a (future of) output payload. The invocation comes with an input payload whose content can be lazily parsed as input arguments.</p>
+<p>You can register a procedure URI and provide your custom invocation handler. Doing that you'll be put in charge of deserializing either the <code>args</code> list or the <code>kwargs</code> dictionary from the incoming payload </p>
 <pre><code class="scala">// handler for &quot;myapp.procedure.sum&quot;
 val handler: InvocationHandler = { invocation =&gt;
   invocation.kwargs.map { kwargs =&gt;
-    val arg0 = kwargs(&quot;0&quot;).asInstanceOf[Int]
-    val arg1 = kwargs(&quot;1&quot;).asInstanceOf[Int]
-    Payload(List(arg0 + arg1))
+    val a = kwargs(&quot;a&quot;).asInstanceOf[Int]
+    val b = kwargs(&quot;b&quot;).asInstanceOf[Int]
+    Payload(List(a + b))
   }}
 </code></pre>
 
-<p>Arguments can be received from the incoming payload and replied back as documented in the <a href="../payload">Payload Handling</a> section.</p>
-<h3 id="recover">Recover</h3>
+<p>Though more complicated than handling with <code>scala.Function</code>, this technique gives you much more flexibility because you can </p>
+<ul>
+<li>deserialize by applying custom type bindings (e.g. deserialize your custom application types rather than primitive ones) or </li>
+<li>even deserialize formats different than JSON/MsgPack (e.g. you can deserialize Apache Avro or Google Protocol Buffer if you wish!) </li>
+</ul>
+<p>Please read the <a href="../payload">Payload Handling</a> section for further details.</p>
+<h3 id="recover-exceptions">Recover exceptions</h3>
 <p>You can either recover or <em>"give up"</em> when the (future of) registration fails. To recover from failures (such as <code>SessionException</code> thrown when the procedure has been already registered by some other callee or when the session turns out to be closed) you can compose <code>recoverWith</code> to attempt registering the procedure with a different name or to attempt another session (maybe to a fallback realm):</p>
 <pre><code class="scala">val registration = session.flatMap(
   _.register(&quot;myapp.procedure.sum&quot;)(handler)
@@ -351,10 +413,10 @@ val unregistered: Future[Unregistered] = registration.flatMap(
 </code></pre>
 
 <p>Just call the <code>unregister()</code> method on the registration you want to terminate.</p>
-<h3 id="recover_1">Recover</h3>
+<h3 id="recover-exceptions_1">Recover exceptions</h3>
 <p>TBD</p>
 <h2 id="call-procedures">Call procedures</h2>
-<p>Once you got a caller session as documented in the <a href="../../future/session">Session Handling</a> section, you can finally call a procedure:</p>
+<p>Once you got a session, as documented in the <a href="../../future/session">Session Handling</a> section, you can call a procedure:</p>
 <pre><code class="scala">// val session = ... 
 
 val result: Future[Result] = session.flatMap(
@@ -369,7 +431,7 @@ val data: Future[List[Any]] = result.flatMap(
 </code></pre>
 
 <p>Arguments can be received from the resulting payload as documented in the <a href="../payload">Payload Handling</a> section.</p>
-<h3 id="recover_2">Recover</h3>
+<h3 id="recover-exceptions_2">Recover exceptions</h3>
 <p>TBD</p></div>
         
     </div>

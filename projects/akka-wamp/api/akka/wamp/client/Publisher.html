@@ -463,6 +463,23 @@ without knowledge of subscribers
       <p class="shortcomment cmt">Publish to a topic
 </p><div class="fullcomment"><div class="comment cmt"><p>Publish to a topic
 </p></div><dl class="paramcmts block"><dt class="param">topic</dt><dd class="cmt"><p>is the topic to publish to</p></dd><dt>returns</dt><dd class="cmt"><p>(a future of) either done or publication</p></dd></dl></div>
+    </li><li name="akka.wamp.client.Publisher#scheduler" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="scheduler:akka.actor.Scheduler"></a>
+      <a id="scheduler:Scheduler"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">scheduler</span><span class="result">: <span class="extype" name="akka.actor.Scheduler">Scheduler</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#akka.wamp.client.Publisher@scheduler:akka.actor.Scheduler" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">The Akka ActorSystem scheduler</p>
     </li><li name="scala.AnyRef#synchronized" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="synchronized[T0](x$1:=&gt;T0):T0"></a>
       <a id="synchronized[T0](⇒T0):T0"></a>
@@ -480,6 +497,28 @@ without knowledge of subscribers
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
+    </li><li name="akka.wamp.client.Publisher#tickle" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="tickle(topic:akka.wamp.Uri,interval:scala.concurrent.duration.FiniteDuration,delay:scala.concurrent.duration.FiniteDuration):scala.concurrent.Future[akka.actor.Cancellable]"></a>
+      <a id="tickle(Uri,FiniteDuration,FiniteDuration):Future[Cancellable]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">tickle</span><span class="params">(<span name="topic">topic: <a href="../package.html#Uri=String" class="extmbr" name="akka.wamp.Uri">Uri</a></span>, <span name="interval">interval: <span class="extype" name="scala.concurrent.duration.FiniteDuration">FiniteDuration</span></span>, <span name="delay">delay: <span class="extype" name="scala.concurrent.duration.FiniteDuration">FiniteDuration</span> = <span class="symbol">Duration.Zero</span></span>)</span><span class="result">: <span class="extype" name="scala.concurrent.Future">Future</span>[<span class="extype" name="akka.actor.Cancellable">Cancellable</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#akka.wamp.client.Publisher@tickle(topic:akka.wamp.Uri,interval:scala.concurrent.duration.FiniteDuration,delay:scala.concurrent.duration.FiniteDuration):scala.concurrent.Future[akka.actor.Cancellable]" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Publish a tick count to a topic with an initial delay and
+frequency.</p><div class="fullcomment"><div class="comment cmt"><p>Publish a tick count to a topic with an initial delay and
+frequency.</p><p>E.g. if you would like a message to be sent immediately and
+thereafter every 500ms you would set delay=Duration.Zero and
+interval=Duration(500, TimeUnit.MILLISECONDS)
+</p></div><dl class="paramcmts block"><dt class="param">topic</dt><dd class="cmt"><p>is the topic to publish the tick count to</p></dd><dt class="param">interval</dt><dd class="cmt"><p>is the interval between two ticks</p></dd><dt class="param">delay</dt><dd class="cmt"><p>is the initial delay</p></dd></dl></div>
     </li><li name="scala.AnyRef#toString" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="toString():String"></a>
       <a id="toString():String"></a>

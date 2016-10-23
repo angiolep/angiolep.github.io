@@ -57,7 +57,7 @@
 
 <span class="kw">val</span> transport: Future[Transport] = client
   .connect(
-    url = <span class="lit">"ws://localhost:8080/router"</span>,
+    url = <span class="lit">"ws://localhost:8080/ws"</span>,
     subprotocol = <span class="lit">"wamp.2.json"</span>
   )</pre><p>WAMP connections can use any transport that is message-based, ordered,
 reliable and bi-directional, with WebSocket as the default transport.</p><p>A WAMP session can be opened during the WAMP connection lifecycle, but

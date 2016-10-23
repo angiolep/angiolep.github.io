@@ -52,7 +52,7 @@
           <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>This connect command is sent by a client applications with the intent to connect to a router.</p><p>It is sent to the Wamp <span class="extype" name="ExtensionManager">ExtensionManager</span>, which is obtained via  <a href="../WampExtension.html#manager:akka.actor.ActorRef" class="extmbr" name="akka.wamp.WampExtension#manager">WampExtension#manager</a>.
 Either the manager replies with a <a href="CommandFailed.html" class="extype" name="akka.wamp.messages.CommandFailed">CommandFailed</a> signal or with a <a href="Connected.html" class="extype" name="akka.wamp.messages.Connected">Connected</a> signal
 bearing the reference to the newly spawned <span class="extype" name="client.TransportHandler">client.TransportHandler</span> actor.
-</p></div><dl class="paramcmts block"><dt class="param">url</dt><dd class="cmt"><p>is the URL to connect to (e.g. &quot;ws://somehost.com:9999/path/to/router&quot;)</p></dd><dt class="param">subprotocol</dt><dd class="cmt"><p>is the WebSocket subprotocol to negotiate (e.g. &quot;wamp.2.msgpack&quot; or &quot;wamp.2.json&quot;)</p></dd></dl><div class="toggleContainer block">
+</p></div><dl class="paramcmts block"><dt class="param">url</dt><dd class="cmt"><p>is the URL to connect to (e.g. &quot;ws://somehost.com:9999/path/to/ws&quot;)</p></dd><dt class="param">subprotocol</dt><dd class="cmt"><p>is the WebSocket subprotocol to negotiate (e.g. &quot;wamp.2.msgpack&quot; or &quot;wamp.2.json&quot;)</p></dd></dl><div class="toggleContainer block">
           <span class="toggle">Linear Supertypes</span>
           <div class="superTypes hiddenContent"><span class="extype" name="scala.Serializable">Serializable</span>, <span class="extype" name="java.io.Serializable">Serializable</span>, <span class="extype" name="scala.Product">Product</span>, <span class="extype" name="scala.Equals">Equals</span>, <a href="Command.html" class="extype" name="akka.wamp.messages.Command">Command</a>, <a href="ManagedMessage.html" class="extype" name="akka.wamp.messages.ManagedMessage">ManagedMessage</a>, <span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
         </div></div>
@@ -107,7 +107,7 @@ bearing the reference to the newly spawned <span class="extype" name="client.Tra
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">url</dt><dd class="cmt"><p>is the URL to connect to (e.g. &quot;ws://somehost.com:9999/path/to/router&quot;)</p></dd><dt class="param">subprotocol</dt><dd class="cmt"><p>is the WebSocket subprotocol to negotiate (e.g. &quot;wamp.2.msgpack&quot; or &quot;wamp.2.json&quot;)</p></dd></dl></div>
+      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">url</dt><dd class="cmt"><p>is the URL to connect to (e.g. &quot;ws://somehost.com:9999/path/to/ws&quot;)</p></dd><dt class="param">subprotocol</dt><dd class="cmt"><p>is the WebSocket subprotocol to negotiate (e.g. &quot;wamp.2.msgpack&quot; or &quot;wamp.2.json&quot;)</p></dd></dl></div>
     </li></ol>
             </div>
 
@@ -383,7 +383,7 @@ bearing the reference to the newly spawned <span class="extype" name="client.Tra
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">is the URL to connect to (e.g.</p><div class="fullcomment"><div class="comment cmt"><p>is the URL to connect to (e.g. &quot;ws://somehost.com:9999/path/to/router&quot;)</p></div></div>
+      <p class="shortcomment cmt">is the URL to connect to (e.g.</p><div class="fullcomment"><div class="comment cmt"><p>is the URL to connect to (e.g. &quot;ws://somehost.com:9999/path/to/ws&quot;)</p></div></div>
     </li><li name="scala.AnyRef#wait" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="wait():Unit"></a>
       <a id="wait():Unit"></a>

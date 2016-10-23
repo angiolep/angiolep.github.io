@@ -8,7 +8,7 @@
     <meta name="author" content="Paolo Angioletti">  
     <link rel="shortcut icon" href="../img/favicon.ico">
 
-    <title>Messages - akka-wamp-0.11.0</title>
+    <title>Messages - akka-wamp-0.12.0</title>
 
     <link href="../css/bootstrap-custom.min.css" rel="stylesheet">
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet">
@@ -55,7 +55,7 @@
             
 
             <!-- Main title -->
-            <a class="navbar-brand" href="..">akka-wamp-0.11.0</a>
+            <a class="navbar-brand" href="..">akka-wamp-0.12.0</a>
         </div>
 
         <!-- Expanded navigation -->
@@ -71,8 +71,23 @@
                 
                 
                 
-                    <li >
-                        <a href="../router/">Router</a>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Router <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../router/overview/">Overview</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../router/config/">Configuration</a>
+</li>
+
+                        
+                        </ul>
                     </li>
                 
                 
@@ -235,7 +250,7 @@
             
                 <li class="third-level"><a href="#call">Call</a></li>
             
-                <li class="third-level"><a href="#invoke">Invoke</a></li>
+                <li class="third-level"><a href="#invocation">Invocation</a></li>
             
                 <li class="third-level"><a href="#yield">Yield</a></li>
             
@@ -522,8 +537,8 @@ def opened: Receive = {
 <p><a name="Call"></a></p>
 <h3 id="call">Call</h3>
 <p>TBD</p>
-<p><a name="Invoke"></a></p>
-<h3 id="invoke">Invoke</h3>
+<p><a name="Invocation"></a></p>
+<h3 id="invocation">Invocation</h3>
 <p>TBD</p>
 <p><a name="Yield"></a></p>
 <h3 id="yield">Yield</h3>

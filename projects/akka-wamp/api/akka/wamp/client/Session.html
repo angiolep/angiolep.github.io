@@ -57,7 +57,7 @@
 
 <span class="kw">val</span> session: Future[Session] =
   client.openSession(
-    url = <span class="lit">"ws://localhost:8080/router"</span>,
+    url = <span class="lit">"ws://localhost:8080/ws"</span>,
     subprotocol = <span class="lit">"wamp.2.json"</span>,
     realm = <span class="lit">"myapp.realm"</span>,
     roles = <span class="std">Set</span>(Roles.publisher)
@@ -346,6 +346,23 @@ in turn replies with a GOODBYE message.</p><pre>,------.          ,------.
     </span>
       <p class="shortcomment cmt">This session details
 </p>
+    </li><li name="akka.wamp.client.Session#ec" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="ec:scala.concurrent.ExecutionContextExecutor"></a>
+      <a id="ec:ExecutionContextExecutor"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">implicit </span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">ec</span><span class="result">: <span class="extype" name="scala.concurrent.ExecutionContextExecutor">ExecutionContextExecutor</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#akka.wamp.client.Session@ec:scala.concurrent.ExecutionContextExecutor" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
     </li><li name="scala.AnyRef#eq" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="eq(x$1:AnyRef):Boolean"></a>
       <a id="eq(AnyRef):Boolean"></a>
@@ -380,23 +397,6 @@ in turn replies with a GOODBYE message.</p><pre>,------.          ,------.
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
-    </li><li name="akka.wamp.client.Session#executionContext" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="executionContext:scala.concurrent.ExecutionContext"></a>
-      <a id="executionContext:ExecutionContext"></a>
-      <h4 class="signature">
-      <span class="modifier_kind">
-        <span class="modifier">implicit </span>
-        <span class="kind">val</span>
-      </span>
-      <span class="symbol">
-        <span class="name">executionContext</span><span class="result">: <span class="extype" name="scala.concurrent.ExecutionContext">ExecutionContext</span></span>
-      </span>
-      </h4><span class="permalink">
-      <a href="../../../index.html#akka.wamp.client.Session@executionContext:scala.concurrent.ExecutionContext" title="Permalink" target="_top">
-        <img src="../../../lib/permalink.png" alt="Permalink" />
-      </a>
-    </span>
-      
     </li><li name="scala.AnyRef#finalize" visbl="prt" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="finalize():Unit"></a>
       <a id="finalize():Unit"></a>
@@ -774,24 +774,46 @@ in turn replies with a GOODBYE message.</p><pre>,------.          ,------.
 </p><div class="fullcomment"><div class="comment cmt"><p>Publish to a topic
 </p></div><dl class="paramcmts block"><dt class="param">topic</dt><dd class="cmt"><p>is the topic to publish to</p></dd><dt>returns</dt><dd class="cmt"><p>(a future of) either done or publication</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="Publisher.html" class="extype" name="akka.wamp.client.Publisher">Publisher</a></dd></dl></div>
     </li><li name="akka.wamp.client.Callee#register" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="register(procedure:akka.wamp.Uri)(handler:akka.wamp.client.InvocationHandler):scala.concurrent.Future[akka.wamp.client.Registration]"></a>
-      <a id="register(Uri)(InvocationHandler):Future[Registration]"></a>
+      <a id="register[T](procedure:akka.wamp.Uri,handler:T)(implicittt:reflect.runtime.universe.TypeTag[T],implicitct:scala.reflect.ClassTag[T]):scala.concurrent.Future[akka.wamp.client.Registration]"></a>
+      <a id="register[T](Uri,T)(scala.reflect.api.JavaUniverse.TypeTag[T],ClassTag[T]):Future[Registration]"></a>
       <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">register</span><span class="params">(<span name="procedure">procedure: <a href="../package.html#Uri=String" class="extmbr" name="akka.wamp.Uri">Uri</a></span>)</span><span class="params">(<span name="handler">handler: <a href="package.html#InvocationHandler=akka.wamp.messages.Invocation=&gt;scala.concurrent.Future[akka.wamp.serialization.Payload]" class="extmbr" name="akka.wamp.client.InvocationHandler">InvocationHandler</a></span>)</span><span class="result">: <span class="extype" name="scala.concurrent.Future">Future</span>[<a href="Registration.html" class="extype" name="akka.wamp.client.Registration">Registration</a>]</span>
+        <span class="name">register</span><span class="tparams">[<span name="T">T</span>]</span><span class="params">(<span name="procedure">procedure: <a href="../package.html#Uri=String" class="extmbr" name="akka.wamp.Uri">Uri</a></span>, <span name="handler">handler: <span class="extype" name="akka.wamp.client.Callee.register.T">T</span></span>)</span><span class="params">(<span class="implicit">implicit </span><span name="tt">tt: <span class="extype" name="scala.reflect.api.TypeTags.TypeTag">scala.reflect.api.JavaUniverse.TypeTag</span>[<span class="extype" name="akka.wamp.client.Callee.register.T">T</span>]</span>, <span name="ct">ct: <span class="extype" name="scala.reflect.ClassTag">ClassTag</span>[<span class="extype" name="akka.wamp.client.Callee.register.T">T</span>]</span>)</span><span class="result">: <span class="extype" name="scala.concurrent.Future">Future</span>[<a href="Registration.html" class="extype" name="akka.wamp.client.Registration">Registration</a>]</span>
       </span>
       </h4><span class="permalink">
-      <a href="../../../index.html#akka.wamp.client.Session@register(procedure:akka.wamp.Uri)(handler:akka.wamp.client.InvocationHandler):scala.concurrent.Future[akka.wamp.client.Registration]" title="Permalink" target="_top">
+      <a href="../../../index.html#akka.wamp.client.Session@register[T](procedure:akka.wamp.Uri,handler:T)(implicittt:reflect.runtime.universe.TypeTag[T],implicitct:scala.reflect.ClassTag[T]):scala.concurrent.Future[akka.wamp.client.Registration]" title="Permalink" target="_top">
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Register the given procedure so that the given handler will be
-executed on invocations.</p><div class="fullcomment"><div class="comment cmt"><p>Register the given procedure so that the given handler will be
-executed on invocations.</p><p>A callee announces the availability of an endpoint implementing a
+      <p class="shortcomment cmt">Register the given procedure URI so that the given <code><code>scala.Function</code></code>
+implementation will be dinamically invoked (via the experimental Scala 2.11
+reflection capabilities) on INVOCATION from router.</p><div class="fullcomment"><div class="comment cmt"><p>Register the given procedure URI so that the given <code><code>scala.Function</code></code>
+implementation will be dinamically invoked (via the experimental Scala 2.11
+reflection capabilities) on INVOCATION from router.
+</p></div><dl class="paramcmts block"><dt class="tparam">T</dt><dd class="cmt"><p>it must be any of the <code><code>scala.Function</code></code> types</p></dd><dt class="param">procedure</dt><dd class="cmt"><p>is the procedure URI the callee wants to register</p></dd><dt class="param">handler</dt><dd class="cmt"><p>is a partially applied function</p></dd><dt>returns</dt><dd class="cmt"><p>the (future of) registration</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="Callee.html" class="extype" name="akka.wamp.client.Callee">Callee</a></dd></dl></div>
+    </li><li name="akka.wamp.client.Callee#register" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="register(procedure:akka.wamp.Uri,handler:akka.wamp.client.InvocationHandler):scala.concurrent.Future[akka.wamp.client.Registration]"></a>
+      <a id="register(Uri,InvocationHandler):Future[Registration]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">register</span><span class="params">(<span name="procedure">procedure: <a href="../package.html#Uri=String" class="extmbr" name="akka.wamp.Uri">Uri</a></span>, <span name="handler">handler: <a href="package.html#InvocationHandler=akka.wamp.messages.Invocation=&gt;scala.concurrent.Future[akka.wamp.serialization.Payload]" class="extmbr" name="akka.wamp.client.InvocationHandler">InvocationHandler</a></span>)</span><span class="result">: <span class="extype" name="scala.concurrent.Future">Future</span>[<a href="Registration.html" class="extype" name="akka.wamp.client.Registration">Registration</a>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#akka.wamp.client.Session@register(procedure:akka.wamp.Uri,handler:akka.wamp.client.InvocationHandler):scala.concurrent.Future[akka.wamp.client.Registration]" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Register the given procedure URI so that the given invocation handler
+will be executed on INVOCATION from router.</p><div class="fullcomment"><div class="comment cmt"><p>Register the given procedure URI so that the given invocation handler
+will be executed on INVOCATION from router.</p><p>A callee announces the availability of an endpoint implementing a
 procedure with a dealer by sending a REGISTER message:</p><pre>,------.          ,------.               ,------.
 |Caller|          |Dealer|               |Callee|
 `--+---'          `--+---'               `--+---'
@@ -814,20 +836,55 @@ procedure with a dealer by sending a REGISTER message:</p><pre>,------.         
    |                 | ---------------------&gt;
 ,--+---.          ,--+---.               ,--+---.
 |Caller|          |Dealer|               |Callee|
-`------'          `------'               `------<span class="lit">'</span></pre></div><dl class="paramcmts block"><dt class="param">procedure</dt><dd class="cmt"><p>is the procedure the callee wants to register</p></dd><dt class="param">handler</dt><dd class="cmt"><p>is the handler executed on invocations</p></dd><dt>returns</dt><dd class="cmt"><p>the (future of) registration</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="Callee.html" class="extype" name="akka.wamp.client.Callee">Callee</a></dd></dl></div>
-    </li><li name="akka.wamp.client.Subscriber#subscribe" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="subscribe(topic:akka.wamp.Uri)(handler:akka.wamp.client.EventHandler):scala.concurrent.Future[akka.wamp.client.Subscription]"></a>
-      <a id="subscribe(Uri)(EventHandler):Future[Subscription]"></a>
+`------'          `------'               `------<span class="lit">'</span></pre></div><dl class="paramcmts block"><dt class="param">procedure</dt><dd class="cmt"><p>is the procedure URI the callee wants to register</p></dd><dt class="param">handler</dt><dd class="cmt"><p>is the handler executed on invocations</p></dd><dt>returns</dt><dd class="cmt"><p>the (future of) registration</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="Callee.html" class="extype" name="akka.wamp.client.Callee">Callee</a></dd></dl></div>
+    </li><li name="akka.wamp.client.Session#schedule" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="schedule[R](initialDelay:scala.concurrent.duration.FiniteDuration,interval:scala.concurrent.duration.FiniteDuration,task:Unit=&gt;R)(implicitexecutor:scala.concurrent.ExecutionContext):akka.actor.Cancellable"></a>
+      <a id="schedule[R](FiniteDuration,FiniteDuration,(Unit)⇒R)(ExecutionContext):Cancellable"></a>
       <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">subscribe</span><span class="params">(<span name="topic">topic: <a href="../package.html#Uri=String" class="extmbr" name="akka.wamp.Uri">Uri</a></span>)</span><span class="params">(<span name="handler">handler: <a href="package.html#EventHandler=akka.wamp.messages.Event=&gt;Unit" class="extmbr" name="akka.wamp.client.EventHandler">EventHandler</a></span>)</span><span class="result">: <span class="extype" name="scala.concurrent.Future">Future</span>[<a href="Subscription.html" class="extype" name="akka.wamp.client.Subscription">Subscription</a>]</span>
+        <span class="name">schedule</span><span class="tparams">[<span name="R">R</span>]</span><span class="params">(<span name="initialDelay">initialDelay: <span class="extype" name="scala.concurrent.duration.FiniteDuration">FiniteDuration</span></span>, <span name="interval">interval: <span class="extype" name="scala.concurrent.duration.FiniteDuration">FiniteDuration</span></span>, <span name="task">task: (<span class="extype" name="scala.Unit">Unit</span>) ⇒ <span class="extype" name="akka.wamp.client.Session.schedule.R">R</span></span>)</span><span class="params">(<span class="implicit">implicit </span><span name="executor">executor: <span class="extype" name="scala.concurrent.ExecutionContext">ExecutionContext</span></span>)</span><span class="result">: <span class="extype" name="akka.actor.Cancellable">Cancellable</span></span>
       </span>
       </h4><span class="permalink">
-      <a href="../../../index.html#akka.wamp.client.Session@subscribe(topic:akka.wamp.Uri)(handler:akka.wamp.client.EventHandler):scala.concurrent.Future[akka.wamp.client.Subscription]" title="Permalink" target="_top">
+      <a href="../../../index.html#akka.wamp.client.Session@schedule[R](initialDelay:scala.concurrent.duration.FiniteDuration,interval:scala.concurrent.duration.FiniteDuration,task:Unit=&gt;R)(implicitexecutor:scala.concurrent.ExecutionContext):akka.actor.Cancellable" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Schedules a task to be run repeatedly with an initial delay and
+a frequency.</p>
+    </li><li name="akka.wamp.client.Publisher#scheduler" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="scheduler:akka.actor.Scheduler"></a>
+      <a id="scheduler:Scheduler"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">scheduler</span><span class="result">: <span class="extype" name="akka.actor.Scheduler">Scheduler</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#akka.wamp.client.Session@scheduler:akka.actor.Scheduler" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">The Akka ActorSystem scheduler</p><div class="fullcomment"><div class="comment cmt"><p>The Akka ActorSystem scheduler</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="Publisher.html" class="extype" name="akka.wamp.client.Publisher">Publisher</a></dd></dl></div>
+    </li><li name="akka.wamp.client.Subscriber#subscribe" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="subscribe(topic:akka.wamp.Uri,handler:akka.wamp.client.EventHandler):scala.concurrent.Future[akka.wamp.client.Subscription]"></a>
+      <a id="subscribe(Uri,EventHandler):Future[Subscription]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">subscribe</span><span class="params">(<span name="topic">topic: <a href="../package.html#Uri=String" class="extmbr" name="akka.wamp.Uri">Uri</a></span>, <span name="handler">handler: <a href="package.html#EventHandler=akka.wamp.messages.Event=&gt;Unit" class="extmbr" name="akka.wamp.client.EventHandler">EventHandler</a></span>)</span><span class="result">: <span class="extype" name="scala.concurrent.Future">Future</span>[<a href="Subscription.html" class="extype" name="akka.wamp.client.Subscription">Subscription</a>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#akka.wamp.client.Session@subscribe(topic:akka.wamp.Uri,handler:akka.wamp.client.EventHandler):scala.concurrent.Future[akka.wamp.client.Subscription]" title="Permalink" target="_top">
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
@@ -872,6 +929,45 @@ executed on events.</p><pre>,---------.          ,------.             ,---------
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
+    </li><li name="akka.wamp.client.Session#system" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="system:akka.actor.ActorSystem"></a>
+      <a id="system:ActorSystem"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">implicit </span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">system</span><span class="result">: <span class="extype" name="akka.actor.ActorSystem">ActorSystem</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#akka.wamp.client.Session@system:akka.actor.ActorSystem" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="akka.wamp.client.Publisher#tickle" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="tickle(topic:akka.wamp.Uri,interval:scala.concurrent.duration.FiniteDuration,delay:scala.concurrent.duration.FiniteDuration):scala.concurrent.Future[akka.actor.Cancellable]"></a>
+      <a id="tickle(Uri,FiniteDuration,FiniteDuration):Future[Cancellable]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">tickle</span><span class="params">(<span name="topic">topic: <a href="../package.html#Uri=String" class="extmbr" name="akka.wamp.Uri">Uri</a></span>, <span name="interval">interval: <span class="extype" name="scala.concurrent.duration.FiniteDuration">FiniteDuration</span></span>, <span name="delay">delay: <span class="extype" name="scala.concurrent.duration.FiniteDuration">FiniteDuration</span> = <span class="symbol">Duration.Zero</span></span>)</span><span class="result">: <span class="extype" name="scala.concurrent.Future">Future</span>[<span class="extype" name="akka.actor.Cancellable">Cancellable</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#akka.wamp.client.Session@tickle(topic:akka.wamp.Uri,interval:scala.concurrent.duration.FiniteDuration,delay:scala.concurrent.duration.FiniteDuration):scala.concurrent.Future[akka.actor.Cancellable]" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Publish a tick count to a topic with an initial delay and
+frequency.</p><div class="fullcomment"><div class="comment cmt"><p>Publish a tick count to a topic with an initial delay and
+frequency.</p><p>E.g. if you would like a message to be sent immediately and
+thereafter every 500ms you would set delay=Duration.Zero and
+interval=Duration(500, TimeUnit.MILLISECONDS)
+</p></div><dl class="paramcmts block"><dt class="param">topic</dt><dd class="cmt"><p>is the topic to publish the tick count to</p></dd><dt class="param">interval</dt><dd class="cmt"><p>is the interval between two ticks</p></dd><dt class="param">delay</dt><dd class="cmt"><p>is the initial delay</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="Publisher.html" class="extype" name="akka.wamp.client.Publisher">Publisher</a></dd></dl></div>
     </li><li name="scala.AnyRef#toString" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="toString():String"></a>
       <a id="toString():String"></a>

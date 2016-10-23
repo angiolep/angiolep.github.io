@@ -8,7 +8,7 @@
     <meta name="author" content="Paolo Angioletti">  
     <link rel="shortcut icon" href="../../../img/favicon.ico">
 
-    <title>Session Handling - akka-wamp-0.11.0</title>
+    <title>Session Handling - akka-wamp-0.12.0</title>
 
     <link href="../../../css/bootstrap-custom.min.css" rel="stylesheet">
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet">
@@ -55,7 +55,7 @@
             
 
             <!-- Main title -->
-            <a class="navbar-brand" href="../../..">akka-wamp-0.11.0</a>
+            <a class="navbar-brand" href="../../..">akka-wamp-0.12.0</a>
         </div>
 
         <!-- Expanded navigation -->
@@ -71,8 +71,23 @@
                 
                 
                 
-                    <li >
-                        <a href="../../../router/">Router</a>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Router <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../../../router/overview/">Overview</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../router/config/">Configuration</a>
+</li>
+
+                        
+                        </ul>
                     </li>
                 
                 
@@ -238,7 +253,7 @@ system.actorOf(Props[Client])
 
 class Client extends Actor with ClientUtils {
   val manager = IO(Wamp)
-  manager ! Connect(&quot;ws://localhost:8080/router&quot;, &quot;wamp.2.json&quot;)
+  manager ! Connect(&quot;ws://localhost:8080/ws&quot;, &quot;wamp.2.json&quot;)
 
   var transport: ActorRef = _
   val sessionId: Id = _
@@ -265,7 +280,7 @@ val manager = IO(Wamp)
 
 <h2 id="connect-transports">Connect transports</h2>
 <p>The manager receives I/O command messages and instantiates worker actors in response. The worker actors present themselves to the API user in the reply to the command that was sent. </p>
-<pre><code class="scala">manager ! Connect(&quot;ws://localhost:8080/router&quot;, &quot;wamp.2.json&quot;)
+<pre><code class="scala">manager ! Connect(&quot;ws://localhost:8080/ws&quot;, &quot;wamp.2.json&quot;)
 </code></pre>
 
 <p>For example, after a <code>Connect</code> command is sent to the manager, the manager creates a worker actor representing the transport handler. All operations related to the WAMP protocol can be invoked by sending messages to the transport handler. The handler which announces itself via a <code>Connected</code> signal.</p>
@@ -281,7 +296,7 @@ override def receive = {
 
 <h3 id="repeated-attempts">Repeated attempts</h3>
 <p>You could repeatedly attempt a transport connection if the last failed:</p>
-<pre><code class="scala">val connect = Connect(&quot;ws://localhost:8080/router&quot;, &quot;wamp.2.json&quot;)
+<pre><code class="scala">val connect = Connect(&quot;ws://localhost:8080/ws&quot;, &quot;wamp.2.json&quot;)
 
 override def receive = {
   // ...

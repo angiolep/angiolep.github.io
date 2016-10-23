@@ -8,7 +8,7 @@
     <meta name="author" content="Paolo Angioletti">  
     <link rel="shortcut icon" href="./img/favicon.ico">
 
-    <title>akka-wamp-0.11.0</title>
+    <title>akka-wamp-0.12.0</title>
 
     <link href="./css/bootstrap-custom.min.css" rel="stylesheet">
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet">
@@ -55,7 +55,7 @@
             
 
             <!-- Main title -->
-            <a class="navbar-brand" href=".">akka-wamp-0.11.0</a>
+            <a class="navbar-brand" href=".">akka-wamp-0.12.0</a>
         </div>
 
         <!-- Expanded navigation -->
@@ -71,8 +71,23 @@
                 
                 
                 
-                    <li >
-                        <a href="router/">Router</a>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Router <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="router/overview/">Overview</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="router/config/">Configuration</a>
+</li>
+
+                        
+                        </ul>
                     </li>
                 
                 
@@ -185,7 +200,7 @@
                         </a>
                     </li>
                     <li >
-                        <a rel="prev" href="router/">
+                        <a rel="prev" href="router/overview/">
                             Next <i class="fa fa-arrow-right"></i>
                         </a>
                     </li>
@@ -203,9 +218,7 @@
     
         <li class="first-level active"><a href="#akka-wamp">Akka Wamp</a></li>
         
-            <li class="second-level"><a href="#client-api">Client API</a></li>
-            
-                <li class="third-level"><a href="#major-features">Major features</a></li>
+            <li class="second-level"><a href="#client-apis">Client APIs</a></li>
             
         
             <li class="second-level"><a href="#router">Router</a></li>
@@ -214,7 +227,16 @@
             <li class="second-level"><a href="#limitations">Limitations</a></li>
             
         
+            <li class="second-level"><a href="#changelog">Changelog</a></li>
+            
+        
+            <li class="second-level"><a href="#contributing">Contributing</a></li>
+            
+        
             <li class="second-level"><a href="#licence">Licence</a></li>
+            
+        
+            <li class="second-level"><a href="#disclaimer">Disclaimer</a></li>
             
         
     
@@ -222,67 +244,87 @@
 </div></div>
         <div class="col-md-9" role="main">
 
-<p><a href="https://github.com/angiolep/akka-wamp"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/38ef81f8aca64bb9a64448d0d70f1308ef5341ab/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6461726b626c75655f3132313632312e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png"></a></p>
 <h1 id="akka-wamp">Akka Wamp</h1>
+<p><a href="https://travis-ci.org/angiolep/akka-wamp"><img alt="Build Status" src="https://travis-ci.org/angiolep/akka-wamp.svg?branch=master" /></a> <a href="https://codecov.io/gh/angiolep/akka-wamp"><img alt="CodeCov Status" src="https://codecov.io/gh/angiolep/akka-wamp/branch/master/graph/badge.svg" /></a> <a href="https://gitter.im/angiolep/akka-wamp?utm_source=badge&amp;utm_medium=badge&amp;utm_campaign=pr-badge&amp;utm_content=body_badge"><img alt="Gitter" src="https://badges.gitter.im/angiolep/akka-wamp.svg" /></a> </p>
 <p>Akka Wamp is a WAMP - <a href="http://wamp-proto.org/">Web Application Messaging Protocol</a> implementation written in <a href="http://scala-lang.org/">Scala</a> with <a href="http://akka.io/">Akka</a></p>
 <p>Easy to download as <a href="http://www.scala-sbt.org/">SBT</a> library dependency.</p>
 <pre><code class="scala">libraryDependencies ++= Seq(
-  &quot;com.github.angiolep&quot; % &quot;akka-wamp_2.11&quot; % &quot;0.11.0&quot;
+  &quot;com.github.angiolep&quot; % &quot;akka-wamp_2.11&quot; % &quot;0.12.0&quot;
 )  
 </code></pre>
 
-<h2 id="client-api">Client API</h2>
+<h2 id="client-apis">Client APIs</h2>
 <p>Connect to a router, open a session, subscribe a topic, receive events, register a procedure and call it in few lines of Scala!</p>
-<pre><code class="scala">object PubSubApp extends App {
+<ul>
+<li>Actor, Future and Stream based APIs</li>
+<li>Well documented and rich examples</li>
+<li>Lazy and pluggable deserialization</li>
+</ul>
+<p>Please, read the docs for <a href="https://angiolep.github.io/projects/akka-wamp/client/overview">further details</a></p>
+<pre><code class="scala">import scala.concurrent.duration._
+import akka.wamp.client._
 
-  import akka.wamp.client._
+object MyClientApp extends App {
   val client = Client()
-
   implicit val ec = client.executionContext
 
-  val publication = 
-    for {
-      session &lt;- client
-        .openSession(
-          url = &quot;ws://localhost:8080/router&quot;,
-          subprotocol = &quot;wamp.2.json&quot;,
-          realm = &quot;default.realm&quot;,
-          roles = Set(&quot;subscriber&quot;))
-      subscription &lt;- session
-        .subscribe(
-          topic = &quot;myapp.topic1&quot;)(
-          event =&gt;
-            event.data.map(println)
-        )
-      publication &lt;- session
-        .publish(
-          topic = &quot;myapp.topic2&quot;,
-          ack = false,
-          kwdata = Map(&quot;name&quot;-&gt;&quot;paolo&quot;, &quot;age&quot;-&gt;40)
-        )
-    } yield ()
+  for {
+    session &lt;- client.
+      openSession(
+        url = &quot;ws://localhost:8080/ws&quot;,
+        realm = &quot;myapp.realm&quot;)
+    publication &lt;- session.
+      publish(
+        topic = &quot;myapp.topic.people&quot;,
+        ack = true,
+        argskw = Map(&quot;name&quot;-&gt;&quot;paolo&quot;, &quot;age&quot;-&gt;40))
+    subscription &lt;- session.
+      subscribe(
+        topic = &quot;myapp.topic.any&quot;,
+        (event) =&gt; event.data.map(println))
+    registration &lt;- session.
+      register(
+        procedure = &quot;myapp.procedure.sum&quot;, 
+        handler = (a: Int, b: Int) =&gt; a + b)
+    result &lt;- session.
+      call(
+        procedure = &quot;myapp.procedure.multiply&quot;,
+        args = List(3, 8)
+      )
+  } 
+  yield ()
 }
 </code></pre>
 
-<h3 id="major-features">Major features</h3>
-<ul>
-<li>Fully compliant with Reactive Manifesto</li>
-<li>Simple and well documented APIs</li>
-<li>Lazy deserialization</li>
-</ul>
-<p>Please, read the docs for <a href="./client/overview">further details</a></p>
 <h2 id="router">Router</h2>
+<p><a href="https://bintray.com/angiolep/universal/akka-wamp/_latestVersion"><img alt="Download" src="https://api.bintray.com/packages/angiolep/universal/akka-wamp/images/download.svg" /></a></p>
 <p>Akka Wamp provides you with a router that can be either embedded into your application or launched as standalone server process.</p>
+<p>Download the latest router version, extract, configure and run it as standalone application:</p>
+<pre><code class="bash">curl https://dl.bintray.com/angiolep/universal/akka-wamp-0.12.0.tgz
+tar xvfz akka-wamp-0.12.0.tar.gz
+cd akka-wamp-0.12.0
+vim ./conf/application.conf
+./bin/akka-wamp -Dakka.loglevel=DEBUG
+</code></pre>
+
+<p>Please, read the docs for <a href="https://angiolep.github.io/projects/akka-wamp/router">further details</a></p>
 <h2 id="limitations">Limitations</h2>
 <ul>
-<li>Scala 2.11 only (no older Scala)</li>
+<li>Scala 2.11 only (no older Scala and no Java yet)</li>
 <li>WebSocket transport only (no raw TCP and no SSL/TLS yet) </li>
 <li>Provide WAMP Basic Profile only (no Advanced Profile yet)</li>
-<li>Provide Publish/Subscribe only (no routed RPC yet)</li>
 <li>Provide JSON serialization only (no MsgPack yet)</li>
 </ul>
+<h2 id="changelog">Changelog</h2>
+<p>Please, read <a href="CHANGELOG.md">CHANGELOG.md</a></p>
+<h2 id="contributing">Contributing</h2>
+<p>Please, read <a href="CONTRIBUTING.md">CONTRIBUTING.md</a></p>
 <h2 id="licence">Licence</h2>
-<p>This software comes with <a href="http://www.apache.org/licenses/LICENSE-2.0">Apache License 2.0</a></p></div>
+<p>This software comes with <a href="http://www.apache.org/licenses/LICENSE-2.0">Apache License 2.0</a></p>
+<h2 id="disclaimer">Disclaimer</h2>
+<blockquote>
+<p>This SOFTWARE PRODUCT is provided by THE PROVIDER "as is" and "with all faults." THE PROVIDER makes no representations or warranties of any kind concerning the safety, suitability, lack of viruses, inaccuracies, typographical errors, or other harmful components of this SOFTWARE PRODUCT. There are inherent dangers in the use of any software, and you are solely responsible for determining whether this SOFTWARE PRODUCT is compatible with your equipment and other software installed on your equipment. You are also solely responsible for the protection of your equipment and backup of your data, and THE PROVIDER will not be liable for any damages you may suffer in connection with using, modifying, or distributing this SOFTWARE PRODUCT</p>
+</blockquote></div>
         
     </div>
 
@@ -335,5 +377,5 @@
 
 <!--
 MkDocs version : 0.15.3
-Build Date UTC : 2016-10-16 10:17:32.056478
+Build Date UTC : 2016-10-23 22:39:14.480599
 -->

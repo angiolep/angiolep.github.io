@@ -344,24 +344,25 @@
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
-    </li><li name="akka.wamp.router.ConnectionHandler#props" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="props(router:akka.actor.ActorRef,config:com.typesafe.config.Config,path:String):akka.actor.Props"></a>
-      <a id="props(ActorRef,Config,String):Props"></a>
+    </li><li name="akka.wamp.router.ConnectionHandler#props" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="props(router:akka.actor.ActorRef,config:com.typesafe.config.Config,wspath:String,webroot:String):akka.actor.Props"></a>
+      <a id="props(ActorRef,Config,String,String):Props"></a>
       <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">props</span><span class="params">(<span name="router">router: <span class="extype" name="akka.actor.ActorRef">ActorRef</span></span>, <span name="config">config: <span class="extype" name="com.typesafe.config.Config">Config</span></span>, <span name="path">path: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result">: <span class="extype" name="akka.actor.Props">Props</span></span>
+        <span class="name">props</span><span class="params">(<span name="router">router: <span class="extype" name="akka.actor.ActorRef">ActorRef</span></span>, <span name="config">config: <span class="extype" name="com.typesafe.config.Config">Config</span></span>, <span name="wspath">wspath: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="webroot">webroot: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result">: <span class="extype" name="akka.actor.Props">Props</span></span>
       </span>
       </h4><span class="permalink">
-      <a href="../../../index.html#akka.wamp.router.ConnectionHandler$@props(router:akka.actor.ActorRef,config:com.typesafe.config.Config,path:String):akka.actor.Props" title="Permalink" target="_top">
+      <a href="../../../index.html#akka.wamp.router.ConnectionHandler$@props(router:akka.actor.ActorRef,config:com.typesafe.config.Config,wspath:String,webroot:String):akka.actor.Props" title="Permalink" target="_top">
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <p class="shortcomment cmt">Create a Props for an actor of this type
-</p>
+</p><div class="fullcomment"><div class="comment cmt"><p>Create a Props for an actor of this type
+</p></div><dl class="paramcmts block"><dt class="param">router</dt><dd class="cmt"><p>is the first peer to connect</p></dd><dt class="param">config</dt><dd class="cmt"><p>is the router configuration</p></dd><dt class="param">wspath</dt><dd class="cmt"><p>is the resource path this handler expects HTTP Upgrade to be addressed to</p></dd><dt class="param">webroot</dt><dd class="cmt"><p>is the local filesystem path this handler serves resources out of</p></dd></dl></div>
     </li><li name="scala.AnyRef#synchronized" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="synchronized[T0](x$1:=&gt;T0):T0"></a>
       <a id="synchronized[T0](⇒T0):T0"></a>

@@ -71,19 +71,19 @@
                 
                 
                 
-                    <li class="dropdown">
+                    <li class="dropdown active">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Router <b class="caret"></b></a>
                         <ul class="dropdown-menu">
                         
                             
 <li >
-    <a href="../../router/overview/">Overview</a>
+    <a href="../overview/">Overview</a>
 </li>
 
                         
                             
-<li >
-    <a href="../../router/config/">Configuration</a>
+<li class="active">
+    <a href="./">Configuration</a>
 </li>
 
                         
@@ -92,13 +92,13 @@
                 
                 
                 
-                    <li class="dropdown active">
+                    <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Client APIs <b class="caret"></b></a>
                         <ul class="dropdown-menu">
                         
                             
 <li >
-    <a href="../overview/">Overview</a>
+    <a href="../../client/overview/">Overview</a>
 </li>
 
                         
@@ -109,13 +109,13 @@
         
             
 <li >
-    <a href="../actor/overview/">Overview</a>
+    <a href="../../client/actor/overview/">Overview</a>
 </li>
 
         
             
 <li >
-    <a href="../actor/session/">Session Handling</a>
+    <a href="../../client/actor/session/">Session Handling</a>
 </li>
 
         
@@ -130,31 +130,31 @@
         
             
 <li >
-    <a href="../future/overview/">Overview</a>
+    <a href="../../client/future/overview/">Overview</a>
 </li>
 
         
             
 <li >
-    <a href="../future/session/">Session Handling</a>
+    <a href="../../client/future/session/">Session Handling</a>
 </li>
 
         
             
 <li >
-    <a href="../future/pubsub/">Publish and Subscribe</a>
+    <a href="../../client/future/pubsub/">Publish and Subscribe</a>
 </li>
 
         
             
 <li >
-    <a href="../future/rpc/">Remote Procedure Calls</a>
+    <a href="../../client/future/rpc/">Remote Procedure Calls</a>
 </li>
 
         
             
 <li >
-    <a href="../future/payload/">Payload Handling</a>
+    <a href="../../client/future/payload/">Payload Handling</a>
 </li>
 
         
@@ -164,13 +164,13 @@
                         
                             
 <li >
-    <a href="../stream/">Stream based API</a>
+    <a href="../../client/stream/">Stream based API</a>
 </li>
 
                         
                             
-<li class="active">
-    <a href="./">Configuration</a>
+<li >
+    <a href="../../client/config/">Configuration</a>
 </li>
 
                         
@@ -195,12 +195,12 @@
                 </li>
                 
                     <li >
-                        <a rel="next" href="../stream/">
+                        <a rel="next" href="../overview/">
                             <i class="fa fa-arrow-left"></i> Previous
                         </a>
                     </li>
                     <li >
-                        <a rel="prev" href="../../messages/">
+                        <a rel="prev" href="../../client/overview/">
                             Next <i class="fa fa-arrow-right"></i>
                         </a>
                     </li>
@@ -216,30 +216,126 @@
         <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
     <ul class="nav bs-sidenav">
     
-        <li class="first-level active"><a href="#configuration">Configuration</a></li>
+        <li class="first-level active"><a href="#router-configuration">Router configuration</a></li>
+        
+            <li class="second-level"><a href="#logging">Logging</a></li>
+            
+        
+            <li class="second-level"><a href="#security">Security</a></li>
+            
         
     
     </ul>
 </div></div>
         <div class="col-md-9" role="main">
 
-<h1 id="configuration">Configuration</h1>
+<h1 id="router-configuration">Router configuration</h1>
+<p>Either the embedded or the standalone router can be configured by applying the following settings:</p>
 <pre><code class="bash">akka {
   wamp {
-    client {
+    router {
+      # The local filesystem path the router will serve static
+      # web resources (such as HTML docs) out of
+      #
+      webroot = &quot;./webroot&quot;
+
       # The boolean switch to validate against strict URIs 
       # rather than loose URIs
       #
       validate-strict-uris = false
 
-      # NOTE
-      # Clients will always disconnect on offending messages
-      # No configuration settings is provided to change this behaviour.
+      # The boolean switch to NOT automatically create realms 
+      # if they don't exist yet.
       #
+      abort-unknown-realms = false
+
+      # The boolean switch to drop offending messages (e.g. 
+      # not deserializable or against the protocol).
+      #
+      # By default, offending messages will cause session to be
+      # closed and transport to be disconnected. Set this switch on 
+      # if you prefer to rather drop offending messages and resume.
+      #
+      drop-offending-messages = false
+
+      # Named transport configurations
+      #
+      transport {
+        default {
+          # Transport protocol can be:
+          #
+          # - tcp
+          #     Raw TCP
+          # - tsl
+          #     Transport Secure Layer
+          # - ws    
+          #     WebSocket 
+          # - wss
+          #     WebSocket over TLS
+          #
+          protocol = &quot;ws&quot;
+
+          # Transport subprotocol can be:
+          # 
+          # - wamp.2.json
+          #   JSON Javascript Object Notation
+          #
+          # - wamp.2.msgpack
+          #   Message Pack
+          #
+          subprotocol = &quot;wamp.2.json&quot;
+
+          # The TCP interface to bind to
+          #
+          iface = &quot;127.0.0.1&quot;
+
+          # The TCP port number (between 0 and 65536) to bind to.
+          # If set to 0 the first available randome port number 
+          # will be chosen
+          #
+          port = 8080
+
+          # (Only for &quot;ws&quot; and &quot;wss&quot; protocols)
+          # The URL path incoming HTTP Upgrade request are expected 
+          # to be addressed to
+          #
+          wspath = &quot;router&quot;
+        },
+        #secure {
+        #  protocol = &quot;wss&quot;
+        #  iface = &quot;127.0.0.1&quot;
+        #  port = 8443
+        #  path = &quot;router&quot;
+        #}
+      }
     }
   }
 }
-</code></pre></div>
+</code></pre>
+
+<p>Above default settings can be overridden</p>
+<ul>
+<li>(for standalone router) by editing the <code>conf/application.conf</code> file</li>
+<li>(for embedded router) by providing an <code>application.conf</code> file on the classpath,</li>
+<li>by passing system properties to the Java interpreter (e.g. <code>-Dakka.wamp.router.transport.default.port=9090</code>)</li>
+</ul>
+<h2 id="logging">Logging</h2>
+<pre><code class="bash">akka {
+  #
+  # Following are already set by akka-wamp as default
+  #
+  loggers = [&quot;akka.event.slf4j.Slf4jLogger&quot;]
+  loglevel = &quot;INFO&quot;
+  logging-filter = &quot;akka.event.slf4j.Slf4jLoggingFilter&quot;
+
+  # Just provide an additional logback.xml file on the classpath 
+  # so to customize your loggers, appenders and patterns
+  # 
+}
+</code></pre>
+
+<h2 id="security">Security</h2>
+<p>TBD</p></div>
         
     </div>
 

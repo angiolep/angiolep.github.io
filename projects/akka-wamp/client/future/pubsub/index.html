@@ -8,7 +8,7 @@
     <meta name="author" content="Paolo Angioletti">  
     <link rel="shortcut icon" href="../../../img/favicon.ico">
 
-    <title>Publish and Subscribe - akka-wamp-0.11.0</title>
+    <title>Publish and Subscribe - akka-wamp-0.12.0</title>
 
     <link href="../../../css/bootstrap-custom.min.css" rel="stylesheet">
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet">
@@ -55,7 +55,7 @@
             
 
             <!-- Main title -->
-            <a class="navbar-brand" href="../../..">akka-wamp-0.11.0</a>
+            <a class="navbar-brand" href="../../..">akka-wamp-0.12.0</a>
         </div>
 
         <!-- Expanded navigation -->
@@ -71,8 +71,23 @@
                 
                 
                 
-                    <li >
-                        <a href="../../../router/">Router</a>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Router <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../../../router/overview/">Overview</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../router/config/">Configuration</a>
+</li>
+
+                        
+                        </ul>
                     </li>
                 
                 
@@ -209,7 +224,7 @@
             
                 <li class="third-level"><a href="#multiple-handlers">Multiple handlers</a></li>
             
-                <li class="third-level"><a href="#recover">Recover</a></li>
+                <li class="third-level"><a href="#recover-exceptions">Recover exceptions</a></li>
             
         
             <li class="second-level"><a href="#unsubscribe-topics">Unsubscribe topics</a></li>
@@ -221,7 +236,9 @@
             
                 <li class="third-level"><a href="#acknowledge">Acknowledge</a></li>
             
-                <li class="third-level"><a href="#recover_1">Recover</a></li>
+                <li class="third-level"><a href="#recover-exceptions_1">Recover exceptions</a></li>
+            
+                <li class="third-level"><a href="#tickle">Tickle</a></li>
             
         
     
@@ -230,39 +247,42 @@
         <div class="col-md-9" role="main">
 
 <h1 id="publish-and-subscribe">Publish and Subscribe</h1>
-<pre><code class="scala">object PubSubApp extends App {
+<pre><code class="scala">import scala.concurrent.duration._
+import akka.wamp.client._
 
-  import akka.wamp.client._
+object MyClientApp extends App {
   val client = Client()
-
   implicit val ec = client.executionContext
 
-  val publication = 
-    for {
-      session &lt;- client
-        .openSession(
-          url = &quot;ws://localhost:8080/router&quot;,
-          subprotocol = &quot;wamp.2.json&quot;,
-          realm = &quot;default.realm&quot;,
-          roles = Set(&quot;subscriber&quot;))
-      subscription &lt;- session
-        .subscribe(
-          topic = &quot;myapp.topic1&quot;)(
-          event =&gt;
-            event.data.map(println)
-        )
-      publication &lt;- session
-        .publish(
-          topic = &quot;myapp.topic2&quot;,
-          ack = false,
-          kwdata = Map(&quot;name&quot;-&gt;&quot;paolo&quot;, &quot;age&quot;-&gt;40)
-        )
-    } yield ()
+  for {
+    session &lt;- client
+      .openSession(
+        url = &quot;ws://localhost:8080/ws&quot;,
+        subprotocol = &quot;wamp.2.json&quot;,
+        realm = &quot;default.realm&quot;,
+        roles = Set(&quot;subscriber&quot;))
+    subscription &lt;- session
+      .subscribe(
+        topic = &quot;myapp.topic.any&quot;,
+        event =&gt; event.data.map(println)
+      )
+    publication &lt;- session
+      .publish(
+        topic = &quot;myapp.topic.people&quot;,
+        ack = false,
+        kwdata = Map(&quot;name&quot;-&gt;&quot;paolo&quot;, &quot;age&quot;-&gt;40)
+      )
+    tickling &lt;- session
+      .tickle(
+        topic = &quot;myapp.topic.ticks&quot;,
+        interval = 1 second
+      )
+  } yield ()
 }
 </code></pre>
 
 <p>The WAMP protocol defines a Publish and Subscribe (PubSub) communication pattern where a client, the subscriber, informs the broker router that it wants to receive events on a topic (i.e., it subscribes to a topic). Another client, a publisher, can then publish events to this topic, and the broker router distributes events to all subscriber.</p>
-<pre><code>  ,---------.          ,------.             ,----------.
+<pre><code class="text">  ,---------.          ,------.             ,----------.
   |Publisher|          |Broker|             |Subscriber|
   `----+----'          `--+---'             `----+-----'
        |                  |                      |
@@ -288,7 +308,7 @@
 </code></pre>
 
 <h2 id="subscribe-topics">Subscribe topics</h2>
-<p>Once you got a subscriber session as documented in the <a href="../../future/session">Session Handling</a> section, you can finally subscribe to a topic with its event handler:</p>
+<p>Once you got a session, you can subscribe to a topic:</p>
 <pre><code class="scala">import akka.wamp._
 import akka.wamp.message._
 
@@ -297,20 +317,20 @@ import akka.wamp.message._
 
 val subscription: Future[Subscription] = session.flatMap(
   _.subscribe(
-    topic = &quot;myapp.topic&quot;) { 
-    event =&gt;
-      log.info(s&quot;${event.publicationId}&quot;)
-      event.data.map(println)
-    })
+      topic = &quot;myapp.topic&quot;,
+      event =&gt; {
+        log.info(s&quot;${event.publicationId}&quot;)
+        event.data.map(println)
+      })
 </code></pre>
 
-<p>A (future of) session can be mapped to a (future of) subscription by just invoking the <code>subscribe</code> method. It is a curried method with two parameter lists.</p>
+<p>A (future of) session can be mapped to a (future of) subscription by invoking one of the provided <code>subscribe()</code> method.</p>
 <pre><code class="scala">// as defined by Akka Wamp
 
-def subscribe(topic: Uri)(handler: EventHandler)
+def subscribe(topic: Uri, handler: EventHandler)
 </code></pre>
 
-<p>The first parameter list accepts <code>topic</code> as documented for the <a href="../../../messages#Subscribe"><code>Subscribe</code></a> message constructor. The second parameter list accepts a callback function of type <code>EventHandler</code> which gets invoked to process each event from the topic. </p>
+<p>It accepts a <code>topic</code> as documented for the <a href="../../../messages#Subscribe"><code>Subscribe</code></a> message and a callback function of type <code>EventHandler</code> which gets invoked to process each event from the topic. </p>
 <h3 id="event-handlers">Event handlers</h3>
 <pre><code class="scala">// as defined by Akka Wamp
 type EventHandler = (Event) =&gt; Unit
@@ -342,13 +362,13 @@ val handler2: EventHandler = { event =&gt;
 
 val subscription1 = session.flatMap(
   _.subscribe(
-    topic = &quot;myapp.topic&quot;)(
-    handler1))
+      topic = &quot;myapp.topic&quot;,
+      handler1))
 
 val subscription2 = session.flatMap(
   _.subscribe(
-    topic = &quot;myapp.topic&quot;)(
-    handler2))
+      topic = &quot;myapp.topic&quot;,
+      handler2))
 </code></pre>
 
 <p>You can subscribe many times to the same topic passing the same or different event handlers. As per WAMP protocol specification, the correspondent subscriptions held by the router will share the same subscription identifier. Therefore, your Akka Wamp client subscriber will: </p>
@@ -356,13 +376,13 @@ val subscription2 = session.flatMap(
 <li>add your event handlers in the same set linked to the same subscription identifier,</li>
 <li>invoke all of them anytime an event with that subscription identifier is received.</li>
 </ul>
-<h3 id="recover">Recover</h3>
+<h3 id="recover-exceptions">Recover exceptions</h3>
 <p>You can either recover or <em>"give up"</em> when the (future of) subscription fails. To recover from failures (such as <code>SessionException</code> thrown when session turns out to be closed) you can compose <code>recoverWith</code> to attempt another session opening (maybe to a fallback realm and/or to a fallback topic):</p>
 <pre><code class="scala">val subscription = session.flatMap(
-  _.subscribe(&quot;myapp.topic&quot;)(handler)
+  _.subscribe(&quot;myapp.topic&quot;, handler)
   .recoverWith { 
     case ex: SessionException =&gt; session.flatMap(
-      _.subscribe(&quot;myapp.topic.heartbeat&quot;)(handler)
+      _.subscribe(&quot;myapp.topic.heartbeat&quot;, handler)
   }
 </code></pre>
 
@@ -387,18 +407,19 @@ val unsubscribed: Future[Unsubscribed] = subscription.flatMap(
 <h3 id="multiple-handlers_1">Multiple handlers</h3>
 <p>TBD</p>
 <h2 id="publish-events">Publish events</h2>
+<p>Once you got a session, you can publish to a topic:</p>
 <pre><code class="scala">import akka.Done
 import akka.wamp.serialization._
 
 val publication: Future[Either[Done, Publication]] = session.flatMap(
   _.publish(
-    topic = &quot;myapp.topic&quot;,
-    payload = Payload(&quot;paolo&quot;, 40, true),
-    ack = true
+      topic = &quot;myapp.topic&quot;,
+      payload = Payload(&quot;paolo&quot;, 40, true),
+      ack = true
   ))
 </code></pre>
 
-<p>A (future of) session can be mapped to a (future of) either done or publication by just invoking the <code>publish</code> method which accepts <code>topic</code>, <code>ack</code> and a <code>payload</code> arguments as documented for the <a href="../../../messages#Publish"><code>Publish</code></a> message constructor. Sending arguments is documented in the <a href="../payload">Payload Handling</a> section.  </p>
+<p>A (future of) session can be mapped to a (future of) either done or publication by invoking the <code>publish</code> method which accepts <code>topic</code>, <code>ack</code> and a <code>payload</code> arguments as documented for the <a href="../../../messages#Publish"><code>Publish</code></a> message constructor. Sending arguments is documented in the <a href="../payload">Payload Handling</a> section.  </p>
 <h3 id="acknowledge">Acknowledge</h3>
 <p>Note that if you leave <code>ack</code> switched off (as by default) then Akka Wamp will not expect to receive the <a href="../../../messages#Publish"><code>Published</code></a> message back from the router and the (future of either of) publication or done immediately completes with (left of) <code>Done</code>. Otherwise, if you switch <code>ack</code> on then the (future of either of) publication or done later completes with (right of) <code>Publication</code> (if no exception were thrown).</p>
 <p>You could pass a callback <code>onSuccess</code> to better understand what really happens:</p>
@@ -415,7 +436,7 @@ publication.onSuccess {
 }
 </code></pre>
 
-<h3 id="recover_1">Recover</h3>
+<h3 id="recover-exceptions_1">Recover exceptions</h3>
 <p>You can either recover or <em>"give up"</em> when the (future of) publication fails. To recover from failures (such as <code>SessionException</code> when session turns out to be closed as you try to publish) you can compose <code>recoverWith</code>  to attempt another session opening (maybe to a fallback realm and to a fallback topic):</p>
 <pre><code class="scala">val publication = session1.flatMap(_.publish(&quot;myapp.topic.ticking&quot;)
   .recoverWith { 
@@ -433,6 +454,18 @@ publication.onSuccess {
   case ex: Throwable =&gt; 
     log.error(ex.getMessage, ex)
 }
+</code></pre>
+
+<h3 id="tickle">Tickle</h3>
+<p>You can easily publish a tick count to a topic with an initial delay and frequency.</p>
+<pre><code class="scala">import scala.concurrent.duration._
+
+val tickling: Future[Cancelable] = session.flatMap(
+  _.tickle(
+    topic = &quot;myapp.topic.ticks&quot;, 
+    delay = Duration.Zero, 
+    interval = 1 second)
+  ))
 </code></pre></div>
         
     </div>

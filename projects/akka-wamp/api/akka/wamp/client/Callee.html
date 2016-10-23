@@ -369,24 +369,46 @@ expects to receive invocations
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
     </li><li name="akka.wamp.client.Callee#register" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="register(procedure:akka.wamp.Uri)(handler:akka.wamp.client.InvocationHandler):scala.concurrent.Future[akka.wamp.client.Registration]"></a>
-      <a id="register(Uri)(InvocationHandler):Future[Registration]"></a>
+      <a id="register[T](procedure:akka.wamp.Uri,handler:T)(implicittt:reflect.runtime.universe.TypeTag[T],implicitct:scala.reflect.ClassTag[T]):scala.concurrent.Future[akka.wamp.client.Registration]"></a>
+      <a id="register[T](Uri,T)(scala.reflect.api.JavaUniverse.TypeTag[T],ClassTag[T]):Future[Registration]"></a>
       <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">register</span><span class="params">(<span name="procedure">procedure: <a href="../package.html#Uri=String" class="extmbr" name="akka.wamp.Uri">Uri</a></span>)</span><span class="params">(<span name="handler">handler: <a href="package.html#InvocationHandler=akka.wamp.messages.Invocation=&gt;scala.concurrent.Future[akka.wamp.serialization.Payload]" class="extmbr" name="akka.wamp.client.InvocationHandler">InvocationHandler</a></span>)</span><span class="result">: <span class="extype" name="scala.concurrent.Future">Future</span>[<a href="Registration.html" class="extype" name="akka.wamp.client.Registration">Registration</a>]</span>
+        <span class="name">register</span><span class="tparams">[<span name="T">T</span>]</span><span class="params">(<span name="procedure">procedure: <a href="../package.html#Uri=String" class="extmbr" name="akka.wamp.Uri">Uri</a></span>, <span name="handler">handler: <span class="extype" name="akka.wamp.client.Callee.register.T">T</span></span>)</span><span class="params">(<span class="implicit">implicit </span><span name="tt">tt: <span class="extype" name="scala.reflect.api.TypeTags.TypeTag">scala.reflect.api.JavaUniverse.TypeTag</span>[<span class="extype" name="akka.wamp.client.Callee.register.T">T</span>]</span>, <span name="ct">ct: <span class="extype" name="scala.reflect.ClassTag">ClassTag</span>[<span class="extype" name="akka.wamp.client.Callee.register.T">T</span>]</span>)</span><span class="result">: <span class="extype" name="scala.concurrent.Future">Future</span>[<a href="Registration.html" class="extype" name="akka.wamp.client.Registration">Registration</a>]</span>
       </span>
       </h4><span class="permalink">
-      <a href="../../../index.html#akka.wamp.client.Callee@register(procedure:akka.wamp.Uri)(handler:akka.wamp.client.InvocationHandler):scala.concurrent.Future[akka.wamp.client.Registration]" title="Permalink" target="_top">
+      <a href="../../../index.html#akka.wamp.client.Callee@register[T](procedure:akka.wamp.Uri,handler:T)(implicittt:reflect.runtime.universe.TypeTag[T],implicitct:scala.reflect.ClassTag[T]):scala.concurrent.Future[akka.wamp.client.Registration]" title="Permalink" target="_top">
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Register the given procedure so that the given handler will be
-executed on invocations.</p><div class="fullcomment"><div class="comment cmt"><p>Register the given procedure so that the given handler will be
-executed on invocations.</p><p>A callee announces the availability of an endpoint implementing a
+      <p class="shortcomment cmt">Register the given procedure URI so that the given <code><code>scala.Function</code></code>
+implementation will be dinamically invoked (via the experimental Scala 2.11
+reflection capabilities) on INVOCATION from router.</p><div class="fullcomment"><div class="comment cmt"><p>Register the given procedure URI so that the given <code><code>scala.Function</code></code>
+implementation will be dinamically invoked (via the experimental Scala 2.11
+reflection capabilities) on INVOCATION from router.
+</p></div><dl class="paramcmts block"><dt class="tparam">T</dt><dd class="cmt"><p>it must be any of the <code><code>scala.Function</code></code> types</p></dd><dt class="param">procedure</dt><dd class="cmt"><p>is the procedure URI the callee wants to register</p></dd><dt class="param">handler</dt><dd class="cmt"><p>is a partially applied function</p></dd><dt>returns</dt><dd class="cmt"><p>the (future of) registration</p></dd></dl></div>
+    </li><li name="akka.wamp.client.Callee#register" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="register(procedure:akka.wamp.Uri,handler:akka.wamp.client.InvocationHandler):scala.concurrent.Future[akka.wamp.client.Registration]"></a>
+      <a id="register(Uri,InvocationHandler):Future[Registration]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">register</span><span class="params">(<span name="procedure">procedure: <a href="../package.html#Uri=String" class="extmbr" name="akka.wamp.Uri">Uri</a></span>, <span name="handler">handler: <a href="package.html#InvocationHandler=akka.wamp.messages.Invocation=&gt;scala.concurrent.Future[akka.wamp.serialization.Payload]" class="extmbr" name="akka.wamp.client.InvocationHandler">InvocationHandler</a></span>)</span><span class="result">: <span class="extype" name="scala.concurrent.Future">Future</span>[<a href="Registration.html" class="extype" name="akka.wamp.client.Registration">Registration</a>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#akka.wamp.client.Callee@register(procedure:akka.wamp.Uri,handler:akka.wamp.client.InvocationHandler):scala.concurrent.Future[akka.wamp.client.Registration]" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Register the given procedure URI so that the given invocation handler
+will be executed on INVOCATION from router.</p><div class="fullcomment"><div class="comment cmt"><p>Register the given procedure URI so that the given invocation handler
+will be executed on INVOCATION from router.</p><p>A callee announces the availability of an endpoint implementing a
 procedure with a dealer by sending a REGISTER message:</p><pre>,------.          ,------.               ,------.
 |Caller|          |Dealer|               |Callee|
 `--+---'          `--+---'               `--+---'
@@ -409,7 +431,7 @@ procedure with a dealer by sending a REGISTER message:</p><pre>,------.         
    |                 | ---------------------&gt;
 ,--+---.          ,--+---.               ,--+---.
 |Caller|          |Dealer|               |Callee|
-`------'          `------'               `------<span class="lit">'</span></pre></div><dl class="paramcmts block"><dt class="param">procedure</dt><dd class="cmt"><p>is the procedure the callee wants to register</p></dd><dt class="param">handler</dt><dd class="cmt"><p>is the handler executed on invocations</p></dd><dt>returns</dt><dd class="cmt"><p>the (future of) registration</p></dd></dl></div>
+`------'          `------'               `------<span class="lit">'</span></pre></div><dl class="paramcmts block"><dt class="param">procedure</dt><dd class="cmt"><p>is the procedure URI the callee wants to register</p></dd><dt class="param">handler</dt><dd class="cmt"><p>is the handler executed on invocations</p></dd><dt>returns</dt><dd class="cmt"><p>the (future of) registration</p></dd></dl></div>
     </li><li name="scala.AnyRef#synchronized" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="synchronized[T0](x$1:=&gt;T0):T0"></a>
       <a id="synchronized[T0](⇒T0):T0"></a>

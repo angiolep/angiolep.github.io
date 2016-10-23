@@ -8,7 +8,7 @@
     <meta name="author" content="Paolo Angioletti">  
     <link rel="shortcut icon" href="../../../img/favicon.ico">
 
-    <title>Overview - akka-wamp-0.11.0</title>
+    <title>Overview - akka-wamp-0.12.0</title>
 
     <link href="../../../css/bootstrap-custom.min.css" rel="stylesheet">
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet">
@@ -55,7 +55,7 @@
             
 
             <!-- Main title -->
-            <a class="navbar-brand" href="../../..">akka-wamp-0.11.0</a>
+            <a class="navbar-brand" href="../../..">akka-wamp-0.12.0</a>
         </div>
 
         <!-- Expanded navigation -->
@@ -71,8 +71,23 @@
                 
                 
                 
-                    <li >
-                        <a href="../../../router/">Router</a>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Router <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../../../router/overview/">Overview</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../router/config/">Configuration</a>
+</li>
+
+                        
+                        </ul>
                     </li>
                 
                 
@@ -224,7 +239,7 @@
   for {
     session &lt;- client
       .openSession(
-        url = &quot;ws://localhost:8080/router&quot;,
+        url = &quot;ws://localhost:8080/ws&quot;,
         subprotocol = &quot;wamp.2.json&quot;,
         realm = &quot;default.realm&quot;,
         roles = Set(&quot;subscriber&quot;))

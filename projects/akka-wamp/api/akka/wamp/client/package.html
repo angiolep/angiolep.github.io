@@ -169,7 +169,7 @@ WAMP connections to a router and open new sessions.</p><pre><span class="kw">imp
 
 <span class="kw">val</span> conn: Future[Connection] = client
   .connect(
-    url = <span class="lit">"ws://localhost:8080/router"</span>,
+    url = <span class="lit">"ws://localhost:8080/ws"</span>,
     subprotocol = <span class="lit">"wamp.2.json"</span>
   )</pre></div></div>
     </li><li name="akka.wamp.client.ClientContext" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
@@ -322,7 +322,7 @@ without knowledge of subscribers
 
 <span class="kw">val</span> session: Future[Session] =
   client.openSession(
-    url = <span class="lit">"ws://localhost:8080/router"</span>,
+    url = <span class="lit">"ws://localhost:8080/ws"</span>,
     subprotocol = <span class="lit">"wamp.2.json"</span>,
     realm = <span class="lit">"myapp.realm"</span>,
     roles = <span class="std">Set</span>(Roles.publisher)
@@ -415,7 +415,7 @@ expects to receive events
 
 <span class="kw">val</span> transport: Future[Transport] = client
   .connect(
-    url = <span class="lit">"ws://localhost:8080/router"</span>,
+    url = <span class="lit">"ws://localhost:8080/ws"</span>,
     subprotocol = <span class="lit">"wamp.2.json"</span>
   )</pre><p>WAMP connections can use any transport that is message-based, ordered,
 reliable and bi-directional, with WebSocket as the default transport.</p><p>A WAMP session can be opened during the WAMP connection lifecycle, but
@@ -503,7 +503,7 @@ only one at the time.
 
 <span class="kw">val</span> conn: Future[Connection] = client
   .connect(
-    url = <span class="lit">"ws://localhost:8080/router"</span>,
+    url = <span class="lit">"ws://localhost:8080/ws"</span>,
     subprotocol = <span class="lit">"wamp.2.json"</span>,
     maxAttempts = <span class="num">8</span>
   )</pre></div></div>
