@@ -412,9 +412,9 @@ to/from textual(binary)/object representation
               
         </dd></dl></div>
     </li><li name="akka.wamp.serialization.MsgPackSerializationFlows#deserialize" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="deserialize:akka.stream.scaladsl.Flow[akka.http.scaladsl.model.ws.Message,akka.wamp.messages.Message,_]"></a><a id="deserialize:Flow[Message,Message,_]"></a>
+      <a id="deserialize:akka.stream.scaladsl.Flow[akka.http.scaladsl.model.ws.Message,akka.wamp.messages.ProtocolMessage,_]"></a><a id="deserialize:Flow[Message,ProtocolMessage,_]"></a>
       <span class="permalink">
-      <a href="../../../akka/wamp/serialization/MsgPackSerializationFlows.html#deserialize:akka.stream.scaladsl.Flow[akka.http.scaladsl.model.ws.Message,akka.wamp.messages.Message,_]" title="Permalink">
+      <a href="../../../akka/wamp/serialization/MsgPackSerializationFlows.html#deserialize:akka.stream.scaladsl.Flow[akka.http.scaladsl.model.ws.Message,akka.wamp.messages.ProtocolMessage,_]" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -423,7 +423,7 @@ to/from textual(binary)/object representation
         <span class="kind">val</span>
       </span>
       <span class="symbol">
-        <span class="name">deserialize</span><span class="result">: <span class="extype" name="akka.stream.scaladsl.Flow">Flow</span>[<span class="extype" name="akka.http.scaladsl.model.ws.Message">Message</span>, <a href="../messages/Message.html" class="extype" name="akka.wamp.messages.Message">Message</a>, _]</span>
+        <span class="name">deserialize</span><span class="result">: <span class="extype" name="akka.stream.scaladsl.Flow">Flow</span>[<span class="extype" name="akka.http.scaladsl.model.ws.Message">Message</span>, <a href="../messages/ProtocolMessage.html" class="extype" name="akka.wamp.messages.ProtocolMessage">ProtocolMessage</a>, _]</span>
       </span>
       
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="akka.wamp.serialization.MsgPackSerializationFlows">MsgPackSerializationFlows</a> → <a href="SerializationFlows.html" class="extype" name="akka.wamp.serialization.SerializationFlows">SerializationFlows</a></dd></dl></div>
@@ -578,9 +578,9 @@ to/from textual(binary)/object representation
       
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
     </li><li name="akka.wamp.serialization.MsgPackSerializationFlows#serialize" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="serialize:akka.stream.scaladsl.Flow[akka.wamp.messages.Message,akka.http.scaladsl.model.ws.Message,_]"></a><a id="serialize:Flow[Message,Message,_]"></a>
+      <a id="serialize:akka.stream.scaladsl.Flow[akka.wamp.messages.ProtocolMessage,akka.http.scaladsl.model.ws.Message,_]"></a><a id="serialize:Flow[ProtocolMessage,Message,_]"></a>
       <span class="permalink">
-      <a href="../../../akka/wamp/serialization/MsgPackSerializationFlows.html#serialize:akka.stream.scaladsl.Flow[akka.wamp.messages.Message,akka.http.scaladsl.model.ws.Message,_]" title="Permalink">
+      <a href="../../../akka/wamp/serialization/MsgPackSerializationFlows.html#serialize:akka.stream.scaladsl.Flow[akka.wamp.messages.ProtocolMessage,akka.http.scaladsl.model.ws.Message,_]" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -589,7 +589,7 @@ to/from textual(binary)/object representation
         <span class="kind">val</span>
       </span>
       <span class="symbol">
-        <span class="name">serialize</span><span class="result">: <span class="extype" name="akka.stream.scaladsl.Flow">Flow</span>[<a href="../messages/Message.html" class="extype" name="akka.wamp.messages.Message">Message</a>, <span class="extype" name="akka.http.scaladsl.model.ws.Message">Message</span>, _]</span>
+        <span class="name">serialize</span><span class="result">: <span class="extype" name="akka.stream.scaladsl.Flow">Flow</span>[<a href="../messages/ProtocolMessage.html" class="extype" name="akka.wamp.messages.ProtocolMessage">ProtocolMessage</a>, <span class="extype" name="akka.http.scaladsl.model.ws.Message">Message</span>, _]</span>
       </span>
       
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="akka.wamp.serialization.MsgPackSerializationFlows">MsgPackSerializationFlows</a> → <a href="SerializationFlows.html" class="extype" name="akka.wamp.serialization.SerializationFlows">SerializationFlows</a></dd></dl></div>

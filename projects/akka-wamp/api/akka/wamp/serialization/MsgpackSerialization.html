@@ -431,9 +431,9 @@ to/from textual(binary)/object representation
               
         </dd></dl></div>
     </li><li name="akka.wamp.serialization.MsgpackSerialization#deserialize" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="deserialize(source:akka.stream.scaladsl.Source[akka.util.ByteString,_])(implicitvalidator:akka.wamp.Validator,implicitmat:akka.stream.Materializer):akka.wamp.messages.Message"></a><a id="deserialize(Source[ByteString,_])(Validator,Materializer):Message"></a>
+      <a id="deserialize(source:akka.stream.scaladsl.Source[akka.util.ByteString,_])(implicitvalidator:akka.wamp.Validator,implicitmat:akka.stream.Materializer):akka.wamp.messages.ProtocolMessage"></a><a id="deserialize(Source[ByteString,_])(Validator,Materializer):ProtocolMessage"></a>
       <span class="permalink">
-      <a href="../../../akka/wamp/serialization/MsgpackSerialization.html#deserialize(source:akka.stream.scaladsl.Source[akka.util.ByteString,_])(implicitvalidator:akka.wamp.Validator,implicitmat:akka.stream.Materializer):akka.wamp.messages.Message" title="Permalink">
+      <a href="../../../akka/wamp/serialization/MsgpackSerialization.html#deserialize(source:akka.stream.scaladsl.Source[akka.util.ByteString,_])(implicitvalidator:akka.wamp.Validator,implicitmat:akka.stream.Materializer):akka.wamp.messages.ProtocolMessage" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -442,7 +442,7 @@ to/from textual(binary)/object representation
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">deserialize</span><span class="params">(<span name="source">source: <span class="extype" name="akka.stream.scaladsl.Source">Source</span>[<span class="extype" name="akka.util.ByteString">ByteString</span>, _]</span>)</span><span class="params">(<span class="implicit">implicit </span><span name="validator">validator: <span class="extype" name="akka.wamp.Validator">Validator</span></span>, <span name="mat">mat: <span class="extype" name="akka.stream.Materializer">Materializer</span></span>)</span><span class="result">: <a href="../messages/Message.html" class="extype" name="akka.wamp.messages.Message">Message</a></span>
+        <span class="name">deserialize</span><span class="params">(<span name="source">source: <span class="extype" name="akka.stream.scaladsl.Source">Source</span>[<span class="extype" name="akka.util.ByteString">ByteString</span>, _]</span>)</span><span class="params">(<span class="implicit">implicit </span><span name="validator">validator: <span class="extype" name="akka.wamp.Validator">Validator</span></span>, <span name="mat">mat: <span class="extype" name="akka.stream.Materializer">Materializer</span></span>)</span><span class="result">: <a href="../messages/ProtocolMessage.html" class="extype" name="akka.wamp.messages.ProtocolMessage">ProtocolMessage</a></span>
       </span>
       
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="akka.wamp.serialization.MsgpackSerialization">MsgpackSerialization</a> → <a href="Serialization.html" class="extype" name="akka.wamp.serialization.Serialization">Serialization</a></dd><dt>Annotations</dt><dd>
@@ -603,9 +603,9 @@ to/from textual(binary)/object representation
       
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
     </li><li name="akka.wamp.serialization.MsgpackSerialization#serialize" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="serialize(message:akka.wamp.messages.Message):akka.stream.scaladsl.Source[akka.util.ByteString,_]"></a><a id="serialize(Message):Source[ByteString,_]"></a>
+      <a id="serialize(message:akka.wamp.messages.ProtocolMessage):akka.stream.scaladsl.Source[akka.util.ByteString,_]"></a><a id="serialize(ProtocolMessage):Source[ByteString,_]"></a>
       <span class="permalink">
-      <a href="../../../akka/wamp/serialization/MsgpackSerialization.html#serialize(message:akka.wamp.messages.Message):akka.stream.scaladsl.Source[akka.util.ByteString,_]" title="Permalink">
+      <a href="../../../akka/wamp/serialization/MsgpackSerialization.html#serialize(message:akka.wamp.messages.ProtocolMessage):akka.stream.scaladsl.Source[akka.util.ByteString,_]" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -614,7 +614,7 @@ to/from textual(binary)/object representation
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">serialize</span><span class="params">(<span name="message">message: <a href="../messages/Message.html" class="extype" name="akka.wamp.messages.Message">Message</a></span>)</span><span class="result">: <span class="extype" name="akka.stream.scaladsl.Source">Source</span>[<span class="extype" name="akka.util.ByteString">ByteString</span>, _]</span>
+        <span class="name">serialize</span><span class="params">(<span name="message">message: <a href="../messages/ProtocolMessage.html" class="extype" name="akka.wamp.messages.ProtocolMessage">ProtocolMessage</a></span>)</span><span class="result">: <span class="extype" name="akka.stream.scaladsl.Source">Source</span>[<span class="extype" name="akka.util.ByteString">ByteString</span>, _]</span>
       </span>
       
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="akka.wamp.serialization.MsgpackSerialization">MsgpackSerialization</a> → <a href="Serialization.html" class="extype" name="akka.wamp.serialization.Serialization">Serialization</a></dd></dl></div>

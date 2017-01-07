@@ -165,8 +165,8 @@ named transport configuration .">
                         </a>
                       </li><li class="current-entities indented3">
                         <span class="separator"></span>
-                        <a class="trait" href="Command.html" title="Common interface for all commands the Wamp manager can execute"></a>
-                        <a href="Command.html" title="Common interface for all commands the Wamp manager can execute">
+                        <a class="trait" href="Command.html" title="Represents command messages"></a>
+                        <a href="Command.html" title="Represents command messages">
                           Command
                         </a>
                       </li><li class="current-entities indented3">
@@ -179,8 +179,10 @@ named transport configuration .">
                         </a>
                       </li><li class="current-entities indented3">
                         <span class="separator"></span>
-                        <a class="class" href="Connect.html" title="This connect command is sent by a client applications with the intent to connect to a router."></a>
-                        <a href="Connect.html" title="This connect command is sent by a client applications with the intent to connect to a router.">
+                        <a class="class" href="Connect.html" title="This connect command is sent by a peer (a client) with the intent to establish
+a transport to another peer (a router)."></a>
+                        <a href="Connect.html" title="This connect command is sent by a peer (a client) with the intent to establish
+a transport to another peer (a router).">
                           Connect
                         </a>
                       </li><li class="current-entities indented3">
@@ -253,19 +255,19 @@ attaching to a Realm.">
                         </a>
                       </li><li class="current-entities indented3">
                         <span class="separator"></span>
-                        <a class="trait" href="ManagedMessage.html" title="Common interface for all commands and signals the Wamp manager can deal with
+                        <a class="trait" href="" title="Represents all messages
 "></a>
-                        <a href="ManagedMessage.html" title="Common interface for all commands and signals the Wamp manager can deal with
+                        <a href="" title="Represents all messages
 ">
-                          ManagedMessage
+                          Message
                         </a>
                       </li><li class="current-entities indented3">
                         <span class="separator"></span>
-                        <a class="trait" href="" title="Represents a message exchanged by Peers
+                        <a class="trait" href="ProtocolMessage.html" title="Represents protocol messages exchanged by Peers
 "></a>
-                        <a href="" title="Represents a message exchanged by Peers
+                        <a href="ProtocolMessage.html" title="Represents protocol messages exchanged by Peers
 ">
-                          Message
+                          ProtocolMessage
                         </a>
                       </li><li class="current-entities indented3">
                         <a class="object" href="Publish$.html" title=""></a>
@@ -348,6 +350,12 @@ attaching to a Realm.">
                           Unsubscribed
                         </a>
                       </li><li class="current-entities indented3">
+                        <span class="separator"></span>
+                        <a class="object" href="WampMessage$.html" title="Factory of Message instances"></a>
+                        <a href="WampMessage$.html" title="Factory of Message instances">
+                          WampMessage
+                        </a>
+                      </li><li class="current-entities indented3">
                         <a class="object" href="Welcome$.html" title=""></a>
                         <a class="class" href="Welcome.html" title="Sent by a router to accept a client and let it know the session is now open"></a>
                         <a href="Welcome.html" title="Sent by a router to accept a client and let it know the session is now open">
@@ -379,26 +387,26 @@ attaching to a Realm.">
 
       <h4 id="signature" class="signature">
       <span class="modifier_kind">
-        <span class="modifier">sealed </span>
+        <span class="modifier"></span>
         <span class="kind">trait</span>
       </span>
       <span class="symbol">
-        <span class="name">Message</span><span class="result"> extends <a href="ManagedMessage.html" class="extype" name="akka.wamp.messages.ManagedMessage">ManagedMessage</a></span>
+        <span class="name">Message</span><span class="result"> extends <span class="extype" name="scala.AnyRef">AnyRef</span></span>
       </span>
       </h4>
 
       
-          <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>Represents a message exchanged by <a href="../Peer.html" class="extype" name="akka.wamp.Peer">Peer</a>s
+          <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>Represents all messages
 </p></div><div class="toggleContainer block">
           <span class="toggle">
             Linear Supertypes
           </span>
-          <div class="superTypes hiddenContent"><a href="ManagedMessage.html" class="extype" name="akka.wamp.messages.ManagedMessage">ManagedMessage</a>, <span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
+          <div class="superTypes hiddenContent"><span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
         </div><div class="toggleContainer block">
             <span class="toggle">
               Known Subclasses
             </span>
-            <div class="subClasses hiddenContent"><a href="Abort.html" class="extype" name="akka.wamp.messages.Abort">Abort</a>, <a href="Call.html" class="extype" name="akka.wamp.messages.Call">Call</a>, <a href="Error.html" class="extype" name="akka.wamp.messages.Error">Error</a>, <a href="Event.html" class="extype" name="akka.wamp.messages.Event">Event</a>, <a href="Goodbye.html" class="extype" name="akka.wamp.messages.Goodbye">Goodbye</a>, <a href="Hello.html" class="extype" name="akka.wamp.messages.Hello">Hello</a>, <a href="Invocation.html" class="extype" name="akka.wamp.messages.Invocation">Invocation</a>, <a href="Publish.html" class="extype" name="akka.wamp.messages.Publish">Publish</a>, <a href="Published.html" class="extype" name="akka.wamp.messages.Published">Published</a>, <a href="Register.html" class="extype" name="akka.wamp.messages.Register">Register</a>, <a href="Registered.html" class="extype" name="akka.wamp.messages.Registered">Registered</a>, <a href="Result.html" class="extype" name="akka.wamp.messages.Result">Result</a>, <a href="Subscribe.html" class="extype" name="akka.wamp.messages.Subscribe">Subscribe</a>, <a href="Subscribed.html" class="extype" name="akka.wamp.messages.Subscribed">Subscribed</a>, <a href="Unregister.html" class="extype" name="akka.wamp.messages.Unregister">Unregister</a>, <a href="Unregistered.html" class="extype" name="akka.wamp.messages.Unregistered">Unregistered</a>, <a href="Unsubscribe.html" class="extype" name="akka.wamp.messages.Unsubscribe">Unsubscribe</a>, <a href="Unsubscribed.html" class="extype" name="akka.wamp.messages.Unsubscribed">Unsubscribed</a>, <a href="Welcome.html" class="extype" name="akka.wamp.messages.Welcome">Welcome</a>, <a href="Yield.html" class="extype" name="akka.wamp.messages.Yield">Yield</a></div>
+            <div class="subClasses hiddenContent"><a href="Abort.html" class="extype" name="akka.wamp.messages.Abort">Abort</a>, <a href="Bind.html" class="extype" name="akka.wamp.messages.Bind">Bind</a>, <a href="Bound.html" class="extype" name="akka.wamp.messages.Bound">Bound</a>, <a href="Call.html" class="extype" name="akka.wamp.messages.Call">Call</a>, <a href="Closed.html" class="extype" name="akka.wamp.messages.Closed">Closed</a>, <a href="Closed$.html" class="extype" name="akka.wamp.messages.Closed">Closed</a>, <a href="Command.html" class="extype" name="akka.wamp.messages.Command">Command</a>, <a href="CommandFailed.html" class="extype" name="akka.wamp.messages.CommandFailed">CommandFailed</a>, <a href="Connect.html" class="extype" name="akka.wamp.messages.Connect">Connect</a>, <a href="Connected.html" class="extype" name="akka.wamp.messages.Connected">Connected</a>, <a href="Disconnect$.html" class="extype" name="akka.wamp.messages.Disconnect">Disconnect</a>, <a href="Disconnected.html" class="extype" name="akka.wamp.messages.Disconnected">Disconnected</a>, <a href="Disconnected$.html" class="extype" name="akka.wamp.messages.Disconnected">Disconnected</a>, <a href="Error.html" class="extype" name="akka.wamp.messages.Error">Error</a>, <a href="Event.html" class="extype" name="akka.wamp.messages.Event">Event</a>, <a href="Goodbye.html" class="extype" name="akka.wamp.messages.Goodbye">Goodbye</a>, <a href="HandleHttpConnection.html" class="extype" name="akka.wamp.messages.HandleHttpConnection">HandleHttpConnection</a>, <a href="Hello.html" class="extype" name="akka.wamp.messages.Hello">Hello</a>, <a href="Invocation.html" class="extype" name="akka.wamp.messages.Invocation">Invocation</a>, <a href="ProtocolMessage.html" class="extype" name="akka.wamp.messages.ProtocolMessage">ProtocolMessage</a>, <a href="Publish.html" class="extype" name="akka.wamp.messages.Publish">Publish</a>, <a href="Published.html" class="extype" name="akka.wamp.messages.Published">Published</a>, <a href="Register.html" class="extype" name="akka.wamp.messages.Register">Register</a>, <a href="Registered.html" class="extype" name="akka.wamp.messages.Registered">Registered</a>, <a href="Result.html" class="extype" name="akka.wamp.messages.Result">Result</a>, <a href="Signal.html" class="extype" name="akka.wamp.messages.Signal">Signal</a>, <a href="Subscribe.html" class="extype" name="akka.wamp.messages.Subscribe">Subscribe</a>, <a href="Subscribed.html" class="extype" name="akka.wamp.messages.Subscribed">Subscribed</a>, <a href="Unregister.html" class="extype" name="akka.wamp.messages.Unregister">Unregister</a>, <a href="Unregistered.html" class="extype" name="akka.wamp.messages.Unregistered">Unregistered</a>, <a href="Unsubscribe.html" class="extype" name="akka.wamp.messages.Unsubscribe">Unsubscribe</a>, <a href="Unsubscribed.html" class="extype" name="akka.wamp.messages.Unsubscribed">Unsubscribed</a>, <a href="Welcome.html" class="extype" name="akka.wamp.messages.Welcome">Welcome</a>, <a href="Yield.html" class="extype" name="akka.wamp.messages.Yield">Yield</a></div>
           </div></div>
         
 
@@ -424,7 +432,7 @@ attaching to a Realm.">
                   <span class="filtertype">Inherited<br />
                   </span>
                   <ol id="linearization">
-                    <li class="in" name="akka.wamp.messages.Message"><span>Message</span></li><li class="in" name="akka.wamp.messages.ManagedMessage"><span>ManagedMessage</span></li><li class="in" name="scala.AnyRef"><span>AnyRef</span></li><li class="in" name="scala.Any"><span>Any</span></li>
+                    <li class="in" name="akka.wamp.messages.Message"><span>Message</span></li><li class="in" name="scala.AnyRef"><span>AnyRef</span></li><li class="in" name="scala.Any"><span>Any</span></li>
                   </ol>
                 </div><div class="ancestors">
               <span class="filtertype"></span>
@@ -446,29 +454,10 @@ attaching to a Realm.">
 
         
 
-        <div class="values members">
-              <h3>Abstract Value Members</h3>
-              <ol><li name="akka.wamp.messages.Message#tpe" visbl="prt" class="indented0 " data-isabs="true" fullComment="yes" group="Ungrouped">
-      <a id="tpe:akka.wamp.TypeCode"></a><a id="tpe:TypeCode"></a>
-      <span class="permalink">
-      <a href="../../../akka/wamp/messages/Message.html#tpe:akka.wamp.TypeCode" title="Permalink">
-        <i class="material-icons"></i>
-      </a>
-    </span>
-      <span class="modifier_kind">
-        <span class="modifier">abstract </span>
-        <span class="kind">val</span>
-      </span>
-      <span class="symbol">
-        <span class="name">tpe</span><span class="result">: <span class="extype" name="akka.wamp.TypeCode">TypeCode</span></span>
-      </span>
-      
-      <div class="fullcomment"><dl class="attributes block"> <dt>Attributes</dt><dd>protected </dd></dl></div>
-    </li></ol>
-            </div>
+        
 
         <div class="values members">
-              <h3>Concrete Value Members</h3>
+              <h3>Value Members</h3>
               <ol>
                 <li name="scala.AnyRef#!=" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="!=(x$1:Any):Boolean"></a><a id="!=(Any):Boolean"></a>
@@ -814,9 +803,7 @@ attaching to a Realm.">
         </div>
 
         <div id="inheritedMembers">
-        <div class="parent" name="akka.wamp.messages.ManagedMessage">
-              <h3>Inherited from <a href="ManagedMessage.html" class="extype" name="akka.wamp.messages.ManagedMessage">ManagedMessage</a></h3>
-            </div><div class="parent" name="scala.AnyRef">
+        <div class="parent" name="scala.AnyRef">
               <h3>Inherited from <span class="extype" name="scala.AnyRef">AnyRef</span></h3>
             </div><div class="parent" name="scala.Any">
               <h3>Inherited from <span class="extype" name="scala.Any">Any</span></h3>

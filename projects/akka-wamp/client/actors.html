@@ -129,7 +129,9 @@ C16.952,7,17,6.553,17,6c0-0.553-0.048-1-0.6-1H3.6C3.048,5,3,5.447,3,6C3,6.553,3.
 <dl>
   <dt>Scala</dt>
   <dd>
-  <pre class="prettyprint"><code class="language-scala">import akka.actor._
+  <pre class="prettyprint"><code class="language-scala">import java.net.URI
+
+import akka.actor._
 import akka.io._
 import akka.wamp._
 import akka.wamp.client._
@@ -152,6 +154,8 @@ import akka.wamp.messages.Error;
 import akka.wamp.serialization.Payload;
 import scala.PartialFunction;
 import scala.runtime.BoxedUnit;
+
+import java.net.URI;
 
 import static akka.japi.pf.ReceiveBuilder.match;
 
@@ -177,14 +181,14 @@ public class JavaClientActor extends AbstractClientLoggingActor {
   <pre class="prettyprint"><code class="language-scala">override def preStart(): Unit = {
   implicit val system = context.system
   val manager = IO(Wamp)
-  manager ! Connect(&quot;ws://router.net:8080/wamp&quot;, &quot;json&quot;)
+  manager ! Connect(new URI(&quot;ws://router.net:8080/wamp&quot;), &quot;json&quot;)
 }
 
 override def receive: Receive = {
   case CommandFailed(cmd, ex) =&gt;
     // reattempt connection ...
     
-  case Connected(conn) =&gt;
+  case Connected(conn, _, _) =&gt;
     this.conn = conn
     context become connected
 }</code></pre></dd>
@@ -192,7 +196,7 @@ override def receive: Receive = {
   <dd>
   <pre class="prettyprint"><code class="language-java">@Override public void preStart() throws Exception {
   ActorRef manager = Wamp.get(getContext().system()).manager();
-  manager.tell(new Connect(&quot;ws://router.net:8080/wamp&quot;, &quot;json&quot;), self());
+  manager.tell(new Connect(new URI(&quot;ws://router.net:8080/wamp&quot;), &quot;json&quot;), self());
 }
 
 public JavaClientActor() {
@@ -222,7 +226,7 @@ public JavaClientActor() {
   <dt>Scala</dt>
   <dd>
   <pre class="prettyprint"><code class="language-scala">override def receive: Receive = {
-  case Connected(conn) =&gt;
+  case Connected(conn, _, _) =&gt;
     this.conn = conn
     context become connected
     conn ! Hello(&quot;default&quot;)

@@ -170,14 +170,10 @@ clients with callees that are registered to provide respective procedures
                           Registration
                         </a>
                       </li><li class="current-entities indented3">
-                        <a class="object" href="" title="Router companion object
+                        <a class="object" href="" title="Factory of Router's props instances
 "></a>
-                        <a class="class" href="Router.html" title="The router is a peer playing the broker and dealer which is
-responsible for generic call and event routing but do NOT run
-any application code a client would."></a>
-                        <a href="Router.html" title="The router is a peer playing the broker and dealer which is
-responsible for generic call and event routing but do NOT run
-any application code a client would.">
+                        <a class="class" href="Router.html" title="Represents a client."></a>
+                        <a href="Router.html" title="Represents a client.">
                           Router
                         </a>
                       </li><li class="current-entities indented3">
@@ -234,7 +230,7 @@ a transport.">
       </h4>
 
       
-          <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>Router companion object
+          <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>Factory of <a href="Router.html" class="extype" name="akka.wamp.router.Router">Router</a>'s props instances
 </p></div><div class="toggleContainer block">
           <span class="toggle">
             Linear Supertypes
@@ -529,6 +525,24 @@ a transport.">
       
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
     </li><li name="akka.wamp.router.Router#props" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="props():akka.actor.Props"></a><a id="props():Props"></a>
+      <span class="permalink">
+      <a href="../../../akka/wamp/router/Router$.html#props():akka.actor.Props" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">props</span><span class="params">()</span><span class="result">: <span class="extype" name="akka.actor.Props">Props</span></span>
+      </span>
+      
+      <p class="shortcomment cmt">Create a Props for an actor of this type
+</p><div class="fullcomment"><div class="comment cmt"><p>Create a Props for an actor of this type
+</p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>the props</p></dd></dl></div>
+    </li><li name="akka.wamp.router.Router#props" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="props(scopes:Map[Symbol,akka.wamp.IdScope]):akka.actor.Props"></a><a id="props(Map[Symbol,IdScope]):Props"></a>
       <span class="permalink">
       <a href="../../../akka/wamp/router/Router$.html#props(scopes:Map[Symbol,akka.wamp.IdScope]):akka.actor.Props" title="Permalink">
@@ -540,12 +554,12 @@ a transport.">
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">props</span><span class="params">(<span name="scopes">scopes: <span class="extype" name="scala.Predef.Map">Map</span>[<span class="extype" name="scala.Symbol">Symbol</span>, <span class="extype" name="akka.wamp.IdScope">IdScope</span>] = <span class="defval" name="Map(<br/>    'global  -&gt; new GlobalIdScope {},<br/>    'router  -&gt; new RouterIdScope {},<br/>    'session -&gt; new SessionIdScope{}<br/>  )">...</span></span>)</span><span class="result">: <span class="extype" name="akka.actor.Props">Props</span></span>
+        <span class="name">props</span><span class="params">(<span name="scopes">scopes: <span class="extype" name="scala.Predef.Map">Map</span>[<span class="extype" name="scala.Symbol">Symbol</span>, <span class="extype" name="akka.wamp.IdScope">IdScope</span>]</span>)</span><span class="result">: <span class="extype" name="akka.actor.Props">Props</span></span>
       </span>
       
       <p class="shortcomment cmt">Create a Props for an actor of this type
 </p><div class="fullcomment"><div class="comment cmt"><p>Create a Props for an actor of this type
-</p></div><dl class="paramcmts block"><dt class="param">scopes</dt><dd class="cmt"><p>is the <span class="extype" name="IdScope">IdScope</span> map used for <a href="../index.html#Id=Long" class="extmbr" name="akka.wamp.Id">Id</a> generation</p></dd><dt>returns</dt><dd class="cmt"><p>the props</p></dd></dl></div>
+</p></div><dl class="paramcmts block"><dt class="param">scopes</dt><dd class="cmt"><p>are the scopes for identifiers' generation</p></dd><dt>returns</dt><dd class="cmt"><p>the props</p></dd></dl></div>
     </li><li name="scala.AnyRef#synchronized" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="synchronized[T0](x$1:=&gt;T0):T0"></a><a id="synchronized[T0](⇒T0):T0"></a>
       <span class="permalink">

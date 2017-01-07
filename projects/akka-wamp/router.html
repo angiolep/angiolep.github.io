@@ -201,7 +201,7 @@ drop-offending-messages = false
 #
 transport {
   default {
-    # Transport protocol can be:
+    # Transport scheme can be:
     #
     # - tcp
     #     Raw TCP
@@ -212,11 +212,11 @@ transport {
     # - wss
     #     WebSocket over TLS
     #
-    protocol = &quot;ws&quot;
+    scheme = &quot;ws&quot;
 
-    # The TCP interface to bind to
+    # The hostname/IP-address to bind to
     #
-    iface = &quot;127.0.0.1&quot;
+    host = &quot;127.0.0.1&quot;
 
     # The TCP port number (between 0 and 65536) to bind to.
     # If set to 0 the first available random port number 
@@ -225,10 +225,10 @@ transport {
     port = 8080
 
     # (Only for &quot;ws&quot; and &quot;wss&quot; protocols)
-    # The URL path incoming HTTP Upgrade request are expected 
+    # The URL file path incoming HTTP Upgrade request are expected
     # to be addressed to
     #
-    upath = &quot;wamp&quot;
+    file = &quot;wamp&quot;
 
     # Message format can be:
     # 

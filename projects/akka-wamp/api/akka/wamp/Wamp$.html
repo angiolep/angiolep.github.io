@@ -297,7 +297,7 @@ implementation please refer to <a href="http://doc.akka.io/docs/akka/current/sca
 <span class="kw">import</span> akka.wamp.messages._
 
 <span class="kw">val</span> manager = IO(Wamp)
-manager ! Connect(<span class="lit">"wss://host:9999/router"</span>, <span class="lit">"wamp.2.json"</span>)
+manager ! Connect(<span class="lit">"wss://host:9999/router"</span>, <span class="lit">"json"</span>)
 
 <span class="kw">def</span> receive = {
   <span class="kw">case</span> Connected(handler) <span class="kw">=&gt;</span>

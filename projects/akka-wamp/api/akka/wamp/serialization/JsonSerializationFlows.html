@@ -413,9 +413,9 @@ to/from textual(binary)/object representation
               
         </dd></dl></div>
     </li><li name="akka.wamp.serialization.JsonSerializationFlows#deserialize" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="deserialize:akka.stream.scaladsl.Flow[akka.http.scaladsl.model.ws.Message,akka.wamp.messages.Message,akka.NotUsed]"></a><a id="deserialize:Flow[Message,Message,NotUsed]"></a>
+      <a id="deserialize:akka.stream.scaladsl.Flow[akka.http.scaladsl.model.ws.Message,akka.wamp.messages.ProtocolMessage,akka.NotUsed]"></a><a id="deserialize:Flow[Message,ProtocolMessage,NotUsed]"></a>
       <span class="permalink">
-      <a href="../../../akka/wamp/serialization/JsonSerializationFlows.html#deserialize:akka.stream.scaladsl.Flow[akka.http.scaladsl.model.ws.Message,akka.wamp.messages.Message,akka.NotUsed]" title="Permalink">
+      <a href="../../../akka/wamp/serialization/JsonSerializationFlows.html#deserialize:akka.stream.scaladsl.Flow[akka.http.scaladsl.model.ws.Message,akka.wamp.messages.ProtocolMessage,akka.NotUsed]" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -424,7 +424,7 @@ to/from textual(binary)/object representation
         <span class="kind">val</span>
       </span>
       <span class="symbol">
-        <span class="name">deserialize</span><span class="result">: <span class="extype" name="akka.stream.scaladsl.Flow">Flow</span>[<span class="extype" name="akka.http.scaladsl.model.ws.Message">Message</span>, <a href="../messages/Message.html" class="extype" name="akka.wamp.messages.Message">Message</a>, <span class="extype" name="akka.NotUsed">NotUsed</span>]</span>
+        <span class="name">deserialize</span><span class="result">: <span class="extype" name="akka.stream.scaladsl.Flow">Flow</span>[<span class="extype" name="akka.http.scaladsl.model.ws.Message">Message</span>, <a href="../messages/ProtocolMessage.html" class="extype" name="akka.wamp.messages.ProtocolMessage">ProtocolMessage</a>, <span class="extype" name="akka.NotUsed">NotUsed</span>]</span>
       </span>
       
       <p class="shortcomment cmt">Deserialize textual websocket.Message to wamp.Message object
@@ -613,9 +613,9 @@ to/from textual(binary)/object representation
       
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
     </li><li name="akka.wamp.serialization.JsonSerializationFlows#serialize" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="serialize:akka.stream.scaladsl.Flow[akka.wamp.messages.Message,akka.http.scaladsl.model.ws.Message,akka.NotUsed]"></a><a id="serialize:Flow[Message,Message,NotUsed]"></a>
+      <a id="serialize:akka.stream.scaladsl.Flow[akka.wamp.messages.ProtocolMessage,akka.http.scaladsl.model.ws.Message,akka.NotUsed]"></a><a id="serialize:Flow[ProtocolMessage,Message,NotUsed]"></a>
       <span class="permalink">
-      <a href="../../../akka/wamp/serialization/JsonSerializationFlows.html#serialize:akka.stream.scaladsl.Flow[akka.wamp.messages.Message,akka.http.scaladsl.model.ws.Message,akka.NotUsed]" title="Permalink">
+      <a href="../../../akka/wamp/serialization/JsonSerializationFlows.html#serialize:akka.stream.scaladsl.Flow[akka.wamp.messages.ProtocolMessage,akka.http.scaladsl.model.ws.Message,akka.NotUsed]" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -624,7 +624,7 @@ to/from textual(binary)/object representation
         <span class="kind">val</span>
       </span>
       <span class="symbol">
-        <span class="name">serialize</span><span class="result">: <span class="extype" name="akka.stream.scaladsl.Flow">Flow</span>[<a href="../messages/Message.html" class="extype" name="akka.wamp.messages.Message">Message</a>, <span class="extype" name="akka.http.scaladsl.model.ws.Message">Message</span>, <span class="extype" name="akka.NotUsed">NotUsed</span>]</span>
+        <span class="name">serialize</span><span class="result">: <span class="extype" name="akka.stream.scaladsl.Flow">Flow</span>[<a href="../messages/ProtocolMessage.html" class="extype" name="akka.wamp.messages.ProtocolMessage">ProtocolMessage</a>, <span class="extype" name="akka.http.scaladsl.model.ws.Message">Message</span>, <span class="extype" name="akka.NotUsed">NotUsed</span>]</span>
       </span>
       
       <p class="shortcomment cmt">Serialize from wamp.Message object to textual websocket.Message

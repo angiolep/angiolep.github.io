@@ -165,8 +165,8 @@ named transport configuration .">
                         </a>
                       </li><li class="current-entities indented3">
                         <span class="separator"></span>
-                        <a class="trait" href="Command.html" title="Common interface for all commands the Wamp manager can execute"></a>
-                        <a href="Command.html" title="Common interface for all commands the Wamp manager can execute">
+                        <a class="trait" href="Command.html" title="Represents command messages"></a>
+                        <a href="Command.html" title="Represents command messages">
                           Command
                         </a>
                       </li><li class="current-entities indented3">
@@ -179,8 +179,10 @@ named transport configuration .">
                         </a>
                       </li><li class="current-entities indented3">
                         <span class="separator"></span>
-                        <a class="class" href="Connect.html" title="This connect command is sent by a client applications with the intent to connect to a router."></a>
-                        <a href="Connect.html" title="This connect command is sent by a client applications with the intent to connect to a router.">
+                        <a class="class" href="Connect.html" title="This connect command is sent by a peer (a client) with the intent to establish
+a transport to another peer (a router)."></a>
+                        <a href="Connect.html" title="This connect command is sent by a peer (a client) with the intent to establish
+a transport to another peer (a router).">
                           Connect
                         </a>
                       </li><li class="current-entities indented3">
@@ -253,19 +255,19 @@ attaching to a Realm.">
                         </a>
                       </li><li class="current-entities indented3">
                         <span class="separator"></span>
-                        <a class="trait" href="ManagedMessage.html" title="Common interface for all commands and signals the Wamp manager can deal with
+                        <a class="trait" href="Message.html" title="Represents all messages
 "></a>
-                        <a href="ManagedMessage.html" title="Common interface for all commands and signals the Wamp manager can deal with
+                        <a href="Message.html" title="Represents all messages
 ">
-                          ManagedMessage
+                          Message
                         </a>
                       </li><li class="current-entities indented3">
                         <span class="separator"></span>
-                        <a class="trait" href="Message.html" title="Represents a message exchanged by Peers
+                        <a class="trait" href="ProtocolMessage.html" title="Represents protocol messages exchanged by Peers
 "></a>
-                        <a href="Message.html" title="Represents a message exchanged by Peers
+                        <a href="ProtocolMessage.html" title="Represents protocol messages exchanged by Peers
 ">
-                          Message
+                          ProtocolMessage
                         </a>
                       </li><li class="current-entities indented3">
                         <a class="object" href="Publish$.html" title=""></a>
@@ -348,6 +350,12 @@ attaching to a Realm.">
                           Unsubscribed
                         </a>
                       </li><li class="current-entities indented3">
+                        <span class="separator"></span>
+                        <a class="object" href="WampMessage$.html" title="Factory of Message instances"></a>
+                        <a href="WampMessage$.html" title="Factory of Message instances">
+                          WampMessage
+                        </a>
+                      </li><li class="current-entities indented3">
                         <a class="object" href="Welcome$.html" title=""></a>
                         <a class="class" href="Welcome.html" title="Sent by a router to accept a client and let it know the session is now open"></a>
                         <a href="Welcome.html" title="Sent by a router to accept a client and let it know the session is now open">
@@ -383,17 +391,17 @@ attaching to a Realm.">
         <span class="kind">case class</span>
       </span>
       <span class="symbol">
-        <span class="name">Bound</span><span class="params">(<span name="listener">listener: <span class="extype" name="akka.actor.ActorRef">ActorRef</span></span>, <span name="port">port: <span class="extype" name="scala.Int">Int</span></span>)</span><span class="result"> extends <a href="Signal.html" class="extype" name="akka.wamp.messages.Signal">Signal</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+        <span class="name">Bound</span><span class="params">(<span name="listener">listener: <span class="extype" name="akka.actor.ActorRef">ActorRef</span></span>, <span name="uri">uri: <span class="extype" name="java.net.URI">URI</span></span>)</span><span class="result"> extends <a href="Signal.html" class="extype" name="akka.wamp.messages.Signal">Signal</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
       </span>
       </h4>
 
       
           <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>This bound signal is replied back whenever a <a href="Bind.html" class="extype" name="akka.wamp.messages.Bind">Bind</a> command succeed.
-</p></div><dl class="paramcmts block"><dt class="param">listener</dt><dd class="cmt"><p>is the actor reference of the newly spawned connection listener actor</p></dd><dt class="param">port</dt><dd class="cmt"><p>is the port number the listener is currently bound to</p></dd></dl><div class="toggleContainer block">
+</p></div><dl class="paramcmts block"><dt class="param">listener</dt><dd class="cmt"><p>is the actor reference of the newly spawned connection listener actor</p></dd></dl><div class="toggleContainer block">
           <span class="toggle">
             Linear Supertypes
           </span>
-          <div class="superTypes hiddenContent"><span class="extype" name="scala.Serializable">Serializable</span>, <span class="extype" name="java.io.Serializable">Serializable</span>, <span class="extype" name="scala.Product">Product</span>, <span class="extype" name="scala.Equals">Equals</span>, <a href="Signal.html" class="extype" name="akka.wamp.messages.Signal">Signal</a>, <a href="ManagedMessage.html" class="extype" name="akka.wamp.messages.ManagedMessage">ManagedMessage</a>, <span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
+          <div class="superTypes hiddenContent"><span class="extype" name="scala.Serializable">Serializable</span>, <span class="extype" name="java.io.Serializable">Serializable</span>, <span class="extype" name="scala.Product">Product</span>, <span class="extype" name="scala.Equals">Equals</span>, <a href="Signal.html" class="extype" name="akka.wamp.messages.Signal">Signal</a>, <a href="Message.html" class="extype" name="akka.wamp.messages.Message">Message</a>, <span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
         </div></div>
         
 
@@ -419,7 +427,7 @@ attaching to a Realm.">
                   <span class="filtertype">Inherited<br />
                   </span>
                   <ol id="linearization">
-                    <li class="in" name="akka.wamp.messages.Bound"><span>Bound</span></li><li class="in" name="scala.Serializable"><span>Serializable</span></li><li class="in" name="java.io.Serializable"><span>Serializable</span></li><li class="in" name="scala.Product"><span>Product</span></li><li class="in" name="scala.Equals"><span>Equals</span></li><li class="in" name="akka.wamp.messages.Signal"><span>Signal</span></li><li class="in" name="akka.wamp.messages.ManagedMessage"><span>ManagedMessage</span></li><li class="in" name="scala.AnyRef"><span>AnyRef</span></li><li class="in" name="scala.Any"><span>Any</span></li>
+                    <li class="in" name="akka.wamp.messages.Bound"><span>Bound</span></li><li class="in" name="scala.Serializable"><span>Serializable</span></li><li class="in" name="java.io.Serializable"><span>Serializable</span></li><li class="in" name="scala.Product"><span>Product</span></li><li class="in" name="scala.Equals"><span>Equals</span></li><li class="in" name="akka.wamp.messages.Signal"><span>Signal</span></li><li class="in" name="akka.wamp.messages.Message"><span>Message</span></li><li class="in" name="scala.AnyRef"><span>AnyRef</span></li><li class="in" name="scala.Any"><span>Any</span></li>
                   </ol>
                 </div><div class="ancestors">
               <span class="filtertype"></span>
@@ -440,9 +448,9 @@ attaching to a Realm.">
         <div id="constructors" class="members">
               <h3>Instance Constructors</h3>
               <ol><li name="akka.wamp.messages.Bound#&lt;init&gt;" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="&lt;init&gt;(listener:akka.actor.ActorRef,port:Int):akka.wamp.messages.Bound"></a><a id="&lt;init&gt;:Bound"></a>
+      <a id="&lt;init&gt;(listener:akka.actor.ActorRef,uri:java.net.URI):akka.wamp.messages.Bound"></a><a id="&lt;init&gt;:Bound"></a>
       <span class="permalink">
-      <a href="../../../akka/wamp/messages/Bound.html#&lt;init&gt;(listener:akka.actor.ActorRef,port:Int):akka.wamp.messages.Bound" title="Permalink">
+      <a href="../../../akka/wamp/messages/Bound.html#&lt;init&gt;(listener:akka.actor.ActorRef,uri:java.net.URI):akka.wamp.messages.Bound" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -451,10 +459,10 @@ attaching to a Realm.">
         <span class="kind">new</span>
       </span>
       <span class="symbol">
-        <span class="name">Bound</span><span class="params">(<span name="listener">listener: <span class="extype" name="akka.actor.ActorRef">ActorRef</span></span>, <span name="port">port: <span class="extype" name="scala.Int">Int</span></span>)</span>
+        <span class="name">Bound</span><span class="params">(<span name="listener">listener: <span class="extype" name="akka.actor.ActorRef">ActorRef</span></span>, <span name="uri">uri: <span class="extype" name="java.net.URI">URI</span></span>)</span>
       </span>
       
-      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">listener</dt><dd class="cmt"><p>is the actor reference of the newly spawned connection listener actor</p></dd><dt class="param">port</dt><dd class="cmt"><p>is the port number the listener is currently bound to</p></dd></dl></div>
+      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">listener</dt><dd class="cmt"><p>is the actor reference of the newly spawned connection listener actor</p></dd></dl></div>
     </li></ol>
             </div>
 
@@ -685,22 +693,6 @@ attaching to a Realm.">
       </span>
       
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
-    </li><li name="akka.wamp.messages.Bound#port" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="port:Int"></a>
-      <span class="permalink">
-      <a href="../../../akka/wamp/messages/Bound.html#port:Int" title="Permalink">
-        <i class="material-icons"></i>
-      </a>
-    </span>
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">val</span>
-      </span>
-      <span class="symbol">
-        <span class="name">port</span><span class="result">: <span class="extype" name="scala.Int">Int</span></span>
-      </span>
-      
-      
     </li><li name="scala.AnyRef#synchronized" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="synchronized[T0](x$1:=&gt;T0):T0"></a><a id="synchronized[T0](⇒T0):T0"></a>
       <span class="permalink">
@@ -717,6 +709,22 @@ attaching to a Realm.">
       </span>
       
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
+    </li><li name="akka.wamp.messages.Bound#uri" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="uri:java.net.URI"></a><a id="uri:URI"></a>
+      <span class="permalink">
+      <a href="../../../akka/wamp/messages/Bound.html#uri:java.net.URI" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">uri</span><span class="result">: <span class="extype" name="java.net.URI">URI</span></span>
+      </span>
+      
+      
     </li><li name="scala.AnyRef#wait" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="wait():Unit"></a>
       <span class="permalink">
@@ -803,8 +811,8 @@ attaching to a Realm.">
               <h3>Inherited from <span class="extype" name="scala.Equals">Equals</span></h3>
             </div><div class="parent" name="akka.wamp.messages.Signal">
               <h3>Inherited from <a href="Signal.html" class="extype" name="akka.wamp.messages.Signal">Signal</a></h3>
-            </div><div class="parent" name="akka.wamp.messages.ManagedMessage">
-              <h3>Inherited from <a href="ManagedMessage.html" class="extype" name="akka.wamp.messages.ManagedMessage">ManagedMessage</a></h3>
+            </div><div class="parent" name="akka.wamp.messages.Message">
+              <h3>Inherited from <a href="Message.html" class="extype" name="akka.wamp.messages.Message">Message</a></h3>
             </div><div class="parent" name="scala.AnyRef">
               <h3>Inherited from <span class="extype" name="scala.AnyRef">AnyRef</span></h3>
             </div><div class="parent" name="scala.Any">

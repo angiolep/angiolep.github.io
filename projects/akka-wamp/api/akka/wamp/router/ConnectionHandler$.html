@@ -170,14 +170,10 @@ clients with callees that are registered to provide respective procedures
                           Registration
                         </a>
                       </li><li class="current-entities indented3">
-                        <a class="object" href="Router$.html" title="Router companion object
+                        <a class="object" href="Router$.html" title="Factory of Router's props instances
 "></a>
-                        <a class="class" href="Router.html" title="The router is a peer playing the broker and dealer which is
-responsible for generic call and event routing but do NOT run
-any application code a client would."></a>
-                        <a href="Router.html" title="The router is a peer playing the broker and dealer which is
-responsible for generic call and event routing but do NOT run
-any application code a client would.">
+                        <a class="class" href="Router.html" title="Represents a client."></a>
+                        <a href="Router.html" title="Represents a client.">
                           Router
                         </a>
                       </li><li class="current-entities indented3">
@@ -526,9 +522,9 @@ a transport.">
       
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
     </li><li name="akka.wamp.router.ConnectionHandler#props" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="props(router:akka.actor.ActorRef,config:com.typesafe.config.Config,upath:String,webroot:String):akka.actor.Props"></a><a id="props(ActorRef,Config,String,String):Props"></a>
+      <a id="props(router:akka.actor.ActorRef,routerConfig:com.typesafe.config.Config,transportConfig:com.typesafe.config.Config):akka.actor.Props"></a><a id="props(ActorRef,Config,Config):Props"></a>
       <span class="permalink">
-      <a href="../../../akka/wamp/router/ConnectionHandler$.html#props(router:akka.actor.ActorRef,config:com.typesafe.config.Config,upath:String,webroot:String):akka.actor.Props" title="Permalink">
+      <a href="../../../akka/wamp/router/ConnectionHandler$.html#props(router:akka.actor.ActorRef,routerConfig:com.typesafe.config.Config,transportConfig:com.typesafe.config.Config):akka.actor.Props" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -537,12 +533,12 @@ a transport.">
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">props</span><span class="params">(<span name="router">router: <span class="extype" name="akka.actor.ActorRef">ActorRef</span></span>, <span name="config">config: <span class="extype" name="com.typesafe.config.Config">Config</span></span>, <span name="upath">upath: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="webroot">webroot: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result">: <span class="extype" name="akka.actor.Props">Props</span></span>
+        <span class="name">props</span><span class="params">(<span name="router">router: <span class="extype" name="akka.actor.ActorRef">ActorRef</span></span>, <span name="routerConfig">routerConfig: <span class="extype" name="com.typesafe.config.Config">Config</span></span>, <span name="transportConfig">transportConfig: <span class="extype" name="com.typesafe.config.Config">Config</span></span>)</span><span class="result">: <span class="extype" name="akka.actor.Props">Props</span></span>
       </span>
       
       <p class="shortcomment cmt">Create a Props for an actor of this type
 </p><div class="fullcomment"><div class="comment cmt"><p>Create a Props for an actor of this type
-</p></div><dl class="paramcmts block"><dt class="param">router</dt><dd class="cmt"><p>is the first peer to connect</p></dd><dt class="param">config</dt><dd class="cmt"><p>is the router configuration</p></dd><dt class="param">upath</dt><dd class="cmt"><p>is the resource path this handler expects HTTP Upgrade to be addressed to</p></dd><dt class="param">webroot</dt><dd class="cmt"><p>is the local filesystem path this handler serves resources out of</p></dd></dl></div>
+</p></div><dl class="paramcmts block"><dt class="param">router</dt><dd class="cmt"><p>is the first peer to connect</p></dd><dt class="param">routerConfig</dt><dd class="cmt"><p>is the router configuration</p></dd><dt class="param">transportConfig</dt><dd class="cmt"><p>is the transport configuration</p></dd></dl></div>
     </li><li name="scala.AnyRef#synchronized" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="synchronized[T0](x$1:=&gt;T0):T0"></a><a id="synchronized[T0](⇒T0):T0"></a>
       <span class="permalink">

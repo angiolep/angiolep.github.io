@@ -207,8 +207,8 @@ named transport configuration .">
                         </a>
                       </li><li class="current-entities indented3">
                         <span class="separator"></span>
-                        <a class="trait" href="Command.html" title="Common interface for all commands the Wamp manager can execute"></a>
-                        <a href="Command.html" title="Common interface for all commands the Wamp manager can execute">
+                        <a class="trait" href="Command.html" title="Represents command messages"></a>
+                        <a href="Command.html" title="Represents command messages">
                           Command
                         </a>
                       </li><li class="current-entities indented3">
@@ -221,8 +221,10 @@ named transport configuration .">
                         </a>
                       </li><li class="current-entities indented3">
                         <span class="separator"></span>
-                        <a class="class" href="Connect.html" title="This connect command is sent by a client applications with the intent to connect to a router."></a>
-                        <a href="Connect.html" title="This connect command is sent by a client applications with the intent to connect to a router.">
+                        <a class="class" href="Connect.html" title="This connect command is sent by a peer (a client) with the intent to establish
+a transport to another peer (a router)."></a>
+                        <a href="Connect.html" title="This connect command is sent by a peer (a client) with the intent to establish
+a transport to another peer (a router).">
                           Connect
                         </a>
                       </li><li class="current-entities indented3">
@@ -295,19 +297,19 @@ attaching to a Realm.">
                         </a>
                       </li><li class="current-entities indented3">
                         <span class="separator"></span>
-                        <a class="trait" href="ManagedMessage.html" title="Common interface for all commands and signals the Wamp manager can deal with
+                        <a class="trait" href="Message.html" title="Represents all messages
 "></a>
-                        <a href="ManagedMessage.html" title="Common interface for all commands and signals the Wamp manager can deal with
+                        <a href="Message.html" title="Represents all messages
 ">
-                          ManagedMessage
+                          Message
                         </a>
                       </li><li class="current-entities indented3">
                         <span class="separator"></span>
-                        <a class="trait" href="Message.html" title="Represents a message exchanged by Peers
+                        <a class="trait" href="ProtocolMessage.html" title="Represents protocol messages exchanged by Peers
 "></a>
-                        <a href="Message.html" title="Represents a message exchanged by Peers
+                        <a href="ProtocolMessage.html" title="Represents protocol messages exchanged by Peers
 ">
-                          Message
+                          ProtocolMessage
                         </a>
                       </li><li class="current-entities indented3">
                         <a class="object" href="Publish$.html" title=""></a>
@@ -388,6 +390,12 @@ attaching to a Realm.">
                         <a class="class" href="Unsubscribed.html" title="Is the unsubscribed acknowledge"></a>
                         <a href="Unsubscribed.html" title="Is the unsubscribed acknowledge">
                           Unsubscribed
+                        </a>
+                      </li><li class="current-entities indented3">
+                        <span class="separator"></span>
+                        <a class="object" href="WampMessage$.html" title="Factory of Message instances"></a>
+                        <a href="WampMessage$.html" title="Factory of Message instances">
+                          WampMessage
                         </a>
                       </li><li class="current-entities indented3">
                         <a class="object" href="Welcome$.html" title=""></a>
@@ -502,9 +510,9 @@ attaching to a Realm.">
         <div id="types" class="types members">
               <h3>Type Members</h3>
               <ol><li name="akka.wamp.messages.Abort" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="AbortextendsMessagewithProductwithSerializable"></a><a id="Abort:Abort"></a>
+      <a id="AbortextendsProtocolMessagewithProductwithSerializable"></a><a id="Abort:Abort"></a>
       <span class="permalink">
-      <a href="../../../akka/wamp/messages/index.html#AbortextendsMessagewithProductwithSerializable" title="Permalink">
+      <a href="../../../akka/wamp/messages/index.html#AbortextendsProtocolMessagewithProductwithSerializable" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -515,7 +523,7 @@ attaching to a Realm.">
       <span class="symbol">
         <a title="Sent by a peer to abort the opening of a session." href="Abort.html">
               <span class="name">Abort</span>
-            </a><span class="params">(<span name="details">details: <a href="../index.html#Dict=Map[String,Any]" class="extmbr" name="akka.wamp.Dict">Dict</a> = <span class="symbol"><span class="name"><a href="Abort$.html">Abort.defaultDetails</a></span></span></span>, <span name="reason">reason: <a href="../index.html#Uri=String" class="extmbr" name="akka.wamp.Uri">Uri</a></span>)</span><span class="params">(<span class="implicit">implicit </span><span name="validator">validator: <span class="extype" name="akka.wamp.Validator">Validator</span></span>)</span><span class="result"> extends <a href="Message.html" class="extype" name="akka.wamp.messages.Message">Message</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+            </a><span class="params">(<span name="details">details: <a href="../index.html#Dict=Map[String,Any]" class="extmbr" name="akka.wamp.Dict">Dict</a> = <span class="symbol"><span class="name"><a href="Abort$.html">Abort.defaultDetails</a></span></span></span>, <span name="reason">reason: <a href="../index.html#Uri=String" class="extmbr" name="akka.wamp.Uri">Uri</a></span>)</span><span class="params">(<span class="implicit">implicit </span><span name="validator">validator: <span class="extype" name="akka.wamp.Validator">Validator</span></span>)</span><span class="result"> extends <a href="ProtocolMessage.html" class="extype" name="akka.wamp.messages.ProtocolMessage">ProtocolMessage</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
       </span>
       
       <p class="shortcomment cmt">Sent by a peer to abort the opening of a session.</p><div class="fullcomment"><div class="comment cmt"><p>Sent by a peer to abort the opening of a session.
@@ -557,15 +565,15 @@ named transport configuration .
       <span class="symbol">
         <a title="This bound signal is replied back whenever a Bind command succeed." href="Bound.html">
               <span class="name">Bound</span>
-            </a><span class="params">(<span name="listener">listener: <span class="extype" name="akka.actor.ActorRef">ActorRef</span></span>, <span name="port">port: <span class="extype" name="scala.Int">Int</span></span>)</span><span class="result"> extends <a href="Signal.html" class="extype" name="akka.wamp.messages.Signal">Signal</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+            </a><span class="params">(<span name="listener">listener: <span class="extype" name="akka.actor.ActorRef">ActorRef</span></span>, <span name="uri">uri: <span class="extype" name="java.net.URI">URI</span></span>)</span><span class="result"> extends <a href="Signal.html" class="extype" name="akka.wamp.messages.Signal">Signal</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
       </span>
       
       <p class="shortcomment cmt">This bound signal is replied back whenever a <a href="Bind.html" class="extype" name="akka.wamp.messages.Bind">Bind</a> command succeed.</p><div class="fullcomment"><div class="comment cmt"><p>This bound signal is replied back whenever a <a href="Bind.html" class="extype" name="akka.wamp.messages.Bind">Bind</a> command succeed.
-</p></div><dl class="paramcmts block"><dt class="param">listener</dt><dd class="cmt"><p>is the actor reference of the newly spawned connection listener actor</p></dd><dt class="param">port</dt><dd class="cmt"><p>is the port number the listener is currently bound to</p></dd></dl></div>
+</p></div><dl class="paramcmts block"><dt class="param">listener</dt><dd class="cmt"><p>is the actor reference of the newly spawned connection listener actor</p></dd></dl></div>
     </li><li name="akka.wamp.messages.Call" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="CallextendsMessagewithDataConveyorwithProductwithSerializable"></a><a id="Call:Call"></a>
+      <a id="CallextendsProtocolMessagewithDataConveyorwithProductwithSerializable"></a><a id="Call:Call"></a>
       <span class="permalink">
-      <a href="../../../akka/wamp/messages/index.html#CallextendsMessagewithDataConveyorwithProductwithSerializable" title="Permalink">
+      <a href="../../../akka/wamp/messages/index.html#CallextendsProtocolMessagewithDataConveyorwithProductwithSerializable" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -576,7 +584,7 @@ named transport configuration .
       <span class="symbol">
         <a title="Request sent by a caller to a dealer to call a procedure" href="Call.html">
               <span class="name">Call</span>
-            </a><span class="params">(<span name="requestId">requestId: <a href="../index.html#Id=Long" class="extmbr" name="akka.wamp.Id">Id</a></span>, <span name="options">options: <a href="../index.html#Dict=Map[String,Any]" class="extmbr" name="akka.wamp.Dict">Dict</a> = <span class="symbol"><span class="name"><a href="Call$.html">Call.defaultOptions</a></span></span></span>, <span name="procedure">procedure: <a href="../index.html#Uri=String" class="extmbr" name="akka.wamp.Uri">Uri</a></span>, <span name="payload">payload: <a href="../serialization/Payload.html" class="extype" name="akka.wamp.serialization.Payload">Payload</a> = <span class="symbol"><span class="name"><a href="../../index.html">Payload()</a></span></span></span>)</span><span class="params">(<span class="implicit">implicit </span><span name="validator">validator: <span class="extype" name="akka.wamp.Validator">Validator</span></span>)</span><span class="result"> extends <a href="Message.html" class="extype" name="akka.wamp.messages.Message">Message</a> with <a href="DataConveyor.html" class="extype" name="akka.wamp.messages.DataConveyor">DataConveyor</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+            </a><span class="params">(<span name="requestId">requestId: <a href="../index.html#Id=Long" class="extmbr" name="akka.wamp.Id">Id</a></span>, <span name="options">options: <a href="../index.html#Dict=Map[String,Any]" class="extmbr" name="akka.wamp.Dict">Dict</a> = <span class="symbol"><span class="name"><a href="Call$.html">Call.defaultOptions</a></span></span></span>, <span name="procedure">procedure: <a href="../index.html#Uri=String" class="extmbr" name="akka.wamp.Uri">Uri</a></span>, <span name="payload">payload: <a href="../serialization/Payload.html" class="extype" name="akka.wamp.serialization.Payload">Payload</a> = <span class="symbol"><span class="name"><a href="../../index.html">Payload()</a></span></span></span>)</span><span class="params">(<span class="implicit">implicit </span><span name="validator">validator: <span class="extype" name="akka.wamp.Validator">Validator</span></span>)</span><span class="result"> extends <a href="ProtocolMessage.html" class="extype" name="akka.wamp.messages.ProtocolMessage">ProtocolMessage</a> with <a href="DataConveyor.html" class="extype" name="akka.wamp.messages.DataConveyor">DataConveyor</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
       </span>
       
       <p class="shortcomment cmt">Request sent by a caller to a dealer to call a procedure</p><div class="fullcomment"><div class="comment cmt"><p>Request sent by a caller to a dealer to call a procedure</p><p><code><code><code>
@@ -605,10 +613,10 @@ named transport configuration .
       
       <p class="shortcomment cmt">This closed signal announces session closed
 </p>
-    </li><li name="akka.wamp.messages.Command" visbl="pub" class="indented0 " data-isabs="true" fullComment="yes" group="Ungrouped">
-      <a id="CommandextendsManagedMessage"></a><a id="Command:Command"></a>
+    </li><li name="akka.wamp.messages.Command" visbl="pub" class="indented0 " data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="CommandextendsMessage"></a><a id="Command:Command"></a>
       <span class="permalink">
-      <a href="../../../akka/wamp/messages/index.html#CommandextendsManagedMessage" title="Permalink">
+      <a href="../../../akka/wamp/messages/index.html#CommandextendsMessage" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -617,17 +625,12 @@ named transport configuration .
         <span class="kind">trait</span>
       </span>
       <span class="symbol">
-        <a title="Common interface for all commands the Wamp manager can execute" href="Command.html">
+        <a title="Represents command messages" href="Command.html">
               <span class="name">Command</span>
-            </a><span class="result"> extends <a href="ManagedMessage.html" class="extype" name="akka.wamp.messages.ManagedMessage">ManagedMessage</a></span>
+            </a><span class="result"> extends <a href="Message.html" class="extype" name="akka.wamp.messages.Message">Message</a></span>
       </span>
       
-      <p class="shortcomment cmt">Common interface for all commands the Wamp manager can execute</p><div class="fullcomment"><div class="comment cmt"><p>Common interface for all commands the Wamp manager can execute</p><p>- Connect
-- Disconnect
-- Bind
-- Unbind
-- ...
-</p></div></div>
+      <p class="shortcomment cmt">Represents command messages</p>
     </li><li name="akka.wamp.messages.CommandFailed" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="CommandFailedextendsSignalwithProductwithSerializable"></a><a id="CommandFailed:CommandFailed"></a>
       <span class="permalink">
@@ -661,13 +664,16 @@ named transport configuration .
         <span class="kind">case class</span>
       </span>
       <span class="symbol">
-        <a title="This connect command is sent by a client applications with the intent to connect to a router." href="Connect.html">
+        <a title="This connect command is sent by a peer (a client) with the intent to establish
+a transport to another peer (a router)." href="Connect.html">
               <span class="name">Connect</span>
-            </a><span class="params">(<span name="url">url: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="format">format: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result"> extends <a href="Command.html" class="extype" name="akka.wamp.messages.Command">Command</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+            </a><span class="params">(<span name="uri">uri: <span class="extype" name="java.net.URI">URI</span></span>, <span name="format">format: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result"> extends <a href="Command.html" class="extype" name="akka.wamp.messages.Command">Command</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
       </span>
       
-      <p class="shortcomment cmt">This connect command is sent by a client applications with the intent to connect to a router.</p><div class="fullcomment"><div class="comment cmt"><p>This connect command is sent by a client applications with the intent to connect to a router.
-</p></div><dl class="paramcmts block"><dt class="param">url</dt><dd class="cmt"><p>is the URL to connect to (e.g. &quot;ws://somehost.com:9999/path/to/ws&quot;)</p></dd><dt class="param">format</dt><dd class="cmt"><p>is the message format (e.g. &quot;json&quot;)</p></dd></dl></div>
+      <p class="shortcomment cmt">This connect command is sent by a peer (a client) with the intent to establish
+a transport to another peer (a router).</p><div class="fullcomment"><div class="comment cmt"><p>This connect command is sent by a peer (a client) with the intent to establish
+a transport to another peer (a router).
+</p></div><dl class="paramcmts block"><dt class="param">format</dt><dd class="cmt"><p>is the format used to encode messages (e.g. &quot;wamp.2.json&quot;)</p></dd></dl></div>
     </li><li name="akka.wamp.messages.Connected" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="ConnectedextendsSignalwithProductwithSerializable"></a><a id="Connected:Connected"></a>
       <span class="permalink">
@@ -682,11 +688,11 @@ named transport configuration .
       <span class="symbol">
         <a title="It the connected signal replied back whenever a Connect command succeed." href="Connected.html">
               <span class="name">Connected</span>
-            </a><span class="params">(<span name="handler">handler: <span class="extype" name="akka.actor.ActorRef">ActorRef</span></span>)</span><span class="result"> extends <a href="Signal.html" class="extype" name="akka.wamp.messages.Signal">Signal</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+            </a><span class="params">(<span name="handler">handler: <span class="extype" name="akka.actor.ActorRef">ActorRef</span></span>, <span name="uri">uri: <span class="extype" name="java.net.URI">URI</span></span>, <span name="format">format: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result"> extends <a href="Signal.html" class="extype" name="akka.wamp.messages.Signal">Signal</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
       </span>
       
       <p class="shortcomment cmt">It the connected signal replied back whenever a <a href="Connect.html" class="extype" name="akka.wamp.messages.Connect">Connect</a> command succeed.</p><div class="fullcomment"><div class="comment cmt"><p>It the connected signal replied back whenever a <a href="Connect.html" class="extype" name="akka.wamp.messages.Connect">Connect</a> command succeed.
-</p></div><dl class="paramcmts block"><dt class="param">handler</dt><dd class="cmt"><p>is the actor reference of the newly spawned connection handler actor</p></dd></dl></div>
+</p></div><dl class="paramcmts block"><dt class="param">handler</dt><dd class="cmt"><p>is the actor reference of the newly spawned connection handler actor</p></dd><dt class="param">format</dt><dd class="cmt"><p>is the format used to encode messages (e.g. &quot;wamp.2.json&quot;)</p></dd></dl></div>
     </li><li name="akka.wamp.messages.DataConveyor" visbl="pub" class="indented0 " data-isabs="true" fullComment="yes" group="Ungrouped">
       <a id="DataConveyorextendsAnyRef"></a><a id="DataConveyor:DataConveyor"></a>
       <span class="permalink">
@@ -743,9 +749,9 @@ payload <span class="kw">match</span> {
       <p class="shortcomment cmt">This disconnected signal announces handler disconnection
 </p>
     </li><li name="akka.wamp.messages.Error" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="ErrorextendsMessagewithDataConveyorwithProductwithSerializable"></a><a id="Error:Error"></a>
+      <a id="ErrorextendsProtocolMessagewithDataConveyorwithProductwithSerializable"></a><a id="Error:Error"></a>
       <span class="permalink">
-      <a href="../../../akka/wamp/messages/index.html#ErrorextendsMessagewithDataConveyorwithProductwithSerializable" title="Permalink">
+      <a href="../../../akka/wamp/messages/index.html#ErrorextendsProtocolMessagewithDataConveyorwithProductwithSerializable" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -756,7 +762,7 @@ payload <span class="kw">match</span> {
       <span class="symbol">
         <a title="Error reply sent by a peer as an error response to different kinds of requests." href="Error.html">
               <span class="name">Error</span>
-            </a><span class="params">(<span name="requestType">requestType: <span class="extype" name="scala.Int">Int</span></span>, <span name="requestId">requestId: <a href="../index.html#Id=Long" class="extmbr" name="akka.wamp.Id">Id</a></span>, <span name="details">details: <a href="../index.html#Dict=Map[String,Any]" class="extmbr" name="akka.wamp.Dict">Dict</a> = <span class="symbol"><span class="name"><a href="Error$.html">Error.defaultDict</a></span></span></span>, <span name="error">error: <a href="../index.html#Uri=String" class="extmbr" name="akka.wamp.Uri">Uri</a></span>, <span name="payload">payload: <a href="../serialization/Payload.html" class="extype" name="akka.wamp.serialization.Payload">Payload</a> = <span class="symbol"><span class="name"><a href="../../index.html">Payload()</a></span></span></span>)</span><span class="params">(<span class="implicit">implicit </span><span name="validator">validator: <span class="extype" name="akka.wamp.Validator">Validator</span></span>)</span><span class="result"> extends <a href="Message.html" class="extype" name="akka.wamp.messages.Message">Message</a> with <a href="DataConveyor.html" class="extype" name="akka.wamp.messages.DataConveyor">DataConveyor</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+            </a><span class="params">(<span name="requestType">requestType: <span class="extype" name="scala.Int">Int</span></span>, <span name="requestId">requestId: <a href="../index.html#Id=Long" class="extmbr" name="akka.wamp.Id">Id</a></span>, <span name="details">details: <a href="../index.html#Dict=Map[String,Any]" class="extmbr" name="akka.wamp.Dict">Dict</a> = <span class="symbol"><span class="name"><a href="Error$.html">Error.defaultDict</a></span></span></span>, <span name="error">error: <a href="../index.html#Uri=String" class="extmbr" name="akka.wamp.Uri">Uri</a></span>, <span name="payload">payload: <a href="../serialization/Payload.html" class="extype" name="akka.wamp.serialization.Payload">Payload</a> = <span class="symbol"><span class="name"><a href="../../index.html">Payload()</a></span></span></span>)</span><span class="params">(<span class="implicit">implicit </span><span name="validator">validator: <span class="extype" name="akka.wamp.Validator">Validator</span></span>)</span><span class="result"> extends <a href="ProtocolMessage.html" class="extype" name="akka.wamp.messages.ProtocolMessage">ProtocolMessage</a> with <a href="DataConveyor.html" class="extype" name="akka.wamp.messages.DataConveyor">DataConveyor</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
       </span>
       
       <p class="shortcomment cmt">Error reply sent by a peer as an error response to different kinds of requests.</p><div class="fullcomment"><div class="comment cmt"><p>Error reply sent by a peer as an error response to different kinds of requests.</p><p><code><code><code>
@@ -766,9 +772,9 @@ payload <span class="kw">match</span> {
 <code><code><code>
 </code></code></code></code></code></code></p></div><dl class="paramcmts block"><dt class="param">payload</dt><dd class="cmt"><p>is the payload bearing application data</p></dd></dl></div>
     </li><li name="akka.wamp.messages.Event" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="EventextendsMessagewithDataConveyorwithProductwithSerializable"></a><a id="Event:Event"></a>
+      <a id="EventextendsProtocolMessagewithDataConveyorwithProductwithSerializable"></a><a id="Event:Event"></a>
       <span class="permalink">
-      <a href="../../../akka/wamp/messages/index.html#EventextendsMessagewithDataConveyorwithProductwithSerializable" title="Permalink">
+      <a href="../../../akka/wamp/messages/index.html#EventextendsProtocolMessagewithDataConveyorwithProductwithSerializable" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -779,7 +785,7 @@ payload <span class="kw">match</span> {
       <span class="symbol">
         <a title="Event dispatched by brokers to subscribers for subscriptions the event was matching." href="Event.html">
               <span class="name">Event</span>
-            </a><span class="params">(<span name="subscriptionId">subscriptionId: <a href="../index.html#Id=Long" class="extmbr" name="akka.wamp.Id">Id</a></span>, <span name="publicationId">publicationId: <a href="../index.html#Id=Long" class="extmbr" name="akka.wamp.Id">Id</a></span>, <span name="details">details: <a href="../index.html#Dict=Map[String,Any]" class="extmbr" name="akka.wamp.Dict">Dict</a> = <span class="symbol"><span class="name"><a href="Event$.html">Event.defaultOptions</a></span></span></span>, <span name="payload">payload: <a href="../serialization/Payload.html" class="extype" name="akka.wamp.serialization.Payload">Payload</a> = <span class="symbol"><span class="name"><a href="../../index.html">Payload()</a></span></span></span>)</span><span class="params">(<span class="implicit">implicit </span><span name="validator">validator: <span class="extype" name="akka.wamp.Validator">Validator</span></span>, <span name="executionContent">executionContent: <span class="extype" name="scala.concurrent.ExecutionContext">ExecutionContext</span></span>)</span><span class="result"> extends <a href="Message.html" class="extype" name="akka.wamp.messages.Message">Message</a> with <a href="DataConveyor.html" class="extype" name="akka.wamp.messages.DataConveyor">DataConveyor</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+            </a><span class="params">(<span name="subscriptionId">subscriptionId: <a href="../index.html#Id=Long" class="extmbr" name="akka.wamp.Id">Id</a></span>, <span name="publicationId">publicationId: <a href="../index.html#Id=Long" class="extmbr" name="akka.wamp.Id">Id</a></span>, <span name="details">details: <a href="../index.html#Dict=Map[String,Any]" class="extmbr" name="akka.wamp.Dict">Dict</a> = <span class="symbol"><span class="name"><a href="Event$.html">Event.defaultOptions</a></span></span></span>, <span name="payload">payload: <a href="../serialization/Payload.html" class="extype" name="akka.wamp.serialization.Payload">Payload</a> = <span class="symbol"><span class="name"><a href="../../index.html">Payload()</a></span></span></span>)</span><span class="params">(<span class="implicit">implicit </span><span name="validator">validator: <span class="extype" name="akka.wamp.Validator">Validator</span></span>, <span name="executionContent">executionContent: <span class="extype" name="scala.concurrent.ExecutionContext">ExecutionContext</span></span>)</span><span class="result"> extends <a href="ProtocolMessage.html" class="extype" name="akka.wamp.messages.ProtocolMessage">ProtocolMessage</a> with <a href="DataConveyor.html" class="extype" name="akka.wamp.messages.DataConveyor">DataConveyor</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
       </span>
       
       <p class="shortcomment cmt">Event dispatched by brokers to subscribers for subscriptions the event was matching.</p><div class="fullcomment"><div class="comment cmt"><p>Event dispatched by brokers to subscribers for subscriptions the event was matching.</p><p><code><code><code>
@@ -789,9 +795,9 @@ payload <span class="kw">match</span> {
 <code><code><code>
 </code></code></code></code></code></code></p></div><dl class="paramcmts block"><dt class="param">subscriptionId</dt><dd class="cmt"><p>is the identifier of the subscription under which the subscriber receives the event (the identifier for the subscription originally handed out by the broker to the subscriber)</p></dd><dt class="param">publicationId</dt><dd class="cmt"><p>is the identifier of the publication of the published event</p></dd><dt class="param">details</dt><dd class="cmt"><p>is a dictionary that allows to provide additional event details in an extensible way</p></dd><dt class="param">payload</dt><dd class="cmt"><p>is the payload bearing application data</p></dd></dl></div>
     </li><li name="akka.wamp.messages.Goodbye" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="GoodbyeextendsMessagewithProductwithSerializable"></a><a id="Goodbye:Goodbye"></a>
+      <a id="GoodbyeextendsProtocolMessagewithProductwithSerializable"></a><a id="Goodbye:Goodbye"></a>
       <span class="permalink">
-      <a href="../../../akka/wamp/messages/index.html#GoodbyeextendsMessagewithProductwithSerializable" title="Permalink">
+      <a href="../../../akka/wamp/messages/index.html#GoodbyeextendsProtocolMessagewithProductwithSerializable" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -802,7 +808,7 @@ payload <span class="kw">match</span> {
       <span class="symbol">
         <a title="Sent by a peer to close a previously opened session." href="Goodbye.html">
               <span class="name">Goodbye</span>
-            </a><span class="params">(<span name="details">details: <a href="../index.html#Dict=Map[String,Any]" class="extmbr" name="akka.wamp.Dict">Dict</a> = <span class="symbol"><span class="name"><a href="Goodbye$.html">Goodbye.defaultDetails</a></span></span></span>, <span name="reason">reason: <a href="../index.html#Uri=String" class="extmbr" name="akka.wamp.Uri">Uri</a> = <span class="symbol"><span class="name"><a href="Goodbye$.html">Goodbye.defaultReason</a></span></span></span>)</span><span class="params">(<span class="implicit">implicit </span><span name="validator">validator: <span class="extype" name="akka.wamp.Validator">Validator</span></span>)</span><span class="result"> extends <a href="Message.html" class="extype" name="akka.wamp.messages.Message">Message</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+            </a><span class="params">(<span name="details">details: <a href="../index.html#Dict=Map[String,Any]" class="extmbr" name="akka.wamp.Dict">Dict</a> = <span class="symbol"><span class="name"><a href="Goodbye$.html">Goodbye.defaultDetails</a></span></span></span>, <span name="reason">reason: <a href="../index.html#Uri=String" class="extmbr" name="akka.wamp.Uri">Uri</a> = <span class="symbol"><span class="name"><a href="Goodbye$.html">Goodbye.defaultReason</a></span></span></span>)</span><span class="params">(<span class="implicit">implicit </span><span name="validator">validator: <span class="extype" name="akka.wamp.Validator">Validator</span></span>)</span><span class="result"> extends <a href="ProtocolMessage.html" class="extype" name="akka.wamp.messages.ProtocolMessage">ProtocolMessage</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
       </span>
       
       <p class="shortcomment cmt">Sent by a peer to close a previously opened session.</p><div class="fullcomment"><div class="comment cmt"><p>Sent by a peer to close a previously opened session.
@@ -835,9 +841,9 @@ signal to ask a newly spawned connection handler to handle it
 signal to ask a newly spawned connection handler to handle it
 </p></div><dl class="paramcmts block"><dt class="param">conn</dt><dd class="cmt"><p>is the incoming connection to be handled</p></dd></dl></div>
     </li><li name="akka.wamp.messages.Hello" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="HelloextendsMessagewithProductwithSerializable"></a><a id="Hello:Hello"></a>
+      <a id="HelloextendsProtocolMessagewithProductwithSerializable"></a><a id="Hello:Hello"></a>
       <span class="permalink">
-      <a href="../../../akka/wamp/messages/index.html#HelloextendsMessagewithProductwithSerializable" title="Permalink">
+      <a href="../../../akka/wamp/messages/index.html#HelloextendsProtocolMessagewithProductwithSerializable" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -849,7 +855,7 @@ signal to ask a newly spawned connection handler to handle it
         <a title="Sent by a client to initiate opening of a session to a router
 attaching to a Realm." href="Hello.html">
               <span class="name">Hello</span>
-            </a><span class="params">(<span name="realm">realm: <a href="../index.html#Uri=String" class="extmbr" name="akka.wamp.Uri">Uri</a> = <span class="symbol">&quot;default&quot;</span></span>, <span name="details">details: <a href="../index.html#Dict=Map[String,Any]" class="extmbr" name="akka.wamp.Dict">Dict</a> = <span class="symbol"><span class="name"><a href="Hello$.html">Hello.defaultDetails</a></span></span></span>)</span><span class="params">(<span class="implicit">implicit </span><span name="validator">validator: <span class="extype" name="akka.wamp.Validator">Validator</span></span>)</span><span class="result"> extends <a href="Message.html" class="extype" name="akka.wamp.messages.Message">Message</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+            </a><span class="params">(<span name="realm">realm: <a href="../index.html#Uri=String" class="extmbr" name="akka.wamp.Uri">Uri</a> = <span class="symbol">&quot;default&quot;</span></span>, <span name="details">details: <a href="../index.html#Dict=Map[String,Any]" class="extmbr" name="akka.wamp.Dict">Dict</a> = <span class="symbol"><span class="name"><a href="Hello$.html">Hello.defaultDetails</a></span></span></span>)</span><span class="params">(<span class="implicit">implicit </span><span name="validator">validator: <span class="extype" name="akka.wamp.Validator">Validator</span></span>)</span><span class="result"> extends <a href="ProtocolMessage.html" class="extype" name="akka.wamp.messages.ProtocolMessage">ProtocolMessage</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
       </span>
       
       <p class="shortcomment cmt">Sent by a client to initiate opening of a session to a router
@@ -864,9 +870,9 @@ with a key mapping to a &quot;Hello.Details.roles.&lt;role&gt;|dict&quot; where 
 - &quot;callee&quot;
 </p></div></div>
     </li><li name="akka.wamp.messages.Invocation" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="InvocationextendsMessagewithDataConveyorwithProductwithSerializable"></a><a id="Invocation:Invocation"></a>
+      <a id="InvocationextendsProtocolMessagewithDataConveyorwithProductwithSerializable"></a><a id="Invocation:Invocation"></a>
       <span class="permalink">
-      <a href="../../../akka/wamp/messages/index.html#InvocationextendsMessagewithDataConveyorwithProductwithSerializable" title="Permalink">
+      <a href="../../../akka/wamp/messages/index.html#InvocationextendsProtocolMessagewithDataConveyorwithProductwithSerializable" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -877,7 +883,7 @@ with a key mapping to a &quot;Hello.Details.roles.&lt;role&gt;|dict&quot; where 
       <span class="symbol">
         <a title="Invocation dispatched by the dealer to the callee providing the registration the invocation was matching." href="Invocation.html">
               <span class="name">Invocation</span>
-            </a><span class="params">(<span name="requestId">requestId: <a href="../index.html#Id=Long" class="extmbr" name="akka.wamp.Id">Id</a></span>, <span name="registrationId">registrationId: <a href="../index.html#Id=Long" class="extmbr" name="akka.wamp.Id">Id</a></span>, <span name="details">details: <a href="../index.html#Dict=Map[String,Any]" class="extmbr" name="akka.wamp.Dict">Dict</a> = <span class="symbol"><span class="name"><a href="Invocation$.html">Invocation.defaultDetails</a></span></span></span>, <span name="payload">payload: <a href="../serialization/Payload.html" class="extype" name="akka.wamp.serialization.Payload">Payload</a> = <span class="symbol"><span class="name"><a href="../../index.html">Payload()</a></span></span></span>)</span><span class="params">(<span class="implicit">implicit </span><span name="validator">validator: <span class="extype" name="akka.wamp.Validator">Validator</span></span>, <span name="executionContext">executionContext: <span class="extype" name="scala.concurrent.ExecutionContext">ExecutionContext</span></span>)</span><span class="result"> extends <a href="Message.html" class="extype" name="akka.wamp.messages.Message">Message</a> with <a href="DataConveyor.html" class="extype" name="akka.wamp.messages.DataConveyor">DataConveyor</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+            </a><span class="params">(<span name="requestId">requestId: <a href="../index.html#Id=Long" class="extmbr" name="akka.wamp.Id">Id</a></span>, <span name="registrationId">registrationId: <a href="../index.html#Id=Long" class="extmbr" name="akka.wamp.Id">Id</a></span>, <span name="details">details: <a href="../index.html#Dict=Map[String,Any]" class="extmbr" name="akka.wamp.Dict">Dict</a> = <span class="symbol"><span class="name"><a href="Invocation$.html">Invocation.defaultDetails</a></span></span></span>, <span name="payload">payload: <a href="../serialization/Payload.html" class="extype" name="akka.wamp.serialization.Payload">Payload</a> = <span class="symbol"><span class="name"><a href="../../index.html">Payload()</a></span></span></span>)</span><span class="params">(<span class="implicit">implicit </span><span name="validator">validator: <span class="extype" name="akka.wamp.Validator">Validator</span></span>, <span name="executionContext">executionContext: <span class="extype" name="scala.concurrent.ExecutionContext">ExecutionContext</span></span>)</span><span class="result"> extends <a href="ProtocolMessage.html" class="extype" name="akka.wamp.messages.ProtocolMessage">ProtocolMessage</a> with <a href="DataConveyor.html" class="extype" name="akka.wamp.messages.DataConveyor">DataConveyor</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
       </span>
       
       <p class="shortcomment cmt">Invocation dispatched by the dealer to the callee providing the registration the invocation was matching.</p><div class="fullcomment"><div class="comment cmt"><p>Invocation dispatched by the dealer to the callee providing the registration the invocation was matching.</p><p><code><code><code>
@@ -886,10 +892,10 @@ with a key mapping to a &quot;Hello.Details.roles.&lt;role&gt;|dict&quot; where 
 [INVOCATION, Request|id, REGISTERED.Registration|id, Details|dict, CALL.Arguments|list, CALL.ArgumentsKw|dict]
 <code><code><code>
 </code></code></code></code></code></code></p></div><dl class="paramcmts block"><dt class="param">requestId</dt><dd class="cmt"><p>is a random, ephemeral identifier chosen by the dealer and used to correlate the callee's response with the request.</p></dd><dt class="param">registrationId</dt><dd class="cmt"><p>is the registration identifier under which the procedure was registered at the dealer.</p></dd><dt class="param">details</dt><dd class="cmt"><p>is a dictionary that allows to provide additional invocation request details in an extensible way.</p></dd><dt class="param">payload</dt><dd class="cmt"><p>is the payload bearing application data</p></dd></dl></div>
-    </li><li name="akka.wamp.messages.ManagedMessage" visbl="pub" class="indented0 " data-isabs="true" fullComment="no" group="Ungrouped">
-      <a id="ManagedMessageextendsAnyRef"></a><a id="ManagedMessage:ManagedMessage"></a>
+    </li><li name="akka.wamp.messages.Message" visbl="pub" class="indented0 " data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="MessageextendsAnyRef"></a><a id="Message:Message"></a>
       <span class="permalink">
-      <a href="../../../akka/wamp/messages/index.html#ManagedMessageextendsAnyRef" title="Permalink">
+      <a href="../../../akka/wamp/messages/index.html#MessageextendsAnyRef" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -898,18 +904,18 @@ with a key mapping to a &quot;Hello.Details.roles.&lt;role&gt;|dict&quot; where 
         <span class="kind">trait</span>
       </span>
       <span class="symbol">
-        <a title="Common interface for all commands and signals the Wamp manager can deal with
-" href="ManagedMessage.html">
-              <span class="name">ManagedMessage</span>
+        <a title="Represents all messages
+" href="Message.html">
+              <span class="name">Message</span>
             </a><span class="result"> extends <span class="extype" name="scala.AnyRef">AnyRef</span></span>
       </span>
       
-      <p class="shortcomment cmt">Common interface for all commands and signals the Wamp manager can deal with
+      <p class="shortcomment cmt">Represents all messages
 </p>
-    </li><li name="akka.wamp.messages.Message" visbl="pub" class="indented0 " data-isabs="true" fullComment="no" group="Ungrouped">
-      <a id="MessageextendsManagedMessage"></a><a id="Message:Message"></a>
+    </li><li name="akka.wamp.messages.ProtocolMessage" visbl="pub" class="indented0 " data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="ProtocolMessageextendsMessage"></a><a id="ProtocolMessage:ProtocolMessage"></a>
       <span class="permalink">
-      <a href="../../../akka/wamp/messages/index.html#MessageextendsManagedMessage" title="Permalink">
+      <a href="../../../akka/wamp/messages/index.html#ProtocolMessageextendsMessage" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -918,18 +924,18 @@ with a key mapping to a &quot;Hello.Details.roles.&lt;role&gt;|dict&quot; where 
         <span class="kind">trait</span>
       </span>
       <span class="symbol">
-        <a title="Represents a message exchanged by Peers
-" href="Message.html">
-              <span class="name">Message</span>
-            </a><span class="result"> extends <a href="ManagedMessage.html" class="extype" name="akka.wamp.messages.ManagedMessage">ManagedMessage</a></span>
+        <a title="Represents protocol messages exchanged by Peers
+" href="ProtocolMessage.html">
+              <span class="name">ProtocolMessage</span>
+            </a><span class="result"> extends <a href="Message.html" class="extype" name="akka.wamp.messages.Message">Message</a></span>
       </span>
       
-      <p class="shortcomment cmt">Represents a message exchanged by <a href="../Peer.html" class="extype" name="akka.wamp.Peer">Peer</a>s
+      <p class="shortcomment cmt">Represents protocol messages exchanged by <a href="../Peer.html" class="extype" name="akka.wamp.Peer">Peer</a>s
 </p>
     </li><li name="akka.wamp.messages.Publish" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="PublishextendsMessagewithDataConveyorwithProductwithSerializable"></a><a id="Publish:Publish"></a>
+      <a id="PublishextendsProtocolMessagewithDataConveyorwithProductwithSerializable"></a><a id="Publish:Publish"></a>
       <span class="permalink">
-      <a href="../../../akka/wamp/messages/index.html#PublishextendsMessagewithDataConveyorwithProductwithSerializable" title="Permalink">
+      <a href="../../../akka/wamp/messages/index.html#PublishextendsProtocolMessagewithDataConveyorwithProductwithSerializable" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -940,7 +946,7 @@ with a key mapping to a &quot;Hello.Details.roles.&lt;role&gt;|dict&quot; where 
       <span class="symbol">
         <a title="Sent by a publisher to a broker to publish an event." href="Publish.html">
               <span class="name">Publish</span>
-            </a><span class="params">(<span name="requestId">requestId: <a href="../index.html#Id=Long" class="extmbr" name="akka.wamp.Id">Id</a></span>, <span name="options">options: <a href="../index.html#Dict=Map[String,Any]" class="extmbr" name="akka.wamp.Dict">Dict</a> = <span class="symbol"><span class="name"><a href="Publish$.html">Publish.defaultOptions</a></span></span></span>, <span name="topic">topic: <a href="../index.html#Uri=String" class="extmbr" name="akka.wamp.Uri">Uri</a></span>, <span name="payload">payload: <a href="../serialization/Payload.html" class="extype" name="akka.wamp.serialization.Payload">Payload</a> = <span class="symbol"><span class="name"><a href="../../index.html">Payload()</a></span></span></span>)</span><span class="params">(<span class="implicit">implicit </span><span name="validator">validator: <span class="extype" name="akka.wamp.Validator">Validator</span></span>)</span><span class="result"> extends <a href="Message.html" class="extype" name="akka.wamp.messages.Message">Message</a> with <a href="DataConveyor.html" class="extype" name="akka.wamp.messages.DataConveyor">DataConveyor</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+            </a><span class="params">(<span name="requestId">requestId: <a href="../index.html#Id=Long" class="extmbr" name="akka.wamp.Id">Id</a></span>, <span name="options">options: <a href="../index.html#Dict=Map[String,Any]" class="extmbr" name="akka.wamp.Dict">Dict</a> = <span class="symbol"><span class="name"><a href="Publish$.html">Publish.defaultOptions</a></span></span></span>, <span name="topic">topic: <a href="../index.html#Uri=String" class="extmbr" name="akka.wamp.Uri">Uri</a></span>, <span name="payload">payload: <a href="../serialization/Payload.html" class="extype" name="akka.wamp.serialization.Payload">Payload</a> = <span class="symbol"><span class="name"><a href="../../index.html">Payload()</a></span></span></span>)</span><span class="params">(<span class="implicit">implicit </span><span name="validator">validator: <span class="extype" name="akka.wamp.Validator">Validator</span></span>)</span><span class="result"> extends <a href="ProtocolMessage.html" class="extype" name="akka.wamp.messages.ProtocolMessage">ProtocolMessage</a> with <a href="DataConveyor.html" class="extype" name="akka.wamp.messages.DataConveyor">DataConveyor</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
       </span>
       
       <p class="shortcomment cmt">Sent by a publisher to a broker to publish an event.</p><div class="fullcomment"><div class="comment cmt"><p>Sent by a publisher to a broker to publish an event.</p><p><code><code><code>
@@ -950,9 +956,9 @@ with a key mapping to a &quot;Hello.Details.roles.&lt;role&gt;|dict&quot; where 
 <code><code><code>
 </code></code></code></code></code></code></p></div><dl class="paramcmts block"><dt class="param">requestId</dt><dd class="cmt"><p>is a random, ephemeral identifier chosen by the Publisher and used  to correlate the Broker's response with the request.</p></dd><dt class="param">options</dt><dd class="cmt"><p>is a dictionary that allows to provide additional publication  request details in an extensible way.</p></dd><dt class="param">topic</dt><dd class="cmt"><p>is the topic published to.</p></dd><dt class="param">payload</dt><dd class="cmt"><p>is the payload bearing application data</p></dd></dl></div>
     </li><li name="akka.wamp.messages.Published" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="PublishedextendsMessagewithProductwithSerializable"></a><a id="Published:Published"></a>
+      <a id="PublishedextendsProtocolMessagewithProductwithSerializable"></a><a id="Published:Published"></a>
       <span class="permalink">
-      <a href="../../../akka/wamp/messages/index.html#PublishedextendsMessagewithProductwithSerializable" title="Permalink">
+      <a href="../../../akka/wamp/messages/index.html#PublishedextendsProtocolMessagewithProductwithSerializable" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -963,7 +969,7 @@ with a key mapping to a &quot;Hello.Details.roles.&lt;role&gt;|dict&quot; where 
       <span class="symbol">
         <a title="Acknowledge sent by a Broker to a Publisher for acknowledged Publications." href="Published.html">
               <span class="name">Published</span>
-            </a><span class="params">(<span name="requestId">requestId: <a href="../index.html#Id=Long" class="extmbr" name="akka.wamp.Id">Id</a></span>, <span name="publicationId">publicationId: <a href="../index.html#Id=Long" class="extmbr" name="akka.wamp.Id">Id</a></span>)</span><span class="params">(<span class="implicit">implicit </span><span name="validator">validator: <span class="extype" name="akka.wamp.Validator">Validator</span></span>)</span><span class="result"> extends <a href="Message.html" class="extype" name="akka.wamp.messages.Message">Message</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+            </a><span class="params">(<span name="requestId">requestId: <a href="../index.html#Id=Long" class="extmbr" name="akka.wamp.Id">Id</a></span>, <span name="publicationId">publicationId: <a href="../index.html#Id=Long" class="extmbr" name="akka.wamp.Id">Id</a></span>)</span><span class="params">(<span class="implicit">implicit </span><span name="validator">validator: <span class="extype" name="akka.wamp.Validator">Validator</span></span>)</span><span class="result"> extends <a href="ProtocolMessage.html" class="extype" name="akka.wamp.messages.ProtocolMessage">ProtocolMessage</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
       </span>
       
       <p class="shortcomment cmt">Acknowledge sent by a Broker to a Publisher for acknowledged Publications.</p><div class="fullcomment"><div class="comment cmt"><p>Acknowledge sent by a Broker to a Publisher for acknowledged Publications.</p><p><code><code><code>
@@ -971,9 +977,9 @@ with a key mapping to a &quot;Hello.Details.roles.&lt;role&gt;|dict&quot; where 
 <code><code><code>
 </code></code></code></code></code></code></p></div><dl class="paramcmts block"><dt class="param">requestId</dt><dd class="cmt"><p>is the identifier from the original publication request</p></dd><dt class="param">publicationId</dt><dd class="cmt"><p>is a identifier chosen by the router for the publication</p></dd></dl></div>
     </li><li name="akka.wamp.messages.Register" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="RegisterextendsMessagewithProductwithSerializable"></a><a id="Register:Register"></a>
+      <a id="RegisterextendsProtocolMessagewithProductwithSerializable"></a><a id="Register:Register"></a>
       <span class="permalink">
-      <a href="../../../akka/wamp/messages/index.html#RegisterextendsMessagewithProductwithSerializable" title="Permalink">
+      <a href="../../../akka/wamp/messages/index.html#RegisterextendsProtocolMessagewithProductwithSerializable" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -984,7 +990,7 @@ with a key mapping to a &quot;Hello.Details.roles.&lt;role&gt;|dict&quot; where 
       <span class="symbol">
         <a title="Register request sent by a callee to a dealer to register a procedure endpoint" href="Register.html">
               <span class="name">Register</span>
-            </a><span class="params">(<span name="requestId">requestId: <a href="../index.html#Id=Long" class="extmbr" name="akka.wamp.Id">Id</a></span>, <span name="options">options: <a href="../index.html#Dict=Map[String,Any]" class="extmbr" name="akka.wamp.Dict">Dict</a> = <span class="symbol"><span class="name"><a href="Register$.html">Register.defaultOptions</a></span></span></span>, <span name="procedure">procedure: <a href="../index.html#Uri=String" class="extmbr" name="akka.wamp.Uri">Uri</a></span>)</span><span class="params">(<span class="implicit">implicit </span><span name="validator">validator: <span class="extype" name="akka.wamp.Validator">Validator</span></span>)</span><span class="result"> extends <a href="Message.html" class="extype" name="akka.wamp.messages.Message">Message</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+            </a><span class="params">(<span name="requestId">requestId: <a href="../index.html#Id=Long" class="extmbr" name="akka.wamp.Id">Id</a></span>, <span name="options">options: <a href="../index.html#Dict=Map[String,Any]" class="extmbr" name="akka.wamp.Dict">Dict</a> = <span class="symbol"><span class="name"><a href="Register$.html">Register.defaultOptions</a></span></span></span>, <span name="procedure">procedure: <a href="../index.html#Uri=String" class="extmbr" name="akka.wamp.Uri">Uri</a></span>)</span><span class="params">(<span class="implicit">implicit </span><span name="validator">validator: <span class="extype" name="akka.wamp.Validator">Validator</span></span>)</span><span class="result"> extends <a href="ProtocolMessage.html" class="extype" name="akka.wamp.messages.ProtocolMessage">ProtocolMessage</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
       </span>
       
       <p class="shortcomment cmt">Register request sent by a callee to a dealer to register a procedure endpoint</p><div class="fullcomment"><div class="comment cmt"><p>Register request sent by a callee to a dealer to register a procedure endpoint</p><p><code><code><code>
@@ -992,9 +998,9 @@ with a key mapping to a &quot;Hello.Details.roles.&lt;role&gt;|dict&quot; where 
 <code><code><code>
 </code></code></code></code></code></code></p></div><dl class="paramcmts block"><dt class="param">requestId</dt><dd class="cmt"><p>is a random, ephemeral identifier chosen by the Callee and used to correlate the Dealer's response with the request</p></dd><dt class="param">options</dt><dd class="cmt"><p>is a dictionary that allows to provide additional registration request details in a extensible way</p></dd><dt class="param">procedure</dt><dd class="cmt"><p>is the procedure the Callee wants to register</p></dd></dl></div>
     </li><li name="akka.wamp.messages.Registered" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="RegisteredextendsMessagewithProductwithSerializable"></a><a id="Registered:Registered"></a>
+      <a id="RegisteredextendsProtocolMessagewithProductwithSerializable"></a><a id="Registered:Registered"></a>
       <span class="permalink">
-      <a href="../../../akka/wamp/messages/index.html#RegisteredextendsMessagewithProductwithSerializable" title="Permalink">
+      <a href="../../../akka/wamp/messages/index.html#RegisteredextendsProtocolMessagewithProductwithSerializable" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -1005,7 +1011,7 @@ with a key mapping to a &quot;Hello.Details.roles.&lt;role&gt;|dict&quot; where 
       <span class="symbol">
         <a title="Acknowledge sent by a dealer to a callee to acknowledge a registration" href="Registered.html">
               <span class="name">Registered</span>
-            </a><span class="params">(<span name="requestId">requestId: <a href="../index.html#Id=Long" class="extmbr" name="akka.wamp.Id">Id</a></span>, <span name="registrationId">registrationId: <a href="../index.html#Id=Long" class="extmbr" name="akka.wamp.Id">Id</a></span>)</span><span class="params">(<span class="implicit">implicit </span><span name="validator">validator: <span class="extype" name="akka.wamp.Validator">Validator</span></span>)</span><span class="result"> extends <a href="Message.html" class="extype" name="akka.wamp.messages.Message">Message</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+            </a><span class="params">(<span name="requestId">requestId: <a href="../index.html#Id=Long" class="extmbr" name="akka.wamp.Id">Id</a></span>, <span name="registrationId">registrationId: <a href="../index.html#Id=Long" class="extmbr" name="akka.wamp.Id">Id</a></span>)</span><span class="params">(<span class="implicit">implicit </span><span name="validator">validator: <span class="extype" name="akka.wamp.Validator">Validator</span></span>)</span><span class="result"> extends <a href="ProtocolMessage.html" class="extype" name="akka.wamp.messages.ProtocolMessage">ProtocolMessage</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
       </span>
       
       <p class="shortcomment cmt">Acknowledge sent by a dealer to a callee to acknowledge a registration</p><div class="fullcomment"><div class="comment cmt"><p>Acknowledge sent by a dealer to a callee to acknowledge a registration</p><p><code><code><code>
@@ -1013,9 +1019,9 @@ with a key mapping to a &quot;Hello.Details.roles.&lt;role&gt;|dict&quot; where 
 <code><code><code>
 </code></code></code></code></code></code></p></div><dl class="paramcmts block"><dt class="param">requestId</dt><dd class="cmt"><p>is the identifier from the original register request</p></dd><dt class="param">registrationId</dt><dd class="cmt"><p>is an identifier chosen by the dealer for the registration</p></dd></dl></div>
     </li><li name="akka.wamp.messages.Result" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="ResultextendsMessagewithDataConveyorwithProductwithSerializable"></a><a id="Result:Result"></a>
+      <a id="ResultextendsProtocolMessagewithDataConveyorwithProductwithSerializable"></a><a id="Result:Result"></a>
       <span class="permalink">
-      <a href="../../../akka/wamp/messages/index.html#ResultextendsMessagewithDataConveyorwithProductwithSerializable" title="Permalink">
+      <a href="../../../akka/wamp/messages/index.html#ResultextendsProtocolMessagewithDataConveyorwithProductwithSerializable" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -1026,7 +1032,7 @@ with a key mapping to a &quot;Hello.Details.roles.&lt;role&gt;|dict&quot; where 
       <span class="symbol">
         <a title="Result of a call as returned by dealer to caller" href="Result.html">
               <span class="name">Result</span>
-            </a><span class="params">(<span name="requestId">requestId: <a href="../index.html#Id=Long" class="extmbr" name="akka.wamp.Id">Id</a></span>, <span name="details">details: <a href="../index.html#Dict=Map[String,Any]" class="extmbr" name="akka.wamp.Dict">Dict</a> = <span class="symbol"><span class="name"><a href="Result$.html">Result.defaultDetails</a></span></span></span>, <span name="payload">payload: <a href="../serialization/Payload.html" class="extype" name="akka.wamp.serialization.Payload">Payload</a> = <span class="symbol"><span class="name"><a href="../../index.html">Payload()</a></span></span></span>)</span><span class="params">(<span class="implicit">implicit </span><span name="validator">validator: <span class="extype" name="akka.wamp.Validator">Validator</span></span>, <span name="ec">ec: <span class="extype" name="scala.concurrent.ExecutionContext">ExecutionContext</span></span>)</span><span class="result"> extends <a href="Message.html" class="extype" name="akka.wamp.messages.Message">Message</a> with <a href="DataConveyor.html" class="extype" name="akka.wamp.messages.DataConveyor">DataConveyor</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+            </a><span class="params">(<span name="requestId">requestId: <a href="../index.html#Id=Long" class="extmbr" name="akka.wamp.Id">Id</a></span>, <span name="details">details: <a href="../index.html#Dict=Map[String,Any]" class="extmbr" name="akka.wamp.Dict">Dict</a> = <span class="symbol"><span class="name"><a href="Result$.html">Result.defaultDetails</a></span></span></span>, <span name="payload">payload: <a href="../serialization/Payload.html" class="extype" name="akka.wamp.serialization.Payload">Payload</a> = <span class="symbol"><span class="name"><a href="../../index.html">Payload()</a></span></span></span>)</span><span class="params">(<span class="implicit">implicit </span><span name="validator">validator: <span class="extype" name="akka.wamp.Validator">Validator</span></span>, <span name="ec">ec: <span class="extype" name="scala.concurrent.ExecutionContext">ExecutionContext</span></span>)</span><span class="result"> extends <a href="ProtocolMessage.html" class="extype" name="akka.wamp.messages.ProtocolMessage">ProtocolMessage</a> with <a href="DataConveyor.html" class="extype" name="akka.wamp.messages.DataConveyor">DataConveyor</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
       </span>
       
       <p class="shortcomment cmt">Result of a call as returned by dealer to caller</p><div class="fullcomment"><div class="comment cmt"><p>Result of a call as returned by dealer to caller</p><p><code><code><code>
@@ -1036,9 +1042,9 @@ with a key mapping to a &quot;Hello.Details.roles.&lt;role&gt;|dict&quot; where 
 <code><code><code>
 </code></code></code></code></code></code></p></div><dl class="paramcmts block"><dt class="param">requestId</dt><dd class="cmt"><p>is the identifiers from the original call request</p></dd><dt class="param">details</dt><dd class="cmt"><p>is a dictionary that allows to provide additional details in an extensible way</p></dd><dt class="param">payload</dt><dd class="cmt"><p>is the payload bearing application data</p></dd></dl></div>
     </li><li name="akka.wamp.messages.Signal" visbl="pub" class="indented0 " data-isabs="true" fullComment="no" group="Ungrouped">
-      <a id="SignalextendsManagedMessage"></a><a id="Signal:Signal"></a>
+      <a id="SignalextendsMessage"></a><a id="Signal:Signal"></a>
       <span class="permalink">
-      <a href="../../../akka/wamp/messages/index.html#SignalextendsManagedMessage" title="Permalink">
+      <a href="../../../akka/wamp/messages/index.html#SignalextendsMessage" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -1050,15 +1056,15 @@ with a key mapping to a &quot;Hello.Details.roles.&lt;role&gt;|dict&quot; where 
         <a title="Common interface for all signals generated by this extension
 " href="Signal.html">
               <span class="name">Signal</span>
-            </a><span class="result"> extends <a href="ManagedMessage.html" class="extype" name="akka.wamp.messages.ManagedMessage">ManagedMessage</a></span>
+            </a><span class="result"> extends <a href="Message.html" class="extype" name="akka.wamp.messages.Message">Message</a></span>
       </span>
       
       <p class="shortcomment cmt">Common interface for all signals generated by this extension
 </p>
     </li><li name="akka.wamp.messages.Subscribe" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="SubscribeextendsMessagewithProductwithSerializable"></a><a id="Subscribe:Subscribe"></a>
+      <a id="SubscribeextendsProtocolMessagewithProductwithSerializable"></a><a id="Subscribe:Subscribe"></a>
       <span class="permalink">
-      <a href="../../../akka/wamp/messages/index.html#SubscribeextendsMessagewithProductwithSerializable" title="Permalink">
+      <a href="../../../akka/wamp/messages/index.html#SubscribeextendsProtocolMessagewithProductwithSerializable" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -1069,7 +1075,7 @@ with a key mapping to a &quot;Hello.Details.roles.&lt;role&gt;|dict&quot; where 
       <span class="symbol">
         <a title="Subscribe request sent by a Subscriber to a Broker to subscribe to a Topic." href="Subscribe.html">
               <span class="name">Subscribe</span>
-            </a><span class="params">(<span name="requestId">requestId: <a href="../index.html#Id=Long" class="extmbr" name="akka.wamp.Id">Id</a></span>, <span name="options">options: <a href="../index.html#Dict=Map[String,Any]" class="extmbr" name="akka.wamp.Dict">Dict</a> = <span class="symbol"><span class="name"><a href="Subscribe$.html">Subscribe.defaultOptions</a></span></span></span>, <span name="topic">topic: <a href="../index.html#Uri=String" class="extmbr" name="akka.wamp.Uri">Uri</a></span>)</span><span class="params">(<span class="implicit">implicit </span><span name="validator">validator: <span class="extype" name="akka.wamp.Validator">Validator</span></span>)</span><span class="result"> extends <a href="Message.html" class="extype" name="akka.wamp.messages.Message">Message</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+            </a><span class="params">(<span name="requestId">requestId: <a href="../index.html#Id=Long" class="extmbr" name="akka.wamp.Id">Id</a></span>, <span name="options">options: <a href="../index.html#Dict=Map[String,Any]" class="extmbr" name="akka.wamp.Dict">Dict</a> = <span class="symbol"><span class="name"><a href="Subscribe$.html">Subscribe.defaultOptions</a></span></span></span>, <span name="topic">topic: <a href="../index.html#Uri=String" class="extmbr" name="akka.wamp.Uri">Uri</a></span>)</span><span class="params">(<span class="implicit">implicit </span><span name="validator">validator: <span class="extype" name="akka.wamp.Validator">Validator</span></span>)</span><span class="result"> extends <a href="ProtocolMessage.html" class="extype" name="akka.wamp.messages.ProtocolMessage">ProtocolMessage</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
       </span>
       
       <p class="shortcomment cmt">Subscribe request sent by a Subscriber to a Broker to subscribe to a Topic.</p><div class="fullcomment"><div class="comment cmt"><p>Subscribe request sent by a Subscriber to a Broker to subscribe to a Topic.</p><p><code><code><code>
@@ -1077,9 +1083,9 @@ with a key mapping to a &quot;Hello.Details.roles.&lt;role&gt;|dict&quot; where 
 <code><code><code>
 </code></code></code></code></code></code></p></div><dl class="paramcmts block"><dt class="param">requestId</dt><dd class="cmt"><p>is a random, ephemeral identifier chosen by the Subscriber and used to  correlate the Broker's response with the request</p></dd><dt class="param">options</dt><dd class="cmt"><p>is a dictionary that allows to provide additional subscription  request details in a extensible way</p></dd><dt class="param">topic</dt><dd class="cmt"><p>is the topic the Subscribe  wants to subscribe to</p></dd></dl></div>
     </li><li name="akka.wamp.messages.Subscribed" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="SubscribedextendsMessagewithProductwithSerializable"></a><a id="Subscribed:Subscribed"></a>
+      <a id="SubscribedextendsProtocolMessagewithProductwithSerializable"></a><a id="Subscribed:Subscribed"></a>
       <span class="permalink">
-      <a href="../../../akka/wamp/messages/index.html#SubscribedextendsMessagewithProductwithSerializable" title="Permalink">
+      <a href="../../../akka/wamp/messages/index.html#SubscribedextendsProtocolMessagewithProductwithSerializable" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -1090,7 +1096,7 @@ with a key mapping to a &quot;Hello.Details.roles.&lt;role&gt;|dict&quot; where 
       <span class="symbol">
         <a title="Acknowledge sent by a Broker to a Subscriber to acknowledge a subscription." href="Subscribed.html">
               <span class="name">Subscribed</span>
-            </a><span class="params">(<span name="requestId">requestId: <a href="../index.html#Id=Long" class="extmbr" name="akka.wamp.Id">Id</a></span>, <span name="subscriptionId">subscriptionId: <a href="../index.html#Id=Long" class="extmbr" name="akka.wamp.Id">Id</a></span>)</span><span class="params">(<span class="implicit">implicit </span><span name="validator">validator: <span class="extype" name="akka.wamp.Validator">Validator</span></span>)</span><span class="result"> extends <a href="Message.html" class="extype" name="akka.wamp.messages.Message">Message</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+            </a><span class="params">(<span name="requestId">requestId: <a href="../index.html#Id=Long" class="extmbr" name="akka.wamp.Id">Id</a></span>, <span name="subscriptionId">subscriptionId: <a href="../index.html#Id=Long" class="extmbr" name="akka.wamp.Id">Id</a></span>)</span><span class="params">(<span class="implicit">implicit </span><span name="validator">validator: <span class="extype" name="akka.wamp.Validator">Validator</span></span>)</span><span class="result"> extends <a href="ProtocolMessage.html" class="extype" name="akka.wamp.messages.ProtocolMessage">ProtocolMessage</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
       </span>
       
       <p class="shortcomment cmt">Acknowledge sent by a Broker to a Subscriber to acknowledge a subscription.</p><div class="fullcomment"><div class="comment cmt"><p>Acknowledge sent by a Broker to a Subscriber to acknowledge a subscription.</p><p><code><code><code>
@@ -1098,9 +1104,9 @@ with a key mapping to a &quot;Hello.Details.roles.&lt;role&gt;|dict&quot; where 
 <code><code><code>
 </code></code></code></code></code></code></p></div><dl class="paramcmts block"><dt class="param">requestId</dt><dd class="cmt"><p>is the identifier from the original Subscribe request</p></dd><dt class="param">subscriptionId</dt><dd class="cmt"><p>is an identifier chosen by the Broker for the subscription</p></dd></dl></div>
     </li><li name="akka.wamp.messages.Unregister" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="UnregisterextendsMessagewithProductwithSerializable"></a><a id="Unregister:Unregister"></a>
+      <a id="UnregisterextendsProtocolMessagewithProductwithSerializable"></a><a id="Unregister:Unregister"></a>
       <span class="permalink">
-      <a href="../../../akka/wamp/messages/index.html#UnregisterextendsMessagewithProductwithSerializable" title="Permalink">
+      <a href="../../../akka/wamp/messages/index.html#UnregisterextendsProtocolMessagewithProductwithSerializable" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -1111,7 +1117,7 @@ with a key mapping to a &quot;Hello.Details.roles.&lt;role&gt;|dict&quot; where 
       <span class="symbol">
         <a title="Unregister request sent by a callee to a dealer to unregister a procedure endpoint." href="Unregister.html">
               <span class="name">Unregister</span>
-            </a><span class="params">(<span name="requestId">requestId: <a href="../index.html#Id=Long" class="extmbr" name="akka.wamp.Id">Id</a></span>, <span name="registrationId">registrationId: <a href="../index.html#Id=Long" class="extmbr" name="akka.wamp.Id">Id</a></span>)</span><span class="params">(<span class="implicit">implicit </span><span name="validator">validator: <span class="extype" name="akka.wamp.Validator">Validator</span></span>)</span><span class="result"> extends <a href="Message.html" class="extype" name="akka.wamp.messages.Message">Message</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+            </a><span class="params">(<span name="requestId">requestId: <a href="../index.html#Id=Long" class="extmbr" name="akka.wamp.Id">Id</a></span>, <span name="registrationId">registrationId: <a href="../index.html#Id=Long" class="extmbr" name="akka.wamp.Id">Id</a></span>)</span><span class="params">(<span class="implicit">implicit </span><span name="validator">validator: <span class="extype" name="akka.wamp.Validator">Validator</span></span>)</span><span class="result"> extends <a href="ProtocolMessage.html" class="extype" name="akka.wamp.messages.ProtocolMessage">ProtocolMessage</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
       </span>
       
       <p class="shortcomment cmt">Unregister request sent by a callee to a dealer to unregister a procedure endpoint.</p><div class="fullcomment"><div class="comment cmt"><p>Unregister request sent by a callee to a dealer to unregister a procedure endpoint.</p><p><code><code><code>
@@ -1119,9 +1125,9 @@ with a key mapping to a &quot;Hello.Details.roles.&lt;role&gt;|dict&quot; where 
 <code><code><code>
 </code></code></code></code></code></code></p></div><dl class="paramcmts block"><dt class="param">requestId</dt><dd class="cmt"><p>is a random, ephemeral identifier chosen by the callee and used to correlate the dealer's response with the request.</p></dd><dt class="param">registrationId</dt><dd class="cmt"><p>is the identifier for the registration to revoke, originally handed out by the dealer to the callee.</p></dd></dl></div>
     </li><li name="akka.wamp.messages.Unregistered" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="UnregisteredextendsMessagewithProductwithSerializable"></a><a id="Unregistered:Unregistered"></a>
+      <a id="UnregisteredextendsProtocolMessagewithProductwithSerializable"></a><a id="Unregistered:Unregistered"></a>
       <span class="permalink">
-      <a href="../../../akka/wamp/messages/index.html#UnregisteredextendsMessagewithProductwithSerializable" title="Permalink">
+      <a href="../../../akka/wamp/messages/index.html#UnregisteredextendsProtocolMessagewithProductwithSerializable" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -1132,7 +1138,7 @@ with a key mapping to a &quot;Hello.Details.roles.&lt;role&gt;|dict&quot; where 
       <span class="symbol">
         <a title="Acknowledge sent by a dealer to a callee to acknowledge unregistration." href="Unregistered.html">
               <span class="name">Unregistered</span>
-            </a><span class="params">(<span name="requestId">requestId: <a href="../index.html#Id=Long" class="extmbr" name="akka.wamp.Id">Id</a></span>)</span><span class="params">(<span class="implicit">implicit </span><span name="validator">validator: <span class="extype" name="akka.wamp.Validator">Validator</span></span>)</span><span class="result"> extends <a href="Message.html" class="extype" name="akka.wamp.messages.Message">Message</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+            </a><span class="params">(<span name="requestId">requestId: <a href="../index.html#Id=Long" class="extmbr" name="akka.wamp.Id">Id</a></span>)</span><span class="params">(<span class="implicit">implicit </span><span name="validator">validator: <span class="extype" name="akka.wamp.Validator">Validator</span></span>)</span><span class="result"> extends <a href="ProtocolMessage.html" class="extype" name="akka.wamp.messages.ProtocolMessage">ProtocolMessage</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
       </span>
       
       <p class="shortcomment cmt">Acknowledge sent by a dealer to a callee to acknowledge unregistration.</p><div class="fullcomment"><div class="comment cmt"><p>Acknowledge sent by a dealer to a callee to acknowledge unregistration.</p><p><code><code><code>
@@ -1140,9 +1146,9 @@ with a key mapping to a &quot;Hello.Details.roles.&lt;role&gt;|dict&quot; where 
 <code><code><code>
 </code></code></code></code></code></code></p></div><dl class="paramcmts block"><dt class="param">requestId</dt><dd class="cmt"><p>is the identifier from the original Subscribed request</p></dd></dl></div>
     </li><li name="akka.wamp.messages.Unsubscribe" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="UnsubscribeextendsMessagewithProductwithSerializable"></a><a id="Unsubscribe:Unsubscribe"></a>
+      <a id="UnsubscribeextendsProtocolMessagewithProductwithSerializable"></a><a id="Unsubscribe:Unsubscribe"></a>
       <span class="permalink">
-      <a href="../../../akka/wamp/messages/index.html#UnsubscribeextendsMessagewithProductwithSerializable" title="Permalink">
+      <a href="../../../akka/wamp/messages/index.html#UnsubscribeextendsProtocolMessagewithProductwithSerializable" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -1153,7 +1159,7 @@ with a key mapping to a &quot;Hello.Details.roles.&lt;role&gt;|dict&quot; where 
       <span class="symbol">
         <a title="Unsubscribe request sent by a Subscriber to a Broker to unsubscribe from a Subscription." href="Unsubscribe.html">
               <span class="name">Unsubscribe</span>
-            </a><span class="params">(<span name="requestId">requestId: <a href="../index.html#Id=Long" class="extmbr" name="akka.wamp.Id">Id</a></span>, <span name="subscriptionId">subscriptionId: <a href="../index.html#Id=Long" class="extmbr" name="akka.wamp.Id">Id</a></span>)</span><span class="params">(<span class="implicit">implicit </span><span name="validator">validator: <span class="extype" name="akka.wamp.Validator">Validator</span></span>)</span><span class="result"> extends <a href="Message.html" class="extype" name="akka.wamp.messages.Message">Message</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+            </a><span class="params">(<span name="requestId">requestId: <a href="../index.html#Id=Long" class="extmbr" name="akka.wamp.Id">Id</a></span>, <span name="subscriptionId">subscriptionId: <a href="../index.html#Id=Long" class="extmbr" name="akka.wamp.Id">Id</a></span>)</span><span class="params">(<span class="implicit">implicit </span><span name="validator">validator: <span class="extype" name="akka.wamp.Validator">Validator</span></span>)</span><span class="result"> extends <a href="ProtocolMessage.html" class="extype" name="akka.wamp.messages.ProtocolMessage">ProtocolMessage</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
       </span>
       
       <p class="shortcomment cmt">Unsubscribe request sent by a Subscriber to a Broker to unsubscribe from a Subscription.</p><div class="fullcomment"><div class="comment cmt"><p>Unsubscribe request sent by a Subscriber to a Broker to unsubscribe from a Subscription.
@@ -1162,9 +1168,9 @@ with a key mapping to a &quot;Hello.Details.roles.&lt;role&gt;|dict&quot; where 
 <code><code><code>
 </code></code></code></code></code></code></p></div><dl class="paramcmts block"><dt class="param">requestId</dt><dd class="cmt"><p>is a random, ephemeral identifier chosen by the Unsubscribe and used to correlate the Broker's response with the request</p></dd><dt class="param">subscriptionId</dt><dd class="cmt"><p>is the identifier for the subscription to unsubscribe from, originally handed out by the Broker to the Subscriber</p></dd></dl></div>
     </li><li name="akka.wamp.messages.Unsubscribed" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="UnsubscribedextendsMessagewithProductwithSerializable"></a><a id="Unsubscribed:Unsubscribed"></a>
+      <a id="UnsubscribedextendsProtocolMessagewithProductwithSerializable"></a><a id="Unsubscribed:Unsubscribed"></a>
       <span class="permalink">
-      <a href="../../../akka/wamp/messages/index.html#UnsubscribedextendsMessagewithProductwithSerializable" title="Permalink">
+      <a href="../../../akka/wamp/messages/index.html#UnsubscribedextendsProtocolMessagewithProductwithSerializable" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -1175,7 +1181,7 @@ with a key mapping to a &quot;Hello.Details.roles.&lt;role&gt;|dict&quot; where 
       <span class="symbol">
         <a title="Is the unsubscribed acknowledge" href="Unsubscribed.html">
               <span class="name">Unsubscribed</span>
-            </a><span class="params">(<span name="requestId">requestId: <a href="../index.html#Id=Long" class="extmbr" name="akka.wamp.Id">Id</a></span>)</span><span class="params">(<span class="implicit">implicit </span><span name="validator">validator: <span class="extype" name="akka.wamp.Validator">Validator</span></span>)</span><span class="result"> extends <a href="Message.html" class="extype" name="akka.wamp.messages.Message">Message</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+            </a><span class="params">(<span name="requestId">requestId: <a href="../index.html#Id=Long" class="extmbr" name="akka.wamp.Id">Id</a></span>)</span><span class="params">(<span class="implicit">implicit </span><span name="validator">validator: <span class="extype" name="akka.wamp.Validator">Validator</span></span>)</span><span class="result"> extends <a href="ProtocolMessage.html" class="extype" name="akka.wamp.messages.ProtocolMessage">ProtocolMessage</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
       </span>
       
       <p class="shortcomment cmt">Is the unsubscribed acknowledge</p><div class="fullcomment"><div class="comment cmt"><p>Is the unsubscribed acknowledge</p><p><code><code><code>
@@ -1183,9 +1189,9 @@ with a key mapping to a &quot;Hello.Details.roles.&lt;role&gt;|dict&quot; where 
 <code><code><code>
 </code></code></code></code></code></code></p></div><dl class="paramcmts block"><dt class="param">requestId</dt><dd class="cmt"><p>is the identifier from the original Subscribed request</p></dd></dl></div>
     </li><li name="akka.wamp.messages.Welcome" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="WelcomeextendsMessagewithProductwithSerializable"></a><a id="Welcome:Welcome"></a>
+      <a id="WelcomeextendsProtocolMessagewithProductwithSerializable"></a><a id="Welcome:Welcome"></a>
       <span class="permalink">
-      <a href="../../../akka/wamp/messages/index.html#WelcomeextendsMessagewithProductwithSerializable" title="Permalink">
+      <a href="../../../akka/wamp/messages/index.html#WelcomeextendsProtocolMessagewithProductwithSerializable" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -1196,7 +1202,7 @@ with a key mapping to a &quot;Hello.Details.roles.&lt;role&gt;|dict&quot; where 
       <span class="symbol">
         <a title="Sent by a router to accept a client and let it know the session is now open" href="Welcome.html">
               <span class="name">Welcome</span>
-            </a><span class="params">(<span name="sessionId">sessionId: <a href="../index.html#Id=Long" class="extmbr" name="akka.wamp.Id">Id</a></span>, <span name="details">details: <a href="../index.html#Dict=Map[String,Any]" class="extmbr" name="akka.wamp.Dict">Dict</a> = <span class="symbol"><span class="name"><a href="Welcome$.html">Welcome.defaultDetails</a></span></span></span>)</span><span class="params">(<span class="implicit">implicit </span><span name="validator">validator: <span class="extype" name="akka.wamp.Validator">Validator</span></span>)</span><span class="result"> extends <a href="Message.html" class="extype" name="akka.wamp.messages.Message">Message</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+            </a><span class="params">(<span name="sessionId">sessionId: <a href="../index.html#Id=Long" class="extmbr" name="akka.wamp.Id">Id</a></span>, <span name="details">details: <a href="../index.html#Dict=Map[String,Any]" class="extmbr" name="akka.wamp.Dict">Dict</a> = <span class="symbol"><span class="name"><a href="Welcome$.html">Welcome.defaultDetails</a></span></span></span>)</span><span class="params">(<span class="implicit">implicit </span><span name="validator">validator: <span class="extype" name="akka.wamp.Validator">Validator</span></span>)</span><span class="result"> extends <a href="ProtocolMessage.html" class="extype" name="akka.wamp.messages.ProtocolMessage">ProtocolMessage</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
       </span>
       
       <p class="shortcomment cmt">Sent by a router to accept a client and let it know the session is now open</p><div class="fullcomment"><div class="comment cmt"><p>Sent by a router to accept a client and let it know the session is now open</p><p><code><code><code>
@@ -1204,9 +1210,9 @@ with a key mapping to a &quot;Hello.Details.roles.&lt;role&gt;|dict&quot; where 
 <code><code><code>
 </code></code></code></code></code></code></p></div><dl class="paramcmts block"><dt class="param">sessionId</dt><dd class="cmt"><p>is the session identifier</p></dd><dt class="param">details</dt><dd class="cmt"><p>is the session details</p></dd></dl></div>
     </li><li name="akka.wamp.messages.Yield" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="YieldextendsMessagewithDataConveyorwithProductwithSerializable"></a><a id="Yield:Yield"></a>
+      <a id="YieldextendsProtocolMessagewithDataConveyorwithProductwithSerializable"></a><a id="Yield:Yield"></a>
       <span class="permalink">
-      <a href="../../../akka/wamp/messages/index.html#YieldextendsMessagewithDataConveyorwithProductwithSerializable" title="Permalink">
+      <a href="../../../akka/wamp/messages/index.html#YieldextendsProtocolMessagewithDataConveyorwithProductwithSerializable" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -1217,7 +1223,7 @@ with a key mapping to a &quot;Hello.Details.roles.&lt;role&gt;|dict&quot; where 
       <span class="symbol">
         <a title="Is the YIELD message sent by a callee's registered invocation handler to the dealer" href="Yield.html">
               <span class="name">Yield</span>
-            </a><span class="params">(<span name="requestId">requestId: <a href="../index.html#Id=Long" class="extmbr" name="akka.wamp.Id">Id</a></span>, <span name="options">options: <a href="../index.html#Dict=Map[String,Any]" class="extmbr" name="akka.wamp.Dict">Dict</a> = <span class="symbol"><span class="name"><a href="Yield$.html">Yield.defaultOptions</a></span></span></span>, <span name="payload">payload: <a href="../serialization/Payload.html" class="extype" name="akka.wamp.serialization.Payload">Payload</a> = <span class="symbol"><span class="name"><a href="../../index.html">Payload()</a></span></span></span>)</span><span class="params">(<span class="implicit">implicit </span><span name="validator">validator: <span class="extype" name="akka.wamp.Validator">Validator</span></span>)</span><span class="result"> extends <a href="Message.html" class="extype" name="akka.wamp.messages.Message">Message</a> with <a href="DataConveyor.html" class="extype" name="akka.wamp.messages.DataConveyor">DataConveyor</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+            </a><span class="params">(<span name="requestId">requestId: <a href="../index.html#Id=Long" class="extmbr" name="akka.wamp.Id">Id</a></span>, <span name="options">options: <a href="../index.html#Dict=Map[String,Any]" class="extmbr" name="akka.wamp.Dict">Dict</a> = <span class="symbol"><span class="name"><a href="Yield$.html">Yield.defaultOptions</a></span></span></span>, <span name="payload">payload: <a href="../serialization/Payload.html" class="extype" name="akka.wamp.serialization.Payload">Payload</a> = <span class="symbol"><span class="name"><a href="../../index.html">Payload()</a></span></span></span>)</span><span class="params">(<span class="implicit">implicit </span><span name="validator">validator: <span class="extype" name="akka.wamp.Validator">Validator</span></span>)</span><span class="result"> extends <a href="ProtocolMessage.html" class="extype" name="akka.wamp.messages.ProtocolMessage">ProtocolMessage</a> with <a href="DataConveyor.html" class="extype" name="akka.wamp.messages.DataConveyor">DataConveyor</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
       </span>
       
       <p class="shortcomment cmt">Is the <code><code>YIELD</code></code> message sent by a callee's registered invocation handler to the dealer</p><div class="fullcomment"><div class="comment cmt"><p>Is the <code><code>YIELD</code></code> message sent by a callee's registered invocation handler to the dealer</p><pre>[YIELD, INVOCATION.Request|id, Options|dict]
@@ -1627,6 +1633,24 @@ with a key mapping to a &quot;Hello.Details.roles.&lt;role&gt;|dict&quot; where 
       </span>
       
       
+    </li><li name="akka.wamp.messages.WampMessage" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="WampMessage"></a><a id="WampMessage:WampMessage"></a>
+      <span class="permalink">
+      <a href="../../../akka/wamp/messages/index.html#WampMessage" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a title="Factory of Message instances" href="WampMessage$.html">
+              <span class="name">WampMessage</span>
+            </a>
+      </span>
+      
+      <p class="shortcomment cmt">Factory of <a href="Message.html" class="extype" name="akka.wamp.messages.Message">Message</a> instances</p>
     </li><li name="akka.wamp.messages.Welcome" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="Welcome"></a><a id="Welcome:Welcome"></a>
       <span class="permalink">

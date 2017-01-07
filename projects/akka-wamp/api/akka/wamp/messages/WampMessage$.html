@@ -109,12 +109,12 @@ based on WAMP - Web Application Messaging Protocol" href="../index.html">
       
       <p class="shortcomment cmt">Contains classes, traits, types and functions to be used to write applications
 based on WAMP - Web Application Messaging Protocol</p><div class="fullcomment"><div class="comment cmt"><p>Contains classes, traits, types and functions to be used to write applications
-based on WAMP - Web Application Messaging Protocol</p><h4> Client </h4><p>Akka Wamp provides you with three distinct Client APIs in the <a href="../client/index.html" class="extype" name="akka.wamp.client">wamp.client</a> package</p><ul><li>Actor based</li><li>Future based</li><li>Stream based</li></ul><h4> Router </h4><p>Akka Wamp provides you with a basic router implementation in the <a href="index.html" class="extype" name="akka.wamp.router">wamp.router</a> package
+based on WAMP - Web Application Messaging Protocol</p><h4> Client </h4><p>Akka Wamp provides you with three distinct Client APIs in the <a href="../client/index.html" class="extype" name="akka.wamp.client">wamp.client</a> package</p><ul><li>Actor based</li><li>Future based</li><li>Stream based</li></ul><h4> Router </h4><p>Akka Wamp provides you with a basic router implementation in the <a href="../router/index.html" class="extype" name="akka.wamp.router">wamp.router</a> package
 </p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../../index.html" class="extype" name="akka">akka</a></dd></dl></div>
-    </li><li name="akka.wamp.router" visbl="pub" class="indented3 " data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="router"></a><a id="router:router"></a>
+    </li><li name="akka.wamp.messages" visbl="pub" class="indented3 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="messages"></a><a id="messages:messages"></a>
       <span class="permalink">
-      <a href="../../akka/wamp/index.html#router" title="Permalink">
+      <a href="../../akka/wamp/index.html#messages" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -124,81 +124,249 @@ based on WAMP - Web Application Messaging Protocol</p><h4> Client </h4><p>Akka W
       </span>
       <span class="symbol">
         <a title="" href="index.html">
-              <span class="name">router</span>
+              <span class="name">messages</span>
             </a>
       </span>
       
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../index.html" class="extype" name="akka.wamp">wamp</a></dd></dl></div>
     </li><li class="current-entities indented3">
+                        <a class="object" href="Abort$.html" title=""></a>
+                        <a class="class" href="Abort.html" title="Sent by a peer to abort the opening of a session."></a>
+                        <a href="Abort.html" title="Sent by a peer to abort the opening of a session.">
+                          Abort
+                        </a>
+                      </li><li class="current-entities indented3">
                         <span class="separator"></span>
-                        <a class="trait" href="Broker.html" title="The broker routes events incoming from clients with publisher to
-clients with subscriber that are subscribed to respective topics
+                        <a class="class" href="Bind.html" title="This bind command is sent by routing applications with the intent to bind the router to a given
+named transport configuration ."></a>
+                        <a href="Bind.html" title="This bind command is sent by routing applications with the intent to bind the router to a given
+named transport configuration .">
+                          Bind
+                        </a>
+                      </li><li class="current-entities indented3">
+                        <span class="separator"></span>
+                        <a class="class" href="Bound.html" title="This bound signal is replied back whenever a Bind command succeed."></a>
+                        <a href="Bound.html" title="This bound signal is replied back whenever a Bind command succeed.">
+                          Bound
+                        </a>
+                      </li><li class="current-entities indented3">
+                        <a class="object" href="Call$.html" title=""></a>
+                        <a class="class" href="Call.html" title="Request sent by a caller to a dealer to call a procedure"></a>
+                        <a href="Call.html" title="Request sent by a caller to a dealer to call a procedure">
+                          Call
+                        </a>
+                      </li><li class="current-entities indented3">
+                        <a class="object" href="Closed$.html" title=""></a>
+                        <a class="class" href="Closed.html" title="This closed signal announces session closed
 "></a>
-                        <a href="Broker.html" title="The broker routes events incoming from clients with publisher to
-clients with subscriber that are subscribed to respective topics
+                        <a href="Closed.html" title="This closed signal announces session closed
 ">
-                          Broker
+                          Closed
                         </a>
                       </li><li class="current-entities indented3">
                         <span class="separator"></span>
-                        <a class="object" href="ConnectionHandler$.html" title=""></a>
-                        <a href="ConnectionHandler$.html" title="">
-                          ConnectionHandler
+                        <a class="trait" href="Command.html" title="Represents command messages"></a>
+                        <a href="Command.html" title="Represents command messages">
+                          Command
                         </a>
                       </li><li class="current-entities indented3">
-                        <a class="object" href="Dealer$.html" title=""></a>
-                        <a class="trait" href="Dealer.html" title="A Dealer routes invocations incoming from clients with callers to
-clients with callees that are registered to provide respective procedures
+                        <span class="separator"></span>
+                        <a class="class" href="CommandFailed.html" title="This failure signal is replied back whenever a command fails
 "></a>
-                        <a href="Dealer.html" title="A Dealer routes invocations incoming from clients with callers to
-clients with callees that are registered to provide respective procedures
+                        <a href="CommandFailed.html" title="This failure signal is replied back whenever a command fails
 ">
-                          Dealer
-                        </a>
-                      </li><li class="current-entities indented3">
-                        <a class="object" href="EmbeddedRouter$.html" title=""></a>
-                        <a class="class" href="EmbeddedRouter.html" title=""></a>
-                        <a href="EmbeddedRouter.html" title="">
-                          EmbeddedRouter
+                          CommandFailed
                         </a>
                       </li><li class="current-entities indented3">
                         <span class="separator"></span>
-                        <a class="class" href="Registration.html" title="The registration of a callee for a procedure it provides
+                        <a class="class" href="Connect.html" title="This connect command is sent by a peer (a client) with the intent to establish
+a transport to another peer (a router)."></a>
+                        <a href="Connect.html" title="This connect command is sent by a peer (a client) with the intent to establish
+a transport to another peer (a router).">
+                          Connect
+                        </a>
+                      </li><li class="current-entities indented3">
+                        <span class="separator"></span>
+                        <a class="class" href="Connected.html" title="It the connected signal replied back whenever a Connect command succeed."></a>
+                        <a href="Connected.html" title="It the connected signal replied back whenever a Connect command succeed.">
+                          Connected
+                        </a>
+                      </li><li class="current-entities indented3">
+                        <span class="separator"></span>
+                        <a class="trait" href="DataConveyor.html" title="Represents a message conveying application data."></a>
+                        <a href="DataConveyor.html" title="Represents a message conveying application data.">
+                          DataConveyor
+                        </a>
+                      </li><li class="current-entities indented3">
+                        <span class="separator"></span>
+                        <a class="object" href="Disconnect$.html" title="This disconnect command is sent by client applications with the intent to connect from a router."></a>
+                        <a href="Disconnect$.html" title="This disconnect command is sent by client applications with the intent to connect from a router.">
+                          Disconnect
+                        </a>
+                      </li><li class="current-entities indented3">
+                        <a class="object" href="Disconnected$.html" title=""></a>
+                        <a class="class" href="Disconnected.html" title="This disconnected signal announces handler disconnection
 "></a>
-                        <a href="Registration.html" title="The registration of a callee for a procedure it provides
+                        <a href="Disconnected.html" title="This disconnected signal announces handler disconnection
 ">
-                          Registration
+                          Disconnected
                         </a>
                       </li><li class="current-entities indented3">
-                        <a class="object" href="Router$.html" title="Factory of Router's props instances
-"></a>
-                        <a class="class" href="Router.html" title="Represents a client."></a>
-                        <a href="Router.html" title="Represents a client.">
-                          Router
+                        <a class="object" href="Error$.html" title=""></a>
+                        <a class="class" href="Error.html" title="Error reply sent by a peer as an error response to different kinds of requests."></a>
+                        <a href="Error.html" title="Error reply sent by a peer as an error response to different kinds of requests.">
+                          Error
                         </a>
                       </li><li class="current-entities indented3">
-                        <a class="object" href="Session$.html" title=""></a>
-                        <a class="class" href="Session.html" title="A Session is a transient conversation between two peers (tipically a
-a router and a client) attached to a realm and running over
-a transport."></a>
-                        <a href="Session.html" title="A Session is a transient conversation between two peers (tipically a
-a router and a client) attached to a realm and running over
-a transport.">
-                          Session
+                        <a class="object" href="Event$.html" title=""></a>
+                        <a class="class" href="Event.html" title="Event dispatched by brokers to subscribers for subscriptions the event was matching."></a>
+                        <a href="Event.html" title="Event dispatched by brokers to subscribers for subscriptions the event was matching.">
+                          Event
                         </a>
                       </li><li class="current-entities indented3">
-                        <span class="separator"></span>
-                        <a class="object" href="" title=""></a>
-                        <a href="" title="">
-                          StandaloneRouterApp
+                        <a class="object" href="Goodbye$.html" title=""></a>
+                        <a class="class" href="Goodbye.html" title="Sent by a peer to close a previously opened session."></a>
+                        <a href="Goodbye.html" title="Sent by a peer to close a previously opened session.">
+                          Goodbye
                         </a>
                       </li><li class="current-entities indented3">
                         <span class="separator"></span>
-                        <a class="class" href="Subscription.html" title="The subscription of a subscriber to a topic
+                        <a class="class" href="HandleHttpConnection.html" title="This handle command is sent by a connection listener upon receiving the incoming connection
+signal to ask a newly spawned connection handler to handle it
 "></a>
-                        <a href="Subscription.html" title="The subscription of a subscriber to a topic
+                        <a href="HandleHttpConnection.html" title="This handle command is sent by a connection listener upon receiving the incoming connection
+signal to ask a newly spawned connection handler to handle it
 ">
-                          Subscription
+                          HandleHttpConnection
+                        </a>
+                      </li><li class="current-entities indented3">
+                        <a class="object" href="Hello$.html" title=""></a>
+                        <a class="class" href="Hello.html" title="Sent by a client to initiate opening of a session to a router
+attaching to a Realm."></a>
+                        <a href="Hello.html" title="Sent by a client to initiate opening of a session to a router
+attaching to a Realm.">
+                          Hello
+                        </a>
+                      </li><li class="current-entities indented3">
+                        <a class="object" href="Invocation$.html" title=""></a>
+                        <a class="class" href="Invocation.html" title="Invocation dispatched by the dealer to the callee providing the registration the invocation was matching."></a>
+                        <a href="Invocation.html" title="Invocation dispatched by the dealer to the callee providing the registration the invocation was matching.">
+                          Invocation
+                        </a>
+                      </li><li class="current-entities indented3">
+                        <span class="separator"></span>
+                        <a class="trait" href="Message.html" title="Represents all messages
+"></a>
+                        <a href="Message.html" title="Represents all messages
+">
+                          Message
+                        </a>
+                      </li><li class="current-entities indented3">
+                        <span class="separator"></span>
+                        <a class="trait" href="ProtocolMessage.html" title="Represents protocol messages exchanged by Peers
+"></a>
+                        <a href="ProtocolMessage.html" title="Represents protocol messages exchanged by Peers
+">
+                          ProtocolMessage
+                        </a>
+                      </li><li class="current-entities indented3">
+                        <a class="object" href="Publish$.html" title=""></a>
+                        <a class="class" href="Publish.html" title="Sent by a publisher to a broker to publish an event."></a>
+                        <a href="Publish.html" title="Sent by a publisher to a broker to publish an event.">
+                          Publish
+                        </a>
+                      </li><li class="current-entities indented3">
+                        <a class="object" href="Published$.html" title=""></a>
+                        <a class="class" href="Published.html" title="Acknowledge sent by a Broker to a Publisher for acknowledged Publications."></a>
+                        <a href="Published.html" title="Acknowledge sent by a Broker to a Publisher for acknowledged Publications.">
+                          Published
+                        </a>
+                      </li><li class="current-entities indented3">
+                        <a class="object" href="Register$.html" title=""></a>
+                        <a class="class" href="Register.html" title="Register request sent by a callee to a dealer to register a procedure endpoint"></a>
+                        <a href="Register.html" title="Register request sent by a callee to a dealer to register a procedure endpoint">
+                          Register
+                        </a>
+                      </li><li class="current-entities indented3">
+                        <a class="object" href="Registered$.html" title=""></a>
+                        <a class="class" href="Registered.html" title="Acknowledge sent by a dealer to a callee to acknowledge a registration"></a>
+                        <a href="Registered.html" title="Acknowledge sent by a dealer to a callee to acknowledge a registration">
+                          Registered
+                        </a>
+                      </li><li class="current-entities indented3">
+                        <a class="object" href="Result$.html" title=""></a>
+                        <a class="class" href="Result.html" title="Result of a call as returned by dealer to caller"></a>
+                        <a href="Result.html" title="Result of a call as returned by dealer to caller">
+                          Result
+                        </a>
+                      </li><li class="current-entities indented3">
+                        <span class="separator"></span>
+                        <a class="trait" href="Signal.html" title="Common interface for all signals generated by this extension
+"></a>
+                        <a href="Signal.html" title="Common interface for all signals generated by this extension
+">
+                          Signal
+                        </a>
+                      </li><li class="current-entities indented3">
+                        <a class="object" href="Subscribe$.html" title=""></a>
+                        <a class="class" href="Subscribe.html" title="Subscribe request sent by a Subscriber to a Broker to subscribe to a Topic."></a>
+                        <a href="Subscribe.html" title="Subscribe request sent by a Subscriber to a Broker to subscribe to a Topic.">
+                          Subscribe
+                        </a>
+                      </li><li class="current-entities indented3">
+                        <a class="object" href="Subscribed$.html" title=""></a>
+                        <a class="class" href="Subscribed.html" title="Acknowledge sent by a Broker to a Subscriber to acknowledge a subscription."></a>
+                        <a href="Subscribed.html" title="Acknowledge sent by a Broker to a Subscriber to acknowledge a subscription.">
+                          Subscribed
+                        </a>
+                      </li><li class="current-entities indented3">
+                        <span class="separator"></span>
+                        <a class="object" href="Unbind$.html" title="This unbind command is sent by routing applications with the intent to unbound from a transport."></a>
+                        <a href="Unbind$.html" title="This unbind command is sent by routing applications with the intent to unbound from a transport.">
+                          Unbind
+                        </a>
+                      </li><li class="current-entities indented3">
+                        <a class="object" href="Unregister$.html" title=""></a>
+                        <a class="class" href="Unregister.html" title="Unregister request sent by a callee to a dealer to unregister a procedure endpoint."></a>
+                        <a href="Unregister.html" title="Unregister request sent by a callee to a dealer to unregister a procedure endpoint.">
+                          Unregister
+                        </a>
+                      </li><li class="current-entities indented3">
+                        <a class="object" href="Unregistered$.html" title=""></a>
+                        <a class="class" href="Unregistered.html" title="Acknowledge sent by a dealer to a callee to acknowledge unregistration."></a>
+                        <a href="Unregistered.html" title="Acknowledge sent by a dealer to a callee to acknowledge unregistration.">
+                          Unregistered
+                        </a>
+                      </li><li class="current-entities indented3">
+                        <a class="object" href="Unsubscribe$.html" title=""></a>
+                        <a class="class" href="Unsubscribe.html" title="Unsubscribe request sent by a Subscriber to a Broker to unsubscribe from a Subscription."></a>
+                        <a href="Unsubscribe.html" title="Unsubscribe request sent by a Subscriber to a Broker to unsubscribe from a Subscription.">
+                          Unsubscribe
+                        </a>
+                      </li><li class="current-entities indented3">
+                        <a class="object" href="Unsubscribed$.html" title=""></a>
+                        <a class="class" href="Unsubscribed.html" title="Is the unsubscribed acknowledge"></a>
+                        <a href="Unsubscribed.html" title="Is the unsubscribed acknowledge">
+                          Unsubscribed
+                        </a>
+                      </li><li class="current-entities indented3">
+                        <span class="separator"></span>
+                        <a class="object" href="" title="Factory of Message instances"></a>
+                        <a href="" title="Factory of Message instances">
+                          WampMessage
+                        </a>
+                      </li><li class="current-entities indented3">
+                        <a class="object" href="Welcome$.html" title=""></a>
+                        <a class="class" href="Welcome.html" title="Sent by a router to accept a client and let it know the session is now open"></a>
+                        <a href="Welcome.html" title="Sent by a router to accept a client and let it know the session is now open">
+                          Welcome
+                        </a>
+                      </li><li class="current-entities indented3">
+                        <a class="object" href="Yield$.html" title="Defines some useful constants
+"></a>
+                        <a class="class" href="Yield.html" title="Is the YIELD message sent by a callee's registered invocation handler to the dealer"></a>
+                        <a href="Yield.html" title="Is the YIELD message sent by a callee's registered invocation handler to the dealer">
+                          Yield
                         </a>
                       </li>
               </ul>
@@ -208,9 +376,9 @@ a transport.">
             <body class="object value">
       <div id="definition">
         <div class="big-circle object">o</div>
-        <p id="owner"><a href="../../index.html" class="extype" name="akka">akka</a>.<a href="../index.html" class="extype" name="akka.wamp">wamp</a>.<a href="index.html" class="extype" name="akka.wamp.router">router</a></p>
-        <h1>StandaloneRouterApp<span class="permalink">
-      <a href="../../../akka/wamp/router/StandaloneRouterApp$.html" title="Permalink">
+        <p id="owner"><a href="../../index.html" class="extype" name="akka">akka</a>.<a href="../index.html" class="extype" name="akka.wamp">wamp</a>.<a href="index.html" class="extype" name="akka.wamp.messages">messages</a></p>
+        <h1>WampMessage<span class="permalink">
+      <a href="../../../akka/wamp/messages/WampMessage$.html" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span></h1>
@@ -223,16 +391,16 @@ a transport.">
         <span class="kind">object</span>
       </span>
       <span class="symbol">
-        <span class="name">StandaloneRouterApp</span><span class="result"> extends <span class="extype" name="scala.App">App</span></span>
+        <span class="name">WampMessage</span>
       </span>
       </h4>
 
       
-          <div id="comment" class="fullcommenttop"><div class="toggleContainer block">
+          <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>Factory of <a href="Message.html" class="extype" name="akka.wamp.messages.Message">Message</a> instances</p></div><div class="toggleContainer block">
           <span class="toggle">
             Linear Supertypes
           </span>
-          <div class="superTypes hiddenContent"><span class="extype" name="scala.App">App</span>, <span class="extype" name="scala.DelayedInit">DelayedInit</span>, <span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
+          <div class="superTypes hiddenContent"><span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
         </div></div>
         
 
@@ -258,7 +426,7 @@ a transport.">
                   <span class="filtertype">Inherited<br />
                   </span>
                   <ol id="linearization">
-                    <li class="in" name="akka.wamp.router.StandaloneRouterApp"><span>StandaloneRouterApp</span></li><li class="in" name="scala.App"><span>App</span></li><li class="in" name="scala.DelayedInit"><span>DelayedInit</span></li><li class="in" name="scala.AnyRef"><span>AnyRef</span></li><li class="in" name="scala.Any"><span>Any</span></li>
+                    <li class="in" name="akka.wamp.messages.WampMessage"><span>WampMessage</span></li><li class="in" name="scala.AnyRef"><span>AnyRef</span></li><li class="in" name="scala.Any"><span>Any</span></li>
                   </ol>
                 </div><div class="ancestors">
               <span class="filtertype"></span>
@@ -278,28 +446,7 @@ a transport.">
         <div id="allMembers">
         
 
-        <div id="types" class="types members">
-              <h3>Type Members</h3>
-              <ol><li name="akka.wamp.router.StandaloneRouterApp.Binder" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="BinderextendsActorwithActorLogging"></a><a id="Binder:Binder"></a>
-      <span class="permalink">
-      <a href="../../../akka/wamp/router/StandaloneRouterApp$.html#BinderextendsActorwithActorLogging" title="Permalink">
-        <i class="material-icons"></i>
-      </a>
-    </span>
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">class</span>
-      </span>
-      <span class="symbol">
-        <a title="" href="StandaloneRouterApp$$Binder.html">
-              <span class="name">Binder</span>
-            </a><span class="result"> extends <span class="extype" name="akka.actor.Actor">Actor</span> with <span class="extype" name="akka.actor.ActorLogging">ActorLogging</span></span>
-      </span>
-      
-      
-    </li></ol>
-            </div>
+        
 
         
 
@@ -309,7 +456,7 @@ a transport.">
                 <li name="scala.AnyRef#!=" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="!=(x$1:Any):Boolean"></a><a id="!=(Any):Boolean"></a>
       <span class="permalink">
-      <a href="../../../akka/wamp/router/StandaloneRouterApp$.html#!=(x$1:Any):Boolean" title="Permalink">
+      <a href="../../../akka/wamp/messages/WampMessage$.html#!=(x$1:Any):Boolean" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -325,7 +472,7 @@ a transport.">
     </li><li name="scala.AnyRef###" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="##():Int"></a>
       <span class="permalink">
-      <a href="../../../akka/wamp/router/StandaloneRouterApp$.html###():Int" title="Permalink">
+      <a href="../../../akka/wamp/messages/WampMessage$.html###():Int" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -341,7 +488,7 @@ a transport.">
     </li><li name="scala.AnyRef#==" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="==(x$1:Any):Boolean"></a><a id="==(Any):Boolean"></a>
       <span class="permalink">
-      <a href="../../../akka/wamp/router/StandaloneRouterApp$.html#==(x$1:Any):Boolean" title="Permalink">
+      <a href="../../../akka/wamp/messages/WampMessage$.html#==(x$1:Any):Boolean" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -354,35 +501,10 @@ a transport.">
       </span>
       
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
-    </li><li name="scala.App#args" visbl="prt" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="args:Array[String]"></a>
-      <span class="permalink">
-      <a href="../../../akka/wamp/router/StandaloneRouterApp$.html#args:Array[String]" title="Permalink">
-        <i class="material-icons"></i>
-      </a>
-    </span>
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">def</span>
-      </span>
-      <span class="symbol">
-        <span class="name">args</span><span class="result">: <span class="extype" name="scala.Array">Array</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>
-      </span>
-      
-      <div class="fullcomment"><dl class="attributes block"> <dt>Attributes</dt><dd>protected </dd><dt>Definition Classes</dt><dd>App</dd><dt>Annotations</dt><dd>
-                <span class="name">@deprecatedOverriding</span><span class="args">(<span>
-      
-      <span class="symbol">&quot;args should not be overridden&quot;</span>
-    </span>, <span>
-      
-      <span class="symbol">&quot;2.11.0&quot;</span>
-    </span>)</span>
-              
-        </dd></dl></div>
     </li><li name="scala.Any#asInstanceOf" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="asInstanceOf[T0]:T0"></a>
       <span class="permalink">
-      <a href="../../../akka/wamp/router/StandaloneRouterApp$.html#asInstanceOf[T0]:T0" title="Permalink">
+      <a href="../../../akka/wamp/messages/WampMessage$.html#asInstanceOf[T0]:T0" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -395,10 +517,28 @@ a transport.">
       </span>
       
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Any</dd></dl></div>
+    </li><li name="akka.wamp.messages.WampMessage#bind" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="bind(router:akka.actor.ActorRef,transport:String):akka.wamp.messages.Bind"></a><a id="bind(ActorRef,String):Bind"></a>
+      <span class="permalink">
+      <a href="../../../akka/wamp/messages/WampMessage$.html#bind(router:akka.actor.ActorRef,transport:String):akka.wamp.messages.Bind" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">bind</span><span class="params">(<span name="router">router: <span class="extype" name="akka.actor.ActorRef">ActorRef</span></span>, <span name="transport">transport: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result">: <a href="Bind.html" class="extype" name="akka.wamp.messages.Bind">Bind</a></span>
+      </span>
+      
+      <p class="shortcomment cmt">Create a <a href="Bind.html" class="extype" name="akka.wamp.messages.Bind">Bind</a> command
+</p><div class="fullcomment"><div class="comment cmt"><p>Create a <a href="Bind.html" class="extype" name="akka.wamp.messages.Bind">Bind</a> command
+</p></div><dl class="paramcmts block"><dt class="param">router</dt><dd class="cmt"><p>is the router to bind</p></dd><dt class="param">transport</dt><dd class="cmt"><p>is the name of the transport configuration to bind to</p></dd></dl></div>
     </li><li name="scala.AnyRef#clone" visbl="prt" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="clone():Object"></a><a id="clone():AnyRef"></a>
       <span class="permalink">
-      <a href="../../../akka/wamp/router/StandaloneRouterApp$.html#clone():Object" title="Permalink">
+      <a href="../../../akka/wamp/messages/WampMessage$.html#clone():Object" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -417,42 +557,28 @@ a transport.">
     </span>)</span>
               
         </dd></dl></div>
-    </li><li name="akka.wamp.router.StandaloneRouterApp#config" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="config:com.typesafe.config.Config"></a><a id="config:Config"></a>
+    </li><li name="akka.wamp.messages.WampMessage#connect" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="connect(uri:java.net.URI,format:String):akka.wamp.messages.Connect"></a><a id="connect(URI,String):Connect"></a>
       <span class="permalink">
-      <a href="../../../akka/wamp/router/StandaloneRouterApp$.html#config:com.typesafe.config.Config" title="Permalink">
+      <a href="../../../akka/wamp/messages/WampMessage$.html#connect(uri:java.net.URI,format:String):akka.wamp.messages.Connect" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
       <span class="modifier_kind">
         <span class="modifier"></span>
-        <span class="kind">val</span>
+        <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">config</span><span class="result">: <span class="extype" name="com.typesafe.config.Config">Config</span></span>
+        <span class="name">connect</span><span class="params">(<span name="uri">uri: <span class="extype" name="java.net.URI">URI</span></span>, <span name="format">format: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result">: <a href="Connect.html" class="extype" name="akka.wamp.messages.Connect">Connect</a></span>
       </span>
       
-      
-    </li><li name="akka.wamp.router.StandaloneRouterApp#configFile" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="configFile:String"></a>
-      <span class="permalink">
-      <a href="../../../akka/wamp/router/StandaloneRouterApp$.html#configFile:String" title="Permalink">
-        <i class="material-icons"></i>
-      </a>
-    </span>
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">val</span>
-      </span>
-      <span class="symbol">
-        <span class="name">configFile</span><span class="result">: <span class="extype" name="java.lang.String">String</span></span>
-      </span>
-      
-      
+      <p class="shortcomment cmt">Create a <a href="Connect.html" class="extype" name="akka.wamp.messages.Connect">Connect</a> command
+</p><div class="fullcomment"><div class="comment cmt"><p>Create a <a href="Connect.html" class="extype" name="akka.wamp.messages.Connect">Connect</a> command
+</p></div><dl class="paramcmts block"><dt class="param">uri</dt><dd class="cmt"><p>is the address to connect to (e.g. &quot;ws://somehost.com:9999/path/to/router&quot;)</p></dd><dt class="param">format</dt><dd class="cmt"><p>is the format used to encode messages (e.g. &quot;wamp.2.json&quot;)</p></dd></dl></div>
     </li><li name="scala.AnyRef#eq" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="eq(x$1:AnyRef):Boolean"></a><a id="eq(AnyRef):Boolean"></a>
       <span class="permalink">
-      <a href="../../../akka/wamp/router/StandaloneRouterApp$.html#eq(x$1:AnyRef):Boolean" title="Permalink">
+      <a href="../../../akka/wamp/messages/WampMessage$.html#eq(x$1:AnyRef):Boolean" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -468,7 +594,7 @@ a transport.">
     </li><li name="scala.AnyRef#equals" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="equals(x$1:Any):Boolean"></a><a id="equals(Any):Boolean"></a>
       <span class="permalink">
-      <a href="../../../akka/wamp/router/StandaloneRouterApp$.html#equals(x$1:Any):Boolean" title="Permalink">
+      <a href="../../../akka/wamp/messages/WampMessage$.html#equals(x$1:Any):Boolean" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -481,35 +607,10 @@ a transport.">
       </span>
       
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
-    </li><li name="scala.App#executionStart" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="executionStart:Long"></a>
-      <span class="permalink">
-      <a href="../../../akka/wamp/router/StandaloneRouterApp$.html#executionStart:Long" title="Permalink">
-        <i class="material-icons"></i>
-      </a>
-    </span>
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">val</span>
-      </span>
-      <span class="symbol">
-        <span class="name">executionStart</span><span class="result">: <span class="extype" name="scala.Long">Long</span></span>
-      </span>
-      
-      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>App</dd><dt>Annotations</dt><dd>
-                <span class="name">@deprecatedOverriding</span><span class="args">(<span>
-      
-      <span class="defval" name="&quot;executionStart should not be overridden&quot;">...</span>
-    </span>, <span>
-      
-      <span class="symbol">&quot;2.11.0&quot;</span>
-    </span>)</span>
-              
-        </dd></dl></div>
     </li><li name="scala.AnyRef#finalize" visbl="prt" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="finalize():Unit"></a>
       <span class="permalink">
-      <a href="../../../akka/wamp/router/StandaloneRouterApp$.html#finalize():Unit" title="Permalink">
+      <a href="../../../akka/wamp/messages/WampMessage$.html#finalize():Unit" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -531,7 +632,7 @@ a transport.">
     </li><li name="scala.AnyRef#getClass" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="getClass():Class[_]"></a>
       <span class="permalink">
-      <a href="../../../akka/wamp/router/StandaloneRouterApp$.html#getClass():Class[_]" title="Permalink">
+      <a href="../../../akka/wamp/messages/WampMessage$.html#getClass():Class[_]" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -547,7 +648,7 @@ a transport.">
     </li><li name="scala.AnyRef#hashCode" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="hashCode():Int"></a>
       <span class="permalink">
-      <a href="../../../akka/wamp/router/StandaloneRouterApp$.html#hashCode():Int" title="Permalink">
+      <a href="../../../akka/wamp/messages/WampMessage$.html#hashCode():Int" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -563,7 +664,7 @@ a transport.">
     </li><li name="scala.Any#isInstanceOf" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="isInstanceOf[T0]:Boolean"></a>
       <span class="permalink">
-      <a href="../../../akka/wamp/router/StandaloneRouterApp$.html#isInstanceOf[T0]:Boolean" title="Permalink">
+      <a href="../../../akka/wamp/messages/WampMessage$.html#isInstanceOf[T0]:Boolean" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -576,35 +677,10 @@ a transport.">
       </span>
       
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Any</dd></dl></div>
-    </li><li name="scala.App#main" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="main(args:Array[String]):Unit"></a><a id="main(Array[String]):Unit"></a>
-      <span class="permalink">
-      <a href="../../../akka/wamp/router/StandaloneRouterApp$.html#main(args:Array[String]):Unit" title="Permalink">
-        <i class="material-icons"></i>
-      </a>
-    </span>
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">def</span>
-      </span>
-      <span class="symbol">
-        <span class="name">main</span><span class="params">(<span name="args">args: <span class="extype" name="scala.Array">Array</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
-      </span>
-      
-      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>App</dd><dt>Annotations</dt><dd>
-                <span class="name">@deprecatedOverriding</span><span class="args">(<span>
-      
-      <span class="symbol">&quot;main should not be overridden&quot;</span>
-    </span>, <span>
-      
-      <span class="symbol">&quot;2.11.0&quot;</span>
-    </span>)</span>
-              
-        </dd></dl></div>
     </li><li name="scala.AnyRef#ne" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="ne(x$1:AnyRef):Boolean"></a><a id="ne(AnyRef):Boolean"></a>
       <span class="permalink">
-      <a href="../../../akka/wamp/router/StandaloneRouterApp$.html#ne(x$1:AnyRef):Boolean" title="Permalink">
+      <a href="../../../akka/wamp/messages/WampMessage$.html#ne(x$1:AnyRef):Boolean" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -620,7 +696,7 @@ a transport.">
     </li><li name="scala.AnyRef#notify" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="notify():Unit"></a>
       <span class="permalink">
-      <a href="../../../akka/wamp/router/StandaloneRouterApp$.html#notify():Unit" title="Permalink">
+      <a href="../../../akka/wamp/messages/WampMessage$.html#notify():Unit" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -636,7 +712,7 @@ a transport.">
     </li><li name="scala.AnyRef#notifyAll" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="notifyAll():Unit"></a>
       <span class="permalink">
-      <a href="../../../akka/wamp/router/StandaloneRouterApp$.html#notifyAll():Unit" title="Permalink">
+      <a href="../../../akka/wamp/messages/WampMessage$.html#notifyAll():Unit" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -649,26 +725,10 @@ a transport.">
       </span>
       
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
-    </li><li name="akka.wamp.router.StandaloneRouterApp#properties" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="properties:com.typesafe.config.Config"></a><a id="properties:Config"></a>
-      <span class="permalink">
-      <a href="../../../akka/wamp/router/StandaloneRouterApp$.html#properties:com.typesafe.config.Config" title="Permalink">
-        <i class="material-icons"></i>
-      </a>
-    </span>
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">val</span>
-      </span>
-      <span class="symbol">
-        <span class="name">properties</span><span class="result">: <span class="extype" name="com.typesafe.config.Config">Config</span></span>
-      </span>
-      
-      
     </li><li name="scala.AnyRef#synchronized" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="synchronized[T0](x$1:=&gt;T0):T0"></a><a id="synchronized[T0](⇒T0):T0"></a>
       <span class="permalink">
-      <a href="../../../akka/wamp/router/StandaloneRouterApp$.html#synchronized[T0](x$1:=&gt;T0):T0" title="Permalink">
+      <a href="../../../akka/wamp/messages/WampMessage$.html#synchronized[T0](x$1:=&gt;T0):T0" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -681,26 +741,10 @@ a transport.">
       </span>
       
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
-    </li><li name="akka.wamp.router.StandaloneRouterApp#system" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="system:akka.actor.ActorSystem"></a><a id="system:ActorSystem"></a>
-      <span class="permalink">
-      <a href="../../../akka/wamp/router/StandaloneRouterApp$.html#system:akka.actor.ActorSystem" title="Permalink">
-        <i class="material-icons"></i>
-      </a>
-    </span>
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">val</span>
-      </span>
-      <span class="symbol">
-        <span class="name">system</span><span class="result">: <span class="extype" name="akka.actor.ActorSystem">ActorSystem</span></span>
-      </span>
-      
-      
     </li><li name="scala.AnyRef#toString" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="toString():String"></a>
       <span class="permalink">
-      <a href="../../../akka/wamp/router/StandaloneRouterApp$.html#toString():String" title="Permalink">
+      <a href="../../../akka/wamp/messages/WampMessage$.html#toString():String" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -716,7 +760,7 @@ a transport.">
     </li><li name="scala.AnyRef#wait" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="wait():Unit"></a>
       <span class="permalink">
-      <a href="../../../akka/wamp/router/StandaloneRouterApp$.html#wait():Unit" title="Permalink">
+      <a href="../../../akka/wamp/messages/WampMessage$.html#wait():Unit" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -738,7 +782,7 @@ a transport.">
     </li><li name="scala.AnyRef#wait" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="wait(x$1:Long,x$2:Int):Unit"></a><a id="wait(Long,Int):Unit"></a>
       <span class="permalink">
-      <a href="../../../akka/wamp/router/StandaloneRouterApp$.html#wait(x$1:Long,x$2:Int):Unit" title="Permalink">
+      <a href="../../../akka/wamp/messages/WampMessage$.html#wait(x$1:Long,x$2:Int):Unit" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -760,7 +804,7 @@ a transport.">
     </li><li name="scala.AnyRef#wait" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="wait(x$1:Long):Unit"></a><a id="wait(Long):Unit"></a>
       <span class="permalink">
-      <a href="../../../akka/wamp/router/StandaloneRouterApp$.html#wait(x$1:Long):Unit" title="Permalink">
+      <a href="../../../akka/wamp/messages/WampMessage$.html#wait(x$1:Long):Unit" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -785,37 +829,11 @@ a transport.">
 
         
 
-        <div class="values members">
-              <h3>Deprecated Value Members</h3>
-              <ol><li name="scala.App#delayedInit" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="delayedInit(body:=&gt;Unit):Unit"></a><a id="delayedInit(⇒Unit):Unit"></a>
-      <span class="permalink">
-      <a href="../../../akka/wamp/router/StandaloneRouterApp$.html#delayedInit(body:=&gt;Unit):Unit" title="Permalink">
-        <i class="material-icons"></i>
-      </a>
-    </span>
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">def</span>
-      </span>
-      <span class="symbol">
-        <span class="name deprecated" title="Deprecated: (Since version 2.11.0) the delayedInit mechanism will disappear">delayedInit</span><span class="params">(<span name="body">body: ⇒ <span class="extype" name="scala.Unit">Unit</span></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
-      </span>
-      
-      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>App → DelayedInit</dd><dt>Annotations</dt><dd>
-                <span class="name">@deprecated</span>
-              
-        </dd><dt>Deprecated</dt><dd class="cmt"><p><i>(Since version 2.11.0)</i> the delayedInit mechanism will disappear</p></dd></dl></div>
-    </li></ol>
-            </div>
+        
         </div>
 
         <div id="inheritedMembers">
-        <div class="parent" name="scala.App">
-              <h3>Inherited from <span class="extype" name="scala.App">App</span></h3>
-            </div><div class="parent" name="scala.DelayedInit">
-              <h3>Inherited from <span class="extype" name="scala.DelayedInit">DelayedInit</span></h3>
-            </div><div class="parent" name="scala.AnyRef">
+        <div class="parent" name="scala.AnyRef">
               <h3>Inherited from <span class="extype" name="scala.AnyRef">AnyRef</span></h3>
             </div><div class="parent" name="scala.Any">
               <h3>Inherited from <span class="extype" name="scala.Any">Any</span></h3>
