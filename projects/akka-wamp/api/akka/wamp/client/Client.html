@@ -174,6 +174,18 @@ client.connect(<span class="lit">"myrouter"</span>).foreach { conn <span class="
       
       <p class="shortcomment cmt">Contains classes to implement clients in Java.</p><div class="fullcomment"><div class="comment cmt"><p>Contains classes to implement clients in Java.</p><pre>...</pre></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="index.html" class="extype" name="akka.wamp.client">client</a></dd><dt>Note</dt><dd><span class="cmt"><p>Java API</p></span></dd><dt>See also</dt><dd><span class="cmt"><p><a href="index.html" class="extype" name="akka.wamp.client">akka.wamp.client</a></p></span></dd></dl></div>
     </li><li class="current-entities indented3">
+                        <span class="separator"></span>
+                        <a class="class" href="AbstractClientActor.html" title=""></a>
+                        <a href="AbstractClientActor.html" title="">
+                          AbstractClientActor
+                        </a>
+                      </li><li class="current-entities indented3">
+                        <span class="separator"></span>
+                        <a class="class" href="AbstractClientLoggingActor.html" title=""></a>
+                        <a href="AbstractClientLoggingActor.html" title="">
+                          AbstractClientLoggingActor
+                        </a>
+                      </li><li class="current-entities indented3">
                         <a class="object" href="Client$.html" title="Factory for Client instances."></a>
                         <a class="class" href="" title="Represents a client."></a>
                         <a href="" title="Represents a client.">
@@ -254,7 +266,7 @@ client.connect(<span class="lit">"myrouter"</span>).foreach { conn <span class="
         <span class="kind">class</span>
       </span>
       <span class="symbol">
-        <span class="name">Client</span><span class="result"> extends <a href="../Peer.html" class="extype" name="akka.wamp.Peer">Peer</a></span>
+        <span class="name">Client</span><span class="result"> extends <a href="../Peer.html" class="extype" name="akka.wamp.Peer">Peer</a> with <span class="extype" name="akka.wamp.EndpointConfig">EndpointConfig</span></span>
       </span>
       </h4>
 
@@ -270,7 +282,7 @@ client.connect(<span class="lit">"myrouter"</span>).foreach { conn <span class="
           <span class="toggle">
             Linear Supertypes
           </span>
-          <div class="superTypes hiddenContent"><a href="../Peer.html" class="extype" name="akka.wamp.Peer">Peer</a>, <span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
+          <div class="superTypes hiddenContent"><span class="extype" name="akka.wamp.EndpointConfig">EndpointConfig</span>, <a href="../Peer.html" class="extype" name="akka.wamp.Peer">Peer</a>, <span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
         </div></div>
         
 
@@ -296,7 +308,7 @@ client.connect(<span class="lit">"myrouter"</span>).foreach { conn <span class="
                   <span class="filtertype">Inherited<br />
                   </span>
                   <ol id="linearization">
-                    <li class="in" name="akka.wamp.client.Client"><span>Client</span></li><li class="in" name="akka.wamp.Peer"><span>Peer</span></li><li class="in" name="scala.AnyRef"><span>AnyRef</span></li><li class="in" name="scala.Any"><span>Any</span></li>
+                    <li class="in" name="akka.wamp.client.Client"><span>Client</span></li><li class="in" name="akka.wamp.EndpointConfig"><span>EndpointConfig</span></li><li class="in" name="akka.wamp.Peer"><span>Peer</span></li><li class="in" name="scala.AnyRef"><span>AnyRef</span></li><li class="in" name="scala.Any"><span>Any</span></li>
                   </ol>
                 </div><div class="ancestors">
               <span class="filtertype"></span>
@@ -371,6 +383,22 @@ client.connect(<span class="lit">"myrouter"</span>).foreach { conn <span class="
       </span>
       
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="akka.wamp.client.Client#actorSystem" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="actorSystem:akka.actor.ActorSystem"></a><a id="actorSystem:ActorSystem"></a>
+      <span class="permalink">
+      <a href="../../../akka/wamp/client/Client.html#actorSystem:akka.actor.ActorSystem" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">actorSystem</span><span class="result">: <span class="extype" name="akka.actor.ActorSystem">ActorSystem</span></span>
+      </span>
+      
+      <p class="shortcomment cmt">Is this client's actor system</p>
     </li><li name="scala.Any#asInstanceOf" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="asInstanceOf[T0]:T0"></a>
       <span class="permalink">
@@ -424,12 +452,11 @@ client.connect(<span class="lit">"myrouter"</span>).foreach { conn <span class="
         <span class="name">config</span><span class="result">: <span class="extype" name="com.typesafe.config.Config">Config</span></span>
       </span>
       
-      <p class="shortcomment cmt">Is this client configuration
-</p>
+      
     </li><li name="akka.wamp.client.Client#connect" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="connect(transport:String):scala.concurrent.Future[akka.wamp.client.Connection]"></a><a id="connect(String):Future[Connection]"></a>
+      <a id="connect(address:String,format:String):scala.concurrent.Future[akka.wamp.client.Connection]"></a><a id="connect(String,String):Future[Connection]"></a>
       <span class="permalink">
-      <a href="../../../akka/wamp/client/Client.html#connect(transport:String):scala.concurrent.Future[akka.wamp.client.Connection]" title="Permalink">
+      <a href="../../../akka/wamp/client/Client.html#connect(address:String,format:String):scala.concurrent.Future[akka.wamp.client.Connection]" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -438,12 +465,30 @@ client.connect(<span class="lit">"myrouter"</span>).foreach { conn <span class="
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">connect</span><span class="params">(<span name="transport">transport: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result">: <span class="extype" name="scala.concurrent.Future">Future</span>[<a href="Connection.html" class="extype" name="akka.wamp.client.Connection">Connection</a>]</span>
+        <span class="name">connect</span><span class="params">(<span name="address">address: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="format">format: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result">: <span class="extype" name="scala.concurrent.Future">Future</span>[<a href="Connection.html" class="extype" name="akka.wamp.client.Connection">Connection</a>]</span>
       </span>
       
-      <p class="shortcomment cmt">Connects to a router with the given named transport configuration
-</p><div class="fullcomment"><div class="comment cmt"><p>Connects to a router with the given named transport configuration
-</p></div><dl class="paramcmts block"><dt class="param">transport</dt><dd class="cmt"><p>the name of a configured transport</p></dd><dt>returns</dt><dd class="cmt"><p>the (future of) connection</p></dd></dl></div>
+      <p class="shortcomment cmt">Connects to a router at the given URL and negotiate the given message format
+</p><div class="fullcomment"><div class="comment cmt"><p>Connects to a router at the given URL and negotiate the given message format
+</p></div><dl class="paramcmts block"><dt class="param">address</dt><dd class="cmt"><p>is the address to connect to (e.g. <code><code>&quot;wss://hostname:8433/router&quot;</code></code>)</p></dd><dt class="param">format</dt><dd class="cmt"><p>is the message format to negotiate (e.g. <code><code>&quot;wamp.2.msgpack&quot;</code></code></p></dd><dt>returns</dt><dd class="cmt"><p>a (future of) connection</p></dd></dl></div>
+    </li><li name="akka.wamp.client.Client#connect" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="connect(endpoint:String):scala.concurrent.Future[akka.wamp.client.Connection]"></a><a id="connect(String):Future[Connection]"></a>
+      <span class="permalink">
+      <a href="../../../akka/wamp/client/Client.html#connect(endpoint:String):scala.concurrent.Future[akka.wamp.client.Connection]" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">connect</span><span class="params">(<span name="endpoint">endpoint: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result">: <span class="extype" name="scala.concurrent.Future">Future</span>[<a href="Connection.html" class="extype" name="akka.wamp.client.Connection">Connection</a>]</span>
+      </span>
+      
+      <p class="shortcomment cmt">Connects to a router with the given named endpoint configuration
+</p><div class="fullcomment"><div class="comment cmt"><p>Connects to a router with the given named endpoint configuration
+</p></div><dl class="paramcmts block"><dt class="param">endpoint</dt><dd class="cmt"><p>is the name of the configured endpoint to connect to</p></dd><dt>returns</dt><dd class="cmt"><p>the (future of) connection</p></dd></dl></div>
     </li><li name="akka.wamp.client.Client#connect" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="connect():scala.concurrent.Future[akka.wamp.client.Connection]"></a><a id="connect():Future[Connection]"></a>
       <span class="permalink">
@@ -459,9 +504,25 @@ client.connect(<span class="lit">"myrouter"</span>).foreach { conn <span class="
         <span class="name">connect</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.concurrent.Future">Future</span>[<a href="Connection.html" class="extype" name="akka.wamp.client.Connection">Connection</a>]</span>
       </span>
       
-      <p class="shortcomment cmt">Connects to a router with the <code><code>&quot;default&quot;</code></code> transport configuration
-</p><div class="fullcomment"><div class="comment cmt"><p>Connects to a router with the <code><code>&quot;default&quot;</code></code> transport configuration
+      <p class="shortcomment cmt">Connects to a router with the <code><code>&quot;local&quot;</code></code> endpoint configuration
+</p><div class="fullcomment"><div class="comment cmt"><p>Connects to a router with the <code><code>&quot;local&quot;</code></code> endpoint configuration
 </p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>the (future of) connection</p></dd></dl></div>
+    </li><li name="akka.wamp.EndpointConfig#endpointConfig" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="endpointConfig(name:String,config:com.typesafe.config.Config):(java.net.URI,String)"></a><a id="endpointConfig(String,Config):(URI,String)"></a>
+      <span class="permalink">
+      <a href="../../../akka/wamp/client/Client.html#endpointConfig(name:String,config:com.typesafe.config.Config):(java.net.URI,String)" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">endpointConfig</span><span class="params">(<span name="name">name: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="config">config: <span class="extype" name="com.typesafe.config.Config">Config</span></span>)</span><span class="result">: (<span class="extype" name="java.net.URI">URI</span>, <span class="extype" name="scala.Predef.String">String</span>)</span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>EndpointConfig</dd></dl></div>
     </li><li name="scala.AnyRef#eq" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="eq(x$1:AnyRef):Boolean"></a><a id="eq(AnyRef):Boolean"></a>
       <span class="permalink">
@@ -613,9 +674,9 @@ client.connect(<span class="lit">"myrouter"</span>).foreach { conn <span class="
       
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
     </li><li name="akka.wamp.client.Client#open" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="open(realm:akka.wamp.Uri,transport:String):scala.concurrent.Future[akka.wamp.client.Session]"></a><a id="open(Uri,String):Future[Session]"></a>
+      <a id="open(realm:akka.wamp.Uri,endpoint:String):scala.concurrent.Future[akka.wamp.client.Session]"></a><a id="open(Uri,String):Future[Session]"></a>
       <span class="permalink">
-      <a href="../../../akka/wamp/client/Client.html#open(realm:akka.wamp.Uri,transport:String):scala.concurrent.Future[akka.wamp.client.Session]" title="Permalink">
+      <a href="../../../akka/wamp/client/Client.html#open(realm:akka.wamp.Uri,endpoint:String):scala.concurrent.Future[akka.wamp.client.Session]" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -624,14 +685,14 @@ client.connect(<span class="lit">"myrouter"</span>).foreach { conn <span class="
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">open</span><span class="params">(<span name="realm">realm: <a href="../index.html#Uri=String" class="extmbr" name="akka.wamp.Uri">Uri</a></span>, <span name="transport">transport: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result">: <span class="extype" name="scala.concurrent.Future">Future</span>[<a href="package$$Session.html" class="extype" name="akka.wamp.client.Session">Session</a>]</span>
+        <span class="name">open</span><span class="params">(<span name="realm">realm: <a href="../index.html#Uri=String" class="extmbr" name="akka.wamp.Uri">Uri</a></span>, <span name="endpoint">endpoint: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result">: <span class="extype" name="scala.concurrent.Future">Future</span>[<a href="package$$Session.html" class="extype" name="akka.wamp.client.Session">Session</a>]</span>
       </span>
       
       <p class="shortcomment cmt">Connects and then opens a new session attached to the given realm and
-named transport
+named endpoint configuration
 </p><div class="fullcomment"><div class="comment cmt"><p>Connects and then opens a new session attached to the given realm and
-named transport
-</p></div><dl class="paramcmts block"><dt class="param">realm</dt><dd class="cmt"><p>the realm to attach the session to</p></dd><dt class="param">transport</dt><dd class="cmt"><p>the name of a configured transport</p></dd><dt>returns</dt><dd class="cmt"><p>the (future of) session</p></dd></dl></div>
+named endpoint configuration
+</p></div><dl class="paramcmts block"><dt class="param">realm</dt><dd class="cmt"><p>is the realm to attach the session to</p></dd><dt class="param">endpoint</dt><dd class="cmt"><p>is the name of a configured endpoint</p></dd><dt>returns</dt><dd class="cmt"><p>the (future of) session</p></dd></dl></div>
     </li><li name="akka.wamp.client.Client#open" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="open(realm:akka.wamp.Uri):scala.concurrent.Future[akka.wamp.client.Session]"></a><a id="open(Uri):Future[Session]"></a>
       <span class="permalink">
@@ -648,7 +709,7 @@ named transport
       </span>
       
       <p class="shortcomment cmt">Connects and then opens a new session attached to the given realm.</p><div class="fullcomment"><div class="comment cmt"><p>Connects and then opens a new session attached to the given realm.
-</p></div><dl class="paramcmts block"><dt class="param">realm</dt><dd class="cmt"><p>the realm to attach the session to</p></dd><dt>returns</dt><dd class="cmt"><p>the (future of) session</p></dd></dl></div>
+</p></div><dl class="paramcmts block"><dt class="param">realm</dt><dd class="cmt"><p>is the realm to attach the session to</p></dd><dt>returns</dt><dd class="cmt"><p>the (future of) session</p></dd></dl></div>
     </li><li name="akka.wamp.client.Client#open" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="open():scala.concurrent.Future[akka.wamp.client.Session]"></a><a id="open():Future[Session]"></a>
       <span class="permalink">
@@ -664,8 +725,8 @@ named transport
         <span class="name">open</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.concurrent.Future">Future</span>[<a href="package$$Session.html" class="extype" name="akka.wamp.client.Session">Session</a>]</span>
       </span>
       
-      <p class="shortcomment cmt">Connects and then opens a new session attached to the <code><code>&quot;default&quot;</code></code>
-</p><div class="fullcomment"><div class="comment cmt"><p>Connects and then opens a new session attached to the <code><code>&quot;default&quot;</code></code>
+      <p class="shortcomment cmt">Connects and then opens a new session attached to the <code><code>&quot;local&quot;</code></code>
+</p><div class="fullcomment"><div class="comment cmt"><p>Connects and then opens a new session attached to the <code><code>&quot;local&quot;</code></code>
 </p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>the (future of) session</p></dd></dl></div>
     </li><li name="scala.AnyRef#synchronized" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="synchronized[T0](x$1:=&gt;T0):T0"></a><a id="synchronized[T0](⇒T0):T0"></a>
@@ -683,22 +744,6 @@ named transport
       </span>
       
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
-    </li><li name="akka.wamp.client.Client#system" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="system:akka.actor.ActorSystem"></a><a id="system:ActorSystem"></a>
-      <span class="permalink">
-      <a href="../../../akka/wamp/client/Client.html#system:akka.actor.ActorSystem" title="Permalink">
-        <i class="material-icons"></i>
-      </a>
-    </span>
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">val</span>
-      </span>
-      <span class="symbol">
-        <span class="name">system</span><span class="result">: <span class="extype" name="akka.actor.ActorSystem">ActorSystem</span></span>
-      </span>
-      
-      <p class="shortcomment cmt">Is this client's actor system</p>
     </li><li name="scala.AnyRef#toString" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="toString():String"></a>
       <span class="permalink">
@@ -791,7 +836,9 @@ named transport
         </div>
 
         <div id="inheritedMembers">
-        <div class="parent" name="akka.wamp.Peer">
+        <div class="parent" name="akka.wamp.EndpointConfig">
+              <h3>Inherited from <span class="extype" name="akka.wamp.EndpointConfig">EndpointConfig</span></h3>
+            </div><div class="parent" name="akka.wamp.Peer">
               <h3>Inherited from <a href="../Peer.html" class="extype" name="akka.wamp.Peer">Peer</a></h3>
             </div><div class="parent" name="scala.AnyRef">
               <h3>Inherited from <span class="extype" name="scala.AnyRef">AnyRef</span></h3>

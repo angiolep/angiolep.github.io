@@ -41,11 +41,11 @@
     <li><a href="../client/futures.html">Futures</a></li>
     <li><a href="../client/streams.html">Streams</a></li>
     <li><a href="../client/macros.html">Macros</a></li>
-    <li><a href="../client/config.html">Configuration</a></li>
   </ul></li>
   <li><a href="../messages.html">Messages</a></li>
   <li><a href="../payloads.html">Payloads</a></li>
   <li><a href="../logging.html">Logging</a></li>
+  <li><a href="../tls.html">TLS/SSL</a></li>
 </ul>
 </div>
 
@@ -89,11 +89,11 @@ C16.952,7,17,6.553,17,6c0-0.553-0.048-1-0.6-1H3.6C3.048,5,3,5.447,3,6C3,6.553,3.
     <li><a href="../client/futures.html">Futures</a></li>
     <li><a href="../client/streams.html">Streams</a></li>
     <li><a href="../client/macros.html">Macros</a></li>
-    <li><a href="../client/config.html">Configuration</a></li>
   </ul></li>
   <li><a href="../messages.html">Messages</a></li>
   <li><a href="../payloads.html">Payloads</a></li>
   <li><a href="../logging.html">Logging</a></li>
+  <li><a href="../tls.html">TLS/SSL</a></li>
 </ul>
 </div>
 
@@ -117,7 +117,7 @@ C16.952,7,17,6.553,17,6c0-0.553-0.048-1-0.6-1H3.6C3.048,5,3,5.447,3,6C3,6.553,3.
 <div class="page-content row">
 <div class="small-12 large-9 column" id="docs">
 <h1><a href="#client-apis" name="client-apis" class="anchor"><span class="anchor-link"></span></a>Client APIs</h1>
-<p>Akka Wamp provides your with three Client APIs for both Java and Scala. They&rsquo;re all built atop the same <a href="http://doc.akka.io/docs/akka/current/scala/io.html">Akka I/O</a> extension driver but they have been carefully designed to be used with different abstractions such as actors, futures and streams.</p>
+<p>Akka Wamp provides your with three Client APIs for both Java and Scala. They&rsquo;re all built atop the same <a href="http:/doc.akka.io/docs/akka/current/scala/io.html">Akka I/O</a> extension driver but they have been carefully designed to be used with different abstractions such as actors, futures and streams.</p>
 <ul>
   <li>
   <p><a href="actors.html">Actors</a><br/> Low level API intended for those who needs <em>&ldquo;full control&rdquo;</em> of how <a href="../messages.html">Messages</a> are exchanged by peers.</p></li>
@@ -129,39 +129,45 @@ C16.952,7,17,6.553,17,6c0-0.553-0.048-1-0.6-1H3.6C3.048,5,3,5.447,3,6C3,6.553,3.
   <p><a href="macros.html">Macros</a><br/> Utilities meant to reduce <em>&ldquo;boiler plate&rdquo;</em> code. For Scala developers only. </p></li>
 </ul>
 <h2><a href="#extension-manager" name="extension-manager" class="anchor"><span class="anchor-link"></span></a>Extension manager</h2>
-<p>Akka Wamp Client APIs are all built atop of the same <a href="http://doc.akka.io/docs/akka/current/scala/io.html">Akka I/O</a> extension driver named <code>akka.wamp.Wamp</code>.</p>
+<p>Akka Wamp Client APIs are all built atop of the same <a href="http:/doc.akka.io/docs/akka/current/scala/io.html">Akka I/O</a> extension driver named <code>akka.wamp.Wamp</code>.</p>
 <p>Every Akka I/O extension driver works for a specific network protocol (e.g. TCP, UDP, WAMP, etc.) and is accessible through a special actor, called the &ldquo;<strong>extension manager</strong>&rdquo;, which serves as entry point for the API. You can explicitly obtain the manager actor reference as shown by the following piece of code:</p>
 <dl>
   <dt>scala</dt>
   <dd>
-  <pre class="prettyprint"><code class="language-scala">override def preStart(): Unit = {
+  <pre class="prettyprint"><code class="language-scala">private var router: ActorRef = _
+
+
+override def preStart(): Unit = {
   implicit val system = context.system
   val manager = IO(Wamp)
   manager ! Connect(new URI(&quot;ws://router.net:8080/wamp&quot;), &quot;json&quot;)
 }
 
 override def receive: Receive = {
-  case CommandFailed(cmd, ex) =&gt;
-    // reattempt connection ...
+  case sig @ CommandFailed(cmd, ex) =&gt;
+    // could reattempt connection ...
     
-  case Connected(conn, _, _) =&gt;
-    this.conn = conn
+  case sig @ Connected(handler, uri, format) =&gt;
+    this.router = handler
     context become connected
 }</code></pre></dd>
   <dt>java</dt>
   <dd>
-  <pre class="prettyprint"><code class="language-java">@Override public void preStart() throws Exception {
+  <pre class="prettyprint"><code class="language-java">private ActorRef router;
+private PartialFunction&lt;Object, BoxedUnit&gt; connected;
+
+@Override public void preStart() throws Exception {
   ActorRef manager = Wamp.get(getContext().system()).manager();
   manager.tell(new Connect(new URI(&quot;ws://router.net:8080/wamp&quot;), &quot;json&quot;), self());
 }
 
-public JavaClientActor() {
+public ActorsJavaClient() {
   receive(
     match(CommandFailed.class, sig -&gt; {
-      // reattempt connection ...
+      // could reattempt connection ...
     }).
     match(Connected.class, sig -&gt; {
-      conn = sig.handler();
+      router = sig.handler();
       context().become(connected);
     }).
     build()

@@ -41,11 +41,11 @@
     <li><a href="../client/futures.html">Futures</a></li>
     <li><a href="../client/streams.html">Streams</a></li>
     <li><a href="../client/macros.html">Macros</a></li>
-    <li><a href="../client/config.html">Configuration</a></li>
   </ul></li>
   <li><a href="../messages.html">Messages</a></li>
   <li><a href="../payloads.html">Payloads</a></li>
   <li><a href="../logging.html">Logging</a></li>
+  <li><a href="../tls.html">TLS/SSL</a></li>
 </ul>
 </div>
 
@@ -89,11 +89,11 @@ C16.952,7,17,6.553,17,6c0-0.553-0.048-1-0.6-1H3.6C3.048,5,3,5.447,3,6C3,6.553,3.
     <li><a href="../client/futures.html">Futures</a></li>
     <li><a href="../client/streams.html">Streams</a></li>
     <li><a href="../client/macros.html">Macros</a></li>
-    <li><a href="../client/config.html">Configuration</a></li>
   </ul></li>
   <li><a href="../messages.html">Messages</a></li>
   <li><a href="../payloads.html">Payloads</a></li>
   <li><a href="../logging.html">Logging</a></li>
+  <li><a href="../tls.html">TLS/SSL</a></li>
 </ul>
 </div>
 
@@ -118,14 +118,14 @@ C16.952,7,17,6.553,17,6c0-0.553-0.048-1-0.6-1H3.6C3.048,5,3,5.447,3,6C3,6.553,3.
 <div class="page-content row">
 <div class="small-12 large-9 column" id="docs">
 <h1><a href="#actors" name="actors" class="anchor"><span class="anchor-link"></span></a>Actors</h1>
-<p>Akka Wamp provides you with</p>
+<p>Akka Wamp provides you with:</p>
 <ul>
-  <li>an object-oriented representations of WAMP <a href="./messages.html">messages</a>,</li>
-  <li>an <a href="http://doc.akka.io/docs/akka/current/scala/io.html">Akka I/O</a> extension driver named <code>akka.wamp.Wamp</code> that takes care of low-level network communication with a WAMP router,</li>
-  <li>some abstract base classes your client actor can extend from.</li>
+  <li>object-oriented representations of WAMP <a href="./messages.html">Messages</a>,</li>
+  <li>an <a href="http://doc.akka.io/docs/akka/current/scala/io.html">Akka I/O</a> extension driver named <code>akka.wamp.Wamp</code> that takes care of low-level network communication with the router,</li>
+  <li>abstract base classes your client actor can extend from.</li>
 </ul>
 <p>All operations are implemented with <strong>message passing</strong> instead of direct method calls. You can write your own client actor, in either Scala or Java, to connect to a router, open a session, publish or subscribe to topics, consume events, process invocations and register or call procedures.</p><div class="callout note "><div class="callout-title">Note</div>This shall be considered a <strong>lower level API</strong> when compared to other Akka Wamp Client APIs such as those providing <a href="./futures.html">Futures</a> and <a href="./streams.html">Streams</a> abstractions.</div>
-<h2><a href="#client-actor" name="client-actor" class="anchor"><span class="anchor-link"></span></a>Client Actor</h2>
+<h2><a href="#client" name="client" class="anchor"><span class="anchor-link"></span></a>Client</h2>
 <dl>
   <dt>Scala</dt>
   <dd>
@@ -137,130 +137,130 @@ import akka.wamp._
 import akka.wamp.client._
 import akka.wamp.messages._
 
-class ScalaClientActor extends ClientActor with ActorLogging {
-  private var conn: ActorRef = _
-  private var sessionId: Long = _
-  
-  // def receive ...
+class ActorsScalaClient extends ClientActor with ActorLogging {
 
+  // def receive: Receive = ...
 }</code></pre></dd>
   <dt>Java</dt>
   <dd>
-  <pre class="prettyprint"><code class="language-java">import akka.actor.*;
+  <pre class="prettyprint"><code class="language-java">import java.net.URI;
+
+import akka.actor.*;
 import akka.wamp.*;
-import akka.wamp.client.japi.AbstractClientLoggingActor;
+import akka.wamp.client.*;
 import akka.wamp.messages.*;
 import akka.wamp.messages.Error;
-import akka.wamp.serialization.Payload;
+import akka.wamp.serialization.*;
 import scala.PartialFunction;
 import scala.runtime.BoxedUnit;
 
-import java.net.URI;
-
 import static akka.japi.pf.ReceiveBuilder.match;
 
-public class JavaClientActor extends AbstractClientLoggingActor {
-  private ActorRef conn;
-  private Long sessionId;
-  private PartialFunction&lt;Object, BoxedUnit&gt; connected, open, subscribed;
-  
-  // NOTE: receive pattern matches are defined within constructor
-  public JavaClientActor() {
+public class ActorsJavaClient extends AbstractClientLoggingActor {
+  public ActorsJavaClient() {
     receive(
     );
   }
 }</code></pre></dd>
 </dl>
-<h2><a href="#initial-state" name="initial-state" class="anchor"><span class="anchor-link"></span></a>Initial state</h2>
-<p>You client actor starts in <code>initial</code> state as <em>&ldquo;disconnected from router&rdquo;</em>.</p>
+<p>You client actor starts as <em>&ldquo;disconnected from router&rdquo;</em>.</p>
 <h3><a href="#connect-to-a-router" name="connect-to-a-router" class="anchor"><span class="anchor-link"></span></a>Connect to a router</h3>
-<p>While in <code>initial</code> state, your client actor sends a <a href="../messages.html#Connect">Connect</a> command to the Akka Wamp <a href="./index.html#extension-manager">extension manager</a> so to attempt a new connection establishment to the router addressed by the given URL. </p>
+<p>While in <code>initial</code> state, your client actor sends a <a href="../messages.html#Connect">Connect</a> command to the Akka Wamp <a href="./index.html#extension-manager">extension manager</a> so to attempt a new connection to the router addressed by the given URI. </p>
 <dl>
   <dt>Scala</dt>
   <dd>
-  <pre class="prettyprint"><code class="language-scala">override def preStart(): Unit = {
+  <pre class="prettyprint"><code class="language-scala">private var router: ActorRef = _
+
+
+override def preStart(): Unit = {
   implicit val system = context.system
   val manager = IO(Wamp)
   manager ! Connect(new URI(&quot;ws://router.net:8080/wamp&quot;), &quot;json&quot;)
 }
 
 override def receive: Receive = {
-  case CommandFailed(cmd, ex) =&gt;
-    // reattempt connection ...
+  case sig @ CommandFailed(cmd, ex) =&gt;
+    // could reattempt connection ...
     
-  case Connected(conn, _, _) =&gt;
-    this.conn = conn
+  case sig @ Connected(handler, uri, format) =&gt;
+    this.router = handler
     context become connected
 }</code></pre></dd>
   <dt>Java</dt>
   <dd>
-  <pre class="prettyprint"><code class="language-java">@Override public void preStart() throws Exception {
+  <pre class="prettyprint"><code class="language-java">private ActorRef router;
+private PartialFunction&lt;Object, BoxedUnit&gt; connected;
+
+@Override public void preStart() throws Exception {
   ActorRef manager = Wamp.get(getContext().system()).manager();
   manager.tell(new Connect(new URI(&quot;ws://router.net:8080/wamp&quot;), &quot;json&quot;), self());
 }
 
-public JavaClientActor() {
+public ActorsJavaClient() {
   receive(
     match(CommandFailed.class, sig -&gt; {
-      // reattempt connection ...
+      // could reattempt connection ...
     }).
     match(Connected.class, sig -&gt; {
-      conn = sig.handler();
+      router = sig.handler();
       context().become(connected);
     }).
     build()
   );
 }</code></pre></dd>
 </dl>
-<p>Your client receives either the <a href="../messages.html#CommandFailed">CommandFailed</a> signal from the manager if the connection attempt fails or the <a href="../messages.html#Connected">Connected</a> signal if it succeeds. In the latter case the manager spawns a new worker actor representing the handler for that specific connection and delivers its reference to your client via the signal message.</p>
-<p>Upon receiving the <a href="../messages.html#Connected">Connected</a> signal message, your client can store the connection handler reference and switch its state to <code>connected</code> </p>
-<h2><a href="#connected-state" name="connected-state" class="anchor"><span class="anchor-link"></span></a>Connected state</h2>
-<p>Your client actor is now <em>&ldquo;connected to router&rdquo;</em>.</p>
-<a name="disconnection"></a>
-<h3><a href="#unexpected-disconnections" name="unexpected-disconnections" class="anchor"><span class="anchor-link"></span></a>Unexpected disconnections</h3>
-<p>Your connected client actor might receive the <a href="../messages.html#Disconnected">Disconnected</a> signal from manager if transport disconnects. For example, clients on mobile devices could experience transport disconnections quite often because of wireless networks unavailability.</p>
-<p>If that happens, you client actor might keep attempting to establish a new connection, then open a new session and finally restore its subscriptions/registrations &hellip; </p><div class="callout warning "><div class="callout-title">Warning</div>See <a href="https://github.com/angiolep/akka-wamp/issues/44">https://github.com/angiolep/akka-wamp/issues/44</a></div>
+<p>Your client receives either the <a href="../messages.html#CommandFailed">CommandFailed</a> signal from the manager if the connection attempt fails or the <a href="../messages.html#Connected">Connected</a> signal if it succeeds. In the latter case the manager spawns a new worker actor representing the handler for that specific connection and delivers its reference to your client via the signal.</p>
+<p>Upon receiving the <a href="../messages.html#Connected">Connected</a> signal, your client actor stores the connection handler reference, holding it as the <code>router</code> representative, and switches its state to <code>connected</code>. </p>
+<h2><a href="#in-connected-state" name="in-connected-state" class="anchor"><span class="anchor-link"></span></a>In <code>connected</code> state</h2>
+<p>Your client actor is <em>&ldquo;connected to a router&rdquo;</em>.</p>
+<h3><a href="#handle-disconnection" name="handle-disconnection" class="anchor"><span class="anchor-link"></span></a>Handle disconnection</h3>
+<p>Your connected client actor might receive the <a href="../messages.html#Disconnected">Disconnected</a> signal from the manager actor if the connection disconnects. For example, clients on mobile devices could experience accidental disconnections because of wireless networks unavailability. Or, the router could deliberately shutdown. </p>
+<p>When disconnection happens, you client actor might keep attempting to establish a new connection, then open a new session and try to restore its subscriptions/registrations.</p><div class="callout warning "><div class="callout-title">Warning</div>See <a href="https://github.com/angiolep/akka-wamp/issues/44">https://github.com/angiolep/akka-wamp/issues/44</a></div>
 <h3><a href="#open-a-session" name="open-a-session" class="anchor"><span class="anchor-link"></span></a>Open a session</h3>
-<p>Your client actor sends an <a href="../messages.html#Hello">Hello</a> message to the router so to attempt a new session opening to the realm identified by the given URI.</p>
+<p>Your client actor sends an <a href="../messages.html#Hello">Hello</a> message to the router to ask for a new session to be attached to the given realm (for example the <code>default</code> realm).</p>
 <dl>
   <dt>Scala</dt>
   <dd>
-  <pre class="prettyprint"><code class="language-scala">override def receive: Receive = {
-  case Connected(conn, _, _) =&gt;
-    this.conn = conn
-    context become connected
-    conn ! Hello(&quot;default&quot;)
-}
+  <pre class="prettyprint"><code class="language-scala"><br/>private var gen: SessionScopedIdGenerator = _
+private var sessionId: Long = _
 
-private var requestId: Id = _
-private var subscriptionId: Id = _
+override def receive: Receive = {
+  case sig @ Connected(handler, uri, format) =&gt;
+    this.router = handler
+    context become connected
+    router ! Hello(&quot;default&quot;)
+}
 
 private def connected: Receive = {
   case Disconnected =&gt;
     this.sessionId = 0
-    this.conn = null
+    this.router = null
     // reattempt connection ...
     // reopen session ...
     // restore subscriptions/registrations ...
     
   case Abort(details, reason) =&gt;
     this.sessionId = 0
-    log.warning(reason)
-    self ! PoisonPill
+    // open new sesson ...
 
   case Welcome(sessionId, details) =&gt;
     this.sessionId = sessionId
+    this.gen = new SessionScopedIdGenerator
     context become open
     // submit subscriptions/registrations ...
 }</code></pre></dd>
   <dt>Java</dt>
   <dd>
-  <pre class="prettyprint"><code class="language-java">public JavaClientActor() {
+  <pre class="prettyprint"><code class="language-java">private PartialFunction&lt;Object, BoxedUnit&gt; open;
+private Long sessionId;
+private SessionScopedIdGenerator gen;
+
+public ActorsJavaClient() {
   receive(
     match(Connected.class, sig -&gt; {
-      conn = sig.handler();
+      router = sig.handler();
       context().become(connected);
-      conn.tell(new Hello(&quot;default&quot;, Hello.defaultDetails(), validator()), self());
+      router.tell(new Hello(&quot;default&quot;, Hello.defaultDetails(), validator()), self());
     }).
     build()
   );
@@ -268,18 +268,18 @@ private def connected: Receive = {
   connected =
     match(Disconnected.class, sig -&gt; {
       this.sessionId = 0L;
-      this.conn = null;
+      this.router = null;
       // reattempt connection ...
-      // reopen session ...
+      // open new sesson ...
       // restore subscriptions/registrations ...
     }).
     match(Abort.class, msg -&gt; {
       this.sessionId = 0L;
-      log().warning(msg.reason());
-      context().stop(self());
+      // open new sesson ...
     }).
     match(Welcome.class, msg -&gt; {
       this.sessionId = msg.sessionId();
+      this.gen = new SessionScopedIdGenerator();
       context().become(open);
       // submit subscriptions/registrations
     }).
@@ -287,11 +287,11 @@ private def connected: Receive = {
   
 }</code></pre></dd>
 </dl>
-<p>Your client actor receives either the <a href="../messages.html#Abort">Abort</a> message from router if the session opening fails or the <a href="../messages.html#Welcome">Welcome</a> message if it succeeds. In the latter case the router creates a new session and delivers its identifier to your client via the welcome message.</p>
-<p>Upon receiving the <a href="../messages.html#Welcome">Welcome</a> message, your client can switch to the <code>open</code> state and then publish to a topic, subscribe to a topic, process events, register a procedure, process invocation, call a procedure, etc.</p>
-<h2><a href="#open-state" name="open-state" class="anchor"><span class="anchor-link"></span></a>Open state</h2>
-<p>You client actor now <em>&ldquo;holds an open session&rdquo;</em>.</p>
-<h3><a href="#unexpected-close" name="unexpected-close" class="anchor"><span class="anchor-link"></span></a>Unexpected close</h3>
+<p>Your client actor receives either the <a href="../messages.html#Abort">Abort</a> message or the <a href="../messages.html#Welcome">Welcome</a> message. In the former case, the router rejects the session opening, while in the latter case the router creates a new session and delivers its identifier to your client.</p>
+<p>Upon receiving the <a href="../messages.html#Welcome">Welcome</a> message, your client can switch to the <code>open</code> state. </p>
+<h2><a href="#in-open-state" name="in-open-state" class="anchor"><span class="anchor-link"></span></a>In <code>open</code> state</h2>
+<p>You client actor now <em>&ldquo;holds an open session&rdquo;</em>. In this state it can finally publish or subscribe to topics, process incoming events, register procedures, process incoming invocations, call procedures, etc.</p>
+<h3><a href="#handle-session-close" name="handle-session-close" class="anchor"><span class="anchor-link"></span></a>Handle session close</h3>
 <p>In addition to <a href="#disconnection">unexpected disconnections</a>, your client actor might receive the <a href="../messages.html#Goodbye">Goodbye</a> message from router if session gets closed for some reason. </p>
 <p>If that happens, you client actor might keep attempting to open a new session so to restore its subscriptions/registrations &hellip; </p>
 <h3><a href="#publish-to-a-topic" name="publish-to-a-topic" class="anchor"><span class="anchor-link"></span></a>Publish to a topic</h3>
@@ -301,19 +301,21 @@ private def connected: Receive = {
   <pre class="prettyprint"><code class="language-scala">private def connected: Receive = {
   case Welcome(sessionId, details) =&gt;
     this.sessionId = sessionId
+    this.gen = new SessionScopedIdGenerator
     context become open
     // submit subscriptions/registrations ...
-    conn ! Publish(nextRequestId(), Publish.defaultOptions, &quot;myapp.topic&quot;)
-    conn ! Publish(nextRequestId(), Publish.defaultOptions.withAcknowledge(true), &quot;myapp.topic&quot;)
+    router ! Publish(gen.nextId(), Publish.defaultOptions, &quot;myapp.topic&quot;)
+    router ! Publish(gen.nextId(), Publish.defaultOptions.withAcknowledge(true), &quot;myapp.topic&quot;)
 }</code></pre></dd>
   <dt>Java</dt>
   <dd>
   <pre class="prettyprint"><code class="language-java">connected =
   match(Welcome.class, msg -&gt; {
     this.sessionId = msg.sessionId();
+    this.gen = new SessionScopedIdGenerator();
     context().become(open);
     // submit subscriptions/registrations
-    conn.tell(new Publish(nextRequestId(), Publish.defaultOptions(), &quot;myapp.topic&quot;, Payload.apply(), validator()), self());
+    router.tell(new Publish(gen.nextId(), Publish.defaultOptions(), &quot;mytopic&quot;, Payload.apply(), validator()), self());
     // TODO tell publish with acknowledgment
   }).
   build();
@@ -333,10 +335,11 @@ private var subscriptionId: Id = _
 private def connected: Receive = {
   case Welcome(sessionId, details) =&gt;
     this.sessionId = sessionId
+    this.gen = new SessionScopedIdGenerator
     context become open
     // submit subscriptions/registrations ...
-    this.requestId = nextRequestId()
-    conn ! Subscribe(this.requestId, Subscribe.defaultOptions, &quot;myapp.topic&quot;)
+    this.requestId = gen.nextId()
+    router ! Subscribe(this.requestId, Subscribe.defaultOptions, &quot;myapp.topic&quot;)
 }
 
 private def open: Receive = {
@@ -346,7 +349,7 @@ private def open: Receive = {
   case Goodbye(details, reason) =&gt;
     this.sessionId = 0
     log.warning(reason)
-    // reopen session ...
+    // open new sesson ...
     // restore subscriptions/registrations ...
 
   case Error(Subscribe.tpe, requestId, details, error, _) =&gt;
@@ -367,14 +370,22 @@ private def open: Receive = {
   <pre class="prettyprint"><code class="language-java">private Long requestId = 0L;
 private Long subscriptionId = 0L;
 
-public JavaClientActor() {
+
+
+private PartialFunction&lt;Object, BoxedUnit&gt; open;
+private Long sessionId;
+private SessionScopedIdGenerator gen;
+
+
+public ActorsJavaClient() {
   connected =
     match(Welcome.class, msg -&gt; {
       this.sessionId = msg.sessionId();
+      this.gen = new SessionScopedIdGenerator();
       context().become(open);
       // submit subscriptions/registrations
-      this.requestId = nextRequestId();
-      conn.tell(new Subscribe(requestId, Subscribe.defaultOptions(), &quot;myapp.topic&quot;, validator()), self());
+      this.requestId = gen.nextId();
+      router.tell(new Subscribe(requestId, Subscribe.defaultOptions(), &quot;mytopic&quot;, validator()), self());
     }).
     build();
   
@@ -384,14 +395,12 @@ public JavaClientActor() {
     }).
     match(Goodbye.class, msg -&gt; {
       this.sessionId = 0L;
-      log().warning(msg.reason());
-      // reopen session ...
+      // open new sesson ...
       // restore subscriptions/registrations ...
     }).
     match(Error.class, msg -&gt; {
       if (msg.requestType() == 33 &amp;&amp; this.requestId == msg.requestId()) {
-        log().warning(msg.error());
-        context().stop(self());  
+        context().stop(self());
       }
     }).
     match(Subscribed.class, msg -&gt; {
@@ -409,12 +418,8 @@ public JavaClientActor() {
 <p>TBD</p>
 <h3><a href="#call-a-procedure" name="call-a-procedure" class="anchor"><span class="anchor-link"></span></a>Call a procedure</h3>
 <p>TBD</p>
-<h2><a href="#subscribed-state" name="subscribed-state" class="anchor"><span class="anchor-link"></span></a>Subscribed state</h2>
-<p>TBD </p>
 <h3><a href="#consume-events" name="consume-events" class="anchor"><span class="anchor-link"></span></a>Consume events</h3>
 <p>TBD</p>
-<h2><a href="#registered-state" name="registered-state" class="anchor"><span class="anchor-link"></span></a>Registered state</h2>
-<p>TBD </p>
 <h3><a href="#process-invocations" name="process-invocations" class="anchor"><span class="anchor-link"></span></a>Process invocations</h3>
 <p>TBD</p>
 <div class="nav-next">
@@ -429,30 +434,23 @@ public JavaClientActor() {
 <ul>
   <li><a href="../client/actors.html#actors">Actors</a>
   <ul>
-    <li><a href="../client/actors.html#client-actor">Client Actor</a></li>
-    <li><a href="../client/actors.html#initial-state">Initial state</a>
+    <li><a href="../client/actors.html#client">Client</a>
     <ul>
       <li><a href="../client/actors.html#connect-to-a-router">Connect to a router</a></li>
     </ul></li>
-    <li><a href="../client/actors.html#connected-state">Connected state</a>
+    <li><a href="../client/actors.html#in-connected-state">In <code>connected</code> state</a>
     <ul>
-      <li><a href="../client/actors.html#unexpected-disconnections">Unexpected disconnections</a></li>
+      <li><a href="../client/actors.html#handle-disconnection">Handle disconnection</a></li>
       <li><a href="../client/actors.html#open-a-session">Open a session</a></li>
     </ul></li>
-    <li><a href="../client/actors.html#open-state">Open state</a>
+    <li><a href="../client/actors.html#in-open-state">In <code>open</code> state</a>
     <ul>
-      <li><a href="../client/actors.html#unexpected-close">Unexpected close</a></li>
+      <li><a href="../client/actors.html#handle-session-close">Handle session close</a></li>
       <li><a href="../client/actors.html#publish-to-a-topic">Publish to a topic</a></li>
       <li><a href="../client/actors.html#subscribe-to-a-topic">Subscribe to a topic</a></li>
       <li><a href="../client/actors.html#register-a-procedure">Register a procedure</a></li>
       <li><a href="../client/actors.html#call-a-procedure">Call a procedure</a></li>
-    </ul></li>
-    <li><a href="../client/actors.html#subscribed-state">Subscribed state</a>
-    <ul>
       <li><a href="../client/actors.html#consume-events">Consume events</a></li>
-    </ul></li>
-    <li><a href="../client/actors.html#registered-state">Registered state</a>
-    <ul>
       <li><a href="../client/actors.html#process-invocations">Process invocations</a></li>
     </ul></li>
   </ul></li>

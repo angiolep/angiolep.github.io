@@ -41,11 +41,11 @@
     <li><a href="client/futures.html">Futures</a></li>
     <li><a href="client/streams.html">Streams</a></li>
     <li><a href="client/macros.html">Macros</a></li>
-    <li><a href="client/config.html">Configuration</a></li>
   </ul></li>
   <li><a href="messages.html">Messages</a></li>
   <li><a href="payloads.html">Payloads</a></li>
   <li><a href="logging.html">Logging</a></li>
+  <li><a href="tls.html">TLS/SSL</a></li>
 </ul>
 </div>
 
@@ -89,11 +89,11 @@ C16.952,7,17,6.553,17,6c0-0.553-0.048-1-0.6-1H3.6C3.048,5,3,5.447,3,6C3,6.553,3.
     <li><a href="client/futures.html">Futures</a></li>
     <li><a href="client/streams.html">Streams</a></li>
     <li><a href="client/macros.html">Macros</a></li>
-    <li><a href="client/config.html">Configuration</a></li>
   </ul></li>
   <li><a href="messages.html">Messages</a></li>
   <li><a href="payloads.html">Payloads</a></li>
   <li><a href="logging.html">Logging</a></li>
+  <li><a href="tls.html">TLS/SSL</a></li>
 </ul>
 </div>
 
@@ -120,7 +120,7 @@ C16.952,7,17,6.553,17,6c0-0.553-0.048-1-0.6-1H3.6C3.048,5,3,5.447,3,6C3,6.553,3.
 <p>Akka Wamp provides you with a basic Router that can be either launched as standalone server process or embedded into your application. It implements:</p>
 <ul>
   <li>WAMP Basic Profile,</li>
-  <li><strong>Broker</strong> and <strong>Dealer</strong> roles,</li>
+  <li>Both broker and dealer roles,</li>
   <li>JSON serialization,</li>
   <li>WebSocket transport</li>
 </ul><div class="callout warning "><div class="callout-title">Warning</div>Though perfectly functional, Akka Wamp Router is intended for development purposes only. You&rsquo;re advised to adopt production ready WAMP routers such as <a href="http://crossbar.io/">Crossbar.IO</a></div>
@@ -136,47 +136,13 @@ cd akka-wamp-0.13.0
 vim ./conf/application.conf
 ./bin/akka-wamp -Dakka.loglevel=DEBUG</code></pre></dd>
 </dl>
-<h2><a href="#embedded" name="embedded" class="anchor"><span class="anchor-link"></span></a>Embedded</h2>
-<p>Create and bind an embedded router passing an actor reference factory (such as a brand new actor system or any of your actor context)</p>
-<dl>
-  <dt>scala</dt>
-  <dd>
-  <pre class="prettyprint"><code class="language-scala">package examples
-
-import akka.actor.ActorSystem
-import akka.wamp.router.EmbeddedRouter
-
-object ScalaRouterApp extends App {
-  val factory = ActorSystem()
-  EmbeddedRouter.createAndBind(factory)
-
-  // ...
-}</code></pre></dd>
-  <dt>java</dt>
-  <dd>
-  <pre class="prettyprint"><code class="language-java">package examples;
-
-import akka.actor.*;
-import akka.wamp.router.*;
-
-public class JavaRouterApp {
-  public static void main(String[] args) {
-    ActorSystem system = ActorSystem.create();
-    EmbeddedRouter.createAndBind(system);
-    // ...
-  }
-}</code></pre></dd>
-</dl>
-<h3><a href="#internals" name="internals" class="anchor"><span class="anchor-link"></span></a>Internals</h3>
-<p>A Binder actor spawns a Router actor to be bound to the Akka IO Wamp Manager. The manager spawns one ConnectionListener actor which listens for incoming connection requests. The listener spawns a new ConnectionHandler actor upon each connection establishment to serve a specific client. </p>
-<p><img src="router.png" alt="router" /></p>
 <h2><a href="#configuration" name="configuration" class="anchor"><span class="anchor-link"></span></a>Configuration</h2>
 <pre class="prettyprint"><code class="language-conf"># akka.wamp.router {
 
 # The local filesystem path the router will serve static
 # web resources (such as HTML docs) out of
 #
-webroot = &quot;./webroot&quot;
+webroot = ${user.home}/webroot
 
 # The boolean switch to validate against strict URIs 
 # rather than loose URIs
@@ -197,59 +163,66 @@ abort-unknown-realms = false
 #
 drop-offending-messages = false
 
-# Named transport configurations
+# One or more endpoint configurations.
 #
-transport {
-  default {
-    # Transport scheme can be:
+# Each endpoint configuration listed here will make the application
+# bind a separate connection listener on the given address.
+endpoint {
+  local {
+    # The address to bind to. Scheme can be:
     #
-    # - tcp
-    #     Raw TCP
-    # - tsl
-    #     Transport Secure Layer
-    # - ws    
-    #     WebSocket 
-    # - wss
-    #     WebSocket over TLS
+    #    - tcp
+    #        Raw TCP
+    #    - tsl
+    #        Transport Secure Layer
+    #    - ws
+    #        WebSocket
+    #    - wss
+    #        WebSocket over TLS
     #
-    scheme = &quot;ws&quot;
-
-    # The hostname/IP-address to bind to
-    #
-    host = &quot;127.0.0.1&quot;
-
-    # The TCP port number (between 0 and 65536) to bind to.
-    # If set to 0 the first available random port number 
-    # will be chosen
-    #
-    port = 8080
-
-    # (Only for &quot;ws&quot; and &quot;wss&quot; protocols)
-    # The URL file path incoming HTTP Upgrade request are expected
-    # to be addressed to
-    #
-    file = &quot;wamp&quot;
+    address = &quot;ws://localhost:8080/wamp&quot;
 
     # Message format can be:
     # 
-    # - json
-    #   JSON Javascript Object Notation
+    #    - json
+    #        JSON Javascript Object Notation
     #
-    # - msgpack
-    #   Message Pack
+    #    - msgpack
+    #        Message Pack
     #
     format = &quot;json&quot;
   }
-  secure {
-    protocol = &quot;wss&quot;
-    port = 8443
-  }
-  raw {
-    protocol = &quot;tcp&quot;
-    port = 9090
-    format = &quot;mgpack&quot;
-  }
+  # Additional endpoint configurations here ...
+  #
+  # Each endpoint configuration will use the above &quot;local&quot;
+  # configuration settings as fallback.
+  #
+  #  address = &quot;wss://127.0.0.1:8443/wamp&quot;
+  #}
 }</code></pre>
+<h3><a href="#transports" name="transports" class="anchor"><span class="anchor-link"></span></a>Transports</h3>
+<p>An application can bind one or more listeners. Each listener corresponds to a named transport in the configuration file and it will bind to the configured endpoint. Usually, endpoints are configured for different schemes such as <code>ws</code> for WebSocket or <code>wss</code> for WebSocket with TLS - Transport Layer Security. Additional transport configuration falls back to the default one for missing keys (e.g. no need to repeat the <code>format</code> key) </p>
+<h2><a href="#embedded" name="embedded" class="anchor"><span class="anchor-link"></span></a>Embedded</h2>
+<p>Create and bind an embedded router passing an actor reference factory (such as a brand new actor system or any of your actor context)</p>
+<dl>
+  <dt>scala</dt>
+  <dd>
+  <pre class="prettyprint"><code class="language-scala">/*
+ * This file is subject to the terms and conditions defined in
+ * file &#39;LICENSE.md&#39;, which is part of this source code package.
+ */
+
+import akka.actor._
+import akka.wamp.router._
+
+object LocalRouterApp extends App {
+  val actorSystem = ActorSystem()
+  EmbeddedRouter.createAndBind(actorSystem)
+}</code></pre></dd>
+</dl>
+<h3><a href="#internals" name="internals" class="anchor"><span class="anchor-link"></span></a>Internals</h3>
+<p>A Binder actor spawns a Router actor to be bound to the Akka IO Wamp Manager. The manager spawns one ConnectionListener actor which listens for incoming connection requests. The listener spawns a new ConnectionHandler actor upon each connection establishment to serve a specific client. </p>
+<p><img src="router.png" alt="router" /></p>
 <div class="nav-next">
 <p><strong>Next:</strong> <a href="client/index.html">Client APIs</a></p>
 </div>
@@ -263,11 +236,14 @@ transport {
   <li><a href="router.html#router">Router</a>
   <ul>
     <li><a href="router.html#standalone">Standalone</a></li>
+    <li><a href="router.html#configuration">Configuration</a>
+    <ul>
+      <li><a href="router.html#transports">Transports</a></li>
+    </ul></li>
     <li><a href="router.html#embedded">Embedded</a>
     <ul>
       <li><a href="router.html#internals">Internals</a></li>
     </ul></li>
-    <li><a href="router.html#configuration">Configuration</a></li>
   </ul></li>
 </ul>
 </div>

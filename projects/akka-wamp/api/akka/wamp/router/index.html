@@ -200,12 +200,6 @@ clients with subscriber that are subscribed to respective topics
                           Broker
                         </a>
                       </li><li class="current-entities indented3">
-                        <span class="separator"></span>
-                        <a class="object" href="ConnectionHandler$.html" title=""></a>
-                        <a href="ConnectionHandler$.html" title="">
-                          ConnectionHandler
-                        </a>
-                      </li><li class="current-entities indented3">
                         <a class="object" href="Dealer$.html" title=""></a>
                         <a class="trait" href="Dealer.html" title="A Dealer routes invocations incoming from clients with callers to
 clients with callees that are registered to provide respective procedures
@@ -216,9 +210,11 @@ clients with callees that are registered to provide respective procedures
                           Dealer
                         </a>
                       </li><li class="current-entities indented3">
-                        <a class="object" href="EmbeddedRouter$.html" title=""></a>
-                        <a class="class" href="EmbeddedRouter.html" title=""></a>
-                        <a href="EmbeddedRouter.html" title="">
+                        <span class="separator"></span>
+                        <a class="object" href="EmbeddedRouter$.html" title="The factory of an embedded router actor and its listeners
+"></a>
+                        <a href="EmbeddedRouter$.html" title="The factory of an embedded router actor and its listeners
+">
                           EmbeddedRouter
                         </a>
                       </li><li class="current-entities indented3">
@@ -232,8 +228,8 @@ clients with callees that are registered to provide respective procedures
                       </li><li class="current-entities indented3">
                         <a class="object" href="Router$.html" title="Factory of Router's props instances
 "></a>
-                        <a class="class" href="Router.html" title="Represents a client."></a>
-                        <a href="Router.html" title="Represents a client.">
+                        <a class="class" href="Router.html" title="Represents a router."></a>
+                        <a href="Router.html" title="Represents a router.">
                           Router
                         </a>
                       </li><li class="current-entities indented3">
@@ -385,24 +381,6 @@ clients with callees that are registered to provide respective procedures
       <p class="shortcomment cmt">A Dealer routes invocations incoming from clients with callers to
 clients with callees that are registered to provide respective procedures
 </p>
-    </li><li name="akka.wamp.router.EmbeddedRouter" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="EmbeddedRouterextendsActorwithActorLogging"></a><a id="EmbeddedRouter:EmbeddedRouter"></a>
-      <span class="permalink">
-      <a href="../../../akka/wamp/router/index.html#EmbeddedRouterextendsActorwithActorLogging" title="Permalink">
-        <i class="material-icons"></i>
-      </a>
-    </span>
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">class</span>
-      </span>
-      <span class="symbol">
-        <a title="" href="EmbeddedRouter.html">
-              <span class="name">EmbeddedRouter</span>
-            </a><span class="result"> extends <span class="extype" name="akka.actor.Actor">Actor</span> with <span class="extype" name="akka.actor.ActorLogging">ActorLogging</span></span>
-      </span>
-      
-      
     </li><li name="akka.wamp.router.Registration" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="RegistrationextendsProductwithSerializable"></a><a id="Registration:Registration"></a>
       <span class="permalink">
@@ -432,16 +410,16 @@ clients with callees that are registered to provide respective procedures
       </a>
     </span>
       <span class="modifier_kind">
-        <span class="modifier">final </span>
+        <span class="modifier"></span>
         <span class="kind">class</span>
       </span>
       <span class="symbol">
-        <a title="Represents a client." href="Router.html">
+        <a title="Represents a router." href="Router.html">
               <span class="name">Router</span>
             </a><span class="result"> extends <a href="../Peer.html" class="extype" name="akka.wamp.Peer">Peer</a> with <a href="Broker.html" class="extype" name="akka.wamp.router.Broker">Broker</a> with <a href="Dealer.html" class="extype" name="akka.wamp.router.Dealer">Dealer</a> with <span class="extype" name="akka.actor.Actor">Actor</span> with <span class="extype" name="akka.actor.ActorLogging">ActorLogging</span></span>
       </span>
       
-      <p class="shortcomment cmt">Represents a client.</p><div class="fullcomment"><div class="comment cmt"><p>Represents a client.</p><p>Instances can be created using its companion object.</p></div></div>
+      <p class="shortcomment cmt">Represents a router.</p><div class="fullcomment"><div class="comment cmt"><p>Represents a router.</p><p>Instances can be created using its companion object.</p></div></div>
     </li><li name="akka.wamp.router.Session" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="SessionextendsSession"></a><a id="Session:Session"></a>
       <span class="permalink">
@@ -496,25 +474,7 @@ a transport.</p><p>Routing occurs only between sessions that have joined the sam
         <div class="values members">
               <h3>Value Members</h3>
               <ol>
-                <li name="akka.wamp.router.ConnectionHandler" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="ConnectionHandler"></a><a id="ConnectionHandler:ConnectionHandler"></a>
-      <span class="permalink">
-      <a href="../../../akka/wamp/router/index.html#ConnectionHandler" title="Permalink">
-        <i class="material-icons"></i>
-      </a>
-    </span>
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">object</span>
-      </span>
-      <span class="symbol">
-        <a title="" href="ConnectionHandler$.html">
-              <span class="name">ConnectionHandler</span>
-            </a>
-      </span>
-      
-      
-    </li><li name="akka.wamp.router.Dealer" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
+                <li name="akka.wamp.router.Dealer" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="Dealer"></a><a id="Dealer:Dealer"></a>
       <span class="permalink">
       <a href="../../../akka/wamp/router/index.html#Dealer" title="Permalink">
@@ -544,12 +504,14 @@ a transport.</p><p>Routing occurs only between sessions that have joined the sam
         <span class="kind">object</span>
       </span>
       <span class="symbol">
-        <a title="" href="EmbeddedRouter$.html">
+        <a title="The factory of an embedded router actor and its listeners
+" href="EmbeddedRouter$.html">
               <span class="name">EmbeddedRouter</span>
             </a>
       </span>
       
-      
+      <p class="shortcomment cmt">The factory of an embedded router actor and its listeners
+</p>
     </li><li name="akka.wamp.router.Router" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="Router"></a><a id="Router:Router"></a>
       <span class="permalink">

@@ -232,6 +232,14 @@ client.connect(<span class="lit">"myrouter"</span>).foreach { conn <span class="
                         </a>
                       </li><li class="current-entities indented2">
                         <span class="separator"></span>
+                        <a class="class" href="package$$RichConfig.html" title="Implicitly wraps a TypeSafe Config to provide additional utility methods
+"></a>
+                        <a href="package$$RichConfig.html" title="Implicitly wraps a TypeSafe Config to provide additional utility methods
+">
+                          RichConfig
+                        </a>
+                      </li><li class="current-entities indented2">
+                        <span class="separator"></span>
                         <a class="class" href="package$$RichDict.html" title="Implicitly wraps a Dict to provide additional utility methods
 "></a>
                         <a href="package$$RichDict.html" title="Implicitly wraps a Dict to provide additional utility methods
@@ -253,6 +261,12 @@ realm and running over a Connection."></a>
                         <a href="Session.html" title="Represents a transient conversation between two Peers attached to a
 realm and running over a Connection.">
                           Session
+                        </a>
+                      </li><li class="current-entities indented2">
+                        <span class="separator"></span>
+                        <a class="class" href="SessionScopedIdGenerator.html" title="Generate identifiers in session scope."></a>
+                        <a href="SessionScopedIdGenerator.html" title="Generate identifiers in session scope.">
+                          SessionScopedIdGenerator
                         </a>
                       </li><li class="current-entities indented2">
                         <span class="separator"></span>
@@ -418,6 +432,26 @@ TODO @see <a href="client/Connection.html" class="extype" name="akka.wamp.client
       
       <p class="shortcomment cmt">Represents a peer (either client or router)
 </p>
+    </li><li name="akka.wamp.RichConfig" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="RichConfigextendsAnyRef"></a><a id="RichConfig:RichConfig"></a>
+      <span class="permalink">
+      <a href="../../akka/wamp/index.html#RichConfigextendsAnyRef" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier">implicit </span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a title="Implicitly wraps a TypeSafe Config to provide additional utility methods
+" href="package$$RichConfig.html">
+              <span class="name">RichConfig</span>
+            </a><span class="result"> extends <span class="extype" name="scala.AnyRef">AnyRef</span></span>
+      </span>
+      
+      <p class="shortcomment cmt">Implicitly wraps a TypeSafe <span class="extype" name="Config">Config</span> to provide additional utility methods
+</p>
     </li><li name="akka.wamp.RichDict" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="RichDictextendsAnyRef"></a><a id="RichDict:RichDict"></a>
       <span class="permalink">
@@ -477,6 +511,25 @@ realm and running over a Connection." href="Session.html">
 realm and running over a <a href="Connection.html" class="extype" name="akka.wamp.Connection">Connection</a>.</p><div class="fullcomment"><div class="comment cmt"><p>Represents a transient conversation between two <a href="Peer.html" class="extype" name="akka.wamp.Peer">Peer</a>s attached to a
 realm and running over a <a href="Connection.html" class="extype" name="akka.wamp.Connection">Connection</a>.
 </p></div><dl class="attributes block"> <dt>See also</dt><dd><span class="cmt"><p><a href="router/Session.html" class="extype" name="akka.wamp.router.Session">akka.wamp.router.Session</a></p></span><span class="cmt"><p><a href="client/package$$Session.html" class="extype" name="akka.wamp.client.Session">akka.wamp.client.Session</a></p></span></dd></dl></div>
+    </li><li name="akka.wamp.SessionScopedIdGenerator" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="SessionScopedIdGeneratorextendsIdGenerator"></a><a id="SessionScopedIdGenerator:SessionScopedIdGenerator"></a>
+      <span class="permalink">
+      <a href="../../akka/wamp/index.html#SessionScopedIdGeneratorextendsIdGenerator" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a title="Generate identifiers in session scope." href="SessionScopedIdGenerator.html">
+              <span class="name">SessionScopedIdGenerator</span>
+            </a><span class="result"> extends <span class="extype" name="akka.wamp.IdGenerator">IdGenerator</span></span>
+      </span>
+      
+      <p class="shortcomment cmt">Generate identifiers in session scope.</p><div class="fullcomment"><div class="comment cmt"><p>Generate identifiers in session scope.</p><p>Identifiers are incremented by 1 beginning with 1 and they are used for</p><ul><li>Dealer.invocations</li><li>Client.*
+</li></ul></div></div>
     </li><li name="akka.wamp.Uri" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="Uri=String"></a><a id="Uri:Uri"></a>
       <span class="permalink">

@@ -174,6 +174,18 @@ client.connect(<span class="lit">"myrouter"</span>).foreach { conn <span class="
       
       <p class="shortcomment cmt">Contains classes to implement clients in Java.</p><div class="fullcomment"><div class="comment cmt"><p>Contains classes to implement clients in Java.</p><pre>...</pre></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="index.html" class="extype" name="akka.wamp.client">client</a></dd><dt>Note</dt><dd><span class="cmt"><p>Java API</p></span></dd><dt>See also</dt><dd><span class="cmt"><p><a href="index.html" class="extype" name="akka.wamp.client">akka.wamp.client</a></p></span></dd></dl></div>
     </li><li class="current-entities indented3">
+                        <span class="separator"></span>
+                        <a class="class" href="AbstractClientActor.html" title=""></a>
+                        <a href="AbstractClientActor.html" title="">
+                          AbstractClientActor
+                        </a>
+                      </li><li class="current-entities indented3">
+                        <span class="separator"></span>
+                        <a class="class" href="AbstractClientLoggingActor.html" title=""></a>
+                        <a href="AbstractClientLoggingActor.html" title="">
+                          AbstractClientLoggingActor
+                        </a>
+                      </li><li class="current-entities indented3">
                         <a class="object" href="Client$.html" title="Factory for Client instances."></a>
                         <a class="class" href="Client.html" title="Represents a client."></a>
                         <a href="Client.html" title="Represents a client.">
@@ -252,7 +264,7 @@ client.connect(<span class="lit">"myrouter"</span>).foreach { conn <span class="
         <span class="kind">class</span>
       </span>
       <span class="symbol">
-        <span class="name">Session</span><span class="result"> extends <a href="../Session.html" class="extype" name="akka.wamp.Session">wamp.Session</a> with <span class="extype" name="akka.wamp.IdScopes.SessionIdScope">SessionIdScope</span></span>
+        <span class="name">Session</span><span class="result"> extends <a href="../Session.html" class="extype" name="akka.wamp.Session">wamp.Session</a></span>
       </span>
       </h4>
 
@@ -296,7 +308,7 @@ client.connect(<span class="lit">"myrouter"</span>).foreach { conn <span class="
           <span class="toggle">
             Linear Supertypes
           </span>
-          <div class="superTypes hiddenContent"><span class="extype" name="akka.wamp.IdScopes.SessionIdScope">SessionIdScope</span>, <span class="extype" name="akka.wamp.IdScope">IdScope</span>, <a href="../Session.html" class="extype" name="akka.wamp.Session">wamp.Session</a>, <span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
+          <div class="superTypes hiddenContent"><a href="../Session.html" class="extype" name="akka.wamp.Session">wamp.Session</a>, <span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
         </div></div>
         
 
@@ -322,7 +334,7 @@ client.connect(<span class="lit">"myrouter"</span>).foreach { conn <span class="
                   <span class="filtertype">Inherited<br />
                   </span>
                   <ol id="linearization">
-                    <li class="in" name="akka.wamp.client.Session"><span>Session</span></li><li class="in" name="akka.wamp.IdScopes.SessionIdScope"><span>SessionIdScope</span></li><li class="in" name="akka.wamp.IdScope"><span>IdScope</span></li><li class="in" name="akka.wamp.Session"><span>Session</span></li><li class="in" name="scala.AnyRef"><span>AnyRef</span></li><li class="in" name="scala.Any"><span>Any</span></li>
+                    <li class="in" name="akka.wamp.client.Session"><span>Session</span></li><li class="in" name="akka.wamp.Session"><span>Session</span></li><li class="in" name="scala.AnyRef"><span>AnyRef</span></li><li class="in" name="scala.Any"><span>Any</span></li>
                   </ol>
                 </div><div class="ancestors">
               <span class="filtertype"></span>
@@ -626,22 +638,6 @@ client.connect(<span class="lit">"myrouter"</span>).foreach { conn <span class="
     </span>)</span>
               
         </dd></dl></div>
-    </li><li name="akka.wamp.IdScope#generate" visbl="prt" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="generate(oldIds:Set[akka.wamp.Id],fn:akka.wamp.Id=&gt;akka.wamp.Id):akka.wamp.Id"></a><a id="generate(Set[Id],(Id)⇒Id):Id"></a>
-      <span class="permalink">
-      <a href="../../../akka/wamp/client/package$$Session.html#generate(oldIds:Set[akka.wamp.Id],fn:akka.wamp.Id=&gt;akka.wamp.Id):akka.wamp.Id" title="Permalink">
-        <i class="material-icons"></i>
-      </a>
-    </span>
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">def</span>
-      </span>
-      <span class="symbol">
-        <span class="name">generate</span><span class="params">(<span name="oldIds">oldIds: <span class="extype" name="scala.Predef.Set">Set</span>[<a href="../index.html#Id=Long" class="extmbr" name="akka.wamp.Id">Id</a>]</span>, <span name="fn">fn: (<a href="../index.html#Id=Long" class="extmbr" name="akka.wamp.Id">Id</a>) ⇒ <a href="../index.html#Id=Long" class="extmbr" name="akka.wamp.Id">Id</a></span>)</span><span class="result">: <a href="../index.html#Id=Long" class="extmbr" name="akka.wamp.Id">Id</a></span>
-      </span>
-      
-      <div class="fullcomment"><dl class="attributes block"> <dt>Attributes</dt><dd>protected </dd><dt>Definition Classes</dt><dd>IdScope</dd></dl></div>
     </li><li name="scala.AnyRef#getClass" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="getClass():Class[_]"></a>
       <span class="permalink">
@@ -675,9 +671,9 @@ client.connect(<span class="lit">"myrouter"</span>).foreach { conn <span class="
       
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
     </li><li name="akka.wamp.client.Session#id" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="id:akka.wamp.Id"></a><a id="id:Id"></a>
+      <a id="id:Long"></a>
       <span class="permalink">
-      <a href="../../../akka/wamp/client/package$$Session.html#id:akka.wamp.Id" title="Permalink">
+      <a href="../../../akka/wamp/client/package$$Session.html#id:Long" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -686,7 +682,7 @@ client.connect(<span class="lit">"myrouter"</span>).foreach { conn <span class="
         <span class="kind">val</span>
       </span>
       <span class="symbol">
-        <span class="name">id</span><span class="result">: <a href="../index.html#Id=Long" class="extmbr" name="akka.wamp.Id">Id</a></span>
+        <span class="name">id</span><span class="result">: <span class="extype" name="scala.Long">Long</span></span>
       </span>
       
       <p class="shortcomment cmt">Is this session unique identifier as sent by the router</p>
@@ -722,42 +718,6 @@ client.connect(<span class="lit">"myrouter"</span>).foreach { conn <span class="
       </span>
       
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
-    </li><li name="akka.wamp.IdScopes.SessionIdScope#nextRequestId" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="nextRequestId(excludes:Set[akka.wamp.Id]):akka.wamp.Id"></a><a id="nextRequestId(Set[Id]):Id"></a>
-      <span class="permalink">
-      <a href="../../../akka/wamp/client/package$$Session.html#nextRequestId(excludes:Set[akka.wamp.Id]):akka.wamp.Id" title="Permalink">
-        <i class="material-icons"></i>
-      </a>
-    </span>
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">def</span>
-      </span>
-      <span class="symbol">
-        <span class="name">nextRequestId</span><span class="params">(<span name="excludes">excludes: <span class="extype" name="scala.Predef.Set">Set</span>[<a href="../index.html#Id=Long" class="extmbr" name="akka.wamp.Id">Id</a>]</span>)</span><span class="result">: <a href="../index.html#Id=Long" class="extmbr" name="akka.wamp.Id">Id</a></span>
-      </span>
-      
-      <p class="shortcomment cmt">Generate the next identifier within this scope excluding the provided ones
-</p><div class="fullcomment"><div class="comment cmt"><p>Generate the next identifier within this scope excluding the provided ones
-</p></div><dl class="paramcmts block"><dt class="param">excludes</dt><dd class="cmt"><p>is the identifiers set to be excluded</p></dd><dt>returns</dt><dd class="cmt"><p>the next identifier</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd>SessionIdScope → IdScope</dd></dl></div>
-    </li><li name="akka.wamp.IdScope#nextRequestId" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="nextRequestId():akka.wamp.Id"></a><a id="nextRequestId():Id"></a>
-      <span class="permalink">
-      <a href="../../../akka/wamp/client/package$$Session.html#nextRequestId():akka.wamp.Id" title="Permalink">
-        <i class="material-icons"></i>
-      </a>
-    </span>
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">def</span>
-      </span>
-      <span class="symbol">
-        <span class="name">nextRequestId</span><span class="params">()</span><span class="result">: <a href="../index.html#Id=Long" class="extmbr" name="akka.wamp.Id">Id</a></span>
-      </span>
-      
-      <p class="shortcomment cmt">Generate the next identifier within this scope
-</p><div class="fullcomment"><div class="comment cmt"><p>Generate the next identifier within this scope
-</p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>the next identifier</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd>IdScope</dd></dl></div>
     </li><li name="scala.AnyRef#notify" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="notify():Unit"></a>
       <span class="permalink">
@@ -1058,11 +1018,7 @@ client.connect(<span class="lit">"myrouter"</span>).foreach { conn <span class="
         </div>
 
         <div id="inheritedMembers">
-        <div class="parent" name="akka.wamp.IdScopes.SessionIdScope">
-              <h3>Inherited from <span class="extype" name="akka.wamp.IdScopes.SessionIdScope">SessionIdScope</span></h3>
-            </div><div class="parent" name="akka.wamp.IdScope">
-              <h3>Inherited from <span class="extype" name="akka.wamp.IdScope">IdScope</span></h3>
-            </div><div class="parent" name="akka.wamp.Session">
+        <div class="parent" name="akka.wamp.Session">
               <h3>Inherited from <a href="../Session.html" class="extype" name="akka.wamp.Session">wamp.Session</a></h3>
             </div><div class="parent" name="scala.AnyRef">
               <h3>Inherited from <span class="extype" name="scala.AnyRef">AnyRef</span></h3>

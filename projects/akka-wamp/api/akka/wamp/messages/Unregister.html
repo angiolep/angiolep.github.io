@@ -137,10 +137,12 @@ based on WAMP - Web Application Messaging Protocol</p><h4> Client </h4><p>Akka W
                         </a>
                       </li><li class="current-entities indented3">
                         <span class="separator"></span>
-                        <a class="class" href="Bind.html" title="This bind command is sent by routing applications with the intent to bind the router to a given
-named transport configuration ."></a>
-                        <a href="Bind.html" title="This bind command is sent by routing applications with the intent to bind the router to a given
-named transport configuration .">
+                        <a class="class" href="Bind.html" title="Is the command to be sent to bind the given router actor
+to all of its configured endpoints
+"></a>
+                        <a href="Bind.html" title="Is the command to be sent to bind the given router actor
+to all of its configured endpoints
+">
                           Bind
                         </a>
                       </li><li class="current-entities indented3">
@@ -393,7 +395,7 @@ attaching to a Realm.">
         <span class="kind">case class</span>
       </span>
       <span class="symbol">
-        <span class="name">Unregister</span><span class="params">(<span name="requestId">requestId: <a href="../index.html#Id=Long" class="extmbr" name="akka.wamp.Id">Id</a></span>, <span name="registrationId">registrationId: <a href="../index.html#Id=Long" class="extmbr" name="akka.wamp.Id">Id</a></span>)</span><span class="params">(<span class="implicit">implicit </span><span name="validator">validator: <span class="extype" name="akka.wamp.Validator">Validator</span></span>)</span><span class="result"> extends <a href="ProtocolMessage.html" class="extype" name="akka.wamp.messages.ProtocolMessage">ProtocolMessage</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+        <span class="name">Unregister</span><span class="params">(<span name="requestId">requestId: <span class="extype" name="scala.Long">Long</span></span>, <span name="registrationId">registrationId: <span class="extype" name="scala.Long">Long</span></span>)</span><span class="params">(<span class="implicit">implicit </span><span name="validator">validator: <span class="extype" name="akka.wamp.Validator">Validator</span></span>)</span><span class="result"> extends <a href="ProtocolMessage.html" class="extype" name="akka.wamp.messages.ProtocolMessage">ProtocolMessage</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
       </span>
       </h4>
 
@@ -452,9 +454,9 @@ attaching to a Realm.">
         <div id="constructors" class="members">
               <h3>Instance Constructors</h3>
               <ol><li name="akka.wamp.messages.Unregister#&lt;init&gt;" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="&lt;init&gt;(requestId:akka.wamp.Id,registrationId:akka.wamp.Id)(implicitvalidator:akka.wamp.Validator):akka.wamp.messages.Unregister"></a><a id="&lt;init&gt;:Unregister"></a>
+      <a id="&lt;init&gt;(requestId:Long,registrationId:Long)(implicitvalidator:akka.wamp.Validator):akka.wamp.messages.Unregister"></a><a id="&lt;init&gt;:Unregister"></a>
       <span class="permalink">
-      <a href="../../../akka/wamp/messages/Unregister.html#&lt;init&gt;(requestId:akka.wamp.Id,registrationId:akka.wamp.Id)(implicitvalidator:akka.wamp.Validator):akka.wamp.messages.Unregister" title="Permalink">
+      <a href="../../../akka/wamp/messages/Unregister.html#&lt;init&gt;(requestId:Long,registrationId:Long)(implicitvalidator:akka.wamp.Validator):akka.wamp.messages.Unregister" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -463,7 +465,7 @@ attaching to a Realm.">
         <span class="kind">new</span>
       </span>
       <span class="symbol">
-        <span class="name">Unregister</span><span class="params">(<span name="requestId">requestId: <a href="../index.html#Id=Long" class="extmbr" name="akka.wamp.Id">Id</a></span>, <span name="registrationId">registrationId: <a href="../index.html#Id=Long" class="extmbr" name="akka.wamp.Id">Id</a></span>)</span><span class="params">(<span class="implicit">implicit </span><span name="validator">validator: <span class="extype" name="akka.wamp.Validator">Validator</span></span>)</span>
+        <span class="name">Unregister</span><span class="params">(<span name="requestId">requestId: <span class="extype" name="scala.Long">Long</span></span>, <span name="registrationId">registrationId: <span class="extype" name="scala.Long">Long</span></span>)</span><span class="params">(<span class="implicit">implicit </span><span name="validator">validator: <span class="extype" name="akka.wamp.Validator">Validator</span></span>)</span>
       </span>
       
       <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">requestId</dt><dd class="cmt"><p>is a random, ephemeral identifier chosen by the callee and used to correlate the dealer's response with the request.</p></dd><dt class="param">registrationId</dt><dd class="cmt"><p>is the identifier for the registration to revoke, originally handed out by the dealer to the callee.</p></dd></dl></div>
@@ -682,9 +684,9 @@ attaching to a Realm.">
       
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
     </li><li name="akka.wamp.messages.Unregister#registrationId" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="registrationId:akka.wamp.Id"></a><a id="registrationId:Id"></a>
+      <a id="registrationId:Long"></a>
       <span class="permalink">
-      <a href="../../../akka/wamp/messages/Unregister.html#registrationId:akka.wamp.Id" title="Permalink">
+      <a href="../../../akka/wamp/messages/Unregister.html#registrationId:Long" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -693,14 +695,14 @@ attaching to a Realm.">
         <span class="kind">val</span>
       </span>
       <span class="symbol">
-        <span class="name">registrationId</span><span class="result">: <a href="../index.html#Id=Long" class="extmbr" name="akka.wamp.Id">Id</a></span>
+        <span class="name">registrationId</span><span class="result">: <span class="extype" name="scala.Long">Long</span></span>
       </span>
       
       
     </li><li name="akka.wamp.messages.Unregister#requestId" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="requestId:akka.wamp.Id"></a><a id="requestId:Id"></a>
+      <a id="requestId:Long"></a>
       <span class="permalink">
-      <a href="../../../akka/wamp/messages/Unregister.html#requestId:akka.wamp.Id" title="Permalink">
+      <a href="../../../akka/wamp/messages/Unregister.html#requestId:Long" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -709,7 +711,7 @@ attaching to a Realm.">
         <span class="kind">val</span>
       </span>
       <span class="symbol">
-        <span class="name">requestId</span><span class="result">: <a href="../index.html#Id=Long" class="extmbr" name="akka.wamp.Id">Id</a></span>
+        <span class="name">requestId</span><span class="result">: <span class="extype" name="scala.Long">Long</span></span>
       </span>
       
       

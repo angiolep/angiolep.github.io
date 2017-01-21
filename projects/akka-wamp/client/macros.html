@@ -41,11 +41,11 @@
     <li><a href="../client/futures.html">Futures</a></li>
     <li><a href="../client/streams.html">Streams</a></li>
     <li><a href="../client/macros.html" class="active">Macros</a></li>
-    <li><a href="../client/config.html">Configuration</a></li>
   </ul></li>
   <li><a href="../messages.html">Messages</a></li>
   <li><a href="../payloads.html">Payloads</a></li>
   <li><a href="../logging.html">Logging</a></li>
+  <li><a href="../tls.html">TLS/SSL</a></li>
 </ul>
 </div>
 
@@ -89,11 +89,11 @@ C16.952,7,17,6.553,17,6c0-0.553-0.048-1-0.6-1H3.6C3.048,5,3,5.447,3,6C3,6.553,3.
     <li><a href="../client/futures.html">Futures</a></li>
     <li><a href="../client/streams.html">Streams</a></li>
     <li><a href="../client/macros.html" class="active">Macros</a></li>
-    <li><a href="../client/config.html">Configuration</a></li>
   </ul></li>
   <li><a href="../messages.html">Messages</a></li>
   <li><a href="../payloads.html">Payloads</a></li>
   <li><a href="../logging.html">Logging</a></li>
+  <li><a href="../tls.html">TLS/SSL</a></li>
 </ul>
 </div>
 
@@ -140,10 +140,10 @@ C16.952,7,17,6.553,17,6c0-0.553-0.048-1-0.6-1H3.6C3.048,5,3,5.447,3,6C3,6.553,3.
 </code></pre>
 <p>This macro expands to an <a href="./futures.html#invocation-handler">invocation handler</a> that expects an implicit <code>Session</code> object in scope. The expanded handler is be able to apply the supplied lambda with arguments carried by incoming invocations. Arguments match parameters as described in the <a href="#deserialization">deserialization</a> section below.</p>
 <h3><a href="#deserialization" name="deserialization" class="anchor"><span class="anchor-link"></span></a>Deserialization</h3>
-<p>Incoming arguments match lambda parameters by applying the logic described in this section. Be <code>rank</code> the number of supplied lambda parameters, <code>args</code> the incoming list of indexed arguments and <code>kwargs</code> the (optional) incoming dictionary of named arguments, then Akka Wamp:</p>
+<p>Incoming arguments match lambda parameters by applying the logic described in this section. Be <code>arity</code> the number of supplied lambda parameters, <code>args</code> the incoming list of indexed arguments and <code>kwargs</code> the (optional) incoming dictionary of named arguments, then Akka Wamp:</p>
 <ul>
   <li>Prefers to match <code>args</code> as first choice and <code>kwargs</code> as second.</li>
-  <li>Selects either of <code>args</code> or <code>kwargs</code> depending on their length. The arguments having length different than rank will be discarded.</li>
+  <li>Selects either of <code>args</code> or <code>kwargs</code> depending on their length. That having length different than arity will be discarded.</li>
   <li><code>args</code> must match data types of same position parameters. <code>kwargs</code> must match parameter names too.</li>
   <li>If neither <code>args</code> nor <code>kwargs</code> match parameters then deserialization fails with <code>ClientException</code></li>
 </ul>
@@ -157,7 +157,7 @@ C16.952,7,17,6.553,17,6c0-0.553-0.048-1-0.6-1H3.6C3.048,5,3,5.447,3,6C3,6.553,3.
 <pre class="prettyprint"><code class="language-scala">(name: String, age: Int) =&gt; /* do something with name and age */
 </code></pre>
 <div class="nav-next">
-<p><strong>Next:</strong> <a href="../client/config.html">Configuration</a></p>
+<p><strong>Next:</strong> <a href="../messages.html">Messages</a></p>
 </div>
 </div>
 <div class="large-3 show-for-large column" data-sticky-container>

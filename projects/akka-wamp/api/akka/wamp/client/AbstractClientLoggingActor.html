@@ -109,12 +109,12 @@ based on WAMP - Web Application Messaging Protocol" href="../index.html">
       
       <p class="shortcomment cmt">Contains classes, traits, types and functions to be used to write applications
 based on WAMP - Web Application Messaging Protocol</p><div class="fullcomment"><div class="comment cmt"><p>Contains classes, traits, types and functions to be used to write applications
-based on WAMP - Web Application Messaging Protocol</p><h4> Client </h4><p>Akka Wamp provides you with three distinct Client APIs in the <a href="../client/index.html" class="extype" name="akka.wamp.client">wamp.client</a> package</p><ul><li>Actor based</li><li>Future based</li><li>Stream based</li></ul><h4> Router </h4><p>Akka Wamp provides you with a basic router implementation in the <a href="index.html" class="extype" name="akka.wamp.router">wamp.router</a> package
+based on WAMP - Web Application Messaging Protocol</p><h4> Client </h4><p>Akka Wamp provides you with three distinct Client APIs in the <a href="index.html" class="extype" name="akka.wamp.client">wamp.client</a> package</p><ul><li>Actor based</li><li>Future based</li><li>Stream based</li></ul><h4> Router </h4><p>Akka Wamp provides you with a basic router implementation in the <a href="../router/index.html" class="extype" name="akka.wamp.router">wamp.router</a> package
 </p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../../index.html" class="extype" name="akka">akka</a></dd></dl></div>
-    </li><li name="akka.wamp.router" visbl="pub" class="indented3 " data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="router"></a><a id="router:router"></a>
+    </li><li name="akka.wamp.client" visbl="pub" class="indented3 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="client"></a><a id="client:client"></a>
       <span class="permalink">
-      <a href="../../akka/wamp/index.html#router" title="Permalink">
+      <a href="../../akka/wamp/index.html#client" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -123,81 +123,122 @@ based on WAMP - Web Application Messaging Protocol</p><h4> Client </h4><p>Akka W
         <span class="kind">package</span>
       </span>
       <span class="symbol">
-        <a title="" href="index.html">
-              <span class="name">router</span>
+        <a title="Contains classes, traits, types and functions to be used to implement WAMP clients in Scala." href="index.html">
+              <span class="name">client</span>
             </a>
       </span>
       
-      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../index.html" class="extype" name="akka.wamp">wamp</a></dd></dl></div>
+      <p class="shortcomment cmt">Contains classes, traits, types and functions to be used to implement WAMP clients in Scala.</p><div class="fullcomment"><div class="comment cmt"><p>Contains classes, traits, types and functions to be used to implement WAMP clients in Scala.</p><p>Please refer to the official
+<a href="https://angiolep.github.io/projects/akka-wamp/index.html">Akka Wamp User's Guide</a>
+published online for further details.</p><h4> Actors </h4><p>Is the low level Client API.</p><h4> Futures </h4><p>Is the high level Client API</p><pre><span class="kw">import</span> akka.actor._
+<span class="kw">import</span> akka.wamp.client._
+<span class="kw">import</span> com.typesafe.config._
+
+<span class="kw">val</span> config = ConfigFactory.load(<span class="lit">"my.conf"</span>)
+<span class="kw">val</span> system = ActorSystem(<span class="lit">"myapp"</span>, config)
+<span class="kw">val</span> client = Client(system)
+
+client.connect(<span class="lit">"myrouter"</span>).foreach { conn <span class="kw">=&gt;</span>
+  conn.open(<span class="lit">"myrealm"</span>).foreach { <span class="kw">implicit</span> s <span class="kw">=&gt;</span>
+
+    publish(<span class="lit">"mytopic"</span>, <span class="std">List</span>(<span class="lit">"paolo"</span>, <span class="num">99</span>))
+
+    subscribe(<span class="lit">"mytopic"</span>, (name: <span class="std">String</span>, age: <span class="std">Int</span>) = {
+      println(s<span class="lit">"$name is $age years old"</span>)
+    }
+
+    call(<span class="lit">"myprocedure"</span>, <span class="std">List</span>(<span class="lit">"paolo"</span>, <span class="num">99</span>))
+
+    register(<span class="lit">"myprocedure"</span>, (name: <span class="std">String</span>, age: <span class="std">Int</span>) <span class="kw">=&gt;</span> {
+      name.length + age
+    })
+  }
+}</pre><h4> Streams </h4><p>TBD
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../index.html" class="extype" name="akka.wamp">wamp</a></dd><dt>See also</dt><dd><span class="cmt"><p><a href="japi/index.html" class="extype" name="akka.wamp.client.japi">akka.wamp.client.japi</a> for Java API</p></span></dd></dl></div>
+    </li><li name="akka.wamp.client.japi" visbl="pub" class="indented4 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="japi"></a><a id="japi:japi"></a>
+      <span class="permalink">
+      <a href="../../../akka/wamp/client/index.html#japi" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">package</span>
+      </span>
+      <span class="symbol">
+        <a title="Contains classes to implement clients in Java." href="japi/index.html">
+              <span class="name">japi</span>
+            </a>
+      </span>
+      
+      <p class="shortcomment cmt">Contains classes to implement clients in Java.</p><div class="fullcomment"><div class="comment cmt"><p>Contains classes to implement clients in Java.</p><pre>...</pre></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="index.html" class="extype" name="akka.wamp.client">client</a></dd><dt>Note</dt><dd><span class="cmt"><p>Java API</p></span></dd><dt>See also</dt><dd><span class="cmt"><p><a href="index.html" class="extype" name="akka.wamp.client">akka.wamp.client</a></p></span></dd></dl></div>
     </li><li class="current-entities indented3">
                         <span class="separator"></span>
-                        <a class="trait" href="Broker.html" title="The broker routes events incoming from clients with publisher to
-clients with subscriber that are subscribed to respective topics
-"></a>
-                        <a href="Broker.html" title="The broker routes events incoming from clients with publisher to
-clients with subscriber that are subscribed to respective topics
-">
-                          Broker
+                        <a class="class" href="AbstractClientActor.html" title=""></a>
+                        <a href="AbstractClientActor.html" title="">
+                          AbstractClientActor
                         </a>
                       </li><li class="current-entities indented3">
                         <span class="separator"></span>
-                        <a class="object" href="ConnectionHandler$.html" title=""></a>
-                        <a href="ConnectionHandler$.html" title="">
-                          ConnectionHandler
-                        </a>
-                      </li><li class="current-entities indented3">
-                        <a class="object" href="Dealer$.html" title=""></a>
-                        <a class="trait" href="Dealer.html" title="A Dealer routes invocations incoming from clients with callers to
-clients with callees that are registered to provide respective procedures
-"></a>
-                        <a href="Dealer.html" title="A Dealer routes invocations incoming from clients with callers to
-clients with callees that are registered to provide respective procedures
-">
-                          Dealer
-                        </a>
-                      </li><li class="current-entities indented3">
-                        <a class="object" href="EmbeddedRouter$.html" title=""></a>
                         <a class="class" href="" title=""></a>
                         <a href="" title="">
-                          EmbeddedRouter
+                          AbstractClientLoggingActor
+                        </a>
+                      </li><li class="current-entities indented3">
+                        <a class="object" href="Client$.html" title="Factory for Client instances."></a>
+                        <a class="class" href="Client.html" title="Represents a client."></a>
+                        <a href="Client.html" title="Represents a client.">
+                          Client
                         </a>
                       </li><li class="current-entities indented3">
                         <span class="separator"></span>
-                        <a class="class" href="Registration.html" title="The registration of a callee for a procedure it provides
+                        <a class="trait" href="ClientActor.html" title=""></a>
+                        <a href="ClientActor.html" title="">
+                          ClientActor
+                        </a>
+                      </li><li class="current-entities indented3">
+                        <span class="separator"></span>
+                        <a class="class" href="ClientException.html" title="Represents an error
 "></a>
-                        <a href="Registration.html" title="The registration of a callee for a procedure it provides
+                        <a href="ClientException.html" title="Represents an error
 ">
+                          ClientException
+                        </a>
+                      </li><li class="current-entities indented3">
+                        <span class="separator"></span>
+                        <a class="class" href="Connection.html" title="Represents a connection established by a client to a router."></a>
+                        <a href="Connection.html" title="Represents a connection established by a client to a router.">
+                          Connection
+                        </a>
+                      </li><li class="current-entities indented3">
+                        <span class="separator"></span>
+                        <a class="object" href="Macros$.html" title="Provides implementations for macros"></a>
+                        <a href="Macros$.html" title="Provides implementations for macros">
+                          Macros
+                        </a>
+                      </li><li class="current-entities indented3">
+                        <span class="separator"></span>
+                        <a class="class" href="Publication.html" title="Is an acknowledged publication."></a>
+                        <a href="Publication.html" title="Is an acknowledged publication.">
+                          Publication
+                        </a>
+                      </li><li class="current-entities indented3">
+                        <span class="separator"></span>
+                        <a class="class" href="Registration.html" title="Represents an acknowledged registration."></a>
+                        <a href="Registration.html" title="Represents an acknowledged registration.">
                           Registration
                         </a>
                       </li><li class="current-entities indented3">
-                        <a class="object" href="Router$.html" title="Factory of Router's props instances
-"></a>
-                        <a class="class" href="Router.html" title="Represents a client."></a>
-                        <a href="Router.html" title="Represents a client.">
-                          Router
-                        </a>
-                      </li><li class="current-entities indented3">
-                        <a class="object" href="Session$.html" title=""></a>
-                        <a class="class" href="Session.html" title="A Session is a transient conversation between two peers (tipically a
-a router and a client) attached to a realm and running over
-a transport."></a>
-                        <a href="Session.html" title="A Session is a transient conversation between two peers (tipically a
-a router and a client) attached to a realm and running over
-a transport.">
+                        <span class="separator"></span>
+                        <a class="class" href="package$$Session.html" title="Represents a session attached to a realm."></a>
+                        <a href="package$$Session.html" title="Represents a session attached to a realm.">
                           Session
                         </a>
                       </li><li class="current-entities indented3">
                         <span class="separator"></span>
-                        <a class="object" href="StandaloneRouterApp$.html" title=""></a>
-                        <a href="StandaloneRouterApp$.html" title="">
-                          StandaloneRouterApp
-                        </a>
-                      </li><li class="current-entities indented3">
-                        <span class="separator"></span>
-                        <a class="class" href="Subscription.html" title="The subscription of a subscriber to a topic
-"></a>
-                        <a href="Subscription.html" title="The subscription of a subscriber to a topic
-">
+                        <a class="class" href="Subscription.html" title="Represents an acknowledged subscription."></a>
+                        <a href="Subscription.html" title="Represents an acknowledged subscription.">
                           Subscription
                         </a>
                       </li>
@@ -207,25 +248,23 @@ a transport.">
           <div id="content">
             <body class="class type">
       <div id="definition">
-        <a href="EmbeddedRouter$.html" title="See companion object"><div class="big-circle class-companion-object">c</div></a>
-        <p id="owner"><a href="../../index.html" class="extype" name="akka">akka</a>.<a href="../index.html" class="extype" name="akka.wamp">wamp</a>.<a href="index.html" class="extype" name="akka.wamp.router">router</a></p>
-        <h1><a href="EmbeddedRouter$.html" title="See companion object">EmbeddedRouter</a><span class="permalink">
-      <a href="../../../akka/wamp/router/EmbeddedRouter.html" title="Permalink">
+        <div class="big-circle class">c</div>
+        <p id="owner"><a href="../../index.html" class="extype" name="akka">akka</a>.<a href="../index.html" class="extype" name="akka.wamp">wamp</a>.<a href="index.html" class="extype" name="akka.wamp.client">client</a></p>
+        <h1>AbstractClientLoggingActor<span class="permalink">
+      <a href="../../../akka/wamp/client/AbstractClientLoggingActor.html" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span></h1>
-        <h3><span class="morelinks"><div>
-            Companion <a href="EmbeddedRouter$.html" title="See companion object">object EmbeddedRouter</a>
-          </div></span></h3>
+        <h3><span class="morelinks"></span></h3>
       </div>
 
       <h4 id="signature" class="signature">
       <span class="modifier_kind">
-        <span class="modifier"></span>
+        <span class="modifier">abstract </span>
         <span class="kind">class</span>
       </span>
       <span class="symbol">
-        <span class="name">EmbeddedRouter</span><span class="result"> extends <span class="extype" name="akka.actor.Actor">Actor</span> with <span class="extype" name="akka.actor.ActorLogging">ActorLogging</span></span>
+        <span class="name">AbstractClientLoggingActor</span><span class="result"> extends <span class="extype" name="akka.actor.AbstractLoggingActor">AbstractLoggingActor</span> with <a href="ClientActor.html" class="extype" name="akka.wamp.client.ClientActor">ClientActor</a></span>
       </span>
       </h4>
 
@@ -234,7 +273,7 @@ a transport.">
           <span class="toggle">
             Linear Supertypes
           </span>
-          <div class="superTypes hiddenContent"><span class="extype" name="akka.actor.ActorLogging">ActorLogging</span>, <span class="extype" name="akka.actor.Actor">Actor</span>, <span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
+          <div class="superTypes hiddenContent"><a href="ClientActor.html" class="extype" name="akka.wamp.client.ClientActor">ClientActor</a>, <span class="extype" name="akka.actor.AbstractLoggingActor">AbstractLoggingActor</span>, <span class="extype" name="akka.actor.ActorLogging">ActorLogging</span>, <span class="extype" name="akka.actor.AbstractActor">AbstractActor</span>, <span class="extype" name="akka.actor.Actor">Actor</span>, <span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
         </div></div>
         
 
@@ -260,7 +299,7 @@ a transport.">
                   <span class="filtertype">Inherited<br />
                   </span>
                   <ol id="linearization">
-                    <li class="in" name="akka.wamp.router.EmbeddedRouter"><span>EmbeddedRouter</span></li><li class="in" name="akka.actor.ActorLogging"><span>ActorLogging</span></li><li class="in" name="akka.actor.Actor"><span>Actor</span></li><li class="in" name="scala.AnyRef"><span>AnyRef</span></li><li class="in" name="scala.Any"><span>Any</span></li>
+                    <li class="in" name="akka.wamp.client.AbstractClientLoggingActor"><span>AbstractClientLoggingActor</span></li><li class="in" name="akka.wamp.client.ClientActor"><span>ClientActor</span></li><li class="in" name="akka.actor.AbstractLoggingActor"><span>AbstractLoggingActor</span></li><li class="in" name="akka.actor.ActorLogging"><span>ActorLogging</span></li><li class="in" name="akka.actor.AbstractActor"><span>AbstractActor</span></li><li class="in" name="akka.actor.Actor"><span>Actor</span></li><li class="in" name="scala.AnyRef"><span>AnyRef</span></li><li class="in" name="scala.Any"><span>Any</span></li>
                   </ol>
                 </div><div class="ancestors">
               <span class="filtertype"></span>
@@ -280,10 +319,10 @@ a transport.">
         <div id="allMembers">
         <div id="constructors" class="members">
               <h3>Instance Constructors</h3>
-              <ol><li name="akka.wamp.router.EmbeddedRouter#&lt;init&gt;" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="&lt;init&gt;(factory:akka.actor.ActorRefFactory)(implicitsystem:akka.actor.ActorSystem):akka.wamp.router.EmbeddedRouter"></a><a id="&lt;init&gt;:EmbeddedRouter"></a>
+              <ol><li name="akka.wamp.client.AbstractClientLoggingActor#&lt;init&gt;" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="&lt;init&gt;():akka.wamp.client.AbstractClientLoggingActor"></a><a id="&lt;init&gt;:AbstractClientLoggingActor"></a>
       <span class="permalink">
-      <a href="../../../akka/wamp/router/EmbeddedRouter.html#&lt;init&gt;(factory:akka.actor.ActorRefFactory)(implicitsystem:akka.actor.ActorSystem):akka.wamp.router.EmbeddedRouter" title="Permalink">
+      <a href="../../../akka/wamp/client/AbstractClientLoggingActor.html#&lt;init&gt;():akka.wamp.client.AbstractClientLoggingActor" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -292,7 +331,7 @@ a transport.">
         <span class="kind">new</span>
       </span>
       <span class="symbol">
-        <span class="name">EmbeddedRouter</span><span class="params">(<span name="factory">factory: <span class="extype" name="akka.actor.ActorRefFactory">ActorRefFactory</span></span>)</span><span class="params">(<span class="implicit">implicit </span><span name="system">system: <span class="extype" name="akka.actor.ActorSystem">ActorSystem</span></span>)</span>
+        <span class="name">AbstractClientLoggingActor</span><span class="params">()</span>
       </span>
       
       
@@ -304,7 +343,7 @@ a transport.">
               <ol><li name="akka.actor.Actor.Receive" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="Receive=akka.actor.Actor.Receive"></a><a id="Receive:Receive"></a>
       <span class="permalink">
-      <a href="../../../akka/wamp/router/EmbeddedRouter.html#Receive=akka.actor.Actor.Receive" title="Permalink">
+      <a href="../../../akka/wamp/client/AbstractClientLoggingActor.html#Receive=akka.actor.Actor.Receive" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -328,7 +367,7 @@ a transport.">
                 <li name="scala.AnyRef#!=" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="!=(x$1:Any):Boolean"></a><a id="!=(Any):Boolean"></a>
       <span class="permalink">
-      <a href="../../../akka/wamp/router/EmbeddedRouter.html#!=(x$1:Any):Boolean" title="Permalink">
+      <a href="../../../akka/wamp/client/AbstractClientLoggingActor.html#!=(x$1:Any):Boolean" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -344,7 +383,7 @@ a transport.">
     </li><li name="scala.AnyRef###" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="##():Int"></a>
       <span class="permalink">
-      <a href="../../../akka/wamp/router/EmbeddedRouter.html###():Int" title="Permalink">
+      <a href="../../../akka/wamp/client/AbstractClientLoggingActor.html###():Int" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -360,7 +399,7 @@ a transport.">
     </li><li name="scala.AnyRef#==" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="==(x$1:Any):Boolean"></a><a id="==(Any):Boolean"></a>
       <span class="permalink">
-      <a href="../../../akka/wamp/router/EmbeddedRouter.html#==(x$1:Any):Boolean" title="Permalink">
+      <a href="../../../akka/wamp/client/AbstractClientLoggingActor.html#==(x$1:Any):Boolean" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -376,7 +415,7 @@ a transport.">
     </li><li name="akka.actor.Actor#aroundPostRestart" visbl="prt" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="aroundPostRestart(reason:Throwable):Unit"></a><a id="aroundPostRestart(Throwable):Unit"></a>
       <span class="permalink">
-      <a href="../../../akka/wamp/router/EmbeddedRouter.html#aroundPostRestart(reason:Throwable):Unit" title="Permalink">
+      <a href="../../../akka/wamp/client/AbstractClientLoggingActor.html#aroundPostRestart(reason:Throwable):Unit" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -392,7 +431,7 @@ a transport.">
     </li><li name="akka.actor.Actor#aroundPostStop" visbl="prt" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="aroundPostStop():Unit"></a>
       <span class="permalink">
-      <a href="../../../akka/wamp/router/EmbeddedRouter.html#aroundPostStop():Unit" title="Permalink">
+      <a href="../../../akka/wamp/client/AbstractClientLoggingActor.html#aroundPostStop():Unit" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -408,7 +447,7 @@ a transport.">
     </li><li name="akka.actor.Actor#aroundPreRestart" visbl="prt" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="aroundPreRestart(reason:Throwable,message:Option[Any]):Unit"></a><a id="aroundPreRestart(Throwable,Option[Any]):Unit"></a>
       <span class="permalink">
-      <a href="../../../akka/wamp/router/EmbeddedRouter.html#aroundPreRestart(reason:Throwable,message:Option[Any]):Unit" title="Permalink">
+      <a href="../../../akka/wamp/client/AbstractClientLoggingActor.html#aroundPreRestart(reason:Throwable,message:Option[Any]):Unit" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -424,7 +463,7 @@ a transport.">
     </li><li name="akka.actor.Actor#aroundPreStart" visbl="prt" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="aroundPreStart():Unit"></a>
       <span class="permalink">
-      <a href="../../../akka/wamp/router/EmbeddedRouter.html#aroundPreStart():Unit" title="Permalink">
+      <a href="../../../akka/wamp/client/AbstractClientLoggingActor.html#aroundPreStart():Unit" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -440,7 +479,7 @@ a transport.">
     </li><li name="akka.actor.Actor#aroundReceive" visbl="prt" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="aroundReceive(receive:akka.actor.Actor.Receive,msg:Any):Unit"></a><a id="aroundReceive(actor.Actor.Receive,Any):Unit"></a>
       <span class="permalink">
-      <a href="../../../akka/wamp/router/EmbeddedRouter.html#aroundReceive(receive:akka.actor.Actor.Receive,msg:Any):Unit" title="Permalink">
+      <a href="../../../akka/wamp/client/AbstractClientLoggingActor.html#aroundReceive(receive:akka.actor.Actor.Receive,msg:Any):Unit" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -456,7 +495,7 @@ a transport.">
     </li><li name="scala.Any#asInstanceOf" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="asInstanceOf[T0]:T0"></a>
       <span class="permalink">
-      <a href="../../../akka/wamp/router/EmbeddedRouter.html#asInstanceOf[T0]:T0" title="Permalink">
+      <a href="../../../akka/wamp/client/AbstractClientLoggingActor.html#asInstanceOf[T0]:T0" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -472,7 +511,7 @@ a transport.">
     </li><li name="scala.AnyRef#clone" visbl="prt" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="clone():Object"></a><a id="clone():AnyRef"></a>
       <span class="permalink">
-      <a href="../../../akka/wamp/router/EmbeddedRouter.html#clone():Object" title="Permalink">
+      <a href="../../../akka/wamp/client/AbstractClientLoggingActor.html#clone():Object" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -491,10 +530,26 @@ a transport.">
     </span>)</span>
               
         </dd></dl></div>
+    </li><li name="akka.wamp.client.ClientActor#config" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="config:com.typesafe.config.Config"></a><a id="config:Config"></a>
+      <span class="permalink">
+      <a href="../../../akka/wamp/client/AbstractClientLoggingActor.html#config:com.typesafe.config.Config" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">config</span><span class="result">: <span class="extype" name="com.typesafe.config.Config">Config</span></span>
+      </span>
+      
+      <p class="shortcomment cmt">The Akka Wamp Client API configuration</p><div class="fullcomment"><div class="comment cmt"><p>The Akka Wamp Client API configuration</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="ClientActor.html" class="extype" name="akka.wamp.client.ClientActor">ClientActor</a></dd></dl></div>
     </li><li name="akka.actor.Actor#context" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="context:akka.actor.ActorContext"></a><a id="context:ActorContext"></a>
       <span class="permalink">
-      <a href="../../../akka/wamp/router/EmbeddedRouter.html#context:akka.actor.ActorContext" title="Permalink">
+      <a href="../../../akka/wamp/client/AbstractClientLoggingActor.html#context:akka.actor.ActorContext" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -510,7 +565,7 @@ a transport.">
     </li><li name="scala.AnyRef#eq" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="eq(x$1:AnyRef):Boolean"></a><a id="eq(AnyRef):Boolean"></a>
       <span class="permalink">
-      <a href="../../../akka/wamp/router/EmbeddedRouter.html#eq(x$1:AnyRef):Boolean" title="Permalink">
+      <a href="../../../akka/wamp/client/AbstractClientLoggingActor.html#eq(x$1:AnyRef):Boolean" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -526,7 +581,7 @@ a transport.">
     </li><li name="scala.AnyRef#equals" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="equals(x$1:Any):Boolean"></a><a id="equals(Any):Boolean"></a>
       <span class="permalink">
-      <a href="../../../akka/wamp/router/EmbeddedRouter.html#equals(x$1:Any):Boolean" title="Permalink">
+      <a href="../../../akka/wamp/client/AbstractClientLoggingActor.html#equals(x$1:Any):Boolean" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -539,10 +594,26 @@ a transport.">
       </span>
       
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="akka.wamp.client.ClientActor#executionContext" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="executionContext:scala.concurrent.ExecutionContextExecutor"></a><a id="executionContext:ExecutionContextExecutor"></a>
+      <span class="permalink">
+      <a href="../../../akka/wamp/client/AbstractClientLoggingActor.html#executionContext:scala.concurrent.ExecutionContextExecutor" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier">implicit </span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">executionContext</span><span class="result">: <span class="extype" name="scala.concurrent.ExecutionContextExecutor">ExecutionContextExecutor</span></span>
+      </span>
+      
+      <p class="shortcomment cmt">Execution context</p><div class="fullcomment"><div class="comment cmt"><p>Execution context</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="ClientActor.html" class="extype" name="akka.wamp.client.ClientActor">ClientActor</a></dd></dl></div>
     </li><li name="scala.AnyRef#finalize" visbl="prt" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="finalize():Unit"></a>
       <span class="permalink">
-      <a href="../../../akka/wamp/router/EmbeddedRouter.html#finalize():Unit" title="Permalink">
+      <a href="../../../akka/wamp/client/AbstractClientLoggingActor.html#finalize():Unit" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -564,7 +635,7 @@ a transport.">
     </li><li name="scala.AnyRef#getClass" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="getClass():Class[_]"></a>
       <span class="permalink">
-      <a href="../../../akka/wamp/router/EmbeddedRouter.html#getClass():Class[_]" title="Permalink">
+      <a href="../../../akka/wamp/client/AbstractClientLoggingActor.html#getClass():Class[_]" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -577,10 +648,26 @@ a transport.">
       </span>
       
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="akka.actor.AbstractActor#getContext" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="getContext():akka.actor.AbstractActorContext"></a><a id="getContext():AbstractActorContext"></a>
+      <span class="permalink">
+      <a href="../../../akka/wamp/client/AbstractClientLoggingActor.html#getContext():akka.actor.AbstractActorContext" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">getContext</span><span class="params">()</span><span class="result">: <span class="extype" name="akka.actor.AbstractActorContext">AbstractActorContext</span></span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AbstractActor</dd></dl></div>
     </li><li name="scala.AnyRef#hashCode" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="hashCode():Int"></a>
       <span class="permalink">
-      <a href="../../../akka/wamp/router/EmbeddedRouter.html#hashCode():Int" title="Permalink">
+      <a href="../../../akka/wamp/client/AbstractClientLoggingActor.html#hashCode():Int" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -596,7 +683,7 @@ a transport.">
     </li><li name="scala.Any#isInstanceOf" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="isInstanceOf[T0]:Boolean"></a>
       <span class="permalink">
-      <a href="../../../akka/wamp/router/EmbeddedRouter.html#isInstanceOf[T0]:Boolean" title="Permalink">
+      <a href="../../../akka/wamp/client/AbstractClientLoggingActor.html#isInstanceOf[T0]:Boolean" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -612,7 +699,7 @@ a transport.">
     </li><li name="akka.actor.ActorLogging#log" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="log:akka.event.LoggingAdapter"></a><a id="log:LoggingAdapter"></a>
       <span class="permalink">
-      <a href="../../../akka/wamp/router/EmbeddedRouter.html#log:akka.event.LoggingAdapter" title="Permalink">
+      <a href="../../../akka/wamp/client/AbstractClientLoggingActor.html#log:akka.event.LoggingAdapter" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -628,7 +715,7 @@ a transport.">
     </li><li name="scala.AnyRef#ne" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="ne(x$1:AnyRef):Boolean"></a><a id="ne(AnyRef):Boolean"></a>
       <span class="permalink">
-      <a href="../../../akka/wamp/router/EmbeddedRouter.html#ne(x$1:AnyRef):Boolean" title="Permalink">
+      <a href="../../../akka/wamp/client/AbstractClientLoggingActor.html#ne(x$1:AnyRef):Boolean" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -644,7 +731,7 @@ a transport.">
     </li><li name="scala.AnyRef#notify" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="notify():Unit"></a>
       <span class="permalink">
-      <a href="../../../akka/wamp/router/EmbeddedRouter.html#notify():Unit" title="Permalink">
+      <a href="../../../akka/wamp/client/AbstractClientLoggingActor.html#notify():Unit" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -660,7 +747,7 @@ a transport.">
     </li><li name="scala.AnyRef#notifyAll" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="notifyAll():Unit"></a>
       <span class="permalink">
-      <a href="../../../akka/wamp/router/EmbeddedRouter.html#notifyAll():Unit" title="Permalink">
+      <a href="../../../akka/wamp/client/AbstractClientLoggingActor.html#notifyAll():Unit" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -676,7 +763,7 @@ a transport.">
     </li><li name="akka.actor.Actor#postRestart" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="postRestart(reason:Throwable):Unit"></a><a id="postRestart(Throwable):Unit"></a>
       <span class="permalink">
-      <a href="../../../akka/wamp/router/EmbeddedRouter.html#postRestart(reason:Throwable):Unit" title="Permalink">
+      <a href="../../../akka/wamp/client/AbstractClientLoggingActor.html#postRestart(reason:Throwable):Unit" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -698,7 +785,7 @@ a transport.">
     </li><li name="akka.actor.Actor#postStop" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="postStop():Unit"></a>
       <span class="permalink">
-      <a href="../../../akka/wamp/router/EmbeddedRouter.html#postStop():Unit" title="Permalink">
+      <a href="../../../akka/wamp/client/AbstractClientLoggingActor.html#postStop():Unit" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -720,7 +807,7 @@ a transport.">
     </li><li name="akka.actor.Actor#preRestart" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="preRestart(reason:Throwable,message:Option[Any]):Unit"></a><a id="preRestart(Throwable,Option[Any]):Unit"></a>
       <span class="permalink">
-      <a href="../../../akka/wamp/router/EmbeddedRouter.html#preRestart(reason:Throwable,message:Option[Any]):Unit" title="Permalink">
+      <a href="../../../akka/wamp/client/AbstractClientLoggingActor.html#preRestart(reason:Throwable,message:Option[Any]):Unit" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -739,10 +826,10 @@ a transport.">
     </span>)</span>
               
         </dd></dl></div>
-    </li><li name="akka.wamp.router.EmbeddedRouter#preStart" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+    </li><li name="akka.actor.Actor#preStart" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="preStart():Unit"></a>
       <span class="permalink">
-      <a href="../../../akka/wamp/router/EmbeddedRouter.html#preStart():Unit" title="Permalink">
+      <a href="../../../akka/wamp/client/AbstractClientLoggingActor.html#preStart():Unit" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -754,11 +841,17 @@ a transport.">
         <span class="name">preStart</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
       </span>
       
-      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="akka.wamp.router.EmbeddedRouter">EmbeddedRouter</a> → Actor</dd></dl></div>
-    </li><li name="akka.wamp.router.EmbeddedRouter#receive" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="receive:EmbeddedRouter.this.Receive"></a><a id="receive:Receive"></a>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Actor</dd><dt>Annotations</dt><dd>
+                <span class="name">@throws</span><span class="args">(<span>
+      
+      <span class="symbol">classOf[java.lang.Exception]</span>
+    </span>)</span>
+              
+        </dd></dl></div>
+    </li><li name="akka.actor.AbstractActor#receive" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="receive:akka.actor.Actor.Receive"></a><a id="receive:actor.Actor.Receive"></a>
       <span class="permalink">
-      <a href="../../../akka/wamp/router/EmbeddedRouter.html#receive:EmbeddedRouter.this.Receive" title="Permalink">
+      <a href="../../../akka/wamp/client/AbstractClientLoggingActor.html#receive:akka.actor.Actor.Receive" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -767,14 +860,52 @@ a transport.">
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">receive</span><span class="result">: <a href="#Receive=akka.actor.Actor.Receive" class="extmbr" name="akka.wamp.router.EmbeddedRouter.Receive">Receive</a></span>
+        <span class="name">receive</span><span class="result">: <span class="extype" name="akka.actor.Actor.Receive">actor.Actor.Receive</span></span>
       </span>
       
-      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="akka.wamp.router.EmbeddedRouter">EmbeddedRouter</a> → Actor</dd></dl></div>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AbstractActor → Actor</dd></dl></div>
+    </li><li name="akka.actor.AbstractActor#receive" visbl="prt" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="receive(receive:AbstractActor.this.Receive):Unit"></a><a id="receive(Receive):Unit"></a>
+      <span class="permalink">
+      <a href="../../../akka/wamp/client/AbstractClientLoggingActor.html#receive(receive:AbstractActor.this.Receive):Unit" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">receive</span><span class="params">(<span name="receive">receive: <a href="#Receive=akka.actor.Actor.Receive" class="extmbr" name="akka.wamp.client.AbstractClientLoggingActor.Receive">Receive</a></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Attributes</dt><dd>protected </dd><dt>Definition Classes</dt><dd>AbstractActor</dd><dt>Annotations</dt><dd>
+                <span class="name">@throws</span><span class="args">(<span>
+      
+      <span class="defval" name="classOf[akka.actor.IllegalActorStateException]">...</span>
+    </span>)</span>
+              
+        </dd></dl></div>
+    </li><li name="akka.wamp.client.ClientActor#scheduler" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="scheduler:akka.actor.Scheduler"></a><a id="scheduler:Scheduler"></a>
+      <span class="permalink">
+      <a href="../../../akka/wamp/client/AbstractClientLoggingActor.html#scheduler:akka.actor.Scheduler" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">scheduler</span><span class="result">: <span class="extype" name="akka.actor.Scheduler">Scheduler</span></span>
+      </span>
+      
+      <p class="shortcomment cmt">Task scheduler</p><div class="fullcomment"><div class="comment cmt"><p>Task scheduler</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="ClientActor.html" class="extype" name="akka.wamp.client.ClientActor">ClientActor</a></dd></dl></div>
     </li><li name="akka.actor.Actor#self" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="self:akka.actor.ActorRef"></a><a id="self:ActorRef"></a>
       <span class="permalink">
-      <a href="../../../akka/wamp/router/EmbeddedRouter.html#self:akka.actor.ActorRef" title="Permalink">
+      <a href="../../../akka/wamp/client/AbstractClientLoggingActor.html#self:akka.actor.ActorRef" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -790,7 +921,7 @@ a transport.">
     </li><li name="akka.actor.Actor#sender" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="sender():akka.actor.ActorRef"></a><a id="sender():ActorRef"></a>
       <span class="permalink">
-      <a href="../../../akka/wamp/router/EmbeddedRouter.html#sender():akka.actor.ActorRef" title="Permalink">
+      <a href="../../../akka/wamp/client/AbstractClientLoggingActor.html#sender():akka.actor.ActorRef" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -803,10 +934,30 @@ a transport.">
       </span>
       
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Actor</dd></dl></div>
+    </li><li name="akka.wamp.client.ClientActor#strictUris" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="strictUris:Boolean"></a>
+      <span class="permalink">
+      <a href="../../../akka/wamp/client/AbstractClientLoggingActor.html#strictUris:Boolean" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">strictUris</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      
+      <p class="shortcomment cmt">The boolean switch (default is false) to validate
+against strict URIs rather than loose URIs
+</p><div class="fullcomment"><div class="comment cmt"><p>The boolean switch (default is false) to validate
+against strict URIs rather than loose URIs
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="ClientActor.html" class="extype" name="akka.wamp.client.ClientActor">ClientActor</a></dd></dl></div>
     </li><li name="akka.actor.Actor#supervisorStrategy" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="supervisorStrategy:akka.actor.SupervisorStrategy"></a><a id="supervisorStrategy:SupervisorStrategy"></a>
       <span class="permalink">
-      <a href="../../../akka/wamp/router/EmbeddedRouter.html#supervisorStrategy:akka.actor.SupervisorStrategy" title="Permalink">
+      <a href="../../../akka/wamp/client/AbstractClientLoggingActor.html#supervisorStrategy:akka.actor.SupervisorStrategy" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -822,7 +973,7 @@ a transport.">
     </li><li name="scala.AnyRef#synchronized" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="synchronized[T0](x$1:=&gt;T0):T0"></a><a id="synchronized[T0](⇒T0):T0"></a>
       <span class="permalink">
-      <a href="../../../akka/wamp/router/EmbeddedRouter.html#synchronized[T0](x$1:=&gt;T0):T0" title="Permalink">
+      <a href="../../../akka/wamp/client/AbstractClientLoggingActor.html#synchronized[T0](x$1:=&gt;T0):T0" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -835,10 +986,26 @@ a transport.">
       </span>
       
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
+    </li><li name="akka.wamp.client.ClientActor#system" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="system:akka.actor.ActorSystem"></a><a id="system:ActorSystem"></a>
+      <span class="permalink">
+      <a href="../../../akka/wamp/client/AbstractClientLoggingActor.html#system:akka.actor.ActorSystem" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier">implicit </span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">system</span><span class="result">: <span class="extype" name="akka.actor.ActorSystem">ActorSystem</span></span>
+      </span>
+      
+      <p class="shortcomment cmt">Actor system</p><div class="fullcomment"><div class="comment cmt"><p>Actor system</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="ClientActor.html" class="extype" name="akka.wamp.client.ClientActor">ClientActor</a></dd></dl></div>
     </li><li name="scala.AnyRef#toString" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="toString():String"></a>
       <span class="permalink">
-      <a href="../../../akka/wamp/router/EmbeddedRouter.html#toString():String" title="Permalink">
+      <a href="../../../akka/wamp/client/AbstractClientLoggingActor.html#toString():String" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -854,7 +1021,7 @@ a transport.">
     </li><li name="akka.actor.Actor#unhandled" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="unhandled(message:Any):Unit"></a><a id="unhandled(Any):Unit"></a>
       <span class="permalink">
-      <a href="../../../akka/wamp/router/EmbeddedRouter.html#unhandled(message:Any):Unit" title="Permalink">
+      <a href="../../../akka/wamp/client/AbstractClientLoggingActor.html#unhandled(message:Any):Unit" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -867,10 +1034,26 @@ a transport.">
       </span>
       
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Actor</dd></dl></div>
+    </li><li name="akka.wamp.client.ClientActor#validator" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="validator:akka.wamp.Validator"></a><a id="validator:Validator"></a>
+      <span class="permalink">
+      <a href="../../../akka/wamp/client/AbstractClientLoggingActor.html#validator:akka.wamp.Validator" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier">implicit </span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">validator</span><span class="result">: <span class="extype" name="akka.wamp.Validator">Validator</span></span>
+      </span>
+      
+      <p class="shortcomment cmt">WAMP types Validator</p><div class="fullcomment"><div class="comment cmt"><p>WAMP types Validator</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="ClientActor.html" class="extype" name="akka.wamp.client.ClientActor">ClientActor</a></dd></dl></div>
     </li><li name="scala.AnyRef#wait" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="wait():Unit"></a>
       <span class="permalink">
-      <a href="../../../akka/wamp/router/EmbeddedRouter.html#wait():Unit" title="Permalink">
+      <a href="../../../akka/wamp/client/AbstractClientLoggingActor.html#wait():Unit" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -892,7 +1075,7 @@ a transport.">
     </li><li name="scala.AnyRef#wait" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="wait(x$1:Long,x$2:Int):Unit"></a><a id="wait(Long,Int):Unit"></a>
       <span class="permalink">
-      <a href="../../../akka/wamp/router/EmbeddedRouter.html#wait(x$1:Long,x$2:Int):Unit" title="Permalink">
+      <a href="../../../akka/wamp/client/AbstractClientLoggingActor.html#wait(x$1:Long,x$2:Int):Unit" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -914,7 +1097,7 @@ a transport.">
     </li><li name="scala.AnyRef#wait" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="wait(x$1:Long):Unit"></a><a id="wait(Long):Unit"></a>
       <span class="permalink">
-      <a href="../../../akka/wamp/router/EmbeddedRouter.html#wait(x$1:Long):Unit" title="Permalink">
+      <a href="../../../akka/wamp/client/AbstractClientLoggingActor.html#wait(x$1:Long):Unit" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -943,8 +1126,14 @@ a transport.">
         </div>
 
         <div id="inheritedMembers">
-        <div class="parent" name="akka.actor.ActorLogging">
+        <div class="parent" name="akka.wamp.client.ClientActor">
+              <h3>Inherited from <a href="ClientActor.html" class="extype" name="akka.wamp.client.ClientActor">ClientActor</a></h3>
+            </div><div class="parent" name="akka.actor.AbstractLoggingActor">
+              <h3>Inherited from <span class="extype" name="akka.actor.AbstractLoggingActor">AbstractLoggingActor</span></h3>
+            </div><div class="parent" name="akka.actor.ActorLogging">
               <h3>Inherited from <span class="extype" name="akka.actor.ActorLogging">ActorLogging</span></h3>
+            </div><div class="parent" name="akka.actor.AbstractActor">
+              <h3>Inherited from <span class="extype" name="akka.actor.AbstractActor">AbstractActor</span></h3>
             </div><div class="parent" name="akka.actor.Actor">
               <h3>Inherited from <span class="extype" name="akka.actor.Actor">Actor</span></h3>
             </div><div class="parent" name="scala.AnyRef">

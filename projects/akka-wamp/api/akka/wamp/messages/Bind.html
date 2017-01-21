@@ -137,10 +137,12 @@ based on WAMP - Web Application Messaging Protocol</p><h4> Client </h4><p>Akka W
                         </a>
                       </li><li class="current-entities indented3">
                         <span class="separator"></span>
-                        <a class="class" href="" title="This bind command is sent by routing applications with the intent to bind the router to a given
-named transport configuration ."></a>
-                        <a href="" title="This bind command is sent by routing applications with the intent to bind the router to a given
-named transport configuration .">
+                        <a class="class" href="" title="Is the command to be sent to bind the given router actor
+to all of its configured endpoints
+"></a>
+                        <a href="" title="Is the command to be sent to bind the given router actor
+to all of its configured endpoints
+">
                           Bind
                         </a>
                       </li><li class="current-entities indented3">
@@ -391,14 +393,14 @@ attaching to a Realm.">
         <span class="kind">case class</span>
       </span>
       <span class="symbol">
-        <span class="name">Bind</span><span class="params">(<span name="router">router: <span class="extype" name="akka.actor.ActorRef">ActorRef</span></span>, <span name="transport">transport: <span class="extype" name="scala.Predef.String">String</span> = <span class="symbol">&quot;default&quot;</span></span>)</span><span class="result"> extends <a href="Command.html" class="extype" name="akka.wamp.messages.Command">Command</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+        <span class="name">Bind</span><span class="params">(<span name="router">router: <span class="extype" name="akka.actor.ActorRef">ActorRef</span></span>, <span name="endpoint">endpoint: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result"> extends <a href="Command.html" class="extype" name="akka.wamp.messages.Command">Command</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
       </span>
       </h4>
 
       
-          <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>This bind command is sent by routing applications with the intent to bind the router to a given
-named transport configuration .
-</p></div><dl class="paramcmts block"><dt class="param">router</dt><dd class="cmt"><p>is the router to bind</p></dd><dt class="param">transport</dt><dd class="cmt"><p>is the name of the transport configuration to bind to</p></dd></dl><div class="toggleContainer block">
+          <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>Is the command to be sent to bind the given router actor
+to all of its configured endpoints
+</p></div><dl class="paramcmts block"><dt class="param">router</dt><dd class="cmt"><p>is the router actor to bind</p></dd><dt class="param">endpoint</dt><dd class="cmt"><p>is the named configuration endpoint to bind to</p></dd></dl><div class="toggleContainer block">
           <span class="toggle">
             Linear Supertypes
           </span>
@@ -449,9 +451,9 @@ named transport configuration .
         <div id="constructors" class="members">
               <h3>Instance Constructors</h3>
               <ol><li name="akka.wamp.messages.Bind#&lt;init&gt;" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="&lt;init&gt;(router:akka.actor.ActorRef,transport:String):akka.wamp.messages.Bind"></a><a id="&lt;init&gt;:Bind"></a>
+      <a id="&lt;init&gt;(router:akka.actor.ActorRef,endpoint:String):akka.wamp.messages.Bind"></a><a id="&lt;init&gt;:Bind"></a>
       <span class="permalink">
-      <a href="../../../akka/wamp/messages/Bind.html#&lt;init&gt;(router:akka.actor.ActorRef,transport:String):akka.wamp.messages.Bind" title="Permalink">
+      <a href="../../../akka/wamp/messages/Bind.html#&lt;init&gt;(router:akka.actor.ActorRef,endpoint:String):akka.wamp.messages.Bind" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -460,10 +462,10 @@ named transport configuration .
         <span class="kind">new</span>
       </span>
       <span class="symbol">
-        <span class="name">Bind</span><span class="params">(<span name="router">router: <span class="extype" name="akka.actor.ActorRef">ActorRef</span></span>, <span name="transport">transport: <span class="extype" name="scala.Predef.String">String</span> = <span class="symbol">&quot;default&quot;</span></span>)</span>
+        <span class="name">Bind</span><span class="params">(<span name="router">router: <span class="extype" name="akka.actor.ActorRef">ActorRef</span></span>, <span name="endpoint">endpoint: <span class="extype" name="scala.Predef.String">String</span></span>)</span>
       </span>
       
-      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">router</dt><dd class="cmt"><p>is the router to bind</p></dd><dt class="param">transport</dt><dd class="cmt"><p>is the name of the transport configuration to bind to</p></dd></dl></div>
+      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">router</dt><dd class="cmt"><p>is the router actor to bind</p></dd><dt class="param">endpoint</dt><dd class="cmt"><p>is the named configuration endpoint to bind to</p></dd></dl></div>
     </li></ol>
             </div>
 
@@ -560,6 +562,22 @@ named transport configuration .
     </span>)</span>
               
         </dd></dl></div>
+    </li><li name="akka.wamp.messages.Bind#endpoint" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="endpoint:String"></a>
+      <span class="permalink">
+      <a href="../../../akka/wamp/messages/Bind.html#endpoint:String" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">endpoint</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
+      </span>
+      
+      
     </li><li name="scala.AnyRef#eq" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="eq(x$1:AnyRef):Boolean"></a><a id="eq(AnyRef):Boolean"></a>
       <span class="permalink">
@@ -710,22 +728,6 @@ named transport configuration .
       </span>
       
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
-    </li><li name="akka.wamp.messages.Bind#transport" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="transport:String"></a>
-      <span class="permalink">
-      <a href="../../../akka/wamp/messages/Bind.html#transport:String" title="Permalink">
-        <i class="material-icons"></i>
-      </a>
-    </span>
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">val</span>
-      </span>
-      <span class="symbol">
-        <span class="name">transport</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
-      </span>
-      
-      
     </li><li name="scala.AnyRef#wait" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="wait():Unit"></a>
       <span class="permalink">

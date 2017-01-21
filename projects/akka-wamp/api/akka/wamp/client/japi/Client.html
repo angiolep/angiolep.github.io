@@ -175,18 +175,6 @@ client.connect(<span class="lit">"myrouter"</span>).foreach { conn <span class="
       <p class="shortcomment cmt">Contains classes to implement clients in Java.</p><div class="fullcomment"><div class="comment cmt"><p>Contains classes to implement clients in Java.</p><pre>...</pre></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../index.html" class="extype" name="akka.wamp.client">client</a></dd><dt>Note</dt><dd><span class="cmt"><p>Java API</p></span></dd><dt>See also</dt><dd><span class="cmt"><p><a href="../index.html" class="extype" name="akka.wamp.client">akka.wamp.client</a></p></span></dd></dl></div>
     </li><li class="current-entities indented4">
                         <span class="separator"></span>
-                        <a class="class" href="AbstractClientActor.html" title=""></a>
-                        <a href="AbstractClientActor.html" title="">
-                          AbstractClientActor
-                        </a>
-                      </li><li class="current-entities indented4">
-                        <span class="separator"></span>
-                        <a class="class" href="AbstractClientLoggingActor.html" title=""></a>
-                        <a href="AbstractClientLoggingActor.html" title="">
-                          AbstractClientLoggingActor
-                        </a>
-                      </li><li class="current-entities indented4">
-                        <span class="separator"></span>
                         <a class="class" href="BinaryLazyPayload.html" title=""></a>
                         <a href="BinaryLazyPayload.html" title="">
                           BinaryLazyPayload
@@ -500,9 +488,9 @@ CompletionStage&lt;Session&gt; session =
       
       <p class="shortcomment cmt">Is this client configuration</p>
     </li><li name="akka.wamp.client.japi.Client#connect" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="connect(transport:String):java.util.concurrent.CompletionStage[akka.wamp.client.japi.Connection]"></a><a id="connect(String):CompletionStage[Connection]"></a>
+      <a id="connect(address:String,format:String):java.util.concurrent.CompletionStage[akka.wamp.client.japi.Connection]"></a><a id="connect(String,String):CompletionStage[Connection]"></a>
       <span class="permalink">
-      <a href="../../../../akka/wamp/client/japi/Client.html#connect(transport:String):java.util.concurrent.CompletionStage[akka.wamp.client.japi.Connection]" title="Permalink">
+      <a href="../../../../akka/wamp/client/japi/Client.html#connect(address:String,format:String):java.util.concurrent.CompletionStage[akka.wamp.client.japi.Connection]" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -511,12 +499,32 @@ CompletionStage&lt;Session&gt; session =
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">connect</span><span class="params">(<span name="transport">transport: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result">: <span class="extype" name="java.util.concurrent.CompletionStage">CompletionStage</span>[<a href="Connection.html" class="extype" name="akka.wamp.client.japi.Connection">Connection</a>]</span>
+        <span class="name">connect</span><span class="params">(<span name="address">address: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="format">format: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result">: <span class="extype" name="java.util.concurrent.CompletionStage">CompletionStage</span>[<a href="Connection.html" class="extype" name="akka.wamp.client.japi.Connection">Connection</a>]</span>
       </span>
       
-      <p class="shortcomment cmt">Connects to a router with the given named transport configuration
-</p><div class="fullcomment"><div class="comment cmt"><p>Connects to a router with the given named transport configuration
-</p></div><dl class="paramcmts block"><dt class="param">transport</dt><dd class="cmt"><p>the name of a configured transport</p></dd><dt>returns</dt><dd class="cmt"><p>the (future of) connection</p></dd></dl></div>
+      <p class="shortcomment cmt">Connects to a router listening at the given address and
+providing the given message format
+</p><div class="fullcomment"><div class="comment cmt"><p>Connects to a router listening at the given address and
+providing the given message format
+</p></div><dl class="paramcmts block"><dt class="param">address</dt><dd class="cmt"><p>is the address to connect to (e.g. <code><code>&quot;wss://host.net:8433/router&quot;</code></code>)</p></dd><dt class="param">format</dt><dd class="cmt"><p>is the message format to negotiate (e.g. <code><code>&quot;wamp.2.msgpack&quot;</code></code></p></dd><dt>returns</dt><dd class="cmt"><p>a (future of) connection</p></dd></dl></div>
+    </li><li name="akka.wamp.client.japi.Client#connect" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="connect(endpoint:String):java.util.concurrent.CompletionStage[akka.wamp.client.japi.Connection]"></a><a id="connect(String):CompletionStage[Connection]"></a>
+      <span class="permalink">
+      <a href="../../../../akka/wamp/client/japi/Client.html#connect(endpoint:String):java.util.concurrent.CompletionStage[akka.wamp.client.japi.Connection]" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">connect</span><span class="params">(<span name="endpoint">endpoint: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result">: <span class="extype" name="java.util.concurrent.CompletionStage">CompletionStage</span>[<a href="Connection.html" class="extype" name="akka.wamp.client.japi.Connection">Connection</a>]</span>
+      </span>
+      
+      <p class="shortcomment cmt">Connects to a router listening at the given endpoint
+</p><div class="fullcomment"><div class="comment cmt"><p>Connects to a router listening at the given endpoint
+</p></div><dl class="paramcmts block"><dt class="param">endpoint</dt><dd class="cmt"><p>is the name of a configured endpoint</p></dd><dt>returns</dt><dd class="cmt"><p>the (future of) connection</p></dd></dl></div>
     </li><li name="akka.wamp.client.japi.Client#connect" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="connect():java.util.concurrent.CompletionStage[akka.wamp.client.japi.Connection]"></a><a id="connect():CompletionStage[Connection]"></a>
       <span class="permalink">
@@ -532,8 +540,8 @@ CompletionStage&lt;Session&gt; session =
         <span class="name">connect</span><span class="params">()</span><span class="result">: <span class="extype" name="java.util.concurrent.CompletionStage">CompletionStage</span>[<a href="Connection.html" class="extype" name="akka.wamp.client.japi.Connection">Connection</a>]</span>
       </span>
       
-      <p class="shortcomment cmt">Connects to a router with the <code><code>&quot;default&quot;</code></code> transport configuration
-</p><div class="fullcomment"><div class="comment cmt"><p>Connects to a router with the <code><code>&quot;default&quot;</code></code> transport configuration
+      <p class="shortcomment cmt">Connects to a router listening at the <code><code>&quot;local&quot;</code></code> endpoint
+</p><div class="fullcomment"><div class="comment cmt"><p>Connects to a router listening at the <code><code>&quot;local&quot;</code></code> endpoint
 </p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>the (future of) connection</p></dd></dl></div>
     </li><li name="scala.AnyRef#eq" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="eq(x$1:AnyRef):Boolean"></a><a id="eq(AnyRef):Boolean"></a>
@@ -686,9 +694,9 @@ CompletionStage&lt;Session&gt; session =
       
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
     </li><li name="akka.wamp.client.japi.Client#open" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="open(transport:String,realm:akka.wamp.Uri):java.util.concurrent.CompletionStage[akka.wamp.client.japi.Session]"></a><a id="open(String,Uri):CompletionStage[Session]"></a>
+      <a id="open(endpoint:String,realm:akka.wamp.Uri):java.util.concurrent.CompletionStage[akka.wamp.client.japi.Session]"></a><a id="open(String,Uri):CompletionStage[Session]"></a>
       <span class="permalink">
-      <a href="../../../../akka/wamp/client/japi/Client.html#open(transport:String,realm:akka.wamp.Uri):java.util.concurrent.CompletionStage[akka.wamp.client.japi.Session]" title="Permalink">
+      <a href="../../../../akka/wamp/client/japi/Client.html#open(endpoint:String,realm:akka.wamp.Uri):java.util.concurrent.CompletionStage[akka.wamp.client.japi.Session]" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -697,14 +705,14 @@ CompletionStage&lt;Session&gt; session =
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">open</span><span class="params">(<span name="transport">transport: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="realm">realm: <a href="../../index.html#Uri=String" class="extmbr" name="akka.wamp.Uri">Uri</a></span>)</span><span class="result">: <span class="extype" name="java.util.concurrent.CompletionStage">CompletionStage</span>[<a href="Session.html" class="extype" name="akka.wamp.client.japi.Session">Session</a>]</span>
+        <span class="name">open</span><span class="params">(<span name="endpoint">endpoint: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="realm">realm: <a href="../../index.html#Uri=String" class="extmbr" name="akka.wamp.Uri">Uri</a></span>)</span><span class="result">: <span class="extype" name="java.util.concurrent.CompletionStage">CompletionStage</span>[<a href="Session.html" class="extype" name="akka.wamp.client.japi.Session">Session</a>]</span>
       </span>
       
       <p class="shortcomment cmt">Connects and then opens a new session attached to the given realm and
-named transport
+named endpoint
 </p><div class="fullcomment"><div class="comment cmt"><p>Connects and then opens a new session attached to the given realm and
-named transport
-</p></div><dl class="paramcmts block"><dt class="param">transport</dt><dd class="cmt"><p>the name of a configured transport</p></dd><dt class="param">realm</dt><dd class="cmt"><p>the realm to attach the session to</p></dd><dt>returns</dt><dd class="cmt"><p>the (future of) session</p></dd></dl></div>
+named endpoint
+</p></div><dl class="paramcmts block"><dt class="param">endpoint</dt><dd class="cmt"><p>is the name of a configured endpoint</p></dd><dt class="param">realm</dt><dd class="cmt"><p>the realm to attach the session to</p></dd><dt>returns</dt><dd class="cmt"><p>the (future of) session</p></dd></dl></div>
     </li><li name="akka.wamp.client.japi.Client#open" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="open(realm:akka.wamp.Uri):java.util.concurrent.CompletionStage[akka.wamp.client.japi.Session]"></a><a id="open(Uri):CompletionStage[Session]"></a>
       <span class="permalink">
@@ -737,8 +745,8 @@ named transport
         <span class="name">open</span><span class="params">()</span><span class="result">: <span class="extype" name="java.util.concurrent.CompletionStage">CompletionStage</span>[<a href="Session.html" class="extype" name="akka.wamp.client.japi.Session">Session</a>]</span>
       </span>
       
-      <p class="shortcomment cmt">Connects and then opens a new session attached to the <code><code>&quot;default&quot;</code></code>
-</p><div class="fullcomment"><div class="comment cmt"><p>Connects and then opens a new session attached to the <code><code>&quot;default&quot;</code></code>
+      <p class="shortcomment cmt">Connects and then opens a new session attached to the <code><code>&quot;default&quot;</code></code> realm
+</p><div class="fullcomment"><div class="comment cmt"><p>Connects and then opens a new session attached to the <code><code>&quot;default&quot;</code></code> realm
 </p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>the (future of) session</p></dd></dl></div>
     </li><li name="scala.AnyRef#synchronized" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="synchronized[T0](x$1:=&gt;T0):T0"></a><a id="synchronized[T0](⇒T0):T0"></a>

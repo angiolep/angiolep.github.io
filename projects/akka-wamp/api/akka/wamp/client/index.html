@@ -172,6 +172,18 @@ client.connect(<span class="lit">"myrouter"</span>).foreach { conn <span class="
       
       <p class="shortcomment cmt">Contains classes to implement clients in Java.</p><div class="fullcomment"><div class="comment cmt"><p>Contains classes to implement clients in Java.</p><pre>...</pre></div><dl class="attributes block"> <dt>Note</dt><dd><span class="cmt"><p>Java API</p></span></dd><dt>See also</dt><dd><span class="cmt"><p><a href="" class="extype" name="akka.wamp.client">akka.wamp.client</a></p></span></dd></dl></div>
     </li><li class="current-entities indented3">
+                        <span class="separator"></span>
+                        <a class="class" href="AbstractClientActor.html" title=""></a>
+                        <a href="AbstractClientActor.html" title="">
+                          AbstractClientActor
+                        </a>
+                      </li><li class="current-entities indented3">
+                        <span class="separator"></span>
+                        <a class="class" href="AbstractClientLoggingActor.html" title=""></a>
+                        <a href="AbstractClientLoggingActor.html" title="">
+                          AbstractClientLoggingActor
+                        </a>
+                      </li><li class="current-entities indented3">
                         <a class="object" href="Client$.html" title="Factory for Client instances."></a>
                         <a class="class" href="Client.html" title="Represents a client."></a>
                         <a href="Client.html" title="Represents a client.">
@@ -387,10 +399,46 @@ client.connect(<span class="lit">"myrouter"</span>).foreach { conn <span class="
 
         <div id="types" class="types members">
               <h3>Type Members</h3>
-              <ol><li name="akka.wamp.client.Client" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="ClientextendsPeer"></a><a id="Client:Client"></a>
+              <ol><li name="akka.wamp.client.AbstractClientActor" visbl="pub" class="indented0 " data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="AbstractClientActorextendsAbstractActorwithClientActor"></a><a id="AbstractClientActor:AbstractClientActor"></a>
       <span class="permalink">
-      <a href="../../../akka/wamp/client/index.html#ClientextendsPeer" title="Permalink">
+      <a href="../../../akka/wamp/client/index.html#AbstractClientActorextendsAbstractActorwithClientActor" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier">abstract </span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a title="" href="AbstractClientActor.html">
+              <span class="name">AbstractClientActor</span>
+            </a><span class="result"> extends <span class="extype" name="akka.actor.AbstractActor">AbstractActor</span> with <a href="ClientActor.html" class="extype" name="akka.wamp.client.ClientActor">ClientActor</a></span>
+      </span>
+      
+      
+    </li><li name="akka.wamp.client.AbstractClientLoggingActor" visbl="pub" class="indented0 " data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="AbstractClientLoggingActorextendsAbstractLoggingActorwithClientActor"></a><a id="AbstractClientLoggingActor:AbstractClientLoggingActor"></a>
+      <span class="permalink">
+      <a href="../../../akka/wamp/client/index.html#AbstractClientLoggingActorextendsAbstractLoggingActorwithClientActor" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier">abstract </span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a title="" href="AbstractClientLoggingActor.html">
+              <span class="name">AbstractClientLoggingActor</span>
+            </a><span class="result"> extends <span class="extype" name="akka.actor.AbstractLoggingActor">AbstractLoggingActor</span> with <a href="ClientActor.html" class="extype" name="akka.wamp.client.ClientActor">ClientActor</a></span>
+      </span>
+      
+      
+    </li><li name="akka.wamp.client.Client" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="ClientextendsPeerwithEndpointConfig"></a><a id="Client:Client"></a>
+      <span class="permalink">
+      <a href="../../../akka/wamp/client/index.html#ClientextendsPeerwithEndpointConfig" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -401,7 +449,7 @@ client.connect(<span class="lit">"myrouter"</span>).foreach { conn <span class="
       <span class="symbol">
         <a title="Represents a client." href="Client.html">
               <span class="name">Client</span>
-            </a><span class="result"> extends <a href="../Peer.html" class="extype" name="akka.wamp.Peer">Peer</a></span>
+            </a><span class="result"> extends <a href="../Peer.html" class="extype" name="akka.wamp.Peer">Peer</a> with <span class="extype" name="akka.wamp.EndpointConfig">EndpointConfig</span></span>
       </span>
       
       <p class="shortcomment cmt">Represents a client.</p><div class="fullcomment"><div class="comment cmt"><p>Represents a client.</p><p>Instances can be created using its companion object.</p><pre><span class="kw">val</span> client = ...
@@ -413,9 +461,9 @@ client.connect(<span class="lit">"myrouter"</span>).foreach { conn <span class="
   }
   <span class="kw">yield</span>(session)</pre></div><dl class="attributes block"> <dt>See also</dt><dd><span class="cmt"><p><a href="japi/Client.html" class="extype" name="akka.wamp.client.japi.Client">akka.wamp.client.japi.Client</a></p></span></dd></dl></div>
     </li><li name="akka.wamp.client.ClientActor" visbl="pub" class="indented0 " data-isabs="true" fullComment="no" group="Ungrouped">
-      <a id="ClientActorextendsActorwithIdScopes.SessionIdScope"></a><a id="ClientActor:ClientActor"></a>
+      <a id="ClientActorextendsActor"></a><a id="ClientActor:ClientActor"></a>
       <span class="permalink">
-      <a href="../../../akka/wamp/client/index.html#ClientActorextendsActorwithIdScopes.SessionIdScope" title="Permalink">
+      <a href="../../../akka/wamp/client/index.html#ClientActorextendsActor" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -426,7 +474,7 @@ client.connect(<span class="lit">"myrouter"</span>).foreach { conn <span class="
       <span class="symbol">
         <a title="" href="ClientActor.html">
               <span class="name">ClientActor</span>
-            </a><span class="result"> extends <span class="extype" name="akka.actor.Actor">Actor</span> with <span class="extype" name="akka.wamp.IdScopes.SessionIdScope">SessionIdScope</span></span>
+            </a><span class="result"> extends <span class="extype" name="akka.actor.Actor">Actor</span></span>
       </span>
       
       
@@ -539,9 +587,9 @@ registration.onComplete {
     log.warning(<span class="lit">"Not registered because of {}"</span>, ex.getMessage)
 }</pre></div><dl class="attributes block"> <dt>See also</dt><dd><span class="cmt"><p><a href="japi/Registration.html" class="extype" name="akka.wamp.client.japi.Registration">akka.wamp.client.japi.Registration</a></p></span></dd></dl></div>
     </li><li name="akka.wamp.client.Session" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="SessionextendsSessionwithIdScopes.SessionIdScope"></a><a id="Session:Session"></a>
+      <a id="SessionextendsSession"></a><a id="Session:Session"></a>
       <span class="permalink">
-      <a href="../../../akka/wamp/client/index.html#SessionextendsSessionwithIdScopes.SessionIdScope" title="Permalink">
+      <a href="../../../akka/wamp/client/index.html#SessionextendsSession" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -552,7 +600,7 @@ registration.onComplete {
       <span class="symbol">
         <a title="Represents a session attached to a realm." href="package$$Session.html">
               <span class="name">Session</span>
-            </a><span class="result"> extends <a href="../Session.html" class="extype" name="akka.wamp.Session">wamp.Session</a> with <span class="extype" name="akka.wamp.IdScopes.SessionIdScope">SessionIdScope</span></span>
+            </a><span class="result"> extends <a href="../Session.html" class="extype" name="akka.wamp.Session">wamp.Session</a></span>
       </span>
       
       <p class="shortcomment cmt">Represents a session attached to a realm.</p><div class="fullcomment"><div class="comment cmt"><p>Represents a session attached to a realm.</p><h4> Open </h4><p>Instances are created either by invoking the <b>Connection.open</b> or the <b>Client.open</b> method</p><pre><span class="kw">val</span> conn: Future[Connection] = ...

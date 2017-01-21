@@ -175,18 +175,6 @@ client.connect(<span class="lit">"myrouter"</span>).foreach { conn <span class="
       <p class="shortcomment cmt">Contains classes to implement clients in Java.</p><div class="fullcomment"><div class="comment cmt"><p>Contains classes to implement clients in Java.</p><pre>...</pre></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../index.html" class="extype" name="akka.wamp.client">client</a></dd><dt>Note</dt><dd><span class="cmt"><p>Java API</p></span></dd><dt>See also</dt><dd><span class="cmt"><p><a href="../index.html" class="extype" name="akka.wamp.client">akka.wamp.client</a></p></span></dd></dl></div>
     </li><li class="current-entities indented4">
                         <span class="separator"></span>
-                        <a class="class" href="AbstractClientActor.html" title=""></a>
-                        <a href="AbstractClientActor.html" title="">
-                          AbstractClientActor
-                        </a>
-                      </li><li class="current-entities indented4">
-                        <span class="separator"></span>
-                        <a class="class" href="AbstractClientLoggingActor.html" title=""></a>
-                        <a href="AbstractClientLoggingActor.html" title="">
-                          AbstractClientLoggingActor
-                        </a>
-                      </li><li class="current-entities indented4">
-                        <span class="separator"></span>
                         <a class="class" href="BinaryLazyPayload.html" title=""></a>
                         <a href="BinaryLazyPayload.html" title="">
                           BinaryLazyPayload
@@ -333,7 +321,7 @@ client.connect(<span class="lit">"myrouter"</span>).foreach { conn <span class="
       </h4>
 
       
-          <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>Represents a connection established by a client to a router.</p><p>Instances can be obtained by invoking the <a href="Client.html#connect():java.util.concurrent.CompletionStage[akka.wamp.client.japi.Connection]" class="extmbr" name="akka.wamp.client.japi.Client#connect">Client!.connect()*</a> method.</p><pre>Client client = ...
+          <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>Represents a connection established by a client to a router.</p><p>Instances can be obtained by invoking the <b>Client.connect()</b> method.</p><pre>Client client = ...
 CompletionStage&lt;Connection&gt; conn =
   client.connect(<span class="lit">"myrouter"</span>);</pre><p>Named transports can be configured as follows:</p><pre>akka.wamp.client.transport {
   myrouter {

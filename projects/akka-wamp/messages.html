@@ -41,11 +41,11 @@
     <li><a href="client/futures.html">Futures</a></li>
     <li><a href="client/streams.html">Streams</a></li>
     <li><a href="client/macros.html">Macros</a></li>
-    <li><a href="client/config.html">Configuration</a></li>
   </ul></li>
   <li><a href="messages.html" class="active">Messages</a></li>
   <li><a href="payloads.html">Payloads</a></li>
   <li><a href="logging.html">Logging</a></li>
+  <li><a href="tls.html">TLS/SSL</a></li>
 </ul>
 </div>
 
@@ -89,11 +89,11 @@ C16.952,7,17,6.553,17,6c0-0.553-0.048-1-0.6-1H3.6C3.048,5,3,5.447,3,6C3,6.553,3.
     <li><a href="client/futures.html">Futures</a></li>
     <li><a href="client/streams.html">Streams</a></li>
     <li><a href="client/macros.html">Macros</a></li>
-    <li><a href="client/config.html">Configuration</a></li>
   </ul></li>
   <li><a href="messages.html" class="active">Messages</a></li>
   <li><a href="payloads.html">Payloads</a></li>
   <li><a href="logging.html">Logging</a></li>
+  <li><a href="tls.html">TLS/SSL</a></li>
 </ul>
 </div>
 
@@ -164,7 +164,7 @@ C16.952,7,17,6.553,17,6c0-0.553-0.048-1-0.6-1H3.6C3.048,5,3,5.447,3,6C3,6.553,3.
 </ul>
 <a name="CommandFailed"></a>
 <h2><a href="#commandfailed" name="commandfailed" class="anchor"><span class="anchor-link"></span></a>CommandFailed</h2>
-<p>It is the signal message the client receives from the <a href="./client/index.html#extension-manager">manager actor</a> whatever command (e.g. <a href="#Connect">Connect</a> or <a href="#Bind">Bind</a>) fails. It can be deconstructed with:</p>
+<p>It is the signal the client receives from the <a href="./client/index.html#extension-manager">manager actor</a> whatever command (e.g. <a href="#Connect">Connect</a> or <a href="#Bind">Bind</a>) fails. It can be deconstructed with:</p>
 <ul>
   <li>
   <p><code>cmd: Command</code><br/> It is the original command that was failed</p></li>
@@ -194,13 +194,13 @@ C16.952,7,17,6.553,17,6c0-0.553-0.048-1-0.6-1H3.6C3.048,5,3,5.447,3,6C3,6.553,3.
 </ul><div class="callout warning "><div class="callout-title">Warning</div>Though documented here, the actual Akka Wamp version does provide neither <code>tcp</code>, <code>tls</code>, <code>wss</code> transports nor <code>msgpack</code> format.</div>
 <a name="Connected"></a>
 <h2><a href="#connected" name="connected" class="anchor"><span class="anchor-link"></span></a>Connected</h2>
-<p>It&rsquo;s the signal message the client receives from the <a href="./client/index.html#extension-manager">manager actor</a> upon successful connection to a router. It can be deconstructed with:</p>
+<p>It&rsquo;s the signal the client receives from the <a href="./client/index.html#extension-manager">manager actor</a> upon successful connection to a router. It can be deconstructed with:</p>
 <ul>
   <li><code>conn: ActorRef</code><br/> It is the connection handler actor reference the client shall hold. That&rsquo;s where further messages addressed to the router shall be sent to.</li>
 </ul>
 <a name="Disconnected"></a>
 <h2><a href="#disconnected" name="disconnected" class="anchor"><span class="anchor-link"></span></a>Disconnected</h2>
-<p>It&rsquo;s the signal message the client receives from the <a href="./client/index.html#extension-manager">manager actor</a> upon disconnection from the router side.</p>
+<p>It&rsquo;s the signal the client receives from the <a href="./client/index.html#extension-manager">manager actor</a> upon disconnection from the router side.</p>
 <a name="Error"></a>
 <h2><a href="#error" name="error" class="anchor"><span class="anchor-link"></span></a>Error</h2>
 <p>It is the message the client receives from the router when a request cannot be fulfilled. It can be deconstructed to the following arguments:</p>

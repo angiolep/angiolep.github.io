@@ -137,10 +137,12 @@ based on WAMP - Web Application Messaging Protocol</p><h4> Client </h4><p>Akka W
                         </a>
                       </li><li class="current-entities indented3">
                         <span class="separator"></span>
-                        <a class="class" href="Bind.html" title="This bind command is sent by routing applications with the intent to bind the router to a given
-named transport configuration ."></a>
-                        <a href="Bind.html" title="This bind command is sent by routing applications with the intent to bind the router to a given
-named transport configuration .">
+                        <a class="class" href="Bind.html" title="Is the command to be sent to bind the given router actor
+to all of its configured endpoints
+"></a>
+                        <a href="Bind.html" title="Is the command to be sent to bind the given router actor
+to all of its configured endpoints
+">
                           Bind
                         </a>
                       </li><li class="current-entities indented3">
@@ -397,7 +399,7 @@ attaching to a Realm.">
 
       
           <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>This bound signal is replied back whenever a <a href="Bind.html" class="extype" name="akka.wamp.messages.Bind">Bind</a> command succeed.
-</p></div><dl class="paramcmts block"><dt class="param">listener</dt><dd class="cmt"><p>is the actor reference of the newly spawned connection listener actor</p></dd></dl><div class="toggleContainer block">
+</p></div><dl class="paramcmts block"><dt class="param">listener</dt><dd class="cmt"><p>is the actor reference of the newly spawned connection listener actor</p></dd><dt class="param">uri</dt><dd class="cmt"><p>is the locator the connection listener is currently bound at</p></dd></dl><div class="toggleContainer block">
           <span class="toggle">
             Linear Supertypes
           </span>
@@ -462,7 +464,7 @@ attaching to a Realm.">
         <span class="name">Bound</span><span class="params">(<span name="listener">listener: <span class="extype" name="akka.actor.ActorRef">ActorRef</span></span>, <span name="uri">uri: <span class="extype" name="java.net.URI">URI</span></span>)</span>
       </span>
       
-      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">listener</dt><dd class="cmt"><p>is the actor reference of the newly spawned connection listener actor</p></dd></dl></div>
+      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">listener</dt><dd class="cmt"><p>is the actor reference of the newly spawned connection listener actor</p></dd><dt class="param">uri</dt><dd class="cmt"><p>is the locator the connection listener is currently bound at</p></dd></dl></div>
     </li></ol>
             </div>
 

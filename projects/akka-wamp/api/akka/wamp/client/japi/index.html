@@ -173,18 +173,6 @@ client.connect(<span class="lit">"myrouter"</span>).foreach { conn <span class="
       <p class="shortcomment cmt">Contains classes to implement clients in Java.</p><div class="fullcomment"><div class="comment cmt"><p>Contains classes to implement clients in Java.</p><pre>...</pre></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../index.html" class="extype" name="akka.wamp.client">client</a></dd><dt>Note</dt><dd><span class="cmt"><p>Java API</p></span></dd><dt>See also</dt><dd><span class="cmt"><p><a href="../index.html" class="extype" name="akka.wamp.client">akka.wamp.client</a></p></span></dd></dl></div>
     </li><li class="current-entities indented4">
                         <span class="separator"></span>
-                        <a class="class" href="AbstractClientActor.html" title=""></a>
-                        <a href="AbstractClientActor.html" title="">
-                          AbstractClientActor
-                        </a>
-                      </li><li class="current-entities indented4">
-                        <span class="separator"></span>
-                        <a class="class" href="AbstractClientLoggingActor.html" title=""></a>
-                        <a href="AbstractClientLoggingActor.html" title="">
-                          AbstractClientLoggingActor
-                        </a>
-                      </li><li class="current-entities indented4">
-                        <span class="separator"></span>
                         <a class="class" href="BinaryLazyPayload.html" title=""></a>
                         <a href="BinaryLazyPayload.html" title="">
                           BinaryLazyPayload
@@ -383,43 +371,7 @@ client.connect(<span class="lit">"myrouter"</span>).foreach { conn <span class="
 
         <div id="types" class="types members">
               <h3>Type Members</h3>
-              <ol><li name="akka.wamp.client.japi.AbstractClientActor" visbl="pub" class="indented0 " data-isabs="true" fullComment="no" group="Ungrouped">
-      <a id="AbstractClientActorextendsAbstractActorwithClientActor"></a><a id="AbstractClientActor:AbstractClientActor"></a>
-      <span class="permalink">
-      <a href="../../../../akka/wamp/client/japi/index.html#AbstractClientActorextendsAbstractActorwithClientActor" title="Permalink">
-        <i class="material-icons"></i>
-      </a>
-    </span>
-      <span class="modifier_kind">
-        <span class="modifier">abstract </span>
-        <span class="kind">class</span>
-      </span>
-      <span class="symbol">
-        <a title="" href="AbstractClientActor.html">
-              <span class="name">AbstractClientActor</span>
-            </a><span class="result"> extends <span class="extype" name="akka.actor.AbstractActor">AbstractActor</span> with <a href="../ClientActor.html" class="extype" name="akka.wamp.client.ClientActor">ClientActor</a></span>
-      </span>
-      
-      
-    </li><li name="akka.wamp.client.japi.AbstractClientLoggingActor" visbl="pub" class="indented0 " data-isabs="true" fullComment="no" group="Ungrouped">
-      <a id="AbstractClientLoggingActorextendsAbstractLoggingActorwithClientActor"></a><a id="AbstractClientLoggingActor:AbstractClientLoggingActor"></a>
-      <span class="permalink">
-      <a href="../../../../akka/wamp/client/japi/index.html#AbstractClientLoggingActorextendsAbstractLoggingActorwithClientActor" title="Permalink">
-        <i class="material-icons"></i>
-      </a>
-    </span>
-      <span class="modifier_kind">
-        <span class="modifier">abstract </span>
-        <span class="kind">class</span>
-      </span>
-      <span class="symbol">
-        <a title="" href="AbstractClientLoggingActor.html">
-              <span class="name">AbstractClientLoggingActor</span>
-            </a><span class="result"> extends <span class="extype" name="akka.actor.AbstractLoggingActor">AbstractLoggingActor</span> with <a href="../ClientActor.html" class="extype" name="akka.wamp.client.ClientActor">ClientActor</a></span>
-      </span>
-      
-      
-    </li><li name="akka.wamp.client.japi.BinaryLazyPayload" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
+              <ol><li name="akka.wamp.client.japi.BinaryLazyPayload" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="BinaryLazyPayloadextendsPayload"></a><a id="BinaryLazyPayload:BinaryLazyPayload"></a>
       <span class="permalink">
       <a href="../../../../akka/wamp/client/japi/index.html#BinaryLazyPayloadextendsPayload" title="Permalink">
@@ -498,7 +450,7 @@ CompletionStage&lt;Session&gt; session =
             </a><span class="result"> extends <span class="extype" name="scala.AnyRef">AnyRef</span></span>
       </span>
       
-      <p class="shortcomment cmt">Represents a connection established by a client to a router.</p><div class="fullcomment"><div class="comment cmt"><p>Represents a connection established by a client to a router.</p><p>Instances can be obtained by invoking the <a href="Client.html#connect():java.util.concurrent.CompletionStage[akka.wamp.client.japi.Connection]" class="extmbr" name="akka.wamp.client.japi.Client#connect">Client!.connect()*</a> method.</p><pre>Client client = ...
+      <p class="shortcomment cmt">Represents a connection established by a client to a router.</p><div class="fullcomment"><div class="comment cmt"><p>Represents a connection established by a client to a router.</p><p>Instances can be obtained by invoking the <b>Client.connect()</b> method.</p><pre>Client client = ...
 CompletionStage&lt;Connection&gt; conn =
   client.connect(<span class="lit">"myrouter"</span>);</pre><p>Named transports can be configured as follows:</p><pre>akka.wamp.client.transport {
   myrouter {

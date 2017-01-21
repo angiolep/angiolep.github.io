@@ -41,11 +41,11 @@
     <li><a href="../client/futures.html" class="active">Futures</a></li>
     <li><a href="../client/streams.html">Streams</a></li>
     <li><a href="../client/macros.html">Macros</a></li>
-    <li><a href="../client/config.html">Configuration</a></li>
   </ul></li>
   <li><a href="../messages.html">Messages</a></li>
   <li><a href="../payloads.html">Payloads</a></li>
   <li><a href="../logging.html">Logging</a></li>
+  <li><a href="../tls.html">TLS/SSL</a></li>
 </ul>
 </div>
 
@@ -89,11 +89,11 @@ C16.952,7,17,6.553,17,6c0-0.553-0.048-1-0.6-1H3.6C3.048,5,3,5.447,3,6C3,6.553,3.
     <li><a href="../client/futures.html" class="active">Futures</a></li>
     <li><a href="../client/streams.html">Streams</a></li>
     <li><a href="../client/macros.html">Macros</a></li>
-    <li><a href="../client/config.html">Configuration</a></li>
   </ul></li>
   <li><a href="../messages.html">Messages</a></li>
   <li><a href="../payloads.html">Payloads</a></li>
   <li><a href="../logging.html">Logging</a></li>
+  <li><a href="../tls.html">TLS/SSL</a></li>
 </ul>
 </div>
 
@@ -133,7 +133,7 @@ C16.952,7,17,6.553,17,6c0-0.553-0.048-1-0.6-1H3.6C3.048,5,3,5.447,3,6C3,6.553,3.
 import akka.wamp.client._
 import com.typesafe.config._
 
-class ScalaClient {
+class FuturesScalaClient {
 
   val config = ConfigFactory.load(&quot;myapp.conf&quot;)
   val system = ActorSystem(&quot;myapp&quot;, config)
@@ -146,8 +146,8 @@ class ScalaClient {
 import akka.wamp.client.japi.*;
 import com.typesafe.config.*;
 
-public class JavaClient {
-  public JavaClient() {
+public class FuturesJavaClient {
+  public FuturesJavaClient() {
     Config config = ConfigFactory.load(&quot;myapp.conf&quot;);
     ActorSystem system = ActorSystem.create(&quot;myapp&quot;, config);
     Client client = Client.create(system);
@@ -173,26 +173,76 @@ CompletionStage&lt;Connection&gt; conn = client.connect(&quot;myrouter&quot;);</
 </dl>
 <p>Just invoke the <code>connect</code> method and pass the following arguments:</p>
 <ul>
-  <li><code>transport: String</code><br/> Is the name of a configured transport (default is <code>&quot;default&quot;</code>). Please refer to the <a href="./config.html">Configuration</a> section for further details about <em>&ldquo;named transports&rdquo;</em>.</li>
+  <li><code>endpoint: String</code><br/> Is the name of a configured endpoint (default is <code>&quot;local&quot;</code>).</li>
 </ul>
-<h3><a href="#backoff" name="backoff" class="anchor"><span class="anchor-link"></span></a>Backoff</h3>
-<p>If the client fails to connect then it will reattempt it, each time with a growing delay between attempts, indefinitely, until it finally succeeds.</p>
-<dl>
-  <dt>Conf</dt>
-  <dd>
-  <pre class="prettyprint"><code class="language-conf">// file: myapp.conf
-akka.wamp.client {
-  transport {
-    myrouter {
-      url = &quot;wss://router.host.net:8443/wamp&quot;
-      format = &quot;msgpack&quot;
-      min-backoff = 3 seconds
-      max-backoff = 30 seconds
-      random-factor = 0.2
-    }
+<p>or the following arguments:</p>
+<ul>
+  <li><code>uri: URI</code></li>
+  <li><code>format: String</code></li>
+</ul>
+<h3><a href="#configuration" name="configuration" class="anchor"><span class="anchor-link"></span></a>Configuration</h3>
+<pre class="prettyprint"><code class="language-conf">// akka.wamp.client {
+
+# The minimum (initial) duration until the connector actor
+# will be started again, if it is terminated because of failures
+#
+min-backoff = 3 seconds
+
+# The maximum exponential back-off will be capped to
+#
+max-backoff = 30 seconds
+
+# After calculation of the exponential back-off an additional
+# random delay based on this factor is added, e.g. 0.2 adds
+# up to 20% delay.
+#
+random-factor = 0.2
+
+# The boolean switch to validate against strict URIs
+# rather than loose URIs
+#
+validate-strict-uris = false
+
+# NOTE
+# Clients will always disconnect on offending messages
+# No configuration setting is provided to change this behaviour.
+#
+
+# Named endpoint configurations
+#
+endpoint {
+  local {
+    # Router address to connect to. Scheme can be:
+    #
+    #   - tcp
+    #       Raw TCP
+    #   - tsl
+    #       Transport Secure Layer
+    #   - ws
+    #       WebSocket
+    #   - wss
+    #       WebSocket over TLS
+    #
+    address = &quot;ws://localhost:8080/wamp&quot;
+
+    # Message format can be:
+    # 
+    #   - json
+    #     JSON Javascript Object Notation
+    #
+    #   - msgpack
+    #     Message Pack
+    #
+    format = &quot;json&quot;
   }
-}</code></pre></dd>
-</dl>
+  # Additional endpoint configurations here ...
+  #
+  # Each endpoint configuration will use the above &quot;local&quot;
+  # configuration settings as fallback.
+  #
+  #  address = &quot;wss://127.0.0.1:8443/wamp&quot;
+  #}
+}</code></pre>
 <h3><a href="#disconnect" name="disconnect" class="anchor"><span class="anchor-link"></span></a>Disconnect</h3>
 <p>The Akka Wamp client makes a distiction between <em>deliberate</em> and <em>accidental</em> disconnections. In either cases, any action performed in disconnected state will make the client throw <code>ClientException(&quot;Disconnected&quot;)</code></p>
 <h4><a href="#deliberate" name="deliberate" class="anchor"><span class="anchor-link"></span></a>Deliberate</h4>
@@ -225,7 +275,7 @@ CompletionStage&lt;Session&gt; session = conn.thenCompose(c -&gt; c.open(&quot;m
 </dl>
 <p>Just invoke the <code>open</code> method passing the following arguments:</p>
 <ul>
-  <li><code>realm</code><br/> Is the realm URI (default is <code>&quot;default&quot;</code>)</li>
+  <li><code>realm: Uri</code><br/> Is the realm name (default is <code>&quot;default&quot;</code>)</li>
 </ul>
 <h3><a href="#close" name="close" class="anchor"><span class="anchor-link"></span></a>Close</h3>
 <p>Once the client doesn&rsquo;t need to keep the session attached, it can close it as follows:</p>
@@ -562,7 +612,7 @@ CompletionStage&lt;Registration&gt; registration =
     <li><a href="../client/futures.html#client">Client</a></li>
     <li><a href="../client/futures.html#connections">Connections</a>
     <ul>
-      <li><a href="../client/futures.html#backoff">Backoff</a></li>
+      <li><a href="../client/futures.html#configuration">Configuration</a></li>
       <li><a href="../client/futures.html#disconnect">Disconnect</a></li>
     </ul></li>
     <li><a href="../client/futures.html#sessions">Sessions</a>

@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+
+<head>
+<title>TLS/SSL · Akka Wamp</title>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="description" content='WAMP - Web Application Messaging Protocol implementation written in Scala/Java8 with Akka HTTP'/>
+<link href="https://fonts.googleapis.com/css?family=Roboto:100normal,100italic,300normal,300italic,400normal,400italic,500normal,500italic,700normal,700italic,900normal,900italicc" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="lib/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="js/page.js"></script>
+<link rel="stylesheet" type="text/css" href="lib/normalize.css/normalize.css"/>
+<link rel="stylesheet" type="text/css" href="lib/foundation/dist/foundation.min.css"/>
+<link rel="stylesheet" type="text/css" href="css/page.css"/>
+
+<!--
+<link rel="shortcut icon" href="images/favicon.ico" />
+-->
+</head>
+
+<body>
+<div class="off-canvas-wrapper">
+<div class="off-canvas-wrapper-inner" data-off-canvas-wrapper>
+
+<div class="off-canvas position-left" id="off-canvas-menu" data-off-canvas>
+<nav class="off-canvas-nav">
+<div class="nav-home">
+<a href="index.html" >
+<span class="home-icon">⌂</span>Akka Wamp
+</a>
+<div class="version-number">
+0.13.0
+</div>
+</div>
+<div class="nav-toc">
+<ul>
+  <li><a href="router.html">Router</a></li>
+  <li><a href="client/index.html">Client APIs</a>
+  <ul>
+    <li><a href="client/actors.html">Actors</a></li>
+    <li><a href="client/futures.html">Futures</a></li>
+    <li><a href="client/streams.html">Streams</a></li>
+    <li><a href="client/macros.html">Macros</a></li>
+  </ul></li>
+  <li><a href="messages.html">Messages</a></li>
+  <li><a href="payloads.html">Payloads</a></li>
+  <li><a href="logging.html">Logging</a></li>
+  <li><a href="tls.html" class="active">TLS/SSL</a></li>
+</ul>
+</div>
+
+</nav>
+</div>
+
+<div class="off-canvas-content" data-off-canvas-content>
+
+<header class="site-header expanded row">
+<div class="small-12 column">
+<a href="#" class="off-canvas-toggle hide-for-medium" data-toggle="off-canvas-menu"><svg class="svg-icon svg-icon-menu" version="1.1" id="Menu" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 20 20" enable-background="new 0 0 20 20" xml:space="preserve"> <path class="svg-icon-menu-path" fill="#53CDEC" d="M16.4,9H3.6C3.048,9,3,9.447,3,10c0,0.553,0.048,1,0.6,1H16.4c0.552,0,0.6-0.447,0.6-1C17,9.447,16.952,9,16.4,9z M16.4,13
+H3.6C3.048,13,3,13.447,3,14c0,0.553,0.048,1,0.6,1H16.4c0.552,0,0.6-0.447,0.6-1C17,13.447,16.952,13,16.4,13z M3.6,7H16.4
+C16.952,7,17,6.553,17,6c0-0.553-0.048-1-0.6-1H3.6C3.048,5,3,5.447,3,6C3,6.553,3.048,7,3.6,7z"/></svg>
+</a>
+<div class="title"><a href="index.html">Akka Wamp</a></div>
+
+<!--
+<a href="https://www.example.com" class="logo show-for-medium">logo</a>
+-->
+</div>
+</header>
+
+<div class="expanded row">
+
+<div class="medium-3 large-2 show-for-medium column">
+<nav class="site-nav">
+<div class="nav-home">
+<a href="index.html" >
+<span class="home-icon">⌂</span>Akka Wamp
+</a>
+<div class="version-number">
+0.13.0
+</div>
+</div>
+<div class="nav-toc">
+<ul>
+  <li><a href="router.html">Router</a></li>
+  <li><a href="client/index.html">Client APIs</a>
+  <ul>
+    <li><a href="client/actors.html">Actors</a></li>
+    <li><a href="client/futures.html">Futures</a></li>
+    <li><a href="client/streams.html">Streams</a></li>
+    <li><a href="client/macros.html">Macros</a></li>
+  </ul></li>
+  <li><a href="messages.html">Messages</a></li>
+  <li><a href="payloads.html">Payloads</a></li>
+  <li><a href="logging.html">Logging</a></li>
+  <li><a href="tls.html" class="active">TLS/SSL</a></li>
+</ul>
+</div>
+
+</nav>
+</div>
+
+<div class="small-12 medium-9 large-10 column">
+<section class="site-content">
+
+<div class="page-header row">
+<div class="medium-12 show-for-medium column">
+<div class="nav-breadcrumbs">
+<ul>
+  <li><a href="index.html">Akka Wamp</a></li>
+  <li>TLS/SSL</li>
+</ul>
+</div>
+</div>
+</div>
+
+<div class="page-content row">
+<div class="small-12 large-9 column" id="docs">
+<h1><a href="#tls-ssl" name="tls-ssl" class="anchor"><span class="anchor-link"></span></a>TLS/SSL</h1>
+<p>Akka Wamp supports TLS/SSL via configuration.</p>
+<h2><a href="#configuration" name="configuration" class="anchor"><span class="anchor-link"></span></a>Configuration</h2>
+<p>By default, Akka Wamp loads the trust store shipped with the Java Runtime Environment.</p>
+<pre class="prettyprint"><code class="language-conf">ssl-config {
+  trustManager {
+    stores = [
+      { type = &quot;JKS&quot;, path = ${java.home}/lib/security/cacerts, password = &quot;changeit&quot; }
+    ]
+  }
+}</code></pre>
+<p>The <code>cacerts</code> store contains almost all the accredited CA - Certificate Authorities that any client can happily trust. Next sections explain how to customize the above settings for both router and client special needs.</p>
+<h2><a href="#router" name="router" class="anchor"><span class="anchor-link"></span></a>Router</h2>
+<p>To properly configure a router that binds to a TLS/SSL endpoint, it is important to make a clear distinction: either the router asks for the client&rsquo;s certificate or it does not.</p><div class="callout warning "><div class="callout-title">Warning</div>Akka Wamp doesn&rsquo;t support routers asking for client&rsquo;s certificates.</div>
+<h3><a href="#certificate-chain" name="certificate-chain" class="anchor"><span class="anchor-link"></span></a>Certificate chain</h3>
+<p>In either cases, the router/server must own and present itself with a certificate having its public key attached. That certificate must have been issued and signed by some CA - Certificate Authority that any client can happily trust. The CA can be an intermediate authority or a root self-certified authority. In real world scenarios, the router/server&rsquo;s (owner&rsquo;s) certificate begins a chain of certificates, maybe with one or more intermediary issuers but certainly ending to some accredited root CA.</p>
+<p><img src="tls.png" alt="tls" /></p>
+<h3><a href="#key-stores" name="key-stores" class="anchor"><span class="anchor-link"></span></a>Key stores</h3>
+<p>As the router does not ask for client&rsquo;s certificates, all it needs is to be configured with one or more key stores containing the public/private key pair, the owned certificate and the certificates of all the issuers in its certificate chain up to the root CA.</p>
+<pre class="prettyprint"><code class="language-hocon">ssl-config {
+  keyManager {
+    stores = [
+      { type = &quot;JKS&quot;, path = ${router.home}/example.com.jks, password = &quot;changeit&quot; },
+      { type = &quot;JKS&quot;, path = ${java.home}/lib/security/cacerts, password = &quot;changeit&quot; }
+    ]
+  }
+  # trustManager ... not needed!
+}
+</code></pre>
+<p>Such a key store can be created using the <a href="https://docs.oracle.com/javase/8/docs/technotes/tools/windows/keytool.html">Java KeyTool</a>, with few commands as simple as:</p>
+<pre class="prettyprint"><code class="language-sh">PASSWD=changeit
+ROUTER_HOME=/path/to/router/home
+
+# It creates/updates a key store with
+#
+#    - a new public/private key pair, and
+#    - a new certificate owned by example.com
+#
+keytool -genkeypair -v \
+  -alias example.com \
+  -dname &quot;CN=example.com, OU=Example Org, O=Example Company, L=London, ST=London, C=UK&quot; \
+  -keystore $ROUTER_HOME/example.com.jks \
+  -keypass $PASSWD \
+  -storepass $PASSWD \
+  -keyalg RSA \
+  -keysize 2048 \
+  -validity 365</code></pre>
+<h3><a href="#certificate-authorities" name="certificate-authorities" class="anchor"><span class="anchor-link"></span></a>Certificate Authorities</h3>
+<p>In real world scenarios, a certificate such as the <code>example.com</code> we created above, must have been issued/signed by intermediary or root CA - Certification Authorities. For that reason, whoever owns the router/server creates and submits a CSR - Certificate Signing Request to some CA chosen at its discretion.</p>
+<p>For test purposes, the router/server owner could create a <em>&ldquo;fake&rdquo;</em> self-signed root CA certificate with few commands as simple as::</p>
+<pre class="prettyprint"><code class="language-sh"># For test purposes, it creates/updates a &quot;fake&quot; root CA
+# key store with:
+#
+#    - a new public/private key pair, and
+#    - a new self-signed root CA certificate
+#
+# This fake root CA will issue/sign the example.com certificate
+#
+keytool -genkeypair -v \
+  -alias root-ca \
+  -dname &quot;CN=Root Authority, OU=Root Org, O=Root Company, L=San Francisco, ST=California, C=US&quot; \
+  -keystore $ROUTER_HOME/root-ca.jks \
+  -keypass $PASSWD \
+  -storepass $PASSWD \
+  -keyalg RSA \
+  -keysize 4096 \
+  -ext KeyUsage:critical=&quot;keyCertSign&quot; \
+  -ext BasicConstraints:critical=&quot;ca:true&quot; \
+  -validity 9999
+
+# Exports the root CA certificate from the above key store to the
+# root-ca.crt file, so that it can easily be imported into client&#39;s
+# trust stores
+#
+keytool -export -v \
+  -alias root-ca \
+  -file $ROUTER_HOME/root-ca.crt \
+  -keypass $PASSWD \
+  -storepass $PASSWD \
+  -keystore $ROUTER_HOME/root-ca.jks \
+  -rfc</code></pre>
+<h3><a href="#signing-request" name="signing-request" class="anchor"><span class="anchor-link"></span></a>Signing Request</h3>
+<p>For test purposes, the router/server owner could also create a CSR - Certificate Signing Request, so to simulate its submission and its completion, with few commands as simple as:</p>
+<pre class="prettyprint"><code class="language-sh"># Creates a CSR - Certificate Signing Request for the
+# example.com certificate
+#
+keytool -certreq -v \
+  -alias example.com \
+  -keypass $PASSWD \
+  -storepass $PASSWD \
+  -keystore $ROUTER_HOME/example.com.jks \
+  -file $ROUTER_HOME/example.com.csr
+
+# Simulates CSR submission and completion of the
+# example.com certificate
+#
+keytool -gencert -v \
+  -alias root-ca \
+  -keypass $PASSWD \
+  -storepass $PASSWD \
+  -keystore $ROUTER_HOME/root-ca.jks \
+  -infile $ROUTER_HOME/example.com.csr \
+  -outfile $ROUTER_HOME/example.com.crt \
+  -ext KeyUsage:critical=&quot;digitalSignature,keyEncipherment&quot; \
+  -ext EKU=&quot;serverAuth&quot; \
+  -ext SAN=&quot;DNS:example.com&quot; \
+  -rfc
+
+# Finally, imports the signed certificate back into
+# the example.com key store
+#
+keytool -import -v \
+  -alias example.com \
+  -file $ROUTER_HOME/example.com.crt \
+  -keystore $ROUTER_HOME/example.com.jks \
+  -storetype JKS \
+  -storepass $PASSWD</code></pre>
+<h2><a href="#client" name="client" class="anchor"><span class="anchor-link"></span></a>Client</h2>
+<p>To properly configure a client that connects to a TLS/SSL router, it is important to make a clear distinction: either the router asks for the client&rsquo;s certificate or it does not.</p><div class="callout warning "><div class="callout-title">Limitation</div>Akka Wamp does not support routers asking for client&rsquo;s certificates.</div>
+<p>The only scenario supported by Akka Wamp is the one the router does <strong>not</strong> ask for any client&rsquo;s certificate. In this case, the client does not need to be configured with any <em>&ldquo;keys stores&rdquo;</em> but rather with <em>&ldquo;trust stores&rdquo;</em> only. Client&rsquo;s trust stores shall contain the certificates of all the issuers in the certificate chain of the router. </p>
+<h3><a href="#trust-stores" name="trust-stores" class="anchor"><span class="anchor-link"></span></a>Trust stores</h3>
+<p>By default, Akka Wamp loads the trust store shipped with the Java Runtime Environment, which contains almost all the globally accredited CA - Certificate Authorities. Therefore, it&rsquo;s more likely you don&rsquo;t need to change the default configuration at all.</p>
+<p>For test purposes, the client might connect to a router owning a certificate issued by some fake root CA, such as the one created in the above section. In this case, the client needs to be configured with a trust store containing the certificate of that fake root CA.</p>
+<pre class="prettyprint"><code class="language-hocon">ssl-config {
+  trustManager {
+    stores = [
+      { type = &quot;JKS&quot;, path = ${client.home}/trust-store.jks, password = &quot;changeit&quot; },
+      { type = &quot;JKS&quot;, path = ${java.home}/lib/security/cacerts, password = &quot;changeit&quot; }
+    ]
+  }
+}
+</code></pre>
+<p>Such a trust store can be create running scripts like the following:</p>
+<pre class="prettyprint"><code class="language-sh">PASSWD=changeit
+ROUTER_HOME=/path/to/router/home
+CLIENT_HOME=/path/to/client/home
+
+# It creates/updates a trust store with
+#
+#    - the certificate of the fake root CA who issue/signed
+#      the example.com certificate
+#
+keytool -import -v \
+  -alias root-ca \
+  -file $ROUTER_HOME/root-ca.crt \
+  -keypass $PASSWD \
+  -storepass $PASSWD \
+  -keystore $CLIENT_HOME/trust-store.jks &lt;&lt; EOF
+yes
+EOF</code></pre>
+</div>
+<div class="large-3 show-for-large column" data-sticky-container>
+<nav class="sidebar sticky" data-sticky data-anchor="docs" data-sticky-on="large">
+<div class="page-nav">
+<div class="nav-title">On this page:</div>
+<div class="nav-toc">
+<ul>
+  <li><a href="tls.html#tls-ssl">TLS/SSL</a>
+  <ul>
+    <li><a href="tls.html#configuration">Configuration</a></li>
+    <li><a href="tls.html#router">Router</a>
+    <ul>
+      <li><a href="tls.html#certificate-chain">Certificate chain</a></li>
+      <li><a href="tls.html#key-stores">Key stores</a></li>
+      <li><a href="tls.html#certificate-authorities">Certificate Authorities</a></li>
+      <li><a href="tls.html#signing-request">Signing Request</a></li>
+    </ul></li>
+    <li><a href="tls.html#client">Client</a>
+    <ul>
+      <li><a href="tls.html#trust-stores">Trust stores</a></li>
+    </ul></li>
+  </ul></li>
+</ul>
+</div>
+</div>
+</nav>
+</div>
+</div>
+
+</section>
+</div>
+
+</div>
+
+<footer class="site-footer">
+
+<section class="site-footer-nav">
+<div class="expanded row">
+<div class="small-12 large-offset-2 large-10 column">
+<div class="row site-footer-content">
+
+<div class="small-12 medium-4 large-3 text-center column">
+<div class="nav-links">
+<ul>
+<!-- <li><a href="https://www.example.com/products/">Products</a> -->
+</ul>
+</div>
+</div>
+
+</div>
+</div>
+</div>
+</section>
+
+<section class="site-footer-base">
+<div class="expanded row">
+<div class="small-12 large-offset-2 large-10 column">
+<div class="row site-footer-content">
+
+<div class="small-12 text-center large-9 column">
+
+<!--
+<div class="copyright">
+<span class="text">&copy; 2017</span>
+<a href="https://www.example.com" class="logo">logo</a>
+</div>
+-->
+</div>
+
+</div>
+</div>
+</div>
+</section>
+</footer>
+
+</div>
+</div>
+</div>
+</body>
+
+<script type="text/javascript" src="lib/foundation/dist/foundation.min.js"></script>
+<script type="text/javascript">jQuery(document).foundation();</script>
+<script type="text/javascript" src="js/magellan.js"></script>
+
+<style type="text/css">@import "lib/prettify/prettify.css";</style>
+<script type="text/javascript" src="lib/prettify/prettify.js"></script>
+<script type="text/javascript" src="lib/prettify/lang-scala.js"></script>
+<script type="text/javascript">jQuery(function(){window.prettyPrint && prettyPrint()});</script>
+
+</html>

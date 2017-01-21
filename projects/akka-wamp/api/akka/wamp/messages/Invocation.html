@@ -137,10 +137,12 @@ based on WAMP - Web Application Messaging Protocol</p><h4> Client </h4><p>Akka W
                         </a>
                       </li><li class="current-entities indented3">
                         <span class="separator"></span>
-                        <a class="class" href="Bind.html" title="This bind command is sent by routing applications with the intent to bind the router to a given
-named transport configuration ."></a>
-                        <a href="Bind.html" title="This bind command is sent by routing applications with the intent to bind the router to a given
-named transport configuration .">
+                        <a class="class" href="Bind.html" title="Is the command to be sent to bind the given router actor
+to all of its configured endpoints
+"></a>
+                        <a href="Bind.html" title="Is the command to be sent to bind the given router actor
+to all of its configured endpoints
+">
                           Bind
                         </a>
                       </li><li class="current-entities indented3">
@@ -393,7 +395,7 @@ attaching to a Realm.">
         <span class="kind">case class</span>
       </span>
       <span class="symbol">
-        <span class="name">Invocation</span><span class="params">(<span name="requestId">requestId: <a href="../index.html#Id=Long" class="extmbr" name="akka.wamp.Id">Id</a></span>, <span name="registrationId">registrationId: <a href="../index.html#Id=Long" class="extmbr" name="akka.wamp.Id">Id</a></span>, <span name="details">details: <a href="../index.html#Dict=Map[String,Any]" class="extmbr" name="akka.wamp.Dict">Dict</a> = <span class="symbol"><span class="name"><a href="Invocation$.html">Invocation.defaultDetails</a></span></span></span>, <span name="payload">payload: <a href="../serialization/Payload.html" class="extype" name="akka.wamp.serialization.Payload">Payload</a> = <span class="symbol"><span class="name"><a href="../../index.html">Payload()</a></span></span></span>)</span><span class="params">(<span class="implicit">implicit </span><span name="validator">validator: <span class="extype" name="akka.wamp.Validator">Validator</span></span>, <span name="executionContext">executionContext: <span class="extype" name="scala.concurrent.ExecutionContext">ExecutionContext</span></span>)</span><span class="result"> extends <a href="ProtocolMessage.html" class="extype" name="akka.wamp.messages.ProtocolMessage">ProtocolMessage</a> with <a href="DataConveyor.html" class="extype" name="akka.wamp.messages.DataConveyor">DataConveyor</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+        <span class="name">Invocation</span><span class="params">(<span name="requestId">requestId: <span class="extype" name="scala.Long">Long</span></span>, <span name="registrationId">registrationId: <span class="extype" name="scala.Long">Long</span></span>, <span name="details">details: <a href="../index.html#Dict=Map[String,Any]" class="extmbr" name="akka.wamp.Dict">Dict</a> = <span class="symbol"><span class="name"><a href="Invocation$.html">Invocation.defaultDetails</a></span></span></span>, <span name="payload">payload: <a href="../serialization/Payload.html" class="extype" name="akka.wamp.serialization.Payload">Payload</a> = <span class="symbol"><span class="name"><a href="../../index.html">Payload()</a></span></span></span>)</span><span class="params">(<span class="implicit">implicit </span><span name="validator">validator: <span class="extype" name="akka.wamp.Validator">Validator</span></span>, <span name="executionContext">executionContext: <span class="extype" name="scala.concurrent.ExecutionContext">ExecutionContext</span></span>)</span><span class="result"> extends <a href="ProtocolMessage.html" class="extype" name="akka.wamp.messages.ProtocolMessage">ProtocolMessage</a> with <a href="DataConveyor.html" class="extype" name="akka.wamp.messages.DataConveyor">DataConveyor</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
       </span>
       </h4>
 
@@ -454,9 +456,9 @@ attaching to a Realm.">
         <div id="constructors" class="members">
               <h3>Instance Constructors</h3>
               <ol><li name="akka.wamp.messages.Invocation#&lt;init&gt;" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="&lt;init&gt;(requestId:akka.wamp.Id,registrationId:akka.wamp.Id,details:akka.wamp.Dict,payload:akka.wamp.serialization.Payload)(implicitvalidator:akka.wamp.Validator,implicitexecutionContext:scala.concurrent.ExecutionContext):akka.wamp.messages.Invocation"></a><a id="&lt;init&gt;:Invocation"></a>
+      <a id="&lt;init&gt;(requestId:Long,registrationId:Long,details:akka.wamp.Dict,payload:akka.wamp.serialization.Payload)(implicitvalidator:akka.wamp.Validator,implicitexecutionContext:scala.concurrent.ExecutionContext):akka.wamp.messages.Invocation"></a><a id="&lt;init&gt;:Invocation"></a>
       <span class="permalink">
-      <a href="../../../akka/wamp/messages/Invocation.html#&lt;init&gt;(requestId:akka.wamp.Id,registrationId:akka.wamp.Id,details:akka.wamp.Dict,payload:akka.wamp.serialization.Payload)(implicitvalidator:akka.wamp.Validator,implicitexecutionContext:scala.concurrent.ExecutionContext):akka.wamp.messages.Invocation" title="Permalink">
+      <a href="../../../akka/wamp/messages/Invocation.html#&lt;init&gt;(requestId:Long,registrationId:Long,details:akka.wamp.Dict,payload:akka.wamp.serialization.Payload)(implicitvalidator:akka.wamp.Validator,implicitexecutionContext:scala.concurrent.ExecutionContext):akka.wamp.messages.Invocation" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -465,7 +467,7 @@ attaching to a Realm.">
         <span class="kind">new</span>
       </span>
       <span class="symbol">
-        <span class="name">Invocation</span><span class="params">(<span name="requestId">requestId: <a href="../index.html#Id=Long" class="extmbr" name="akka.wamp.Id">Id</a></span>, <span name="registrationId">registrationId: <a href="../index.html#Id=Long" class="extmbr" name="akka.wamp.Id">Id</a></span>, <span name="details">details: <a href="../index.html#Dict=Map[String,Any]" class="extmbr" name="akka.wamp.Dict">Dict</a> = <span class="symbol"><span class="name"><a href="Invocation$.html">Invocation.defaultDetails</a></span></span></span>, <span name="payload">payload: <a href="../serialization/Payload.html" class="extype" name="akka.wamp.serialization.Payload">Payload</a> = <span class="symbol"><span class="name"><a href="../../index.html">Payload()</a></span></span></span>)</span><span class="params">(<span class="implicit">implicit </span><span name="validator">validator: <span class="extype" name="akka.wamp.Validator">Validator</span></span>, <span name="executionContext">executionContext: <span class="extype" name="scala.concurrent.ExecutionContext">ExecutionContext</span></span>)</span>
+        <span class="name">Invocation</span><span class="params">(<span name="requestId">requestId: <span class="extype" name="scala.Long">Long</span></span>, <span name="registrationId">registrationId: <span class="extype" name="scala.Long">Long</span></span>, <span name="details">details: <a href="../index.html#Dict=Map[String,Any]" class="extmbr" name="akka.wamp.Dict">Dict</a> = <span class="symbol"><span class="name"><a href="Invocation$.html">Invocation.defaultDetails</a></span></span></span>, <span name="payload">payload: <a href="../serialization/Payload.html" class="extype" name="akka.wamp.serialization.Payload">Payload</a> = <span class="symbol"><span class="name"><a href="../../index.html">Payload()</a></span></span></span>)</span><span class="params">(<span class="implicit">implicit </span><span name="validator">validator: <span class="extype" name="akka.wamp.Validator">Validator</span></span>, <span name="executionContext">executionContext: <span class="extype" name="scala.concurrent.ExecutionContext">ExecutionContext</span></span>)</span>
       </span>
       
       <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">requestId</dt><dd class="cmt"><p>is a random, ephemeral identifier chosen by the dealer and used to correlate the callee's response with the request.</p></dd><dt class="param">registrationId</dt><dd class="cmt"><p>is the registration identifier under which the procedure was registered at the dealer.</p></dd><dt class="param">details</dt><dd class="cmt"><p>is a dictionary that allows to provide additional invocation request details in an extensible way.</p></dd><dt class="param">payload</dt><dd class="cmt"><p>is the payload bearing application data</p></dd></dl></div>
@@ -770,9 +772,9 @@ attaching to a Realm.">
       
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="akka.wamp.messages.Invocation">Invocation</a> → <a href="DataConveyor.html" class="extype" name="akka.wamp.messages.DataConveyor">DataConveyor</a></dd></dl></div>
     </li><li name="akka.wamp.messages.Invocation#registrationId" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="registrationId:akka.wamp.Id"></a><a id="registrationId:Id"></a>
+      <a id="registrationId:Long"></a>
       <span class="permalink">
-      <a href="../../../akka/wamp/messages/Invocation.html#registrationId:akka.wamp.Id" title="Permalink">
+      <a href="../../../akka/wamp/messages/Invocation.html#registrationId:Long" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -781,14 +783,14 @@ attaching to a Realm.">
         <span class="kind">val</span>
       </span>
       <span class="symbol">
-        <span class="name">registrationId</span><span class="result">: <a href="../index.html#Id=Long" class="extmbr" name="akka.wamp.Id">Id</a></span>
+        <span class="name">registrationId</span><span class="result">: <span class="extype" name="scala.Long">Long</span></span>
       </span>
       
       
     </li><li name="akka.wamp.messages.Invocation#requestId" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="requestId:akka.wamp.Id"></a><a id="requestId:Id"></a>
+      <a id="requestId:Long"></a>
       <span class="permalink">
-      <a href="../../../akka/wamp/messages/Invocation.html#requestId:akka.wamp.Id" title="Permalink">
+      <a href="../../../akka/wamp/messages/Invocation.html#requestId:Long" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -797,7 +799,7 @@ attaching to a Realm.">
         <span class="kind">val</span>
       </span>
       <span class="symbol">
-        <span class="name">requestId</span><span class="result">: <a href="../index.html#Id=Long" class="extmbr" name="akka.wamp.Id">Id</a></span>
+        <span class="name">requestId</span><span class="result">: <span class="extype" name="scala.Long">Long</span></span>
       </span>
       
       
