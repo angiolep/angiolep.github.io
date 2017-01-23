@@ -29,7 +29,7 @@
 <span class="home-icon">⌂</span>Akka Wamp
 </a>
 <div class="version-number">
-0.14.0
+0.15.0
 </div>
 </div>
 <div class="nav-toc">
@@ -77,7 +77,7 @@ C16.952,7,17,6.553,17,6c0-0.553-0.048-1-0.6-1H3.6C3.048,5,3,5.447,3,6C3,6.553,3.
 <span class="home-icon">⌂</span>Akka Wamp
 </a>
 <div class="version-number">
-0.14.0
+0.15.0
 </div>
 </div>
 <div class="nav-toc">
@@ -146,7 +146,7 @@ C16.952,7,17,6.553,17,6c0-0.553-0.048-1-0.6-1H3.6C3.048,5,3,5.447,3,6C3,6.553,3.
     <tr>
       <td><code>Invocation</code> </td>
       <td>Callee </td>
-      <td><code>(Invocation) =&gt; Future[Payload]</code></td>
+      <td><code>(Invocation) =&gt; Any</code></td>
     </tr>
     <tr>
       <td><code>Result</code> </td>
@@ -167,17 +167,17 @@ C16.952,7,17,6.553,17,6c0-0.553-0.048-1-0.6-1H3.6C3.048,5,3,5.447,3,6C3,6.553,3.
   <dd>
   <pre class="prettyprint"><code class="language-scala">// val conveyor: Event = ...
 
-val args: Future[List[Any]] = conveyor.args
-val kwargs: Future[Map[String, Any]] = conveyor.kwargs
-val user: Future[UserType] = conveyor.kwargs[UserType]
+val args: List[Any] = conveyor.args
+val kwargs: Map[String, Any] = conveyor.kwargs
+val user: UserType = conveyor.kwargs[UserType]
 
 class UserType(val name: String, val age: Int /*, ... */)</code></pre></dd>
   <dt>Java</dt>
   <dd>
   <pre class="prettyprint"><code class="language-java">// Payload conveyors are messages such as events, invocations, errors, etc.
-CompletionStage&lt;List&lt;Object&gt;&gt; args = conveyor.args();
-CompletionStage&lt;Map&lt;String, Object&gt;&gt; kwargs = conveyor.kwargs();
-CompletionStage&lt;UserType&gt; user = conveyor.kwargs(UserType.class);
+List&lt;Object&gt; args = conveyor.args();
+Map&lt;String, Object&gt; kwargs = conveyor.kwargs();
+UserType user = conveyor.kwargs(UserType.class);
 
 public class UserType { public String name; public Integer age; }</code></pre></dd>
 </dl>

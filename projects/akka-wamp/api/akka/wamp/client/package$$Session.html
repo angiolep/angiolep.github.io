@@ -875,9 +875,9 @@ client.connect(<span class="lit">"myrouter"</span>).foreach { conn <span class="
       
       <p class="shortcomment cmt">Is the realm this session is attached to</p>
     </li><li name="akka.wamp.client.Session#register" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="register(procedure:akka.wamp.Uri,handler:akka.wamp.messages.Invocation=&gt;scala.concurrent.Future[akka.wamp.serialization.Payload]):scala.concurrent.Future[akka.wamp.client.Registration]"></a><a id="register(Uri,(Invocation)⇒Future[Payload]):Future[Registration]"></a>
+      <a id="register(procedure:akka.wamp.Uri,handler:akka.wamp.messages.Invocation=&gt;Any):scala.concurrent.Future[akka.wamp.client.Registration]"></a><a id="register(Uri,(Invocation)⇒Any):Future[Registration]"></a>
       <span class="permalink">
-      <a href="../../../akka/wamp/client/package$$Session.html#register(procedure:akka.wamp.Uri,handler:akka.wamp.messages.Invocation=&gt;scala.concurrent.Future[akka.wamp.serialization.Payload]):scala.concurrent.Future[akka.wamp.client.Registration]" title="Permalink">
+      <a href="../../../akka/wamp/client/package$$Session.html#register(procedure:akka.wamp.Uri,handler:akka.wamp.messages.Invocation=&gt;Any):scala.concurrent.Future[akka.wamp.client.Registration]" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -886,16 +886,16 @@ client.connect(<span class="lit">"myrouter"</span>).foreach { conn <span class="
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">register</span><span class="params">(<span name="procedure">procedure: <a href="../index.html#Uri=String" class="extmbr" name="akka.wamp.Uri">Uri</a></span>, <span name="handler">handler: (<a href="../messages/Invocation.html" class="extype" name="akka.wamp.messages.Invocation">Invocation</a>) ⇒ <span class="extype" name="scala.concurrent.Future">Future</span>[<a href="../serialization/Payload.html" class="extype" name="akka.wamp.serialization.Payload">Payload</a>]</span>)</span><span class="result">: <span class="extype" name="scala.concurrent.Future">Future</span>[<a href="Registration.html" class="extype" name="akka.wamp.client.Registration">Registration</a>]</span>
+        <span class="name">register</span><span class="params">(<span name="procedure">procedure: <a href="../index.html#Uri=String" class="extmbr" name="akka.wamp.Uri">Uri</a></span>, <span name="handler">handler: (<a href="../messages/Invocation.html" class="extype" name="akka.wamp.messages.Invocation">Invocation</a>) ⇒ <span class="extype" name="scala.Any">Any</span></span>)</span><span class="result">: <span class="extype" name="scala.concurrent.Future">Future</span>[<a href="Registration.html" class="extype" name="akka.wamp.client.Registration">Registration</a>]</span>
       </span>
       
       <p class="shortcomment cmt">Registers the given invocation handler as the given procedure
 </p><div class="fullcomment"><div class="comment cmt"><p>Registers the given invocation handler as the given procedure
-</p></div><dl class="paramcmts block"><dt class="param">procedure</dt><dd class="cmt"><p>is the procedure to register as</p></dd><dt class="param">handler</dt><dd class="cmt"><p>is the invocation handler which will handle incoming invocations</p></dd><dt>returns</dt><dd class="cmt"><p>the (future of) registration</p></dd></dl><dl class="attributes block"> <dt>See also</dt><dd><span class="cmt"><p><a href="index.html" class="extype" name="akka.wamp.client">akka.wamp.client</a></p></span></dd></dl></div>
+</p></div><dl class="paramcmts block"><dt class="param">procedure</dt><dd class="cmt"><p>is the procedure to register</p></dd><dt class="param">handler</dt><dd class="cmt"><p>is the invocation handler which will handle incoming invocations</p></dd><dt>returns</dt><dd class="cmt"><p>the (future of) registration</p></dd></dl><dl class="attributes block"> <dt>See also</dt><dd><span class="cmt"><p><a href="index.html" class="extype" name="akka.wamp.client">akka.wamp.client</a></p></span></dd></dl></div>
     </li><li name="akka.wamp.client.Session#subscribe" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="subscribe(topic:akka.wamp.Uri,consumer:akka.wamp.messages.Event=&gt;scala.concurrent.Future[akka.Done]):scala.concurrent.Future[akka.wamp.client.Subscription]"></a><a id="subscribe(Uri,(Event)⇒Future[Done]):Future[Subscription]"></a>
+      <a id="subscribe(topic:akka.wamp.Uri,consumer:akka.wamp.messages.Event=&gt;Unit):scala.concurrent.Future[akka.wamp.client.Subscription]"></a><a id="subscribe(Uri,(Event)⇒Unit):Future[Subscription]"></a>
       <span class="permalink">
-      <a href="../../../akka/wamp/client/package$$Session.html#subscribe(topic:akka.wamp.Uri,consumer:akka.wamp.messages.Event=&gt;scala.concurrent.Future[akka.Done]):scala.concurrent.Future[akka.wamp.client.Subscription]" title="Permalink">
+      <a href="../../../akka/wamp/client/package$$Session.html#subscribe(topic:akka.wamp.Uri,consumer:akka.wamp.messages.Event=&gt;Unit):scala.concurrent.Future[akka.wamp.client.Subscription]" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -904,7 +904,7 @@ client.connect(<span class="lit">"myrouter"</span>).foreach { conn <span class="
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">subscribe</span><span class="params">(<span name="topic">topic: <a href="../index.html#Uri=String" class="extmbr" name="akka.wamp.Uri">Uri</a></span>, <span name="consumer">consumer: (<a href="../messages/Event.html" class="extype" name="akka.wamp.messages.Event">Event</a>) ⇒ <span class="extype" name="scala.concurrent.Future">Future</span>[<span class="extype" name="akka.Done">Done</span>]</span>)</span><span class="result">: <span class="extype" name="scala.concurrent.Future">Future</span>[<a href="Subscription.html" class="extype" name="akka.wamp.client.Subscription">Subscription</a>]</span>
+        <span class="name">subscribe</span><span class="params">(<span name="topic">topic: <a href="../index.html#Uri=String" class="extmbr" name="akka.wamp.Uri">Uri</a></span>, <span name="consumer">consumer: (<a href="../messages/Event.html" class="extype" name="akka.wamp.messages.Event">Event</a>) ⇒ <span class="extype" name="scala.Unit">Unit</span></span>)</span><span class="result">: <span class="extype" name="scala.concurrent.Future">Future</span>[<a href="Subscription.html" class="extype" name="akka.wamp.client.Subscription">Subscription</a>]</span>
       </span>
       
       <p class="shortcomment cmt">Subscribes the given event consumer to the given topic

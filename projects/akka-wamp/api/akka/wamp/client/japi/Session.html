@@ -906,9 +906,9 @@ result.whenComplete((res, ex) -&gt; {
       
       <p class="shortcomment cmt">Is the realm this session is attached to</p>
     </li><li name="akka.wamp.client.japi.Session#register" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="register(procedure:akka.wamp.Uri,handler:java.util.function.Function[akka.wamp.client.japi.Invocation,java.util.concurrent.CompletionStage[akka.wamp.client.japi.Payload]]):java.util.concurrent.CompletionStage[akka.wamp.client.japi.Registration]"></a><a id="register(Uri,Function[Invocation,CompletionStage[Payload]]):CompletionStage[Registration]"></a>
+      <a id="register(procedure:akka.wamp.Uri,handler:java.util.function.Function[akka.wamp.client.japi.Invocation,Object]):java.util.concurrent.CompletionStage[akka.wamp.client.japi.Registration]"></a><a id="register(Uri,Function[Invocation,AnyRef]):CompletionStage[Registration]"></a>
       <span class="permalink">
-      <a href="../../../../akka/wamp/client/japi/Session.html#register(procedure:akka.wamp.Uri,handler:java.util.function.Function[akka.wamp.client.japi.Invocation,java.util.concurrent.CompletionStage[akka.wamp.client.japi.Payload]]):java.util.concurrent.CompletionStage[akka.wamp.client.japi.Registration]" title="Permalink">
+      <a href="../../../../akka/wamp/client/japi/Session.html#register(procedure:akka.wamp.Uri,handler:java.util.function.Function[akka.wamp.client.japi.Invocation,Object]):java.util.concurrent.CompletionStage[akka.wamp.client.japi.Registration]" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -917,16 +917,16 @@ result.whenComplete((res, ex) -&gt; {
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">register</span><span class="params">(<span name="procedure">procedure: <a href="../../index.html#Uri=String" class="extmbr" name="akka.wamp.Uri">Uri</a></span>, <span name="handler">handler: <span class="extype" name="java.util.function.Function">Function</span>[<a href="Invocation.html" class="extype" name="akka.wamp.client.japi.Invocation">Invocation</a>, <span class="extype" name="java.util.concurrent.CompletionStage">CompletionStage</span>[<a href="Payload.html" class="extype" name="akka.wamp.client.japi.Payload">Payload</a>]]</span>)</span><span class="result">: <span class="extype" name="java.util.concurrent.CompletionStage">CompletionStage</span>[<a href="Registration.html" class="extype" name="akka.wamp.client.japi.Registration">Registration</a>]</span>
+        <span class="name">register</span><span class="params">(<span name="procedure">procedure: <a href="../../index.html#Uri=String" class="extmbr" name="akka.wamp.Uri">Uri</a></span>, <span name="handler">handler: <span class="extype" name="java.util.function.Function">Function</span>[<a href="Invocation.html" class="extype" name="akka.wamp.client.japi.Invocation">Invocation</a>, <span class="extype" name="scala.AnyRef">AnyRef</span>]</span>)</span><span class="result">: <span class="extype" name="java.util.concurrent.CompletionStage">CompletionStage</span>[<a href="Registration.html" class="extype" name="akka.wamp.client.japi.Registration">Registration</a>]</span>
       </span>
       
       <p class="shortcomment cmt">Registers the given invocation handler as the given procedure
 </p><div class="fullcomment"><div class="comment cmt"><p>Registers the given invocation handler as the given procedure
 </p></div><dl class="paramcmts block"><dt class="param">procedure</dt><dd class="cmt"><p>is the procedure to register as</p></dd><dt class="param">handler</dt><dd class="cmt"><p>is the invocation handler which will handle incoming invocations</p></dd><dt>returns</dt><dd class="cmt"><p>the (future of) registration</p></dd></dl></div>
     </li><li name="akka.wamp.client.japi.Session#subscribe" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="subscribe(topic:akka.wamp.Uri,consumer:java.util.function.Function[akka.wamp.client.japi.Event,java.util.concurrent.CompletionStage[akka.Done]]):java.util.concurrent.CompletionStage[akka.wamp.client.japi.Subscription]"></a><a id="subscribe(Uri,Function[Event,CompletionStage[Done]]):CompletionStage[Subscription]"></a>
+      <a id="subscribe(topic:akka.wamp.Uri,consumer:java.util.function.Consumer[akka.wamp.client.japi.Event]):java.util.concurrent.CompletionStage[akka.wamp.client.japi.Subscription]"></a><a id="subscribe(Uri,Consumer[Event]):CompletionStage[Subscription]"></a>
       <span class="permalink">
-      <a href="../../../../akka/wamp/client/japi/Session.html#subscribe(topic:akka.wamp.Uri,consumer:java.util.function.Function[akka.wamp.client.japi.Event,java.util.concurrent.CompletionStage[akka.Done]]):java.util.concurrent.CompletionStage[akka.wamp.client.japi.Subscription]" title="Permalink">
+      <a href="../../../../akka/wamp/client/japi/Session.html#subscribe(topic:akka.wamp.Uri,consumer:java.util.function.Consumer[akka.wamp.client.japi.Event]):java.util.concurrent.CompletionStage[akka.wamp.client.japi.Subscription]" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -935,7 +935,7 @@ result.whenComplete((res, ex) -&gt; {
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">subscribe</span><span class="params">(<span name="topic">topic: <a href="../../index.html#Uri=String" class="extmbr" name="akka.wamp.Uri">Uri</a></span>, <span name="consumer">consumer: <span class="extype" name="java.util.function.Function">Function</span>[<a href="Event.html" class="extype" name="akka.wamp.client.japi.Event">Event</a>, <span class="extype" name="java.util.concurrent.CompletionStage">CompletionStage</span>[<span class="extype" name="akka.Done">Done</span>]]</span>)</span><span class="result">: <span class="extype" name="java.util.concurrent.CompletionStage">CompletionStage</span>[<a href="Subscription.html" class="extype" name="akka.wamp.client.japi.Subscription">Subscription</a>]</span>
+        <span class="name">subscribe</span><span class="params">(<span name="topic">topic: <a href="../../index.html#Uri=String" class="extmbr" name="akka.wamp.Uri">Uri</a></span>, <span name="consumer">consumer: <span class="extype" name="java.util.function.Consumer">Consumer</span>[<a href="Event.html" class="extype" name="akka.wamp.client.japi.Event">Event</a>]</span>)</span><span class="result">: <span class="extype" name="java.util.concurrent.CompletionStage">CompletionStage</span>[<a href="Subscription.html" class="extype" name="akka.wamp.client.japi.Subscription">Subscription</a>]</span>
       </span>
       
       <p class="shortcomment cmt">Subscribes the given event consumer to the given topic

@@ -29,7 +29,7 @@
 <span class="home-icon">⌂</span>Akka Wamp
 </a>
 <div class="version-number">
-0.14.0
+0.15.0
 </div>
 </div>
 <div class="nav-toc">
@@ -77,7 +77,7 @@ C16.952,7,17,6.553,17,6c0-0.553-0.048-1-0.6-1H3.6C3.048,5,3,5.447,3,6C3,6.553,3.
 <span class="home-icon">⌂</span>Akka Wamp
 </a>
 <div class="version-number">
-0.14.0
+0.15.0
 </div>
 </div>
 <div class="nav-toc">
@@ -121,9 +121,9 @@ C16.952,7,17,6.553,17,6c0-0.553-0.048-1-0.6-1H3.6C3.048,5,3,5.447,3,6C3,6.553,3.
 <p>Akka Wamp provides you with</p>
 <ul>
   <li>object-oriented representations of WAMP <a href="./messages.html">Messages</a>,</li>
-  <li>this Futures API built atop of the <a href="./actors.html">Akka Wamp Actors API</a> and the <a href="http://doc.akka.io/docs/akka/current/scala/futures.html">Akka Futures API</a></li>
+  <li>this Futures API built atop of <a href="./actors.html">Akka Wamp Actors</a> and the <a href="http://doc.akka.io/docs/akka/current/scala/futures.html">Akka Futures</a></li>
 </ul>
-<p>All operations are provided as <strong>direct method calls</strong> returning composable futures. the client can write your own client applications, in either Scala or Java, so to connect to routers, open sessions to attach realms, publish or subscribe to topics, consume events, register or call remote procedures and handle invocations.</p><div class="callout note "><div class="callout-title">Note</div>This shall be considered an <strong>higher level API</strong> when compared to <a href="./actors.html">Akka Wamp Actors API</a> as it doesn&rsquo;t require you to know anything about how WAMP <a href="../messages.html">Messages</a> are exchanged by peers.</div>
+<p>All operations are provided as <strong>direct method calls</strong> returning composable futures. You can write your client applications, in either Scala or Java, so to connect to routers, open sessions to attach realms, publish or subscribe to topics, consume events, register or call remote procedures and handle invocations in few liens of code.</p><div class="callout note "><div class="callout-title">Note</div>This shall be considered an <strong>higher level API</strong> when compared to <a href="./actors.html">Akka Wamp Actors</a> as it doesn&rsquo;t require you to know anything about how WAMP <a href="../messages.html">Messages</a> are exchanged by peers.</div>
 <h2><a href="#client" name="client" class="anchor"><span class="anchor-link"></span></a>Client</h2>
 <p>Clients are those peers that, indirectly, communicate each other through a router. The Akka Wamp client instance can be created as follows: </p>
 <dl>
@@ -173,40 +173,17 @@ CompletionStage&lt;Connection&gt; conn = client.connect(&quot;myrouter&quot;);</
 </dl>
 <p>Just invoke the <code>connect</code> method and pass the following arguments:</p>
 <ul>
-  <li><code>endpoint: String</code><br/> Is the name of a configured endpoint (default is <code>&quot;local&quot;</code>).</li>
+  <li><code>endpoint: String</code><br/> Is the name of a configured endpoint (default is <code>&quot;local&quot;</code>). Read the configuration section further below.</li>
 </ul>
 <p>or the following arguments:</p>
 <ul>
-  <li><code>uri: URI</code></li>
-  <li><code>format: String</code></li>
+  <li>
+  <p><code>address: String</code><br/> Is the address to connect to (e.g. <code>&quot;wss://hostname:8433/router&quot;</code>)</p></li>
+  <li>
+  <p><code>format: String</code><br/> Is the format of messages as exchanged the wire (e.g. <code>&quot;msgpack&quot;</code>)</p></li>
 </ul>
 <h3><a href="#configuration" name="configuration" class="anchor"><span class="anchor-link"></span></a>Configuration</h3>
 <pre class="prettyprint"><code class="language-conf">// akka.wamp.client {
-
-# The minimum (initial) duration until the connector actor
-# will be started again, if it is terminated because of failures
-#
-min-backoff = 3 seconds
-
-# The maximum exponential back-off will be capped to
-#
-max-backoff = 30 seconds
-
-# After calculation of the exponential back-off an additional
-# random delay based on this factor is added, e.g. 0.2 adds
-# up to 20% delay.
-#
-random-factor = 0.2
-
-# The boolean switch to validate against strict URIs
-# rather than loose URIs
-#
-validate-strict-uris = false
-
-# NOTE
-# Clients will always disconnect on offending messages
-# No configuration setting is provided to change this behaviour.
-#
 
 # Named endpoint configurations
 #
@@ -242,7 +219,32 @@ endpoint {
   #
   #  address = &quot;wss://127.0.0.1:8443/wamp&quot;
   #}
-}</code></pre>
+}
+
+# The minimum (initial) duration until the connector actor
+# will be started again, if it is terminated because of failures
+#
+min-backoff = 3 seconds
+
+# The maximum exponential back-off will be capped to
+#
+max-backoff = 30 seconds
+
+# After calculation of the exponential back-off an additional
+# random delay based on this factor is added, e.g. 0.2 adds
+# up to 20% delay.
+#
+random-factor = 0.2
+
+# The boolean switch to validate against strict URIs
+# rather than loose URIs
+#
+validate-strict-uris = false
+
+# NOTE
+# Clients will always disconnect on offending messages
+# No configuration setting is provided to change this behaviour.
+#</code></pre>
 <h3><a href="#disconnect" name="disconnect" class="anchor"><span class="anchor-link"></span></a>Disconnect</h3>
 <p>The Akka Wamp client makes a distiction between <em>deliberate</em> and <em>accidental</em> disconnections. In either cases, any action performed in disconnected state will make the client throw <code>ClientException(&quot;Disconnected&quot;)</code></p>
 <h4><a href="#deliberate" name="deliberate" class="anchor"><span class="anchor-link"></span></a>Deliberate</h4>
@@ -348,12 +350,12 @@ CompletionStage&lt;Publication&gt; publication =
 <dl>
   <dt>Scala</dt>
   <dd>
-  <pre class="prettyprint"><code class="language-scala">// val consumer: (Event) =&gt; Future[Done]  = ...
+  <pre class="prettyprint"><code class="language-scala">// val consumer: (Event) =&gt; Unit  = ...
 val subscription: Future[Subscription] =
   session.flatMap(s =&gt; s.subscribe(&quot;mytopic&quot;, consumer))</code></pre></dd>
   <dt>Java</dt>
   <dd>
-  <pre class="prettyprint"><code class="language-java">// Function&lt;Event, CompletionStage&lt;Done&gt;&gt; consumer = ...;
+  <pre class="prettyprint"><code class="language-java">// Consumer&lt;Event&gt; consumer = ...;
 CompletionStage&lt;Subscription&gt; subscription =
     session.thenCompose(s -&gt; s.subscribe(&quot;mytopic&quot;, consumer));</code></pre></dd>
 </dl>
@@ -404,31 +406,27 @@ CompletionStage&lt;Subscription&gt; subscription =
 <dl>
   <dt>Scala</dt>
   <dd>
-  <pre class="prettyprint"><code class="language-scala">val consumer: (Event) =&gt; Future[Done] =
+  <pre class="prettyprint"><code class="language-scala">val consumer: (Event) =&gt; Unit =
   event =&gt; {
     val publicationId = event.publicationId
     val subscriptionId = event.subscriptionId
     val details = event.details
-    event.args.map { args =&gt;
+    val args = event.args
+    val kwargs = event.kwargs
 
-      // do something with arguments ...
-
-      Done
-    }
+    // do something with arguments ...
   }</code></pre></dd>
   <dt>Java</dt>
   <dd>
-  <pre class="prettyprint"><code class="language-java">Function&lt;Event, CompletionStage&lt;Done&gt;&gt; consumer =
+  <pre class="prettyprint"><code class="language-java">Consumer&lt;Event&gt; consumer =
   event -&gt; {
     Long publicationId = event.publicationId();
     Long subscriptionId = event.subscriptionId();
     Map&lt;String, Object&gt; details = event.details();
-    return event.args().thenApply(args -&gt; {
+    List&lt;Object&gt; args = event.args();
+    Map&lt;String, Object&gt; kwargs = event.kwargs();
 
-      // so something with arguments ...
-
-      return Done.getInstance();
-    });
+    // so something with arguments ...
   };</code></pre></dd>
 </dl>
 <p>Please refer to the <a href="../payloads.html#arguments">Payloads</a> section for details about how to access arguments conveyed by incoming events.</p>
@@ -490,7 +488,7 @@ CompletionStage&lt;Subscription&gt; subscription =
 <dl>
   <dt>Scala</dt>
   <dd>
-  <pre class="prettyprint"><code class="language-scala">// val handler: (Invocation) =&gt; Future[Payload] = ...
+  <pre class="prettyprint"><code class="language-scala">// val handler: (Invocation) =&gt; Any = ...
 val registration: Future[Registration] =
   session.flatMap(s =&gt; s.register(&quot;myprocedure&quot;, handler))</code></pre></dd>
   <dt>Java</dt>
@@ -547,31 +545,31 @@ CompletionStage&lt;Registration&gt; registration =
 <dl>
   <dt>Scala</dt>
   <dd>
-  <pre class="prettyprint"><code class="language-scala">val handler: (Invocation) =&gt; Future[Payload] =
+  <pre class="prettyprint"><code class="language-scala">val handler: (Invocation) =&gt; Any =
   (invocation) =&gt; {
     val registrationId = invocation.registrationId
     val details = invocation.details
-    invocation.args.map ( args =&gt; {
+    val args = invocation.args
+    val kwargs = invocation.kwargs
 
-      // do something with arguments ...
+    // do something with arguments ...
 
-      val res = ???
-      Payload(List(res))
-    })
+    val res = ???
+    res
   }</code></pre></dd>
   <dt>Java</dt>
   <dd>
-  <pre class="prettyprint"><code class="language-java">Function&lt;Invocation, CompletionStage&lt;Payload&gt;&gt; handler =
+  <pre class="prettyprint"><code class="language-java">Function&lt;Invocation, Object&gt; handler =
   invocation -&gt; {
     Long registrationId = invocation.registrationId();
     Map&lt;String, Object&gt; details = invocation.details();
-    return invocation.args().thenApply(args -&gt; {
+    List&lt;Object&gt; args = invocation.args();
+    Map&lt;String, Object&gt; kwargs = invocation.kwargs();
 
-      // do something with arguments ...
+    // do something with arguments ...
 
-      Object res = null;
-      return Payload.create(asList(res));
-    });
+    Object res = null;
+    return res;
   };</code></pre></dd>
 </dl>
 <p>Please refer to the <a href="../payloads.html#arguments">Payloads</a> section for futher details about how to access arguments conveyed by incoming invocations.</p>

@@ -324,9 +324,9 @@ client.connect(<span class="lit">"myrouter"</span>).foreach { conn <span class="
           <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>Represents a message conveying application data.</p><h4> Incoming conveyors </h4><pre><span class="cmt">// DataConveyor message = ...</span>
 
 <span class="cmt">// Default deserializers</span>
-CompletionStage&lt;<span class="std">List</span>&lt;<span class="std">Object</span>&gt;&gt; args = message.args();
-CompletionStage&lt;<span class="std">Map</span>&lt;<span class="std">String</span>, <span class="std">Object</span>&gt;&gt; kwargs = message.kwargs();
-CompletionStage&lt;UserType&gt; user = message.kwargs(UserType.<span class="kw">class</span>);
+<span class="std">List</span>&lt;<span class="std">Object</span>&gt; args = message.args();
+<span class="std">Map</span>&lt;<span class="std">String</span>, <span class="std">Object</span>&gt; kwargs = message.kwargs();
+UserType user = message.kwargs(UserType.<span class="kw">class</span>);
 
 <span class="cmt">// Custom deserializers</span>
 Payload payload = message.payload();
@@ -441,9 +441,9 @@ Payload payload = message.payload();
       
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
     </li><li name="akka.wamp.client.japi.DataConveyor#args" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="args:java.util.concurrent.CompletionStage[java.util.List[Any]]"></a><a id="args:CompletionStage[List[Any]]"></a>
+      <a id="args:java.util.List[Any]"></a><a id="args:List[Any]"></a>
       <span class="permalink">
-      <a href="../../../../akka/wamp/client/japi/DataConveyor.html#args:java.util.concurrent.CompletionStage[java.util.List[Any]]" title="Permalink">
+      <a href="../../../../akka/wamp/client/japi/DataConveyor.html#args:java.util.List[Any]" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -452,7 +452,7 @@ Payload payload = message.payload();
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">args</span><span class="result">: <span class="extype" name="java.util.concurrent.CompletionStage">CompletionStage</span>[<span class="extype" name="java.util.List">List</span>[<span class="extype" name="scala.Any">Any</span>]]</span>
+        <span class="name">args</span><span class="result">: <span class="extype" name="java.util.List">List</span>[<span class="extype" name="scala.Any">Any</span>]</span>
       </span>
       
       <p class="shortcomment cmt">Deserializes indexed arguments from the conveyed payload to a list
@@ -599,9 +599,9 @@ Payload payload = message.payload();
       
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Any</dd></dl></div>
     </li><li name="akka.wamp.client.japi.DataConveyor#kwargs" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="kwargs[T](clazz:Class[T]):java.util.concurrent.CompletionStage[T]"></a><a id="kwargs[T](Class[T]):CompletionStage[T]"></a>
+      <a id="kwargs[T](clazz:Class[T]):T"></a><a id="kwargs[T](Class[T]):T"></a>
       <span class="permalink">
-      <a href="../../../../akka/wamp/client/japi/DataConveyor.html#kwargs[T](clazz:Class[T]):java.util.concurrent.CompletionStage[T]" title="Permalink">
+      <a href="../../../../akka/wamp/client/japi/DataConveyor.html#kwargs[T](clazz:Class[T]):T" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -610,16 +610,16 @@ Payload payload = message.payload();
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">kwargs</span><span class="tparams">[<span name="T">T</span>]</span><span class="params">(<span name="clazz">clazz: <span class="extype" name="scala.Predef.Class">Class</span>[<span class="extype" name="akka.wamp.client.japi.DataConveyor.kwargs.T">T</span>]</span>)</span><span class="result">: <span class="extype" name="java.util.concurrent.CompletionStage">CompletionStage</span>[<span class="extype" name="akka.wamp.client.japi.DataConveyor.kwargs.T">T</span>]</span>
+        <span class="name">kwargs</span><span class="tparams">[<span name="T">T</span>]</span><span class="params">(<span name="clazz">clazz: <span class="extype" name="scala.Predef.Class">Class</span>[<span class="extype" name="akka.wamp.client.japi.DataConveyor.kwargs.T">T</span>]</span>)</span><span class="result">: <span class="extype" name="akka.wamp.client.japi.DataConveyor.kwargs.T">T</span></span>
       </span>
       
       <p class="shortcomment cmt">Deserializes named arguments from the conveyed payload to a user type
 </p><div class="fullcomment"><div class="comment cmt"><p>Deserializes named arguments from the conveyed payload to a user type
 </p></div><dl class="paramcmts block"><dt class="tparam">T</dt><dd class="cmt"><p>is the user type</p></dd><dt>returns</dt><dd class="cmt"><p>the (future of) kwargs</p></dd></dl></div>
     </li><li name="akka.wamp.client.japi.DataConveyor#kwargs" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="kwargs:java.util.concurrent.CompletionStage[java.util.Map[String,Any]]"></a><a id="kwargs:CompletionStage[Map[String,Any]]"></a>
+      <a id="kwargs:java.util.Map[String,Any]"></a><a id="kwargs:Map[String,Any]"></a>
       <span class="permalink">
-      <a href="../../../../akka/wamp/client/japi/DataConveyor.html#kwargs:java.util.concurrent.CompletionStage[java.util.Map[String,Any]]" title="Permalink">
+      <a href="../../../../akka/wamp/client/japi/DataConveyor.html#kwargs:java.util.Map[String,Any]" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -628,7 +628,7 @@ Payload payload = message.payload();
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">kwargs</span><span class="result">: <span class="extype" name="java.util.concurrent.CompletionStage">CompletionStage</span>[<span class="extype" name="java.util.Map">Map</span>[<span class="extype" name="scala.Predef.String">String</span>, <span class="extype" name="scala.Any">Any</span>]]</span>
+        <span class="name">kwargs</span><span class="result">: <span class="extype" name="java.util.Map">Map</span>[<span class="extype" name="scala.Predef.String">String</span>, <span class="extype" name="scala.Any">Any</span>]</span>
       </span>
       
       <p class="shortcomment cmt">Deserializes named arguments from the conveyed payload to an hashmap

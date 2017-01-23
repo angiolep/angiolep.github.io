@@ -482,9 +482,9 @@ CompletionStage&lt;Connection&gt; conn =
       <p class="shortcomment cmt">Represents a message conveying application data.</p><div class="fullcomment"><div class="comment cmt"><p>Represents a message conveying application data.</p><h4> Incoming conveyors </h4><pre><span class="cmt">// DataConveyor message = ...</span>
 
 <span class="cmt">// Default deserializers</span>
-CompletionStage&lt;<span class="std">List</span>&lt;<span class="std">Object</span>&gt;&gt; args = message.args();
-CompletionStage&lt;<span class="std">Map</span>&lt;<span class="std">String</span>, <span class="std">Object</span>&gt;&gt; kwargs = message.kwargs();
-CompletionStage&lt;UserType&gt; user = message.kwargs(UserType.<span class="kw">class</span>);
+<span class="std">List</span>&lt;<span class="std">Object</span>&gt; args = message.args();
+<span class="std">Map</span>&lt;<span class="std">String</span>, <span class="std">Object</span>&gt; kwargs = message.kwargs();
+UserType user = message.kwargs(UserType.<span class="kw">class</span>);
 
 <span class="cmt">// Custom deserializers</span>
 Payload payload = message.payload();
