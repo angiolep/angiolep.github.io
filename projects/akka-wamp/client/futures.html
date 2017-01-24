@@ -364,7 +364,7 @@ CompletionStage&lt;Subscription&gt; subscription =
   <li>
   <p><code>topic: Uri</code><br/>Is the topic to subscribe to</p></li>
   <li>
-  <p><code>consumer</code><br/>Is a consumer as explained further below.</p></li>
+  <p><code>consumer</code><br/>Is a consumer callback as explained further below.</p></li>
 </ul>
 <p>The client can provide callbacks to be invoked upon future completion so to test against success or failure.</p>
 <dl>
@@ -386,7 +386,8 @@ CompletionStage&lt;Subscription&gt; subscription =
 });</code></pre></dd>
 </dl>
 <h3><a href="#consumer" name="consumer" class="anchor"><span class="anchor-link"></span></a>Consumer</h3>
-<p>The client can subscribe any function able to consume incoming events. It can be either an event consumer or a lambda consumer as explained further below.</p>
+<p>The client can subscribe any callback function given either as an event consumer or as <em>lambda</em> consumer.</p>
+<p>Please note that, as this API is build atop of <a href="../actors.html">Akka Wamp Actors</a>, your callback function will be invoked in the same thread which delivers the <a href="../messages.html">Event</a> message from underlying actor&rsquo;s mailbox. Therefore, it is safe to close your callback over free variables as there&rsquo;s no risk to have multiple threads executing the handler at the same time.</p>
 <h4><a href="#lambda-consumer" name="lambda-consumer" class="anchor"><span class="anchor-link"></span></a>Lambda Consumer</h4>
 <p>The client can subscribe a lambda consumer that accepts as many parameters as it would expect to be conveyed by incoming events.</p>
 <dl>
@@ -406,7 +407,8 @@ CompletionStage&lt;Subscription&gt; subscription =
 <dl>
   <dt>Scala</dt>
   <dd>
-  <pre class="prettyprint"><code class="language-scala">val consumer: (Event) =&gt; Unit =
+  <pre class="prettyprint"><code class="language-scala">var freeVar: Long = 0
+val consumer: (Event) =&gt; Unit =
   event =&gt; {
     val publicationId = event.publicationId
     val subscriptionId = event.subscriptionId
@@ -414,11 +416,12 @@ CompletionStage&lt;Subscription&gt; subscription =
     val args = event.args
     val kwargs = event.kwargs
 
-    // do something with arguments ...
+    // so something with incoming args and free vars ...
   }</code></pre></dd>
   <dt>Java</dt>
   <dd>
-  <pre class="prettyprint"><code class="language-java">Consumer&lt;Event&gt; consumer =
+  <pre class="prettyprint"><code class="language-java">Long freeVar = 0l;
+Consumer&lt;Event&gt; consumer =
   event -&gt; {
     Long publicationId = event.publicationId();
     Long subscriptionId = event.subscriptionId();
@@ -426,7 +429,7 @@ CompletionStage&lt;Subscription&gt; subscription =
     List&lt;Object&gt; args = event.args();
     Map&lt;String, Object&gt; kwargs = event.kwargs();
 
-    // so something with arguments ...
+    // so something with incoming args and free vars ...
   };</code></pre></dd>
 </dl>
 <p>Please refer to the <a href="../payloads.html#arguments">Payloads</a> section for details about how to access arguments conveyed by incoming events.</p>
@@ -524,7 +527,8 @@ CompletionStage&lt;Registration&gt; registration =
 });</code></pre></dd>
 </dl>
 <h3><a href="#handler" name="handler" class="anchor"><span class="anchor-link"></span></a>Handler</h3>
-<p>The client can register any function able to handle incoming invocations. It can be either an invocation handler or a lambda handler as explained further below.</p>
+<p>The client can register any callback function given either as an invocation handler or as <em>lambda</em> handler.</p>
+<p>Please note that, as this API is build atop of <a href="../actors.html">Akka Wamp Actors</a>, your callback function will be invoked in the same thread which delivers the <a href="../messages.html">Invocation</a> message from underlying actor&rsquo;s mailbox. Therefore, it is safe to close your callback over free variables as there&rsquo;s no risk to have multiple threads executing the handler at the same time.</p>
 <h4><a href="#lambda-handler" name="lambda-handler" class="anchor"><span class="anchor-link"></span></a>Lambda Handler</h4>
 <p>The client can register a lambda handler that accepts as many parameters as you would expect to be conveyed by incoming invocations. </p>
 <dl>

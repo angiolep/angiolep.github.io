@@ -128,7 +128,7 @@ based on WAMP - Web Application Messaging Protocol</p><h4> Client </h4><p>Akka W
       
       <p class="shortcomment cmt">Contains classes, traits, types and functions to be used to implement WAMP clients in Scala.</p><div class="fullcomment"><div class="comment cmt"><p>Contains classes, traits, types and functions to be used to implement WAMP clients in Scala.</p><p>Please refer to the official
 <a href="https://angiolep.github.io/projects/akka-wamp/index.html">Akka Wamp User's Guide</a>
-published online for further details.</p><h4> Actors </h4><p>Is the low level Client API.</p><h4> Futures </h4><p>Is the high level Client API</p><pre><span class="kw">import</span> akka.actor._
+for further details.</p><h4> Actors </h4><p>Is the low level Client API.</p><h4> Futures </h4><p>Is the high level Client API we encourage you to use.</p><pre><span class="kw">import</span> akka.actor._
 <span class="kw">import</span> akka.wamp.client._
 <span class="kw">import</span> com.typesafe.config._
 
@@ -151,8 +151,7 @@ client.connect(<span class="lit">"myrouter"</span>).foreach { conn <span class="
       name.length + age
     })
   }
-}</pre><h4> Streams </h4><p>TBD
-</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../index.html" class="extype" name="akka.wamp">wamp</a></dd><dt>See also</dt><dd><span class="cmt"><p><a href="japi/index.html" class="extype" name="akka.wamp.client.japi">akka.wamp.client.japi</a> for Java API</p></span></dd></dl></div>
+}</pre><h4> Streams </h4><p>Working in progress.</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../index.html" class="extype" name="akka.wamp">wamp</a></dd><dt>See also</dt><dd><span class="cmt"><p><a href="japi/index.html" class="extype" name="akka.wamp.client.japi">akka.wamp.client.japi</a> for Java API</p></span></dd></dl></div>
     </li><li name="akka.wamp.client.japi" visbl="pub" class="indented4 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="japi"></a><a id="japi:japi"></a>
       <span class="permalink">
@@ -165,12 +164,43 @@ client.connect(<span class="lit">"myrouter"</span>).foreach { conn <span class="
         <span class="kind">package</span>
       </span>
       <span class="symbol">
-        <a title="Contains classes to implement clients in Java." href="japi/index.html">
+        <a title="Contains classes, traits, types and functions to be used to implement WAMP clients in Java." href="japi/index.html">
               <span class="name">japi</span>
             </a>
       </span>
       
-      <p class="shortcomment cmt">Contains classes to implement clients in Java.</p><div class="fullcomment"><div class="comment cmt"><p>Contains classes to implement clients in Java.</p><pre>...</pre></div><dl class="attributes block"> <dt>Note</dt><dd><span class="cmt"><p>Java API</p></span></dd><dt>See also</dt><dd><span class="cmt"><p><a href="" class="extype" name="akka.wamp.client">akka.wamp.client</a></p></span></dd></dl></div>
+      <p class="shortcomment cmt">Contains classes, traits, types and functions to be used to implement WAMP clients in Java.</p><div class="fullcomment"><div class="comment cmt"><p>Contains classes, traits, types and functions to be used to implement WAMP clients in Java.</p><p>Please refer to the official
+<a href="https://angiolep.github.io/projects/akka-wamp/index.html">Akka Wamp User's Guide</a>
+for further details.</p><h4> Actors </h4><p>Is the low level Client API.</p><h4> Futures </h4><p>Is the high level Client API we encourage you to use.</p><pre><span class="kw">import</span> akka.actor.*;
+<span class="kw">import</span> akka.wamp.client.japi.*;
+<span class="kw">import</span> static java.util.<span class="std">Array</span>.asList;
+<span class="kw">import</span> static java.lang.System.out;
+
+<span class="cmt">// ...</span>
+
+ActorSystem actorSystem = ActorSystem.create();
+Client client = Client.create(actorSystem);
+
+client.connect(<span class="lit">"endpoint"</span>).thenAccept(c -&gt; {
+  c.open(<span class="lit">"realm"</span>).thenAccept(s -&gt; {
+
+     s.publish(<span class="lit">"topic"</span>, asList(<span class="lit">"Ciao!"</span>));
+
+     s.subscribe(<span class="lit">"topic"</span>, (event) -&gt; {
+       out.println(<span class="lit">"got "</span> + event.args().get(<span class="num">0</span>));
+     });
+
+     s.register(<span class="lit">"procedure"</span>, (invoc) -&gt; {
+       Integer a = (Integer) invoc.args().get(<span class="num">0</span>);
+       Integer b = (Integer) invoc.args().get(<span class="num">1</span>);
+       <span class="kw">return</span> a + b;
+     });
+
+     s.call(<span class="lit">"procedure"</span>, asList(<span class="num">20</span>, <span class="num">55</span>)).thenAccept(res -&gt; {
+       out.println(<span class="lit">"20 * 55 = "</span> + res.args().get(<span class="num">0</span>));
+     });
+  });
+});</pre><h4> Streams </h4><p>Working in progress.</p></div><dl class="attributes block"> <dt>Note</dt><dd><span class="cmt"><p>Java API</p></span></dd><dt>See also</dt><dd><span class="cmt"><p><a href="" class="extype" name="akka.wamp.client">akka.wamp.client</a></p></span></dd></dl></div>
     </li><li class="current-entities indented3">
                         <span class="separator"></span>
                         <a class="class" href="AbstractClientActor.html" title=""></a>
@@ -323,7 +353,7 @@ client.connect(<span class="lit">"myrouter"</span>).foreach { conn <span class="
       
           <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>Contains classes, traits, types and functions to be used to implement WAMP clients in Scala.</p><p>Please refer to the official
 <a href="https://angiolep.github.io/projects/akka-wamp/index.html">Akka Wamp User's Guide</a>
-published online for further details.</p><h4> Actors </h4><p>Is the low level Client API.</p><h4> Futures </h4><p>Is the high level Client API</p><pre><span class="kw">import</span> akka.actor._
+for further details.</p><h4> Actors </h4><p>Is the low level Client API.</p><h4> Futures </h4><p>Is the high level Client API we encourage you to use.</p><pre><span class="kw">import</span> akka.actor._
 <span class="kw">import</span> akka.wamp.client._
 <span class="kw">import</span> com.typesafe.config._
 
@@ -346,8 +376,7 @@ client.connect(<span class="lit">"myrouter"</span>).foreach { conn <span class="
       name.length + age
     })
   }
-}</pre><h4> Streams </h4><p>TBD
-</p></div><dl class="attributes block"> <dt>See also</dt><dd><span class="cmt"><p><a href="japi/index.html" class="extype" name="akka.wamp.client.japi">akka.wamp.client.japi</a> for Java API</p></span></dd></dl><div class="toggleContainer block">
+}</pre><h4> Streams </h4><p>Working in progress.</p></div><dl class="attributes block"> <dt>See also</dt><dd><span class="cmt"><p><a href="japi/index.html" class="extype" name="akka.wamp.client.japi">akka.wamp.client.japi</a> for Java API</p></span></dd></dl><div class="toggleContainer block">
           <span class="toggle">
             Linear Supertypes
           </span>
