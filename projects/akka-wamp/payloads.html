@@ -29,7 +29,7 @@
 <span class="home-icon">⌂</span>Akka Wamp
 </a>
 <div class="version-number">
-0.15.0
+0.15.1
 </div>
 </div>
 <div class="nav-toc">
@@ -77,7 +77,7 @@ C16.952,7,17,6.553,17,6c0-0.553-0.048-1-0.6-1H3.6C3.048,5,3,5.447,3,6C3,6.553,3.
 <span class="home-icon">⌂</span>Akka Wamp
 </a>
 <div class="version-number">
-0.15.0
+0.15.1
 </div>
 </div>
 <div class="nav-toc">
@@ -127,41 +127,41 @@ C16.952,7,17,6.553,17,6c0-0.553-0.048-1-0.6-1H3.6C3.048,5,3,5.447,3,6C3,6.553,3.
 <p>Payloads are always at the end of messages so that routers don&rsquo;t have to parse them. Infact, routers are not required to inspect payload contents to do their job, which is all about routing messages.</p>
 <p><img src="payloads.png" alt="payloads" /></p>
 <h2><a href="#incoming-data" name="incoming-data" class="anchor"><span class="anchor-link"></span></a>Incoming data</h2>
-<p>Akka Wamp provides you with efficient streaming parsers that defer deserialization of incoming data to the very last moment. </p>
-<p>The following table lists incoming <a href="./messages.html">Message</a>s behaving as <code>DataConveyor</code>s with the correspondent consumers/handlers and client roles you shall provide to extract the data.</p>
+<p>Akka Wamp provides you with efficient streaming parsers which do not fully deserialize incoming data into memory. Rather, it provides you with <strong>lazy</strong> representations to defer deserialization to the very last moment. The lazy representations in question are <code>TextLazyPayload</code> for textual data and <code>BinaryLazyPayload</code> for binary data.</p>
+<p>The following table summarizes which are the incoming messages behaving like <code>DataConveyor</code>s, which client roles can receive those messages and which consumer/handlers you shall provide to read their incoming data from the lazy payloads above.</p>
 <table>
   <thead>
     <tr>
       <th>PayloadConveyor </th>
-      <th>Consumer/Handler </th>
-      <th>Client</th>
+      <th>Client </th>
+      <th>Consumer/Handler</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <td><code>Event</code> </td>
-      <td><code>(Event) =&gt; Unit</code> </td>
-      <td>Subscriber</td>
+      <td>Subscriber </td>
+      <td><code>(Event) =&gt; Unit</code></td>
     </tr>
     <tr>
       <td><code>Invocation</code> </td>
-      <td><code>(Invocation) =&gt; Any</code> </td>
-      <td>Callee</td>
+      <td>Callee </td>
+      <td><code>(Invocation) =&gt; Any</code></td>
     </tr>
     <tr>
       <td><code>Result</code> </td>
-      <td><code>(Result) =&gt; Unit</code> </td>
-      <td>Caller</td>
+      <td>Caller </td>
+      <td><code>(Result) =&gt; Unit</code></td>
     </tr>
     <tr>
       <td><code>Error</code> </td>
-      <td><em>n.a.</em> </td>
-      <td><em>all</em></td>
+      <td><em>all</em> </td>
+      <td><em>n.a.</em></td>
     </tr>
   </tbody>
 </table>
 <h3><a href="#arguments" name="arguments" class="anchor"><span class="anchor-link"></span></a>Arguments</h3>
-<p>The easiest way to access data conveyed by incoming messages is as follows:</p>
+<p>If you do not need to fully control the deserialization process then you can easily access to incoming data as follows:</p>
 <dl>
   <dt>Scala</dt>
   <dd>
@@ -181,17 +181,17 @@ UserType user = conveyor.kwargs(UserType.class);
 
 public class UserType { public String name; public Integer age; }</code></pre></dd>
 </dl>
-<p>Just access the following members:</p>
+<p>Data conveyed by incoming messages are accessible as:</p>
 <ul>
   <li>
-  <p><code>args: List[Any]</code><br/> a list of indexed arguments</p></li>
+  <p><code>args: Future[List[Any]]</code><br/> a (future of) list of indexed arguments</p></li>
   <li>
-  <p><code>kwargs: Map[String, Any]</code><br/> a dictionary of named arguments</p></li>
+  <p><code>kwargs: Future[Map[String, Any]]</code><br/> a (future of) dictionary of named arguments</p></li>
   <li>
-  <p><code>kwargs[T]: T</code><br/> a user defined type</p></li>
+  <p><code>kwargs[T]: Future[T]</code><br/> a (future of) user defined type</p></li>
 </ul>
 <h4><a href="#data-types" name="data-types" class="anchor"><span class="anchor-link"></span></a>Data types</h4>
-<p>Akka Wamp will take care of the deserialization process either with <a href="https://github.com/FasterXML/jackson-module-scala">Jackson JSON Parser</a> for textual format or <a href="https://github.com/msgpack/msgpack-scala">MsgPack Parser</a> for binary format. The default parsers will apply the following data type bindings:</p>
+<p>Akka Wamp will take care of the deserialization process either with <a href="https://github.com/FasterXML/jackson-module-scala">Jackson JSON Parser</a> for textual format or <a href="https://github.com/msgpack/msgpack-scala">MsgPack Parser</a> for binary format. Those default parsers will apply the following data type bindings:</p>
 <table>
   <thead>
     <tr>
@@ -259,7 +259,7 @@ public class UserType { public String name; public Integer age; }</code></pre></
   </tbody>
 </table>
 <h3><a href="#unparsed" name="unparsed" class="anchor"><span class="anchor-link"></span></a>Unparsed</h3>
-<p>If you want full control of the deserialization process then you&rsquo;ll have to access to the <strong>unparsed</strong> data as follows:</p>
+<p>If you want full control of the deserializing process the you can access to the <strong>unparsed</strong> data as follows:</p>
 <dl>
   <dt>Scala</dt>
   <dd>
