@@ -1,0 +1,713 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+
+<head>
+<title>Futures · Akka Wamp</title>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="description" content='WAMP - Web Application Messaging Protocol implementation written in Scala/Java8 with Akka HTTP'/>
+<link href="https://fonts.googleapis.com/css?family=Roboto:100normal,100italic,300normal,300italic,400normal,400italic,500normal,500italic,700normal,700italic,900normal,900italicc" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../lib/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="../js/page.js"></script>
+<script type="text/javascript" src="../js/groups.js"></script>
+<link rel="stylesheet" type="text/css" href="../lib/normalize.css/normalize.css"/>
+<link rel="stylesheet" type="text/css" href="../lib/foundation/dist/foundation.min.css"/>
+<link rel="stylesheet" type="text/css" href="../css/page.css"/>
+
+<!--
+<link rel="shortcut icon" href="../images/favicon.ico" />
+-->
+</head>
+
+<body>
+<div class="off-canvas-wrapper">
+<div class="off-canvas-wrapper-inner" data-off-canvas-wrapper>
+
+<div class="off-canvas position-left" id="off-canvas-menu" data-off-canvas>
+<nav class="off-canvas-nav">
+<div class="nav-home">
+<a href="../index.html" >
+<span class="home-icon">⌂</span>Akka Wamp
+</a>
+<div class="version-number">
+0.15.2
+</div>
+</div>
+<div class="nav-toc">
+<ul>
+  <li><a href="../router.html" class="page">Router</a></li>
+  <li><a href="../client/index.html" class="page">Client APIs</a>
+  <ul>
+    <li><a href="../client/actors.html" class="page">Actors</a></li>
+    <li><a href="../client/futures.html" class="active page">Futures</a></li>
+    <li><a href="../client/streams.html" class="page">Streams</a></li>
+    <li><a href="../client/macros.html" class="page">Macros</a></li>
+  </ul></li>
+  <li><a href="../messages.html" class="page">Messages</a></li>
+  <li><a href="../payloads.html" class="page">Payloads</a></li>
+  <li><a href="../logging.html" class="page">Logging</a></li>
+  <li><a href="../tls.html" class="page">TLS/SSL</a></li>
+</ul>
+</div>
+
+</nav>
+</div>
+
+<div class="off-canvas-content" data-off-canvas-content>
+
+<header class="site-header expanded row">
+<div class="small-12 column">
+<a href="#" class="off-canvas-toggle hide-for-medium" data-toggle="off-canvas-menu"><svg class="svg-icon svg-icon-menu" version="1.1" id="Menu" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 20 20" enable-background="new 0 0 20 20" xml:space="preserve"> <path class="svg-icon-menu-path" fill="#53CDEC" d="M16.4,9H3.6C3.048,9,3,9.447,3,10c0,0.553,0.048,1,0.6,1H16.4c0.552,0,0.6-0.447,0.6-1C17,9.447,16.952,9,16.4,9z M16.4,13
+H3.6C3.048,13,3,13.447,3,14c0,0.553,0.048,1,0.6,1H16.4c0.552,0,0.6-0.447,0.6-1C17,13.447,16.952,13,16.4,13z M3.6,7H16.4
+C16.952,7,17,6.553,17,6c0-0.553-0.048-1-0.6-1H3.6C3.048,5,3,5.447,3,6C3,6.553,3.048,7,3.6,7z"/></svg>
+</a>
+<div class="title"><a href="../index.html">Akka Wamp</a></div>
+
+<!--
+<a href="https://www.example.com" class="logo show-for-medium">logo</a>
+-->
+</div>
+</header>
+
+<div class="expanded row">
+
+<div class="medium-3 large-2 show-for-medium column">
+<nav class="site-nav">
+<div class="nav-home">
+<a href="../index.html" >
+<span class="home-icon">⌂</span>Akka Wamp
+</a>
+<div class="version-number">
+0.15.2
+</div>
+</div>
+<div class="nav-toc">
+<ul>
+  <li><a href="../router.html" class="page">Router</a></li>
+  <li><a href="../client/index.html" class="page">Client APIs</a>
+  <ul>
+    <li><a href="../client/actors.html" class="page">Actors</a></li>
+    <li><a href="../client/futures.html" class="active page">Futures</a></li>
+    <li><a href="../client/streams.html" class="page">Streams</a></li>
+    <li><a href="../client/macros.html" class="page">Macros</a></li>
+  </ul></li>
+  <li><a href="../messages.html" class="page">Messages</a></li>
+  <li><a href="../payloads.html" class="page">Payloads</a></li>
+  <li><a href="../logging.html" class="page">Logging</a></li>
+  <li><a href="../tls.html" class="page">TLS/SSL</a></li>
+</ul>
+</div>
+
+</nav>
+</div>
+
+<div class="small-12 medium-9 large-10 column">
+<section class="site-content">
+
+<div class="page-header row">
+<div class="medium-12 show-for-medium column">
+<div class="nav-breadcrumbs">
+<ul>
+  <li><a href="../index.html">Akka Wamp</a></li>
+  <li><a href="../client/index.html">Client APIs</a></li>
+  <li>Futures</li>
+</ul>
+</div>
+</div>
+</div>
+
+<div class="page-content row">
+<div class="small-12 large-9 column" id="docs">
+<h1><a href="#futures" name="futures" class="anchor"><span class="anchor-link"></span></a>Futures</h1>
+<p>Akka Wamp provides you with</p>
+<ul>
+  <li>object-oriented representations of WAMP <a href="./messages.html">Messages</a>,</li>
+  <li>this Futures API built atop of <a href="./actors.html">Akka Wamp Actors</a> and the <a href="http://doc.akka.io/docs/akka/current/scala/futures.html">Akka Futures</a></li>
+</ul>
+<p>All operations are provided as <strong>direct method calls</strong> returning composable futures. You can write your client applications, in either Scala or Java, so to connect to routers, open sessions to attach realms, publish or subscribe to topics, consume events, register or call remote procedures and handle invocations in few liens of code.</p><div class="callout note "><div class="callout-title">Note</div>
+<p>This shall be considered an <strong>higher level API</strong> when compared to <a href="./actors.html">Akka Wamp Actors</a> as it doesn&rsquo;t require you to know anything about how WAMP <a href="../messages.html">Messages</a> are exchanged by peers.</p></div>
+<h2><a href="#client" name="client" class="anchor"><span class="anchor-link"></span></a>Client</h2>
+<p>Clients are those peers that, indirectly, communicate each other through a router. The Akka Wamp client instance can be created as follows: </p>
+<dl>
+  <dt>Scala</dt>
+  <dd>
+  <pre class="prettyprint"><code class="language-scala">import akka.actor._
+import akka.wamp.client._
+import com.typesafe.config._
+
+class FuturesScalaClient {
+
+  val config = ConfigFactory.load(&quot;myapp.conf&quot;)
+  val system = ActorSystem(&quot;myapp&quot;, config)
+  val client = Client(system)
+  // ...
+}</code></pre></dd>
+  <dt>Java</dt>
+  <dd>
+  <pre class="prettyprint"><code class="language-java">import akka.actor.*;
+import akka.wamp.client.japi.*;
+import com.typesafe.config.*;
+
+public class FuturesJavaClient {
+  public FuturesJavaClient() {
+    Config config = ConfigFactory.load(&quot;myapp.conf&quot;);
+    ActorSystem system = ActorSystem.create(&quot;myapp&quot;, config);
+    Client client = Client.create(system);
+    // ...
+  }
+}</code></pre></dd>
+</dl>
+<p>Just invoke the <code>Client</code> factory method and pass the following arguments:</p>
+<ul>
+  <li><code>system: ActorSystem</code><br/> Is the <a href="http://doc.akka.io/docs/akka/current/general/actor-systems.html">Akka Actor System</a> the client needs to spawn actors and provide execution context to futures.</li>
+</ul>
+<h2><a href="#connections" name="connections" class="anchor"><span class="anchor-link"></span></a>Connections</h2>
+<p>Clients that wish to communicate each other shall connect to the same router. The Akka Wamp client can connect to a router as follows:</p>
+<dl>
+  <dt>Scala</dt>
+  <dd>
+  <pre class="prettyprint"><code class="language-scala">import scala.concurrent.Future
+val conn: Future[Connection] = client.connect(&quot;myrouter&quot;)</code></pre></dd>
+  <dt>Java</dt>
+  <dd>
+  <pre class="prettyprint"><code class="language-java">// import java.util.concurrent.CompletionStage;
+CompletionStage&lt;Connection&gt; conn = client.connect(&quot;myrouter&quot;);</code></pre></dd>
+</dl>
+<p>Just invoke the <code>connect</code> method and pass the following arguments:</p>
+<ul>
+  <li><code>endpoint: String</code><br/> Is the name of a configured endpoint (default is <code>&quot;local&quot;</code>). Read the configuration section further below.</li>
+</ul>
+<p>or the following arguments:</p>
+<ul>
+  <li>
+  <p><code>address: String</code><br/> Is the address to connect to (e.g. <code>&quot;wss://hostname:8433/router&quot;</code>)</p></li>
+  <li>
+  <p><code>format: String</code><br/> Is the format of messages as exchanged the wire (e.g. <code>&quot;msgpack&quot;</code>)</p></li>
+</ul>
+<h3><a href="#configuration" name="configuration" class="anchor"><span class="anchor-link"></span></a>Configuration</h3>
+<pre class="prettyprint"><code class="language-conf">// akka.wamp.client {
+
+# Named endpoint configurations
+#
+endpoint {
+  local {
+    # Router address to connect to. Scheme can be:
+    #
+    #   - tcp
+    #       Raw TCP
+    #   - tsl
+    #       Transport Secure Layer
+    #   - ws
+    #       WebSocket
+    #   - wss
+    #       WebSocket over TLS
+    #
+    address = &quot;ws://localhost:8080/wamp&quot;
+
+    # Message format can be:
+    #
+    #   - json
+    #     JSON Javascript Object Notation
+    #
+    #   - msgpack
+    #     Message Pack
+    #
+    format = &quot;json&quot;
+  }
+  # Additional endpoint configurations here ...
+  #
+  # Each endpoint configuration will use the above &quot;local&quot;
+  # configuration settings as fallback.
+  #
+  #  address = &quot;wss://127.0.0.1:8443/wamp&quot;
+  #}
+}
+
+# The minimum (initial) duration until the connector actor
+# will be started again, if it is terminated because of failures
+#
+min-backoff = 3 seconds
+
+# The maximum exponential back-off will be capped to
+#
+max-backoff = 30 seconds
+
+# After calculation of the exponential back-off an additional
+# random delay based on this factor is added, e.g. 0.2 adds
+# up to 20% delay.
+#
+random-factor = 0.2
+
+# The boolean switch to validate against strict URIs
+# rather than loose URIs
+#
+validate-strict-uris = false
+
+# NOTE
+# Clients will always disconnect on offending messages
+# No configuration setting is provided to change this behaviour.
+#</code></pre>
+<h3><a href="#disconnect" name="disconnect" class="anchor"><span class="anchor-link"></span></a>Disconnect</h3>
+<p>The Akka Wamp client makes a distiction between <em>deliberate</em> and <em>accidental</em> disconnections. In either cases, any action performed in disconnected state will make the client throw <code>ClientException(&quot;Disconnected&quot;)</code></p>
+<h4><a href="#deliberate" name="deliberate" class="anchor"><span class="anchor-link"></span></a>Deliberate</h4>
+<p>Disconnection is requested on purpose as follows:</p>
+<dl>
+  <dt>Scala</dt>
+  <dd>
+  <pre class="prettyprint"><code class="language-scala">val disconnected: Future[Disconnected] = conn.flatMap(c =&gt; c.disconnect())</code></pre></dd>
+  <dt>Java</dt>
+  <dd>
+  <pre class="prettyprint"><code class="language-java">CompletionStage&lt;Disconnected&gt; disconnected = conn.thenCompose(c -&gt; c.disconnect());</code></pre></dd>
+</dl>
+<p>Just invoke the <code>disconnect</code> method.</p>
+<h4><a href="#accidental" name="accidental" class="anchor"><span class="anchor-link"></span></a>Accidental</h4>
+<p>Disconnection is not requested but suddenly happens (for example on mobile devices connected via wireless networks). The Akka Wamp client does not provide any mechanism to recover from this state. The connection object becomes useless and a new connection must be established.</p><div class="callout warning "><div class="callout-title">Warning</div>
+<p>Please join the ongoing <em>&ldquo;<a href="https://github.com/wamp-proto/wamp-proto/pull/264/files">Session Resumption</a>&rdquo;</em> discussion as some different behaviour proposals are under review.</p></div>
+<h2><a href="#sessions" name="sessions" class="anchor"><span class="anchor-link"></span></a>Sessions</h2>
+<p>A realm is a routing and administrative domain, optionally protected by authentication and authorization, that holds subscriptions to topics and registrations of procedures for all clients attached to it.</p>
+<p>A session is a transient conversation between a client and a router, running over a transport connection, that starts when the client requests to be attached to a specific realm. Attaching to a realm is also referred as <em>&ldquo;opening a session&rdquo;</em></p>
+<h3><a href="#open" name="open" class="anchor"><span class="anchor-link"></span></a>Open</h3>
+<p>Once got a (future of) connection, open a session over it so to attach the client to a specific realm.</p>
+<dl>
+  <dt>Scala</dt>
+  <dd>
+  <pre class="prettyprint"><code class="language-scala">// val conn: Future[Connection] = ...
+val session: Future[Session] = conn.flatMap(c =&gt; c.open(&quot;myrealm&quot;))</code></pre></dd>
+  <dt>Java</dt>
+  <dd>
+  <pre class="prettyprint"><code class="language-java">// CompletionStage&lt;Connection&gt; conn =
+CompletionStage&lt;Session&gt; session = conn.thenCompose(c -&gt; c.open(&quot;myrealm&quot;));</code></pre></dd>
+</dl>
+<p>Just invoke the <code>open</code> method passing the following arguments:</p>
+<ul>
+  <li><code>realm: Uri</code><br/> Is the realm name (default is <code>&quot;default&quot;</code>)</li>
+</ul>
+<h3><a href="#close" name="close" class="anchor"><span class="anchor-link"></span></a>Close</h3>
+<p>Once the client doesn&rsquo;t need to keep the session attached, it can close it as follows:</p>
+<dl>
+  <dt>Scala</dt>
+  <dd>
+  <pre class="prettyprint"><code class="language-scala">val close: Future[Closed] = session.flatMap(s =&gt; s.close())</code></pre></dd>
+  <dt>Java</dt>
+  <dd>
+  <pre class="prettyprint"><code class="language-java">CompletionStage&lt;Closed&gt; closed = session.thenCompose(s -&gt; s.close());</code></pre></dd>
+</dl>
+<p>Just invoke the <code>close</code> method.</p>
+<h2><a href="#topics" name="topics" class="anchor"><span class="anchor-link"></span></a>Topics</h2>
+<p>The client either publish events or subscribe to topics.</p>
+<h3><a href="#publish" name="publish" class="anchor"><span class="anchor-link"></span></a>Publish</h3>
+<p>Once got a (future of) session, the client can publish an event to a topic with either <em>&ldquo;fire and forget&rdquo;</em> or <em>&ldquo;acknowldeged&rdquo;</em> pattern.</p>
+<dl>
+  <dt>Scala</dt>
+  <dd>
+  <pre class="prettyprint"><code class="language-scala">// fire and forget
+session.map(s =&gt; s.publish(&quot;mytopic&quot;))
+
+// with acknowledge
+val publication: Future[Publication] =
+  session.flatMap(s =&gt; s.publishAck(&quot;mytopic&quot;))</code></pre></dd>
+  <dt>Java</dt>
+  <dd>
+  <pre class="prettyprint"><code class="language-java">// fire and forget
+session.thenAccept(s -&gt; s.publish(&quot;mytopic&quot;));
+
+// with acknowledge
+CompletionStage&lt;Publication&gt; publication =
+  session.thenCompose(s -&gt; s.publishAck(&quot;mytopic&quot;));</code></pre></dd>
+</dl>
+<p>Just invoke any the following overloaded methods:</p>
+<ul>
+  <li>
+    <p><code>publish</code><br/>It publishes in <em>&ldquo;fire and forget&rdquo;</em> pattern and returns no indication of what happened (neither failures).</p>
+    <ul>
+      <li>
+      <p><code>topic: Uri</code><br/> Is the topic to publish to.</p></li>
+      <li>
+      <p><code>payload: Payload</code><br/> Is the outgoing event payload. Please refer to the <a href="../payloads.html#outgoing">Payloads</a> section for further details.</p></li>
+    </ul>
+  </li>
+  <li>
+  <p><code>publishAck</code><br/>It publishes with <em>&ldquo;acknowledged&rdquo;</em> pattern so to return a (future of) publication. It accepts the same arguments as above.</p></li>
+</ul>
+<p>When publishing with <em>&ldquo;acknowledged&rdquo;</em> pattern the client can provide callbacks to be invoked upon future completion so to test against success or failure.</p>
+<dl>
+  <dt>Scala</dt>
+  <dd>
+  <pre class="prettyprint"><code class="language-scala">publication.onComplete {
+  case Success(pb) =&gt;
+    log.info(s&quot;Published with ${pb.id}&quot;)
+  case Failure(ex) =&gt;
+    log.error(ex.getMessage, ex)
+}</code></pre></dd>
+  <dt>Java</dt>
+  <dd>
+  <pre class="prettyprint"><code class="language-java">publication.whenComplete((pb, ex) -&gt; {
+  if (pb != null)
+    log.info(&quot;Published with {}&quot;, pb.id());
+  else
+    log.error(ex.getMessage(), ex);
+});</code></pre></dd>
+</dl>
+<h3><a href="#subscribe" name="subscribe" class="anchor"><span class="anchor-link"></span></a>Subscribe</h3>
+<p>Once got a (future of) session, the client can subscribe an lambda consumer to a topic as follows:</p>
+<dl>
+  <dt>Scala</dt>
+  <dd>
+  <pre class="prettyprint"><code class="language-scala">// val consumer: (Event) =&gt; Unit  = ...
+val subscription: Future[Subscription] =
+  session.flatMap(s =&gt; s.subscribe(&quot;mytopic&quot;, consumer))</code></pre></dd>
+  <dt>Java</dt>
+  <dd>
+  <pre class="prettyprint"><code class="language-java">// Consumer&lt;Event&gt; consumer = ...;
+CompletionStage&lt;Subscription&gt; subscription =
+    session.thenCompose(s -&gt; s.subscribe(&quot;mytopic&quot;, consumer));</code></pre></dd>
+</dl>
+<p>Just invoke the <code>subscribe</code> method with the following arguments:</p>
+<ul>
+  <li>
+  <p><code>topic: Uri</code><br/>Is the topic to subscribe to</p></li>
+  <li>
+  <p><code>consumer</code><br/>Is a consumer callback as explained further below.</p></li>
+</ul>
+<p>The client can provide callbacks to be invoked upon future completion so to test against success or failure.</p>
+<dl>
+  <dt>Scala</dt>
+  <dd>
+  <pre class="prettyprint"><code class="language-scala">subscription.onComplete {
+  case Success(sb) =&gt;
+    log.info(s&quot;Subscribed to ${sb.topic} with ${sb.id}&quot;)
+  case Failure(ex) =&gt;
+    log.error(ex.getMessage, ex)
+}</code></pre></dd>
+  <dt>Java</dt>
+  <dd>
+  <pre class="prettyprint"><code class="language-java">subscription.whenComplete((sb, ex) -&gt; {
+  if (sb != null)
+    log.info(&quot;Subscribed to {} with {}&quot;, sb.topic(), sb.id());
+  else
+    log.error(ex.getMessage(), ex);
+});</code></pre></dd>
+</dl>
+<h3><a href="#consumer" name="consumer" class="anchor"><span class="anchor-link"></span></a>Consumer</h3>
+<p>The client can subscribe any callback function given either as an event consumer or as <em>lambda</em> consumer.</p>
+<p>Please note that, as this API is build atop of <a href="../client/actors.html">Akka Wamp Actors</a>, your callback function will be invoked in the same thread which delivers the <a href="../messages.html">Event</a> message from underlying actor&rsquo;s mailbox. Therefore, it is safe to close your callback over free variables as there&rsquo;s no risk to have multiple threads executing the handler at the same time.</p>
+<h4><a href="#lambda-consumer" name="lambda-consumer" class="anchor"><span class="anchor-link"></span></a>Lambda Consumer</h4>
+<p>The client can subscribe a lambda consumer that accepts as many parameters as it would expect to be conveyed by incoming events.</p>
+<dl>
+  <dt>Scala</dt>
+  <dd>
+  <pre class="prettyprint"><code class="language-scala">val subscription: Future[Subscription] =
+  session.flatMap { implicit s =&gt;
+    subscribe(&quot;mytopic&quot;, (name: String, age: Int) =&gt; {
+
+      // do something with arguments ...
+    })
+  }</code></pre></dd>
+</dl>
+<p>Please refer to the <a href="macros.html#register">Macros</a> section for further details about how to access arguments conveyed by incoming events.</p><div class="callout warning "><div class="callout-title">Warning</div>
+<p>Lambda consumers are supported for Scala only</p></div>
+<h4><a href="#event-consumer" name="event-consumer" class="anchor"><span class="anchor-link"></span></a>Event Consumer</h4>
+<p>The client can subscribe an event consumer as a function that accepts exactly one argument of type <a href="../messages.html#event"><code>Event</code></a> and returns (future of) <code>Done</code>.</p>
+<dl>
+  <dt>Scala</dt>
+  <dd>
+  <pre class="prettyprint"><code class="language-scala">var freeVar: Long = 0
+val consumer: (Event) =&gt; Unit =
+  event =&gt; {
+    val publicationId = event.publicationId
+    val subscriptionId = event.subscriptionId
+    val details = event.details
+    val args = event.args
+    val kwargs = event.kwargs
+
+    // so something with incoming args and free vars ...
+  }</code></pre></dd>
+  <dt>Java</dt>
+  <dd>
+  <pre class="prettyprint"><code class="language-java">Long freeVar = 0l;
+Consumer&lt;Event&gt; consumer =
+  event -&gt; {
+    Long publicationId = event.publicationId();
+    Long subscriptionId = event.subscriptionId();
+    Map&lt;String, Object&gt; details = event.details();
+    List&lt;Object&gt; args = event.args();
+    Map&lt;String, Object&gt; kwargs = event.kwargs();
+
+    // so something with incoming args and free vars ...
+  };</code></pre></dd>
+</dl>
+<p>Please refer to the <a href="../payloads.html#arguments">Payloads</a> section for details about how to access arguments conveyed by incoming events.</p>
+<h3><a href="#unsubscribe" name="unsubscribe" class="anchor"><span class="anchor-link"></span></a>Unsubscribe</h3>
+<p>Once got a (future of) subscription, the client can unsubscribe from it.</p>
+<dl>
+  <dt>Scala</dt>
+  <dd>
+  <pre class="prettyprint"><code class="language-scala">val unsubscribed: Future[Unsubscribed] =
+  subscription.flatMap(s =&gt; s.unsubscribe())</code></pre></dd>
+  <dt>Java</dt>
+  <dd>
+  <pre class="prettyprint"><code class="language-java">CompletionStage&lt;Unsubscribed&gt; unsubscribed =
+  subscription.thenCompose(s -&gt; s.unsubscribe());</code></pre></dd>
+</dl>
+<p>Just invoke the <code>unsubscribe</code> method.</p>
+<h2><a href="#procedures" name="procedures" class="anchor"><span class="anchor-link"></span></a>Procedures</h2>
+<p>The client can either call or register remote procedures.</p>
+<h3><a href="#call" name="call" class="anchor"><span class="anchor-link"></span></a>Call</h3>
+<p>Once got a (future of) session, the client can call a remote procedure as follows</p>
+<dl>
+  <dt>Scala</dt>
+  <dd>
+  <pre class="prettyprint"><code class="language-scala">val result: Future[Result] =
+  session.flatMap(s =&gt; s.call(&quot;myprocedure&quot;, List(&quot;paolo&quot;, 99)))</code></pre></dd>
+  <dt>Java</dt>
+  <dd>
+  <pre class="prettyprint"><code class="language-java">CompletionStage&lt;Result&gt; result =
+  session.thenCompose(s -&gt; s.call(&quot;myprocedure&quot;, asList(&quot;paolo&quot;, 99)));</code></pre></dd>
+</dl>
+<p>Just invoke the <code>call</code> method with the following arguments:</p>
+<ul>
+  <li>
+  <p><code>procedure: Uri</code><br/>Is the remote procedure name to call</p></li>
+  <li>
+  <p><code>args</code><br/>Are the arguments to provide the invocation with</p></li>
+</ul>
+<p>The client can provide callbacks to be invoked upon future completion so to test against success or failure.</p>
+<dl>
+  <dt>Scala</dt>
+  <dd>
+  <pre class="prettyprint"><code class="language-scala">result.onComplete {
+  case Success(res) =&gt;
+    log.info(&quot;Result is {}&quot;, res)
+  case Failure(ex) =&gt;
+    log.error(ex.getMessage, ex)
+}</code></pre></dd>
+  <dt>Java</dt>
+  <dd>
+  <pre class="prettyprint"><code class="language-java">result.whenComplete((res, ex) -&gt; {
+  if (res != null)
+    log.info(&quot;Result: {}&quot;, res);
+  else
+    log.error(ex.getMessage(), ex);
+});</code></pre></dd>
+</dl>
+<h3><a href="#register" name="register" class="anchor"><span class="anchor-link"></span></a>Register</h3>
+<p>Once got a (future of) session, the client can register a local invocation handler as endpoint of a remote procedure as follows:</p>
+<dl>
+  <dt>Scala</dt>
+  <dd>
+  <pre class="prettyprint"><code class="language-scala">// val handler: (Invocation) =&gt; Any = ...
+val registration: Future[Registration] =
+  session.flatMap(s =&gt; s.register(&quot;myprocedure&quot;, handler))</code></pre></dd>
+  <dt>Java</dt>
+  <dd>
+  <pre class="prettyprint"><code class="language-java">// Function&lt;Invocation, CompletionStage&lt;Payload&gt;&gt; handler = ...
+CompletionStage&lt;Registration&gt; registration =
+  session.thenCompose(s -&gt; s.register(&quot;myprocedure&quot;, handler));</code></pre></dd>
+</dl>
+<p>Just invoke the <code>register</code> method with the following arguments:</p>
+<ul>
+  <li>
+  <p><code>procedure: Uri</code><br/> Is the procedure to register.</p></li>
+  <li>
+  <p><code>handler</code><br/> Is a handler as explained further below.</p></li>
+</ul>
+<p>The client can provide callbacks to be invoked upon future completion to test against success or failure.</p>
+<dl>
+  <dt>Scala</dt>
+  <dd>
+  <pre class="prettyprint"><code class="language-scala">registration.onComplete {
+  case Success(sb) =&gt;
+    log.info(s&quot;Registered ${sb.procedure} with ${sb.id}&quot;)
+  case Failure(ex) =&gt;
+    log.error(ex.getMessage, ex)
+}</code></pre></dd>
+  <dt>Java</dt>
+  <dd>
+  <pre class="prettyprint"><code class="language-java">registration.whenComplete((reg, ex) -&gt; {
+  if (reg != null)
+    log.info(&quot;Registered with {}&quot;, reg.id());
+  else
+    log.error(ex.getMessage(), ex);
+});</code></pre></dd>
+</dl>
+<h3><a href="#handler" name="handler" class="anchor"><span class="anchor-link"></span></a>Handler</h3>
+<p>The client can register any callback function given either as an invocation handler or as <em>lambda</em> handler.</p>
+<p>Please note that, as this API is build atop of <a href="../actors.html">Akka Wamp Actors</a>, your callback function will be invoked in the same thread which delivers the <a href="../messages.html">Invocation</a> message from underlying actor&rsquo;s mailbox. Therefore, it is safe to close your callback over free variables as there&rsquo;s no risk to have multiple threads executing the handler at the same time.</p>
+<h4><a href="#lambda-handler" name="lambda-handler" class="anchor"><span class="anchor-link"></span></a>Lambda Handler</h4>
+<p>The client can register a lambda handler that accepts as many parameters as you would expect to be conveyed by incoming invocations. </p>
+<dl>
+  <dt>Scala</dt>
+  <dd>
+  <pre class="prettyprint"><code class="language-scala">val registration: Future[Registration] =
+  session.flatMap { implicit s =&gt;
+    register(&quot;myprocedure&quot;, (name: String, age: Int) =&gt; {
+
+      // do something with arguments ...
+
+    })
+  }</code></pre></dd>
+</dl>
+<p>Please refer to the <a href="macros.html#register">Macros</a> section for further details about how to access arguments conveyed by incoming invocations.</p><div class="callout warning "><div class="callout-title">Warning</div>
+<p>Lambda handlers are supported for Scala only.</p></div>
+<h4><a href="#invocation-handler" name="invocation-handler" class="anchor"><span class="anchor-link"></span></a>Invocation Handler</h4>
+<p>The client can subscribe an invocation handler as a function that accepts exactly one argument of type <a href="../messages.html#invocation"><code>Invocation</code></a> and returns a (future of) <code>Payload</code>.</p>
+<dl>
+  <dt>Scala</dt>
+  <dd>
+  <pre class="prettyprint"><code class="language-scala">val handler: (Invocation) =&gt; Any =
+  (invocation) =&gt; {
+    val registrationId = invocation.registrationId
+    val details = invocation.details
+    val args = invocation.args
+    val kwargs = invocation.kwargs
+
+    // do something with arguments ...
+
+    val res = ???
+    res
+  }</code></pre></dd>
+  <dt>Java</dt>
+  <dd>
+  <pre class="prettyprint"><code class="language-java">Function&lt;Invocation, Object&gt; handler =
+  invocation -&gt; {
+    Long registrationId = invocation.registrationId();
+    Map&lt;String, Object&gt; details = invocation.details();
+    List&lt;Object&gt; args = invocation.args();
+    Map&lt;String, Object&gt; kwargs = invocation.kwargs();
+
+    // do something with arguments ...
+
+    Object res = null;
+    return res;
+  };</code></pre></dd>
+</dl>
+<p>Please refer to the <a href="../payloads.html#arguments">Payloads</a> section for futher details about how to access arguments conveyed by incoming invocations.</p>
+<h3><a href="#unregister" name="unregister" class="anchor"><span class="anchor-link"></span></a>Unregister</h3>
+<p>Once got a (future of) registration, the client can unregister from it.</p>
+<dl>
+  <dt>Scala</dt>
+  <dd>
+  <pre class="prettyprint"><code class="language-scala">val unregistered: Future[Unregistered] =
+  registration.flatMap(s =&gt; s.unregister())</code></pre></dd>
+  <dt>Java</dt>
+  <dd>
+  <pre class="prettyprint"><code class="language-java">CompletionStage&lt;Unregistered&gt; unregistered =
+  registration.thenCompose(r -&gt; r.unregister());</code></pre></dd>
+</dl>
+<p>Just invoke the <code>unregister</code> method.</p>
+<h2><a href="#putting-all-together" name="putting-all-together" class="anchor"><span class="anchor-link"></span></a>Putting all together</h2>
+<dl>
+  <dt>Scala</dt>
+  <dd>
+  <pre class="prettyprint"><code class="language-scala">// TBD</code></pre></dd>
+  <dt>Java</dt>
+  <dd>
+  <pre class="prettyprint"><code class="language-java">// TBD</code></pre></dd>
+</dl>
+<div class="nav-next">
+<p><strong>Next:</strong> <a href="../client/streams.html">Streams</a></p>
+</div>
+</div>
+<div class="large-3 show-for-large column" data-sticky-container>
+<nav class="sidebar sticky" data-sticky data-anchor="docs" data-sticky-on="large">
+<div class="page-nav">
+<div class="nav-title">On this page:</div>
+<div class="nav-toc">
+<ul>
+  <li><a href="../client/futures.html#futures" class="header">Futures</a>
+  <ul>
+    <li><a href="../client/futures.html#client" class="header">Client</a></li>
+    <li><a href="../client/futures.html#connections" class="header">Connections</a>
+    <ul>
+      <li><a href="../client/futures.html#configuration" class="header">Configuration</a></li>
+      <li><a href="../client/futures.html#disconnect" class="header">Disconnect</a></li>
+    </ul></li>
+    <li><a href="../client/futures.html#sessions" class="header">Sessions</a>
+    <ul>
+      <li><a href="../client/futures.html#open" class="header">Open</a></li>
+      <li><a href="../client/futures.html#close" class="header">Close</a></li>
+    </ul></li>
+    <li><a href="../client/futures.html#topics" class="header">Topics</a>
+    <ul>
+      <li><a href="../client/futures.html#publish" class="header">Publish</a></li>
+      <li><a href="../client/futures.html#subscribe" class="header">Subscribe</a></li>
+      <li><a href="../client/futures.html#consumer" class="header">Consumer</a></li>
+      <li><a href="../client/futures.html#unsubscribe" class="header">Unsubscribe</a></li>
+    </ul></li>
+    <li><a href="../client/futures.html#procedures" class="header">Procedures</a>
+    <ul>
+      <li><a href="../client/futures.html#call" class="header">Call</a></li>
+      <li><a href="../client/futures.html#register" class="header">Register</a></li>
+      <li><a href="../client/futures.html#handler" class="header">Handler</a></li>
+      <li><a href="../client/futures.html#unregister" class="header">Unregister</a></li>
+    </ul></li>
+    <li><a href="../client/futures.html#putting-all-together" class="header">Putting all together</a></li>
+  </ul></li>
+</ul>
+</div>
+</div>
+</nav>
+</div>
+</div>
+
+</section>
+</div>
+
+</div>
+
+<footer class="site-footer">
+
+<section class="site-footer-nav">
+<div class="expanded row">
+<div class="small-12 large-offset-2 large-10 column">
+<div class="row site-footer-content">
+
+<div class="small-12 medium-4 large-3 text-center column">
+<div class="nav-links">
+<ul>
+<!-- <li><a href="https://www.example.com/products/">Products</a> -->
+</ul>
+</div>
+</div>
+
+</div>
+</div>
+</div>
+</section>
+
+<section class="site-footer-base">
+<div class="expanded row">
+<div class="small-12 large-offset-2 large-10 column">
+<div class="row site-footer-content">
+
+<div class="small-12 text-center large-9 column">
+
+<!--
+<div class="copyright">
+<span class="text">&copy; 2018</span>
+<a href="https://www.example.com" class="logo">logo</a>
+</div>
+-->
+</div>
+
+</div>
+</div>
+</div>
+</section>
+</footer>
+
+</div>
+</div>
+</div>
+</body>
+
+<script type="text/javascript" src="../lib/foundation/dist/foundation.min.js"></script>
+<script type="text/javascript">jQuery(document).foundation();</script>
+<script type="text/javascript" src="../js/magellan.js"></script>
+
+<style type="text/css">@import "../lib/prettify/prettify.css";</style>
+<script type="text/javascript" src="../lib/prettify/prettify.js"></script>
+<script type="text/javascript" src="../lib/prettify/lang-scala.js"></script>
+<script type="text/javascript">jQuery(function(){window.prettyPrint && prettyPrint()});</script>
+
+</html>

@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+
+<head>
+<title>Router · Akka Wamp</title>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="description" content='WAMP - Web Application Messaging Protocol implementation written in Scala/Java8 with Akka HTTP'/>
+<link href="https://fonts.googleapis.com/css?family=Roboto:100normal,100italic,300normal,300italic,400normal,400italic,500normal,500italic,700normal,700italic,900normal,900italicc" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="lib/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="js/page.js"></script>
+<script type="text/javascript" src="js/groups.js"></script>
+<link rel="stylesheet" type="text/css" href="lib/normalize.css/normalize.css"/>
+<link rel="stylesheet" type="text/css" href="lib/foundation/dist/foundation.min.css"/>
+<link rel="stylesheet" type="text/css" href="css/page.css"/>
+
+<!--
+<link rel="shortcut icon" href="images/favicon.ico" />
+-->
+</head>
+
+<body>
+<div class="off-canvas-wrapper">
+<div class="off-canvas-wrapper-inner" data-off-canvas-wrapper>
+
+<div class="off-canvas position-left" id="off-canvas-menu" data-off-canvas>
+<nav class="off-canvas-nav">
+<div class="nav-home">
+<a href="index.html" >
+<span class="home-icon">⌂</span>Akka Wamp
+</a>
+<div class="version-number">
+0.15.2
+</div>
+</div>
+<div class="nav-toc">
+<ul>
+  <li><a href="router.html" class="active page">Router</a></li>
+  <li><a href="client/index.html" class="page">Client APIs</a>
+  <ul>
+    <li><a href="client/actors.html" class="page">Actors</a></li>
+    <li><a href="client/futures.html" class="page">Futures</a></li>
+    <li><a href="client/streams.html" class="page">Streams</a></li>
+    <li><a href="client/macros.html" class="page">Macros</a></li>
+  </ul></li>
+  <li><a href="messages.html" class="page">Messages</a></li>
+  <li><a href="payloads.html" class="page">Payloads</a></li>
+  <li><a href="logging.html" class="page">Logging</a></li>
+  <li><a href="tls.html" class="page">TLS/SSL</a></li>
+</ul>
+</div>
+
+</nav>
+</div>
+
+<div class="off-canvas-content" data-off-canvas-content>
+
+<header class="site-header expanded row">
+<div class="small-12 column">
+<a href="#" class="off-canvas-toggle hide-for-medium" data-toggle="off-canvas-menu"><svg class="svg-icon svg-icon-menu" version="1.1" id="Menu" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 20 20" enable-background="new 0 0 20 20" xml:space="preserve"> <path class="svg-icon-menu-path" fill="#53CDEC" d="M16.4,9H3.6C3.048,9,3,9.447,3,10c0,0.553,0.048,1,0.6,1H16.4c0.552,0,0.6-0.447,0.6-1C17,9.447,16.952,9,16.4,9z M16.4,13
+H3.6C3.048,13,3,13.447,3,14c0,0.553,0.048,1,0.6,1H16.4c0.552,0,0.6-0.447,0.6-1C17,13.447,16.952,13,16.4,13z M3.6,7H16.4
+C16.952,7,17,6.553,17,6c0-0.553-0.048-1-0.6-1H3.6C3.048,5,3,5.447,3,6C3,6.553,3.048,7,3.6,7z"/></svg>
+</a>
+<div class="title"><a href="index.html">Akka Wamp</a></div>
+
+<!--
+<a href="https://www.example.com" class="logo show-for-medium">logo</a>
+-->
+</div>
+</header>
+
+<div class="expanded row">
+
+<div class="medium-3 large-2 show-for-medium column">
+<nav class="site-nav">
+<div class="nav-home">
+<a href="index.html" >
+<span class="home-icon">⌂</span>Akka Wamp
+</a>
+<div class="version-number">
+0.15.2
+</div>
+</div>
+<div class="nav-toc">
+<ul>
+  <li><a href="router.html" class="active page">Router</a></li>
+  <li><a href="client/index.html" class="page">Client APIs</a>
+  <ul>
+    <li><a href="client/actors.html" class="page">Actors</a></li>
+    <li><a href="client/futures.html" class="page">Futures</a></li>
+    <li><a href="client/streams.html" class="page">Streams</a></li>
+    <li><a href="client/macros.html" class="page">Macros</a></li>
+  </ul></li>
+  <li><a href="messages.html" class="page">Messages</a></li>
+  <li><a href="payloads.html" class="page">Payloads</a></li>
+  <li><a href="logging.html" class="page">Logging</a></li>
+  <li><a href="tls.html" class="page">TLS/SSL</a></li>
+</ul>
+</div>
+
+</nav>
+</div>
+
+<div class="small-12 medium-9 large-10 column">
+<section class="site-content">
+
+<div class="page-header row">
+<div class="medium-12 show-for-medium column">
+<div class="nav-breadcrumbs">
+<ul>
+  <li><a href="index.html">Akka Wamp</a></li>
+  <li>Router</li>
+</ul>
+</div>
+</div>
+</div>
+
+<div class="page-content row">
+<div class="small-12 large-9 column" id="docs">
+<h1><a href="#router" name="router" class="anchor"><span class="anchor-link"></span></a>Router</h1>
+<p>Akka Wamp provides you with a basic Router that can be either launched as standalone server process or embedded into your application. It implements:</p>
+<ul>
+  <li>WAMP Basic Profile,</li>
+  <li>Both broker and dealer roles,</li>
+  <li>JSON serialization,</li>
+  <li>WebSocket transport</li>
+</ul><div class="callout warning "><div class="callout-title">Warning</div>
+<p>Though perfectly functional, Akka Wamp Router is intended for development purposes only. You&rsquo;re advised to adopt production ready WAMP routers such as <a href="http://crossbar.io/">Crossbar.IO</a></p></div>
+<h2><a href="#standalone" name="standalone" class="anchor"><span class="anchor-link"></span></a>Standalone</h2>
+<p><a href="https://bintray.com/angiolep/universal/akka-wamp/_latestVersion"><img src="https://api.bintray.com/packages/angiolep/universal/akka-wamp/images/download.svg" alt="Download" /></a></p>
+<p>Download the latest version, extract, configure and run it as standalone application:</p>
+<dl>
+  <dt>tgz</dt>
+  <dd>
+  <pre class="prettyprint"><code class="language-sh">curl https://dl.bintray.com/angiolep/universal/akka-wamp-0.15.2.tgz
+tar xvfz akka-wamp-0.15.2.tar.gz
+cd akka-wamp-0.15.2
+vim ./conf/application.conf
+./bin/akka-wamp -Dakka.loglevel=DEBUG</code></pre></dd>
+</dl>
+<h2><a href="#configuration" name="configuration" class="anchor"><span class="anchor-link"></span></a>Configuration</h2>
+<pre class="prettyprint"><code class="language-conf"># akka.wamp.router {
+
+# One or more endpoint configurations.
+#
+# Each endpoint configuration listed here will make the application
+# bind a separate connection listener on the given address.
+endpoint {
+  local {
+    # The address to bind to. Scheme can be:
+    #
+    #    - tcp
+    #        Raw TCP
+    #    - tsl
+    #        Transport Secure Layer
+    #    - ws
+    #        WebSocket
+    #    - wss
+    #        WebSocket over TLS
+    #
+    address = &quot;ws://localhost:8080/wamp&quot;
+
+    # Message format can be:
+    #
+    #    - json
+    #        JSON Javascript Object Notation
+    #
+    #    - msgpack
+    #        Message Pack
+    #
+    format = &quot;json&quot;
+  }
+  # Additional endpoint configurations here ...
+  #
+  # Each endpoint configuration will use the above &quot;local&quot;
+  # configuration settings as fallback.
+  #
+  #  address = &quot;wss://127.0.0.1:8443/wamp&quot;
+  #}
+}
+# The local filesystem path the router will serve static
+# web resources (such as HTML docs) out of
+#
+webroot = ${user.home}/webroot
+
+# The boolean switch to validate against strict URIs
+# rather than loose URIs
+#
+validate-strict-uris = false
+
+# The boolean switch to NOT automatically create realms
+# if they don&#39;t exist yet.
+#
+abort-unknown-realms = false
+
+# The boolean switch to drop offending messages (e.g.
+# not deserializable or against the protocol).
+#
+# By default, offending messages will cause session to be
+# closed and transport to be disconnected. Set this switch on
+# if you rather prefer to drop offending messages and resume.
+#
+drop-offending-messages = false</code></pre>
+<h3><a href="#transports" name="transports" class="anchor"><span class="anchor-link"></span></a>Transports</h3>
+<p>An application can bind one or more listeners. Each listener corresponds to a named transport in the configuration file and it will bind to the configured endpoint. Usually, endpoints are configured for different schemes such as <code>ws</code> for WebSocket or <code>wss</code> for WebSocket with TLS - Transport Layer Security. Additional transport configuration falls back to the default one for missing keys (e.g. no need to repeat the <code>format</code> key) </p>
+<h2><a href="#embedded" name="embedded" class="anchor"><span class="anchor-link"></span></a>Embedded</h2>
+<p>Create and bind an embedded router passing an actor reference factory (such as a brand new actor system or any of your actor context)</p>
+<dl>
+  <dt>scala</dt>
+  <dd>
+  <pre class="prettyprint"><code class="language-scala">/*
+ * This file is subject to the terms and conditions defined in
+ * file &#39;LICENSE.md&#39;, which is part of this source code package.
+ */
+
+import akka.actor._
+import akka.wamp.router._
+
+object LocalRouterApp extends App {
+  val actorSystem = ActorSystem()
+  EmbeddedRouter.createAndBind(actorSystem)
+}</code></pre></dd>
+</dl>
+<h3><a href="#internals" name="internals" class="anchor"><span class="anchor-link"></span></a>Internals</h3>
+<p>A Binder actor spawns a Router actor to be bound to the Akka IO Wamp Manager. The manager spawns one ConnectionListener actor which listens for incoming connection requests. The listener spawns a new ConnectionHandler actor upon each connection establishment to serve a specific client. </p>
+<p><img src="router.png" alt="router" /></p>
+<div class="nav-next">
+<p><strong>Next:</strong> <a href="client/index.html">Client APIs</a></p>
+</div>
+</div>
+<div class="large-3 show-for-large column" data-sticky-container>
+<nav class="sidebar sticky" data-sticky data-anchor="docs" data-sticky-on="large">
+<div class="page-nav">
+<div class="nav-title">On this page:</div>
+<div class="nav-toc">
+<ul>
+  <li><a href="router.html#router" class="header">Router</a>
+  <ul>
+    <li><a href="router.html#standalone" class="header">Standalone</a></li>
+    <li><a href="router.html#configuration" class="header">Configuration</a>
+    <ul>
+      <li><a href="router.html#transports" class="header">Transports</a></li>
+    </ul></li>
+    <li><a href="router.html#embedded" class="header">Embedded</a>
+    <ul>
+      <li><a href="router.html#internals" class="header">Internals</a></li>
+    </ul></li>
+  </ul></li>
+</ul>
+</div>
+</div>
+</nav>
+</div>
+</div>
+
+</section>
+</div>
+
+</div>
+
+<footer class="site-footer">
+
+<section class="site-footer-nav">
+<div class="expanded row">
+<div class="small-12 large-offset-2 large-10 column">
+<div class="row site-footer-content">
+
+<div class="small-12 medium-4 large-3 text-center column">
+<div class="nav-links">
+<ul>
+<!-- <li><a href="https://www.example.com/products/">Products</a> -->
+</ul>
+</div>
+</div>
+
+</div>
+</div>
+</div>
+</section>
+
+<section class="site-footer-base">
+<div class="expanded row">
+<div class="small-12 large-offset-2 large-10 column">
+<div class="row site-footer-content">
+
+<div class="small-12 text-center large-9 column">
+
+<!--
+<div class="copyright">
+<span class="text">&copy; 2018</span>
+<a href="https://www.example.com" class="logo">logo</a>
+</div>
+-->
+</div>
+
+</div>
+</div>
+</div>
+</section>
+</footer>
+
+</div>
+</div>
+</div>
+</body>
+
+<script type="text/javascript" src="lib/foundation/dist/foundation.min.js"></script>
+<script type="text/javascript">jQuery(document).foundation();</script>
+<script type="text/javascript" src="js/magellan.js"></script>
+
+<style type="text/css">@import "lib/prettify/prettify.css";</style>
+<script type="text/javascript" src="lib/prettify/prettify.js"></script>
+<script type="text/javascript" src="lib/prettify/lang-scala.js"></script>
+<script type="text/javascript">jQuery(function(){window.prettyPrint && prettyPrint()});</script>
+
+</html>

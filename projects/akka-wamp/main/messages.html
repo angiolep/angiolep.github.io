@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+
+<head>
+<title>Messages · Akka Wamp</title>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="description" content='WAMP - Web Application Messaging Protocol implementation written in Scala/Java8 with Akka HTTP'/>
+<link href="https://fonts.googleapis.com/css?family=Roboto:100normal,100italic,300normal,300italic,400normal,400italic,500normal,500italic,700normal,700italic,900normal,900italicc" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="lib/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="js/page.js"></script>
+<script type="text/javascript" src="js/groups.js"></script>
+<link rel="stylesheet" type="text/css" href="lib/normalize.css/normalize.css"/>
+<link rel="stylesheet" type="text/css" href="lib/foundation/dist/foundation.min.css"/>
+<link rel="stylesheet" type="text/css" href="css/page.css"/>
+
+<!--
+<link rel="shortcut icon" href="images/favicon.ico" />
+-->
+</head>
+
+<body>
+<div class="off-canvas-wrapper">
+<div class="off-canvas-wrapper-inner" data-off-canvas-wrapper>
+
+<div class="off-canvas position-left" id="off-canvas-menu" data-off-canvas>
+<nav class="off-canvas-nav">
+<div class="nav-home">
+<a href="index.html" >
+<span class="home-icon">⌂</span>Akka Wamp
+</a>
+<div class="version-number">
+0.15.2
+</div>
+</div>
+<div class="nav-toc">
+<ul>
+  <li><a href="router.html" class="page">Router</a></li>
+  <li><a href="client/index.html" class="page">Client APIs</a>
+  <ul>
+    <li><a href="client/actors.html" class="page">Actors</a></li>
+    <li><a href="client/futures.html" class="page">Futures</a></li>
+    <li><a href="client/streams.html" class="page">Streams</a></li>
+    <li><a href="client/macros.html" class="page">Macros</a></li>
+  </ul></li>
+  <li><a href="messages.html" class="active page">Messages</a></li>
+  <li><a href="payloads.html" class="page">Payloads</a></li>
+  <li><a href="logging.html" class="page">Logging</a></li>
+  <li><a href="tls.html" class="page">TLS/SSL</a></li>
+</ul>
+</div>
+
+</nav>
+</div>
+
+<div class="off-canvas-content" data-off-canvas-content>
+
+<header class="site-header expanded row">
+<div class="small-12 column">
+<a href="#" class="off-canvas-toggle hide-for-medium" data-toggle="off-canvas-menu"><svg class="svg-icon svg-icon-menu" version="1.1" id="Menu" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 20 20" enable-background="new 0 0 20 20" xml:space="preserve"> <path class="svg-icon-menu-path" fill="#53CDEC" d="M16.4,9H3.6C3.048,9,3,9.447,3,10c0,0.553,0.048,1,0.6,1H16.4c0.552,0,0.6-0.447,0.6-1C17,9.447,16.952,9,16.4,9z M16.4,13
+H3.6C3.048,13,3,13.447,3,14c0,0.553,0.048,1,0.6,1H16.4c0.552,0,0.6-0.447,0.6-1C17,13.447,16.952,13,16.4,13z M3.6,7H16.4
+C16.952,7,17,6.553,17,6c0-0.553-0.048-1-0.6-1H3.6C3.048,5,3,5.447,3,6C3,6.553,3.048,7,3.6,7z"/></svg>
+</a>
+<div class="title"><a href="index.html">Akka Wamp</a></div>
+
+<!--
+<a href="https://www.example.com" class="logo show-for-medium">logo</a>
+-->
+</div>
+</header>
+
+<div class="expanded row">
+
+<div class="medium-3 large-2 show-for-medium column">
+<nav class="site-nav">
+<div class="nav-home">
+<a href="index.html" >
+<span class="home-icon">⌂</span>Akka Wamp
+</a>
+<div class="version-number">
+0.15.2
+</div>
+</div>
+<div class="nav-toc">
+<ul>
+  <li><a href="router.html" class="page">Router</a></li>
+  <li><a href="client/index.html" class="page">Client APIs</a>
+  <ul>
+    <li><a href="client/actors.html" class="page">Actors</a></li>
+    <li><a href="client/futures.html" class="page">Futures</a></li>
+    <li><a href="client/streams.html" class="page">Streams</a></li>
+    <li><a href="client/macros.html" class="page">Macros</a></li>
+  </ul></li>
+  <li><a href="messages.html" class="active page">Messages</a></li>
+  <li><a href="payloads.html" class="page">Payloads</a></li>
+  <li><a href="logging.html" class="page">Logging</a></li>
+  <li><a href="tls.html" class="page">TLS/SSL</a></li>
+</ul>
+</div>
+
+</nav>
+</div>
+
+<div class="small-12 medium-9 large-10 column">
+<section class="site-content">
+
+<div class="page-header row">
+<div class="medium-12 show-for-medium column">
+<div class="nav-breadcrumbs">
+<ul>
+  <li><a href="index.html">Akka Wamp</a></li>
+  <li>Messages</li>
+</ul>
+</div>
+</div>
+</div>
+
+<div class="page-content row">
+<div class="small-12 large-9 column" id="docs">
+<h1><a href="#messages" name="messages" class="anchor"><span class="anchor-link"></span></a>Messages</h1>
+<p>AkkaWamp provides you with an object-oriented representation of all of its managed messages.</p>
+<pre class="prettyprint"><code class="language-scala">import akka.wamp.messages._
+</code></pre>
+<p>You&rsquo;ll get classes representing both internal commands/signals and WAMP messages carried over the network transport, such as <a href="#Hello">Hello</a>, <a href="#Welcome">Welcome</a>, <a href="#Publish">Publish</a>, etc. that can be sent to (or received from) Akka actors.</p>
+<p><img src="messages.png" alt="messages" /></p>
+<a name="message-type"></a>
+<pre><code> +-----+----------------+------+------+------+------+-------+--------+
+ | Cod |    Message     | Pub  | Brk  | Subs | Calr | Dealr | Callee |
+ +-----+----------------+------+------+------+------+-------+--------+
+ |  1  |    &quot;HELLO&quot;     |  Tx  |  Rx  |  Tx  |  Tx  |   Rx  |   Tx   |
+ |  2  |   &quot;WELCOME&quot;    |  Rx  |  Tx  |  Rx  |  Rx  |   Tx  |   Rx   |
+ |  3  |    &quot;ABORT&quot;     |  Rx  | TxRx |  Rx  |  Rx  |  TxRx |   Rx   |
+ |  6  |   &quot;GOODBYE&quot;    | TxRx | TxRx | TxRx | TxRx |  TxRx |  TxRx  |
+ |     |                |      |      |      |      |       |        |
+ |  8  |    &quot;ERROR&quot;     |  Rx  |  Tx  |  Rx  |  Rx  |  TxRx |  TxRx  |
+ |     |                |      |      |      |      |       |        |
+ |  16 |   &quot;PUBLISH&quot;    |  Tx  |  Rx  |      |      |       |        |
+ |  17 |  &quot;PUBLISHED&quot;   |  Rx  |  Tx  |      |      |       |        |
+ |     |                |      |      |      |      |       |        |
+ |  32 |  &quot;SUBSCRIBE&quot;   |      |  Rx  |  Tx  |      |       |        |
+ |  33 |  &quot;SUBSCRIBED&quot;  |      |  Tx  |  Rx  |      |       |        |
+ |  34 | &quot;UNSUBSCRIBE&quot;  |      |  Rx  |  Tx  |      |       |        |
+ |  35 | &quot;UNSUBSCRIBED&quot; |      |  Tx  |  Rx  |      |       |        |
+ |  36 |    &quot;EVENT&quot;     |      |  Tx  |  Rx  |      |       |        |
+ |     |                |      |      |      |      |       |        |
+ |  48 |     &quot;CALL&quot;     |      |      |      |  Tx  |   Rx  |        |
+ |  50 |    &quot;RESULT&quot;    |      |      |      |  Rx  |   Tx  |        |
+ |     |                |      |      |      |      |       |        |
+ |  64 |   &quot;REGISTER&quot;   |      |      |      |      |   Rx  |   Tx   |
+ |  65 |  &quot;REGISTERED&quot;  |      |      |      |      |   Tx  |   Rx   |
+ |  66 |  &quot;UNREGISTER&quot;  |      |      |      |      |   Rx  |   Tx   |
+ |  67 | &quot;UNREGISTERED&quot; |      |      |      |      |   Tx  |   Rx   |
+ |  68 |  &quot;INVOCATION&quot;  |      |      |      |      |   Tx  |   Rx   |
+ |  70 |    &quot;YIELD&quot;     |      |      |      |      |   Rx  |   Tx   |
+ +-----+----------------+------+------+------+------+-------+--------+
+</code></pre>
+<a name="Abort"></a>
+<h2><a href="#abort" name="abort" class="anchor"><span class="anchor-link"></span></a>Abort</h2>
+<p>It is the message the client receives from the router upon session opening failure. It can be deconstructed with:</p>
+<ul>
+  <li>
+  <p><code>details: Dict</code><br/> It is a dictionary with additional details. It might be empty.</p></li>
+  <li>
+  <p><code>reason: Uri</code><br/> It is the abort reason given as identifier (e.g. <code>wamp.error.no_such_realm</code>)</p></li>
+</ul>
+<a name="CommandFailed"></a>
+<h2><a href="#commandfailed" name="commandfailed" class="anchor"><span class="anchor-link"></span></a>CommandFailed</h2>
+<p>It is the signal the client receives from the <a href="./client/index.html#extension-manager">manager actor</a> whatever command (e.g. <a href="#Connect">Connect</a> or <a href="#Bind">Bind</a>) fails. It can be deconstructed with:</p>
+<ul>
+  <li>
+  <p><code>cmd: Command</code><br/> It is the original command that was failed</p></li>
+  <li>
+  <p><code>ex: Throwable</code><br/> It is the exception thrown.</p></li>
+</ul>
+<a name="Connect"></a>
+<h2><a href="#connect" name="connect" class="anchor"><span class="anchor-link"></span></a>Connect</h2>
+<p>It&rsquo;s the command message your client application sends to the <a href="./client/index.html#extension-manager">manager actor</a> to connect to a router. It can be constructed passing the following arguments:</p>
+<ul>
+  <li>
+    <p><code>uri: URI</code><br/> It is the <a href="https://www.ietf.org/rfc/rfc1738.txt">URL</a> of the router your client wants to connect to. Akka Wamp supports the following transport protocols:</p>
+    <ul>
+      <li><code>tcp</code><br/>Transmission Control Protocol</li>
+      <li><code>tsl</code><br/>Transport Secure Layer</li>
+      <li><code>ws</code><br/>WebSocket</li>
+      <li><code>wss</code><br/>WebSocket over TLS</li>
+    </ul>
+  </li>
+  <li>
+    <p><code>format: String</code><br/> It is the format (textual or binary) to be used by connected peers to represent WAMP messages when they are carried over the selected transport. Akka Wamp supports the following formats:</p>
+    <ul>
+      <li><code>json</code><br/> (textual) <a href="http://www.json.org/">JavaScript Object Notation</a></li>
+      <li><code>msgpack</code><br/> (binary) <a href="http://msgpack.org/">Message Pack</a></li>
+    </ul>
+  </li>
+</ul><div class="callout warning "><div class="callout-title">Warning</div>
+<p>Though documented here, the actual Akka Wamp version does provide neither <code>tcp</code>, <code>tls</code>, <code>wss</code> transports nor <code>msgpack</code> format.</p></div>
+<a name="Connected"></a>
+<h2><a href="#connected" name="connected" class="anchor"><span class="anchor-link"></span></a>Connected</h2>
+<p>It&rsquo;s the signal the client receives from the <a href="./client/index.html#extension-manager">manager actor</a> upon successful connection to a router. It can be deconstructed with:</p>
+<ul>
+  <li><code>conn: ActorRef</code><br/> It is the connection handler actor reference the client shall hold. That&rsquo;s where further messages addressed to the router shall be sent to.</li>
+</ul>
+<a name="Disconnected"></a>
+<h2><a href="#disconnected" name="disconnected" class="anchor"><span class="anchor-link"></span></a>Disconnected</h2>
+<p>It&rsquo;s the signal the client receives from the <a href="./client/index.html#extension-manager">manager actor</a> upon disconnection from the router side.</p>
+<a name="Error"></a>
+<h2><a href="#error" name="error" class="anchor"><span class="anchor-link"></span></a>Error</h2>
+<p>It is the message the client receives from the router when a request cannot be fulfilled. It can be deconstructed to the following arguments:</p>
+<ul>
+  <li>
+  <p><code>requestType: Int</code><br/> It is the <a href="#message-type">message type</a> of the original request.</p></li>
+  <li>
+  <p><code>requestId: Id</code><br/> It is the identifier of the original request</p></li>
+  <li>
+  <p><code>details: Dict</code><br/> It is the dictionary of additional details. It might be empty.</p></li>
+  <li>
+  <p><code>error: Uri</code><br/> It is the errror given as WAMP URI (e.g. <code>wamp.error.no_such_subscription</code>)</p></li>
+  <li>
+  <p><code>payload: Payload</code><br/> It is the payload bearing application data. Refer to the <a href="./payloads.html">Payloads</a> section for further details.</p></li>
+</ul>
+<a name="Goodbye"></a>
+<h2><a href="#goodbye" name="goodbye" class="anchor"><span class="anchor-link"></span></a>Goodbye</h2>
+<p>It is the message the client either sends to or receives from the router when it&rsquo;s time to close a session. It can be constructed (deconstructed) with (to) the following arguments:</p>
+<ul>
+  <li>
+  <p><code>reason: Uri</code><br/> It is the reason identifier given as WAMP URI (e.g. <code>&quot;wamp.error.close_realm&quot;</code>).</p></li>
+  <li>
+  <p><code>details: Dict</code><br/> It is the dictionary of additional details.</p></li>
+</ul>
+<a name="Hello"></a>
+<h2><a href="#hello" name="hello" class="anchor"><span class="anchor-link"></span></a>Hello</h2>
+<p>It is the message the client sends to the router to request a new session being opened with the given realm attached. It can be constructed passing the following arguments:</p>
+<ul>
+  <li>
+  <p><code>realm: Uri</code><br/> It is the realm identifier given as <a href="https://tools.ietf.org/html/draft-oberstet-hybi-tavendo-wamp-02#section-5.1.1">WAMP URI</a>.</p></li>
+  <li>
+  <p><code>details: Dict</code><br/> It is the dictionary of additional details (such as supported roles and feature announcements). </p></li>
+</ul>
+<a name="Publish"></a>
+<h2><a href="#publish" name="publish" class="anchor"><span class="anchor-link"></span></a>Publish</h2>
+<p>It is the message the client sends to the router to publish some data. It can be constructed passing the following arguments:</p>
+<ul>
+  <li>
+  <p><code>requestId: Id</code><br/> It is the unique request identifier. Akka Wamp provides you with base classes you can inherit the <code>nextRequestId</code> method from.</p></li>
+  <li>
+  <p><code>topic: Uri</code><br/> It is the topic URI to publish to.</p></li>
+  <li>
+  <p><code>payload: Payload</code><br/> It is the payload bearing application data. Refer to the <a href="./payloads.html">Payloads</a> section for further details.</p></li>
+  <li>
+  <p><code>options: Dict</code><br/> It is the dictionary of additional options. For example, the <code>&quot;acknowledge&quot; -&gt; true</code> entry asks for the <a href="#Published">Published</a> message being replied by the router.</p></li>
+</ul>
+<pre class="prettyprint"><code class="nocode">,---------.          ,------.          ,----------.
+|Publisher|          |Broker|          |Subscriber|
+`----+----&#39;          `--+---&#39;          `----+-----&#39;
+     |     PUBLISH      |                   |
+     |------------------&gt;                   |
+     |                  |                   |
+     |PUBLISHED or ERROR|                   |
+     |&lt;------------------                   |
+     |                  |                   |
+     |                  |       EVENT       |
+     |                  | ------------------&gt;
+,----+----.          ,--+---.          ,----+-----.
+|Publisher|          |Broker|          |Subscriber|
+`---------&#39;          `------&#39;          `----------&#39;
+</code></pre>
+<a name="Published"></a>
+<h2><a href="#published" name="published" class="anchor"><span class="anchor-link"></span></a>Published</h2>
+<p>It is the message the client receives from the router upon sucessful publication if client asked for an acknowledgment.</p>
+<ul>
+  <li>
+  <p><code>requestId: Id</code><br/> It is the identifier from the original publication request</p></li>
+  <li>
+  <p><code>subscriptionId: Id</code><br/> It is an identifier chosen by the router for the subscription</p></li>
+</ul>
+<a name="Subscribe"></a>
+<h2><a href="#subscribe" name="subscribe" class="anchor"><span class="anchor-link"></span></a>Subscribe</h2>
+<p>It is the message the client sends to the router to subscribe to a topic. It can be constructed passing the following arguments:</p>
+<ul>
+  <li>
+  <p><code>requestId: Id</code><br/> It is the unique request identifier. Akka Wamp provides you with base classes you can inherit the <code>nextRequestId</code> method from.</p></li>
+  <li>
+  <p><code>topic: Uri</code><br/> It is the topic URI to subscribe to.</p></li>
+  <li>
+  <p><code>options: Dict</code><br/> It is the dictionary of additional details.</p></li>
+</ul>
+<pre><code>,---------.          ,------.             ,----------.
+|Publisher|          |Broker|             |Subscriber|
+`----+----&#39;          `--+---&#39;             `----+-----&#39;
+     |                  |                      |
+     |                  |                      |
+     |                  |       SUBSCRIBE      |
+     |                  | &lt;---------------------
+     |                  |                      |
+     |                  |  SUBSCRIBED or ERROR |
+     |                  | ---------------------&gt;
+     |                  |                      |
+     |                  |                      |
+     |                  |                      |
+     |                  |                      |
+     |                  |      UNSUBSCRIBE     |
+     |                  | &lt;---------------------
+     |                  |                      |
+     |                  | UNSUBSCRIBED or ERROR|
+     |                  | ---------------------&gt;
+,----+----.          ,--+---.             ,----+-----.
+|Publisher|          |Broker|             |Subscriber|
+`---------&#39;          `------&#39;             `----------&#39;
+</code></pre>
+<a name="Subscribed"></a>
+<h2><a href="#subscribed" name="subscribed" class="anchor"><span class="anchor-link"></span></a>Subscribed</h2>
+<p>It is the message the client receives from the router upon sucessful subscription.</p>
+<ul>
+  <li>
+  <p><code>requestId: Id</code><br/> It is the identifier from the original publication request</p></li>
+  <li>
+  <p><code>publicationId: Id</code><br/> It is an identifier chosen by the router for the publication</p></li>
+</ul>
+<a name="Welcome"></a>
+<h2><a href="#welcome" name="welcome" class="anchor"><span class="anchor-link"></span></a>Welcome</h2>
+<p>It is the message the client receives from the router upon successful session opening. It can be deconstructed with:</p>
+<ul>
+  <li>
+  <p><code>sessionId: Long</code><br/> It is the unique session identifier generated by the router as random long integer number between <code>1</code> and <code>9007199254740992</code></p></li>
+  <li>
+  <p><code>details: Dict</code><br/> It is the dictionary with additional details. It might be empty.</p></li>
+</ul>
+<div class="nav-next">
+<p><strong>Next:</strong> <a href="payloads.html">Payloads</a></p>
+</div>
+</div>
+<div class="large-3 show-for-large column" data-sticky-container>
+<nav class="sidebar sticky" data-sticky data-anchor="docs" data-sticky-on="large">
+<div class="page-nav">
+<div class="nav-title">On this page:</div>
+<div class="nav-toc">
+<ul>
+  <li><a href="messages.html#messages" class="header">Messages</a>
+  <ul>
+    <li><a href="messages.html#abort" class="header">Abort</a></li>
+    <li><a href="messages.html#commandfailed" class="header">CommandFailed</a></li>
+    <li><a href="messages.html#connect" class="header">Connect</a></li>
+    <li><a href="messages.html#connected" class="header">Connected</a></li>
+    <li><a href="messages.html#disconnected" class="header">Disconnected</a></li>
+    <li><a href="messages.html#error" class="header">Error</a></li>
+    <li><a href="messages.html#goodbye" class="header">Goodbye</a></li>
+    <li><a href="messages.html#hello" class="header">Hello</a></li>
+    <li><a href="messages.html#publish" class="header">Publish</a></li>
+    <li><a href="messages.html#published" class="header">Published</a></li>
+    <li><a href="messages.html#subscribe" class="header">Subscribe</a></li>
+    <li><a href="messages.html#subscribed" class="header">Subscribed</a></li>
+    <li><a href="messages.html#welcome" class="header">Welcome</a></li>
+  </ul></li>
+</ul>
+</div>
+</div>
+</nav>
+</div>
+</div>
+
+</section>
+</div>
+
+</div>
+
+<footer class="site-footer">
+
+<section class="site-footer-nav">
+<div class="expanded row">
+<div class="small-12 large-offset-2 large-10 column">
+<div class="row site-footer-content">
+
+<div class="small-12 medium-4 large-3 text-center column">
+<div class="nav-links">
+<ul>
+<!-- <li><a href="https://www.example.com/products/">Products</a> -->
+</ul>
+</div>
+</div>
+
+</div>
+</div>
+</div>
+</section>
+
+<section class="site-footer-base">
+<div class="expanded row">
+<div class="small-12 large-offset-2 large-10 column">
+<div class="row site-footer-content">
+
+<div class="small-12 text-center large-9 column">
+
+<!--
+<div class="copyright">
+<span class="text">&copy; 2018</span>
+<a href="https://www.example.com" class="logo">logo</a>
+</div>
+-->
+</div>
+
+</div>
+</div>
+</div>
+</section>
+</footer>
+
+</div>
+</div>
+</div>
+</body>
+
+<script type="text/javascript" src="lib/foundation/dist/foundation.min.js"></script>
+<script type="text/javascript">jQuery(document).foundation();</script>
+<script type="text/javascript" src="js/magellan.js"></script>
+
+<style type="text/css">@import "lib/prettify/prettify.css";</style>
+<script type="text/javascript" src="lib/prettify/prettify.js"></script>
+<script type="text/javascript" src="lib/prettify/lang-scala.js"></script>
+<script type="text/javascript">jQuery(function(){window.prettyPrint && prettyPrint()});</script>
+
+</html>

@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+
+<head>
+<title>Akka Wamp</title>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="description" content='WAMP - Web Application Messaging Protocol implementation written in Scala/Java8 with Akka HTTP'/>
+<link href="https://fonts.googleapis.com/css?family=Roboto:100normal,100italic,300normal,300italic,400normal,400italic,500normal,500italic,700normal,700italic,900normal,900italicc" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="lib/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="js/page.js"></script>
+<script type="text/javascript" src="js/groups.js"></script>
+<link rel="stylesheet" type="text/css" href="lib/normalize.css/normalize.css"/>
+<link rel="stylesheet" type="text/css" href="lib/foundation/dist/foundation.min.css"/>
+<link rel="stylesheet" type="text/css" href="css/page.css"/>
+
+<!--
+<link rel="shortcut icon" href="images/favicon.ico" />
+-->
+</head>
+
+<body>
+<div class="off-canvas-wrapper">
+<div class="off-canvas-wrapper-inner" data-off-canvas-wrapper>
+
+<div class="off-canvas position-left" id="off-canvas-menu" data-off-canvas>
+<nav class="off-canvas-nav">
+<div class="nav-home">
+<a href="index.html" class="active">
+<span class="home-icon">⌂</span>Akka Wamp
+</a>
+<div class="version-number">
+0.15.2
+</div>
+</div>
+<div class="nav-toc">
+<ul>
+  <li><a href="router.html" class="page">Router</a></li>
+  <li><a href="client/index.html" class="page">Client APIs</a>
+  <ul>
+    <li><a href="client/actors.html" class="page">Actors</a></li>
+    <li><a href="client/futures.html" class="page">Futures</a></li>
+    <li><a href="client/streams.html" class="page">Streams</a></li>
+    <li><a href="client/macros.html" class="page">Macros</a></li>
+  </ul></li>
+  <li><a href="messages.html" class="page">Messages</a></li>
+  <li><a href="payloads.html" class="page">Payloads</a></li>
+  <li><a href="logging.html" class="page">Logging</a></li>
+  <li><a href="tls.html" class="page">TLS/SSL</a></li>
+</ul>
+</div>
+
+</nav>
+</div>
+
+<div class="off-canvas-content" data-off-canvas-content>
+
+<header class="site-header expanded row">
+<div class="small-12 column">
+<a href="#" class="off-canvas-toggle hide-for-medium" data-toggle="off-canvas-menu"><svg class="svg-icon svg-icon-menu" version="1.1" id="Menu" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 20 20" enable-background="new 0 0 20 20" xml:space="preserve"> <path class="svg-icon-menu-path" fill="#53CDEC" d="M16.4,9H3.6C3.048,9,3,9.447,3,10c0,0.553,0.048,1,0.6,1H16.4c0.552,0,0.6-0.447,0.6-1C17,9.447,16.952,9,16.4,9z M16.4,13
+H3.6C3.048,13,3,13.447,3,14c0,0.553,0.048,1,0.6,1H16.4c0.552,0,0.6-0.447,0.6-1C17,13.447,16.952,13,16.4,13z M3.6,7H16.4
+C16.952,7,17,6.553,17,6c0-0.553-0.048-1-0.6-1H3.6C3.048,5,3,5.447,3,6C3,6.553,3.048,7,3.6,7z"/></svg>
+</a>
+<div class="title"><a href="index.html" class="active">Akka Wamp</a></div>
+
+<!--
+<a href="https://www.example.com" class="logo show-for-medium">logo</a>
+-->
+</div>
+</header>
+
+<div class="expanded row">
+
+<div class="medium-3 large-2 show-for-medium column">
+<nav class="site-nav">
+<div class="nav-home">
+<a href="index.html" class="active">
+<span class="home-icon">⌂</span>Akka Wamp
+</a>
+<div class="version-number">
+0.15.2
+</div>
+</div>
+<div class="nav-toc">
+<ul>
+  <li><a href="router.html" class="page">Router</a></li>
+  <li><a href="client/index.html" class="page">Client APIs</a>
+  <ul>
+    <li><a href="client/actors.html" class="page">Actors</a></li>
+    <li><a href="client/futures.html" class="page">Futures</a></li>
+    <li><a href="client/streams.html" class="page">Streams</a></li>
+    <li><a href="client/macros.html" class="page">Macros</a></li>
+  </ul></li>
+  <li><a href="messages.html" class="page">Messages</a></li>
+  <li><a href="payloads.html" class="page">Payloads</a></li>
+  <li><a href="logging.html" class="page">Logging</a></li>
+  <li><a href="tls.html" class="page">TLS/SSL</a></li>
+</ul>
+</div>
+
+</nav>
+</div>
+
+<div class="small-12 medium-9 large-10 column">
+<section class="site-content">
+
+<div class="page-header row">
+<div class="medium-12 show-for-medium column">
+</div>
+</div>
+
+<div class="page-content row">
+<div class="small-12 large-9 column" id="docs">
+<h1><a href="#akka-wamp" name="akka-wamp" class="anchor"><span class="anchor-link"></span></a>Akka Wamp</h1>
+<p><a href="https://travis-ci.org/angiolep/akka-wamp"><img src="https://travis-ci.org/angiolep/akka-wamp.svg?branch=master" alt="Build Status" /></a> <a href="https://codecov.io/gh/angiolep/akka-wamp"><img src="https://codecov.io/gh/angiolep/akka-wamp/branch/master/graph/badge.svg" alt="CodeCov Status" /></a> <a href="https://gitter.im/angiolep/akka-wamp?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=body_badge"><img src="https://badges.gitter.im/angiolep/akka-wamp.svg" alt="Gitter" /></a> </p>
+<p>Akka Wamp is a WAMP - <a href="http://wamp-proto.org/">Web Application Messaging Protocol</a> implementation written to let both <a href="http://scala-lang.org/">Scala</a> and <a href="http://www.java.com">Java</a> developers build the next generation of reactive web services on top of <a href="http://akka.io/">Akka</a> abstractions.</p>
+<p>Akka Wamp provides you with:</p>
+<ul>
+  <li>Simple <a href="https://angiolep.github.io/projects/akka-wamp/client">Client APIs</a> designed to be used with <a href="http://akka.io/">Akka</a> actors, futures and streams.</li>
+  <li>Object-oriented representations of all WAMP <a href="./messages.html">Messages</a>,</li>
+  <li>Akka IO extenson driver for the WAMP Protocol.</li>
+  <li>Basic <a href="https://angiolep.github.io/projects/akka-wamp/router">Router</a> you can embed in your applications or launch as standalone process.</li>
+</ul>
+<h2><a href="#usage" name="usage" class="anchor"><span class="anchor-link"></span></a>Usage</h2>
+<p>Make your Scala or Java build depend on the latest version of akka-wamp:</p>
+<dl>
+  <dt>sbt</dt>
+  <dd>
+  <pre class="prettyprint"><code class="language-sbt">libraryDependencies ++= Seq(
+  &quot;com.github.angiolep&quot; % &quot;akka-wamp_2.12&quot; % &quot;0.15.2&quot;
+)</code></pre></dd>
+  <dt>mvn</dt>
+  <dd>
+  <pre class="prettyprint"><code class="language-xml">&lt;dependencies&gt;
+    &lt;dependency&gt;
+        &lt;groupId&gt;com.github.angiolep&lt;/groupId&gt;
+        &lt;artifactId&gt;akka-wamp_2.12&lt;/artifactId&gt;
+        &lt;version&gt;0.15.2&lt;/version&gt;
+    &lt;/dependency&gt;
+    &lt;!-- .... --&gt;
+&lt;/dependencies&gt;</code></pre></dd>
+  <dt>gradle</dt>
+  <dd>
+  <pre class="prettyprint"><code class="language-gradle">dependencies {
+  compile &#39;com.github.angiolep:akka-wamp_2.12:0.15.2&#39;
+  // ...
+}</code></pre></dd>
+</dl>
+<h2><a href="#limitations" name="limitations" class="anchor"><span class="anchor-link"></span></a>Limitations</h2>
+<ul>
+  <li>Java &gt;= 1.8.0</li>
+  <li>Scala &gt;= 2.12.0</li>
+  <li>Akka &gt;= 2.5.0</li>
+  <li>WebSocket transport only (no raw TCP)</li>
+  <li>WAMP Basic Profile only (none of the Advanced Profile features yet)</li>
+  <li>JSON serialization only (no MsgPack yet)</li>
+  <li>Not yet ready for production</li>
+</ul>
+<h2><a href="#disclaimer" name="disclaimer" class="anchor"><span class="anchor-link"></span></a>Disclaimer</h2>
+<blockquote>
+  <p>This SOFTWARE PRODUCT is provided by THE PROVIDER &ldquo;as is&rdquo; and &ldquo;with all faults.&rdquo; THE PROVIDER makes no representations or warranties of any kind concerning the safety, suitability, lack of viruses, inaccuracies, typographical errors, or other harmful components of this SOFTWARE PRODUCT. There are inherent dangers in the use of any software, and you are solely responsible for determining whether this SOFTWARE PRODUCT is compatible with your equipment and other software installed on your equipment. You are also solely responsible for the protection of your equipment and backup of your data, and THE PROVIDER will not be liable for any damages you may suffer in connection with using, modifying, or distributing this SOFTWARE PRODUCT</p>
+</blockquote>
+<div class="nav-next">
+<p><strong>Next:</strong> <a href="router.html">Router</a></p>
+</div>
+</div>
+<div class="large-3 show-for-large column" data-sticky-container>
+<nav class="sidebar sticky" data-sticky data-anchor="docs" data-sticky-on="large">
+<div class="page-nav">
+<div class="nav-title">On this page:</div>
+<div class="nav-toc">
+<ul>
+  <li><a href="index.html#akka-wamp" class="header">Akka Wamp</a>
+  <ul>
+    <li><a href="index.html#usage" class="header">Usage</a></li>
+    <li><a href="index.html#limitations" class="header">Limitations</a></li>
+    <li><a href="index.html#disclaimer" class="header">Disclaimer</a></li>
+  </ul></li>
+</ul>
+</div>
+</div>
+</nav>
+</div>
+</div>
+
+</section>
+</div>
+
+</div>
+
+<footer class="site-footer">
+
+<section class="site-footer-nav">
+<div class="expanded row">
+<div class="small-12 large-offset-2 large-10 column">
+<div class="row site-footer-content">
+
+<div class="small-12 medium-4 large-3 text-center column">
+<div class="nav-links">
+<ul>
+<!-- <li><a href="https://www.example.com/products/">Products</a> -->
+</ul>
+</div>
+</div>
+
+</div>
+</div>
+</div>
+</section>
+
+<section class="site-footer-base">
+<div class="expanded row">
+<div class="small-12 large-offset-2 large-10 column">
+<div class="row site-footer-content">
+
+<div class="small-12 text-center large-9 column">
+
+<!--
+<div class="copyright">
+<span class="text">&copy; 2018</span>
+<a href="https://www.example.com" class="logo">logo</a>
+</div>
+-->
+</div>
+
+</div>
+</div>
+</div>
+</section>
+</footer>
+
+</div>
+</div>
+</div>
+</body>
+
+<script type="text/javascript" src="lib/foundation/dist/foundation.min.js"></script>
+<script type="text/javascript">jQuery(document).foundation();</script>
+<script type="text/javascript" src="js/magellan.js"></script>
+
+<style type="text/css">@import "lib/prettify/prettify.css";</style>
+<script type="text/javascript" src="lib/prettify/prettify.js"></script>
+<script type="text/javascript" src="lib/prettify/lang-scala.js"></script>
+<script type="text/javascript">jQuery(function(){window.prettyPrint && prettyPrint()});</script>
+
+</html>
