@@ -9,6 +9,7 @@
 <link href="https://fonts.googleapis.com/css?family=Roboto:100normal,100italic,300normal,300italic,400normal,400italic,500normal,500italic,700normal,700italic,900normal,900italicc" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="lib/jquery/jquery.min.js"></script>
 <script type="text/javascript" src="js/page.js"></script>
+<script type="text/javascript" src="js/groups.js"></script>
 <link rel="stylesheet" type="text/css" href="lib/normalize.css/normalize.css"/>
 <link rel="stylesheet" type="text/css" href="lib/foundation/dist/foundation.min.css"/>
 <link rel="stylesheet" type="text/css" href="css/page.css"/>
@@ -29,23 +30,23 @@
 <span class="home-icon">⌂</span>Akka Wamp
 </a>
 <div class="version-number">
-0.15.1
+0.15.2
 </div>
 </div>
 <div class="nav-toc">
 <ul>
-  <li><a href="router.html" class="active">Router</a></li>
-  <li><a href="client/index.html">Client APIs</a>
+  <li><a href="router.html" class="active page">Router</a></li>
+  <li><a href="client/index.html" class="page">Client APIs</a>
   <ul>
-    <li><a href="client/actors.html">Actors</a></li>
-    <li><a href="client/futures.html">Futures</a></li>
-    <li><a href="client/streams.html">Streams</a></li>
-    <li><a href="client/macros.html">Macros</a></li>
+    <li><a href="client/actors.html" class="page">Actors</a></li>
+    <li><a href="client/futures.html" class="page">Futures</a></li>
+    <li><a href="client/streams.html" class="page">Streams</a></li>
+    <li><a href="client/macros.html" class="page">Macros</a></li>
   </ul></li>
-  <li><a href="messages.html">Messages</a></li>
-  <li><a href="payloads.html">Payloads</a></li>
-  <li><a href="logging.html">Logging</a></li>
-  <li><a href="tls.html">TLS/SSL</a></li>
+  <li><a href="messages.html" class="page">Messages</a></li>
+  <li><a href="payloads.html" class="page">Payloads</a></li>
+  <li><a href="logging.html" class="page">Logging</a></li>
+  <li><a href="tls.html" class="page">TLS/SSL</a></li>
 </ul>
 </div>
 
@@ -77,23 +78,23 @@ C16.952,7,17,6.553,17,6c0-0.553-0.048-1-0.6-1H3.6C3.048,5,3,5.447,3,6C3,6.553,3.
 <span class="home-icon">⌂</span>Akka Wamp
 </a>
 <div class="version-number">
-0.15.1
+0.15.2
 </div>
 </div>
 <div class="nav-toc">
 <ul>
-  <li><a href="router.html" class="active">Router</a></li>
-  <li><a href="client/index.html">Client APIs</a>
+  <li><a href="router.html" class="active page">Router</a></li>
+  <li><a href="client/index.html" class="page">Client APIs</a>
   <ul>
-    <li><a href="client/actors.html">Actors</a></li>
-    <li><a href="client/futures.html">Futures</a></li>
-    <li><a href="client/streams.html">Streams</a></li>
-    <li><a href="client/macros.html">Macros</a></li>
+    <li><a href="client/actors.html" class="page">Actors</a></li>
+    <li><a href="client/futures.html" class="page">Futures</a></li>
+    <li><a href="client/streams.html" class="page">Streams</a></li>
+    <li><a href="client/macros.html" class="page">Macros</a></li>
   </ul></li>
-  <li><a href="messages.html">Messages</a></li>
-  <li><a href="payloads.html">Payloads</a></li>
-  <li><a href="logging.html">Logging</a></li>
-  <li><a href="tls.html">TLS/SSL</a></li>
+  <li><a href="messages.html" class="page">Messages</a></li>
+  <li><a href="payloads.html" class="page">Payloads</a></li>
+  <li><a href="logging.html" class="page">Logging</a></li>
+  <li><a href="tls.html" class="page">TLS/SSL</a></li>
 </ul>
 </div>
 
@@ -123,16 +124,17 @@ C16.952,7,17,6.553,17,6c0-0.553-0.048-1-0.6-1H3.6C3.048,5,3,5.447,3,6C3,6.553,3.
   <li>Both broker and dealer roles,</li>
   <li>JSON serialization,</li>
   <li>WebSocket transport</li>
-</ul><div class="callout warning "><div class="callout-title">Warning</div>Though perfectly functional, Akka Wamp Router is intended for development purposes only. You&rsquo;re advised to adopt production ready WAMP routers such as <a href="http://crossbar.io/">Crossbar.IO</a></div>
+</ul><div class="callout warning "><div class="callout-title">Warning</div>
+<p>Though perfectly functional, Akka Wamp Router is intended for development purposes only. You&rsquo;re advised to adopt production ready WAMP routers such as <a href="http://crossbar.io/">Crossbar.IO</a></p></div>
 <h2><a href="#standalone" name="standalone" class="anchor"><span class="anchor-link"></span></a>Standalone</h2>
 <p><a href="https://bintray.com/angiolep/universal/akka-wamp/_latestVersion"><img src="https://api.bintray.com/packages/angiolep/universal/akka-wamp/images/download.svg" alt="Download" /></a></p>
 <p>Download the latest version, extract, configure and run it as standalone application:</p>
 <dl>
   <dt>tgz</dt>
   <dd>
-  <pre class="prettyprint"><code class="language-sh">curl https://dl.bintray.com/angiolep/universal/akka-wamp-0.15.1.tgz
-tar xvfz akka-wamp-0.15.1.tar.gz
-cd akka-wamp-0.15.1
+  <pre class="prettyprint"><code class="language-sh">curl https://dl.bintray.com/angiolep/universal/akka-wamp-0.15.2.tgz
+tar xvfz akka-wamp-0.15.2.tar.gz
+cd akka-wamp-0.15.2
 vim ./conf/application.conf
 ./bin/akka-wamp -Dakka.loglevel=DEBUG</code></pre></dd>
 </dl>
@@ -232,16 +234,16 @@ object LocalRouterApp extends App {
 <div class="nav-title">On this page:</div>
 <div class="nav-toc">
 <ul>
-  <li><a href="router.html#router">Router</a>
+  <li><a href="router.html#router" class="header">Router</a>
   <ul>
-    <li><a href="router.html#standalone">Standalone</a></li>
-    <li><a href="router.html#configuration">Configuration</a>
+    <li><a href="router.html#standalone" class="header">Standalone</a></li>
+    <li><a href="router.html#configuration" class="header">Configuration</a>
     <ul>
-      <li><a href="router.html#transports">Transports</a></li>
+      <li><a href="router.html#transports" class="header">Transports</a></li>
     </ul></li>
-    <li><a href="router.html#embedded">Embedded</a>
+    <li><a href="router.html#embedded" class="header">Embedded</a>
     <ul>
-      <li><a href="router.html#internals">Internals</a></li>
+      <li><a href="router.html#internals" class="header">Internals</a></li>
     </ul></li>
   </ul></li>
 </ul>
@@ -285,7 +287,7 @@ object LocalRouterApp extends App {
 
 <!--
 <div class="copyright">
-<span class="text">&copy; 2017</span>
+<span class="text">&copy; 2018</span>
 <a href="https://www.example.com" class="logo">logo</a>
 </div>
 -->

@@ -9,6 +9,7 @@
 <link href="https://fonts.googleapis.com/css?family=Roboto:100normal,100italic,300normal,300italic,400normal,400italic,500normal,500italic,700normal,700italic,900normal,900italicc" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="lib/jquery/jquery.min.js"></script>
 <script type="text/javascript" src="js/page.js"></script>
+<script type="text/javascript" src="js/groups.js"></script>
 <link rel="stylesheet" type="text/css" href="lib/normalize.css/normalize.css"/>
 <link rel="stylesheet" type="text/css" href="lib/foundation/dist/foundation.min.css"/>
 <link rel="stylesheet" type="text/css" href="css/page.css"/>
@@ -29,23 +30,23 @@
 <span class="home-icon">⌂</span>Akka Wamp
 </a>
 <div class="version-number">
-0.15.1
+0.15.2
 </div>
 </div>
 <div class="nav-toc">
 <ul>
-  <li><a href="router.html">Router</a></li>
-  <li><a href="client/index.html">Client APIs</a>
+  <li><a href="router.html" class="page">Router</a></li>
+  <li><a href="client/index.html" class="page">Client APIs</a>
   <ul>
-    <li><a href="client/actors.html">Actors</a></li>
-    <li><a href="client/futures.html">Futures</a></li>
-    <li><a href="client/streams.html">Streams</a></li>
-    <li><a href="client/macros.html">Macros</a></li>
+    <li><a href="client/actors.html" class="page">Actors</a></li>
+    <li><a href="client/futures.html" class="page">Futures</a></li>
+    <li><a href="client/streams.html" class="page">Streams</a></li>
+    <li><a href="client/macros.html" class="page">Macros</a></li>
   </ul></li>
-  <li><a href="messages.html">Messages</a></li>
-  <li><a href="payloads.html" class="active">Payloads</a></li>
-  <li><a href="logging.html">Logging</a></li>
-  <li><a href="tls.html">TLS/SSL</a></li>
+  <li><a href="messages.html" class="page">Messages</a></li>
+  <li><a href="payloads.html" class="active page">Payloads</a></li>
+  <li><a href="logging.html" class="page">Logging</a></li>
+  <li><a href="tls.html" class="page">TLS/SSL</a></li>
 </ul>
 </div>
 
@@ -77,23 +78,23 @@ C16.952,7,17,6.553,17,6c0-0.553-0.048-1-0.6-1H3.6C3.048,5,3,5.447,3,6C3,6.553,3.
 <span class="home-icon">⌂</span>Akka Wamp
 </a>
 <div class="version-number">
-0.15.1
+0.15.2
 </div>
 </div>
 <div class="nav-toc">
 <ul>
-  <li><a href="router.html">Router</a></li>
-  <li><a href="client/index.html">Client APIs</a>
+  <li><a href="router.html" class="page">Router</a></li>
+  <li><a href="client/index.html" class="page">Client APIs</a>
   <ul>
-    <li><a href="client/actors.html">Actors</a></li>
-    <li><a href="client/futures.html">Futures</a></li>
-    <li><a href="client/streams.html">Streams</a></li>
-    <li><a href="client/macros.html">Macros</a></li>
+    <li><a href="client/actors.html" class="page">Actors</a></li>
+    <li><a href="client/futures.html" class="page">Futures</a></li>
+    <li><a href="client/streams.html" class="page">Streams</a></li>
+    <li><a href="client/macros.html" class="page">Macros</a></li>
   </ul></li>
-  <li><a href="messages.html">Messages</a></li>
-  <li><a href="payloads.html" class="active">Payloads</a></li>
-  <li><a href="logging.html">Logging</a></li>
-  <li><a href="tls.html">TLS/SSL</a></li>
+  <li><a href="messages.html" class="page">Messages</a></li>
+  <li><a href="payloads.html" class="active page">Payloads</a></li>
+  <li><a href="logging.html" class="page">Logging</a></li>
+  <li><a href="tls.html" class="page">TLS/SSL</a></li>
 </ul>
 </div>
 
@@ -119,53 +120,53 @@ C16.952,7,17,6.553,17,6c0-0.553-0.048-1-0.6-1H3.6C3.048,5,3,5.447,3,6C3,6.553,3.
 <h1><a href="#payloads" name="payloads" class="anchor"><span class="anchor-link"></span></a>Payloads</h1>
 <p>WAMP <a href="./messages.html">Messages</a>, arranged as either textual or binary formats (e.g. JSON, MsgPack, etc.), are moved over the network by an underlying transport protocol such as WebSocket or (raw) TCP. </p>
 <p>Messages are made of control <strong>headers</strong> (e.g. type code, request identifier, additional details, etc.) and an optional <strong>payload</strong> whose content represents data specific to your application. Data conveyed by messages can be either a list of indexed arguments called just <code>args</code>, or a dictionary of named arguments called <code>kwargs</code>. </p>
-<pre class="prettyprint"><code>frame2                  frame1                             
+<pre><code>frame2                  frame1                             
 .-------------.        .-------------,---------.    
 | payload ... |  --&gt;   | ... payload | headers |  --&gt;  
 &#39;-------------&#39;        &#39;-------------`---------&#39;     
 </code></pre>
-<p>Payloads are always at the end of messages so that routers don&rsquo;t have to parse them. Infact, routers are not required to inspect payload contents to do their job, which is all about routing messages.</p>
-<p><img src="payloads.png" alt="payloads" /></p>
+<p>Payloads are always at the end of messages so that routers don&rsquo;t have to parse them. In fact, routers are not required to inspect payload contents to do their job, which is all about routing messages.</p>
+<p><img src="messages.png" alt="messages" /></p>
 <h2><a href="#incoming-data" name="incoming-data" class="anchor"><span class="anchor-link"></span></a>Incoming data</h2>
-<p>Akka Wamp provides you with efficient streaming parsers which do not fully deserialize incoming data into memory. Rather, it provides you with <strong>lazy</strong> representations to defer deserialization to the very last moment. The lazy representations in question are <code>TextLazyPayload</code> for textual data and <code>BinaryLazyPayload</code> for binary data.</p>
-<p>The following table summarizes which are the incoming messages behaving like <code>DataConveyor</code>s, which client roles can receive those messages and which consumer/handlers you shall provide to read their incoming data from the lazy payloads above.</p>
+<p>Akka Wamp provides you with efficient streaming parsers that defer deserialization of incoming data to the very last moment. </p>
+<p>The following table lists incoming <a href="./messages.html">Message</a>s behaving as <code>DataConveyor</code>s with the correspondent consumers/handlers and client roles you shall provide to extract the data.</p>
 <table>
   <thead>
     <tr>
-      <th>PayloadConveyor </th>
-      <th>Client </th>
-      <th>Consumer/Handler</th>
+      <th>DataConveyor </th>
+      <th>Consumer/Handler </th>
+      <th>Client</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <td><code>Event</code> </td>
-      <td>Subscriber </td>
-      <td><code>(Event) =&gt; Unit</code></td>
+      <td><code>(Event) =&gt; Unit</code> </td>
+      <td>Subscriber</td>
     </tr>
     <tr>
       <td><code>Invocation</code> </td>
-      <td>Callee </td>
-      <td><code>(Invocation) =&gt; Any</code></td>
+      <td><code>(Invocation) =&gt; Any</code> </td>
+      <td>Callee</td>
     </tr>
     <tr>
       <td><code>Result</code> </td>
-      <td>Caller </td>
-      <td><code>(Result) =&gt; Unit</code></td>
+      <td><code>(Result) =&gt; Unit</code> </td>
+      <td>Caller</td>
     </tr>
     <tr>
       <td><code>Error</code> </td>
-      <td><em>all</em> </td>
-      <td><em>n.a.</em></td>
+      <td><em>n.a.</em> </td>
+      <td><em>all</em></td>
     </tr>
   </tbody>
 </table>
 <h3><a href="#arguments" name="arguments" class="anchor"><span class="anchor-link"></span></a>Arguments</h3>
-<p>If you do not need to fully control the deserialization process then you can easily access to incoming data as follows:</p>
+<p>The easiest way to access data conveyed by incoming messages is as follows:</p>
 <dl>
   <dt>Scala</dt>
   <dd>
-  <pre class="prettyprint"><code class="language-scala">// val conveyor: Event = ...
+  <pre class="prettyprint"><code class="language-scala">// Data conveyors are messages such as events, invocations, errors, etc.
 
 val args: List[Any] = conveyor.args
 val kwargs: Map[String, Any] = conveyor.kwargs
@@ -174,24 +175,25 @@ val user: UserType = conveyor.kwargs[UserType]
 class UserType(val name: String, val age: Int /*, ... */)</code></pre></dd>
   <dt>Java</dt>
   <dd>
-  <pre class="prettyprint"><code class="language-java">// Payload conveyors are messages such as events, invocations, errors, etc.
+  <pre class="prettyprint"><code class="language-java">// Data conveyors are messages such as events, invocations, errors, etc.
+
 List&lt;Object&gt; args = conveyor.args();
 Map&lt;String, Object&gt; kwargs = conveyor.kwargs();
 UserType user = conveyor.kwargs(UserType.class);
 
 public class UserType { public String name; public Integer age; }</code></pre></dd>
 </dl>
-<p>Data conveyed by incoming messages are accessible as:</p>
+<p>Just access the following members:</p>
 <ul>
   <li>
-  <p><code>args: Future[List[Any]]</code><br/> a (future of) list of indexed arguments</p></li>
+  <p><code>args: List[Any]</code><br/> a list of indexed arguments</p></li>
   <li>
-  <p><code>kwargs: Future[Map[String, Any]]</code><br/> a (future of) dictionary of named arguments</p></li>
+  <p><code>kwargs: Map[String, Any]</code><br/> a dictionary of named arguments</p></li>
   <li>
-  <p><code>kwargs[T]: Future[T]</code><br/> a (future of) user defined type</p></li>
+  <p><code>kwargs[T]: T</code><br/> a user defined type</p></li>
 </ul>
 <h4><a href="#data-types" name="data-types" class="anchor"><span class="anchor-link"></span></a>Data types</h4>
-<p>Akka Wamp will take care of the deserialization process either with <a href="https://github.com/FasterXML/jackson-module-scala">Jackson JSON Parser</a> for textual format or <a href="https://github.com/msgpack/msgpack-scala">MsgPack Parser</a> for binary format. Those default parsers will apply the following data type bindings:</p>
+<p>Akka Wamp will take care of the deserialization process either with <a href="https://github.com/FasterXML/jackson-module-scala">Jackson JSON Parser</a> for textual format or <a href="https://github.com/msgpack/msgpack-scala">MsgPack Parser</a> for binary format. The default parsers will apply the following data type bindings:</p>
 <table>
   <thead>
     <tr>
@@ -239,27 +241,15 @@ public class UserType { public String name; public Integer age; }</code></pre></
     <tr>
       <td> </td>
       <td> </td>
-      <td>java.util.<code>Map&lt;String, Object&gt;</code></td>
-    </tr>
-    <tr>
-      <td><code>true</code> </td>
-      <td>boolean </td>
-      <td>java.lang.<code>Boolean</code></td>
-    </tr>
-    <tr>
-      <td><code>false</code> </td>
-      <td>boolean </td>
-      <td>java.lang.<code>Boolean</code></td>
-    </tr>
-    <tr>
-      <td><code>null</code> </td>
-      <td>null </td>
-      <td><code>null</code></td>
+      <td>java.util.<code>Map&lt;String, Object&gt;`§`
+</code>true<code>| boolean         | java.lang.</code>Boolean<code>
+</code>false<code>| boolean         | java.lang.</code>Boolean<code>
+</code>null<code>| null            |</code>null``</td>
     </tr>
   </tbody>
 </table>
 <h3><a href="#unparsed" name="unparsed" class="anchor"><span class="anchor-link"></span></a>Unparsed</h3>
-<p>If you want full control of the deserializing process the you can access to the <strong>unparsed</strong> data as follows:</p>
+<p>If you want full control of the deserialization process then you&rsquo;ll have to access to the <strong>unparsed</strong> data as follows:</p>
 <dl>
   <dt>Scala</dt>
   <dd>
@@ -279,16 +269,17 @@ conveyor.payload match {
   <pre class="prettyprint"><code class="language-java">// Event conveyor = ...
 if (conveyor.payload() instanceof TextLazyPayload) {
   TextLazyPayload p = (TextLazyPayload) conveyor.payload();
-  Source&lt;String, ?&gt; unparsed = p.unparsed();
+  // TODO Source&lt;String, ?&gt; unparsed = p.unparsed();
   // parse textual source ...
 }
 else if (conveyor.payload() instanceof BinaryLazyPayload) {
   BinaryLazyPayload p = (BinaryLazyPayload) conveyor.payload();
-  Source&lt;ByteString, ?&gt; unparsed = p.unparsed();
+  // TODO Source&lt;ByteString, ?&gt; unparsed = p.unparsed();
   // parse binary source ...
 }</code></pre></dd>
 </dl>
-<p>Unparsed data is represented as Akka Stream sources you&rsquo;re put in charge to consume with whatever parser you might prefer to use for whatever format you know incoming data could have been arranged with (e.g. UBJSON, YAML, XML, ProtoBuf, etc.)</p><div class="callout note "><div class="callout-title">Opaque payload</div>Akka Wamp adheres to the <em>&ldquo;opaque payload&rdquo;</em> principle according to which the router is expected NOT to parse and NOT to alter payload contents. That&rsquo;s intended to allow payloads to be formatted using formats different than the enclosing messages&rsquo; formats.</div>
+<p>Unparsed data is represented as Akka Stream sources you&rsquo;re put in charge to consume with whatever parser you might prefer to use for whatever format you know incoming data could have been arranged with (e.g. UBJSON, YAML, XML, ProtoBuf, etc.)</p><div class="callout note "><div class="callout-title">Opaque payload</div>
+<p>Akka Wamp adheres to the <em>&ldquo;opaque payload&rdquo;</em> principle according to which the router is expected NOT to parse and NOT to alter payload contents. That&rsquo;s intended to allow payloads to be formatted using formats different than the enclosing messages&rsquo; formats.</p></div>
 <h2><a href="#outgoing" name="outgoing" class="anchor"><span class="anchor-link"></span></a>Outgoing</h2>
 <p>TBD</p>
 <h3><a href="#arguments" name="arguments" class="anchor"><span class="anchor-link"></span></a>Arguments</h3>
@@ -332,17 +323,17 @@ Payload named = Payload.create(new HashMap&lt;String, Object&gt;(){{
 <div class="nav-title">On this page:</div>
 <div class="nav-toc">
 <ul>
-  <li><a href="payloads.html#payloads">Payloads</a>
+  <li><a href="payloads.html#payloads" class="header">Payloads</a>
   <ul>
-    <li><a href="payloads.html#incoming-data">Incoming data</a>
+    <li><a href="payloads.html#incoming-data" class="header">Incoming data</a>
     <ul>
-      <li><a href="payloads.html#arguments">Arguments</a></li>
-      <li><a href="payloads.html#unparsed">Unparsed</a></li>
+      <li><a href="payloads.html#arguments" class="header">Arguments</a></li>
+      <li><a href="payloads.html#unparsed" class="header">Unparsed</a></li>
     </ul></li>
-    <li><a href="payloads.html#outgoing">Outgoing</a>
+    <li><a href="payloads.html#outgoing" class="header">Outgoing</a>
     <ul>
-      <li><a href="payloads.html#arguments">Arguments</a></li>
-      <li><a href="payloads.html#streams">Streams</a></li>
+      <li><a href="payloads.html#arguments" class="header">Arguments</a></li>
+      <li><a href="payloads.html#streams" class="header">Streams</a></li>
     </ul></li>
   </ul></li>
 </ul>
@@ -386,7 +377,7 @@ Payload named = Payload.create(new HashMap&lt;String, Object&gt;(){{
 
 <!--
 <div class="copyright">
-<span class="text">&copy; 2017</span>
+<span class="text">&copy; 2018</span>
 <a href="https://www.example.com" class="logo">logo</a>
 </div>
 -->

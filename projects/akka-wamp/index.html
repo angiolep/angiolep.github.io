@@ -9,6 +9,7 @@
 <link href="https://fonts.googleapis.com/css?family=Roboto:100normal,100italic,300normal,300italic,400normal,400italic,500normal,500italic,700normal,700italic,900normal,900italicc" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="lib/jquery/jquery.min.js"></script>
 <script type="text/javascript" src="js/page.js"></script>
+<script type="text/javascript" src="js/groups.js"></script>
 <link rel="stylesheet" type="text/css" href="lib/normalize.css/normalize.css"/>
 <link rel="stylesheet" type="text/css" href="lib/foundation/dist/foundation.min.css"/>
 <link rel="stylesheet" type="text/css" href="css/page.css"/>
@@ -29,23 +30,23 @@
 <span class="home-icon">⌂</span>Akka Wamp
 </a>
 <div class="version-number">
-0.15.1
+0.15.2
 </div>
 </div>
 <div class="nav-toc">
 <ul>
-  <li><a href="router.html">Router</a></li>
-  <li><a href="client/index.html">Client APIs</a>
+  <li><a href="router.html" class="page">Router</a></li>
+  <li><a href="client/index.html" class="page">Client APIs</a>
   <ul>
-    <li><a href="client/actors.html">Actors</a></li>
-    <li><a href="client/futures.html">Futures</a></li>
-    <li><a href="client/streams.html">Streams</a></li>
-    <li><a href="client/macros.html">Macros</a></li>
+    <li><a href="client/actors.html" class="page">Actors</a></li>
+    <li><a href="client/futures.html" class="page">Futures</a></li>
+    <li><a href="client/streams.html" class="page">Streams</a></li>
+    <li><a href="client/macros.html" class="page">Macros</a></li>
   </ul></li>
-  <li><a href="messages.html">Messages</a></li>
-  <li><a href="payloads.html">Payloads</a></li>
-  <li><a href="logging.html">Logging</a></li>
-  <li><a href="tls.html">TLS/SSL</a></li>
+  <li><a href="messages.html" class="page">Messages</a></li>
+  <li><a href="payloads.html" class="page">Payloads</a></li>
+  <li><a href="logging.html" class="page">Logging</a></li>
+  <li><a href="tls.html" class="page">TLS/SSL</a></li>
 </ul>
 </div>
 
@@ -77,23 +78,23 @@ C16.952,7,17,6.553,17,6c0-0.553-0.048-1-0.6-1H3.6C3.048,5,3,5.447,3,6C3,6.553,3.
 <span class="home-icon">⌂</span>Akka Wamp
 </a>
 <div class="version-number">
-0.15.1
+0.15.2
 </div>
 </div>
 <div class="nav-toc">
 <ul>
-  <li><a href="router.html">Router</a></li>
-  <li><a href="client/index.html">Client APIs</a>
+  <li><a href="router.html" class="page">Router</a></li>
+  <li><a href="client/index.html" class="page">Client APIs</a>
   <ul>
-    <li><a href="client/actors.html">Actors</a></li>
-    <li><a href="client/futures.html">Futures</a></li>
-    <li><a href="client/streams.html">Streams</a></li>
-    <li><a href="client/macros.html">Macros</a></li>
+    <li><a href="client/actors.html" class="page">Actors</a></li>
+    <li><a href="client/futures.html" class="page">Futures</a></li>
+    <li><a href="client/streams.html" class="page">Streams</a></li>
+    <li><a href="client/macros.html" class="page">Macros</a></li>
   </ul></li>
-  <li><a href="messages.html">Messages</a></li>
-  <li><a href="payloads.html">Payloads</a></li>
-  <li><a href="logging.html">Logging</a></li>
-  <li><a href="tls.html">TLS/SSL</a></li>
+  <li><a href="messages.html" class="page">Messages</a></li>
+  <li><a href="payloads.html" class="page">Payloads</a></li>
+  <li><a href="logging.html" class="page">Logging</a></li>
+  <li><a href="tls.html" class="page">TLS/SSL</a></li>
 </ul>
 </div>
 
@@ -126,7 +127,7 @@ C16.952,7,17,6.553,17,6c0-0.553-0.048-1-0.6-1H3.6C3.048,5,3,5.447,3,6C3,6.553,3.
   <dt>sbt</dt>
   <dd>
   <pre class="prettyprint"><code class="language-sbt">libraryDependencies ++= Seq(
-  &quot;com.github.angiolep&quot; % &quot;akka-wamp_2.12&quot; % &quot;0.15.1&quot;
+  &quot;com.github.angiolep&quot; % &quot;akka-wamp_2.12&quot; % &quot;0.15.2&quot;
 )</code></pre></dd>
   <dt>mvn</dt>
   <dd>
@@ -134,21 +135,22 @@ C16.952,7,17,6.553,17,6c0-0.553-0.048-1-0.6-1H3.6C3.048,5,3,5.447,3,6C3,6.553,3.
     &lt;dependency&gt;
         &lt;groupId&gt;com.github.angiolep&lt;/groupId&gt;
         &lt;artifactId&gt;akka-wamp_2.12&lt;/artifactId&gt;
-        &lt;version&gt;0.15.1&lt;/version&gt;
+        &lt;version&gt;0.15.2&lt;/version&gt;
     &lt;/dependency&gt;
     &lt;!-- .... --&gt;
 &lt;/dependencies&gt;</code></pre></dd>
   <dt>gradle</dt>
   <dd>
   <pre class="prettyprint"><code class="language-gradle">dependencies {
-  compile &#39;com.github.angiolep:akka-wamp_2.12:0.15.1&#39;
+  compile &#39;com.github.angiolep:akka-wamp_2.12:0.15.2&#39;
   // ...
 }</code></pre></dd>
 </dl>
 <h2><a href="#limitations" name="limitations" class="anchor"><span class="anchor-link"></span></a>Limitations</h2>
 <ul>
   <li>Java &gt;= 1.8.0</li>
-  <li>Scala &gt;= 2.12.1</li>
+  <li>Scala &gt;= 2.12.0</li>
+  <li>Akka &gt;= 2.5.0</li>
   <li>WebSocket transport only (no raw TCP)</li>
   <li>WAMP Basic Profile only (none of the Advanced Profile features yet)</li>
   <li>JSON serialization only (no MsgPack yet)</li>
@@ -168,11 +170,11 @@ C16.952,7,17,6.553,17,6c0-0.553-0.048-1-0.6-1H3.6C3.048,5,3,5.447,3,6C3,6.553,3.
 <div class="nav-title">On this page:</div>
 <div class="nav-toc">
 <ul>
-  <li><a href="index.html#akka-wamp">Akka Wamp</a>
+  <li><a href="index.html#akka-wamp" class="header">Akka Wamp</a>
   <ul>
-    <li><a href="index.html#usage">Usage</a></li>
-    <li><a href="index.html#limitations">Limitations</a></li>
-    <li><a href="index.html#disclaimer">Disclaimer</a></li>
+    <li><a href="index.html#usage" class="header">Usage</a></li>
+    <li><a href="index.html#limitations" class="header">Limitations</a></li>
+    <li><a href="index.html#disclaimer" class="header">Disclaimer</a></li>
   </ul></li>
 </ul>
 </div>
@@ -215,7 +217,7 @@ C16.952,7,17,6.553,17,6c0-0.553-0.048-1-0.6-1H3.6C3.048,5,3,5.447,3,6C3,6.553,3.
 
 <!--
 <div class="copyright">
-<span class="text">&copy; 2017</span>
+<span class="text">&copy; 2018</span>
 <a href="https://www.example.com" class="logo">logo</a>
 </div>
 -->

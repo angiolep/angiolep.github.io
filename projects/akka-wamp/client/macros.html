@@ -9,6 +9,7 @@
 <link href="https://fonts.googleapis.com/css?family=Roboto:100normal,100italic,300normal,300italic,400normal,400italic,500normal,500italic,700normal,700italic,900normal,900italicc" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="../lib/jquery/jquery.min.js"></script>
 <script type="text/javascript" src="../js/page.js"></script>
+<script type="text/javascript" src="../js/groups.js"></script>
 <link rel="stylesheet" type="text/css" href="../lib/normalize.css/normalize.css"/>
 <link rel="stylesheet" type="text/css" href="../lib/foundation/dist/foundation.min.css"/>
 <link rel="stylesheet" type="text/css" href="../css/page.css"/>
@@ -29,23 +30,23 @@
 <span class="home-icon">⌂</span>Akka Wamp
 </a>
 <div class="version-number">
-0.15.1
+0.15.2
 </div>
 </div>
 <div class="nav-toc">
 <ul>
-  <li><a href="../router.html">Router</a></li>
-  <li><a href="../client/index.html">Client APIs</a>
+  <li><a href="../router.html" class="page">Router</a></li>
+  <li><a href="../client/index.html" class="page">Client APIs</a>
   <ul>
-    <li><a href="../client/actors.html">Actors</a></li>
-    <li><a href="../client/futures.html">Futures</a></li>
-    <li><a href="../client/streams.html">Streams</a></li>
-    <li><a href="../client/macros.html" class="active">Macros</a></li>
+    <li><a href="../client/actors.html" class="page">Actors</a></li>
+    <li><a href="../client/futures.html" class="page">Futures</a></li>
+    <li><a href="../client/streams.html" class="page">Streams</a></li>
+    <li><a href="../client/macros.html" class="active page">Macros</a></li>
   </ul></li>
-  <li><a href="../messages.html">Messages</a></li>
-  <li><a href="../payloads.html">Payloads</a></li>
-  <li><a href="../logging.html">Logging</a></li>
-  <li><a href="../tls.html">TLS/SSL</a></li>
+  <li><a href="../messages.html" class="page">Messages</a></li>
+  <li><a href="../payloads.html" class="page">Payloads</a></li>
+  <li><a href="../logging.html" class="page">Logging</a></li>
+  <li><a href="../tls.html" class="page">TLS/SSL</a></li>
 </ul>
 </div>
 
@@ -77,23 +78,23 @@ C16.952,7,17,6.553,17,6c0-0.553-0.048-1-0.6-1H3.6C3.048,5,3,5.447,3,6C3,6.553,3.
 <span class="home-icon">⌂</span>Akka Wamp
 </a>
 <div class="version-number">
-0.15.1
+0.15.2
 </div>
 </div>
 <div class="nav-toc">
 <ul>
-  <li><a href="../router.html">Router</a></li>
-  <li><a href="../client/index.html">Client APIs</a>
+  <li><a href="../router.html" class="page">Router</a></li>
+  <li><a href="../client/index.html" class="page">Client APIs</a>
   <ul>
-    <li><a href="../client/actors.html">Actors</a></li>
-    <li><a href="../client/futures.html">Futures</a></li>
-    <li><a href="../client/streams.html">Streams</a></li>
-    <li><a href="../client/macros.html" class="active">Macros</a></li>
+    <li><a href="../client/actors.html" class="page">Actors</a></li>
+    <li><a href="../client/futures.html" class="page">Futures</a></li>
+    <li><a href="../client/streams.html" class="page">Streams</a></li>
+    <li><a href="../client/macros.html" class="active page">Macros</a></li>
   </ul></li>
-  <li><a href="../messages.html">Messages</a></li>
-  <li><a href="../payloads.html">Payloads</a></li>
-  <li><a href="../logging.html">Logging</a></li>
-  <li><a href="../tls.html">TLS/SSL</a></li>
+  <li><a href="../messages.html" class="page">Messages</a></li>
+  <li><a href="../payloads.html" class="page">Payloads</a></li>
+  <li><a href="../logging.html" class="page">Logging</a></li>
+  <li><a href="../tls.html" class="page">TLS/SSL</a></li>
 </ul>
 </div>
 
@@ -117,7 +118,8 @@ C16.952,7,17,6.553,17,6c0-0.553-0.048-1-0.6-1H3.6C3.048,5,3,5.447,3,6C3,6.553,3.
 
 <div class="page-content row">
 <div class="small-12 large-9 column" id="docs">
-<h1><a href="#macros" name="macros" class="anchor"><span class="anchor-link"></span></a>Macros</h1><div class="callout warning "><div class="callout-title">Warning</div>As macros are not yet supported in Java, this section is for Scala developers only.</div>
+<h1><a href="#macros" name="macros" class="anchor"><span class="anchor-link"></span></a>Macros</h1><div class="callout warning "><div class="callout-title">Warning</div>
+<p>As macros are not yet supported in Java, this section is for Scala developers only.</p></div>
 <p>Akka Wamp provides you with some useful <a href="http://docs.scala-lang.org/overviews/macros/overview.html">Scala Macros</a> to reduce the boilerplate code you would have to write to consume/handle arguments from incoming <a href="../payloads.html">Payloads</a></p>
 <h2><a href="#futures" name="futures" class="anchor"><span class="anchor-link"></span></a>Futures</h2>
 <p>Macros described by this section are those you can use in writing client applications with the Akka Wamp <a href="../futures.html">Futures Client API</a>.</p>
@@ -166,13 +168,13 @@ C16.952,7,17,6.553,17,6c0-0.553-0.048-1-0.6-1H3.6C3.048,5,3,5.447,3,6C3,6.553,3.
 <div class="nav-title">On this page:</div>
 <div class="nav-toc">
 <ul>
-  <li><a href="../client/macros.html#macros">Macros</a>
+  <li><a href="../client/macros.html#macros" class="header">Macros</a>
   <ul>
-    <li><a href="../client/macros.html#futures">Futures</a>
+    <li><a href="../client/macros.html#futures" class="header">Futures</a>
     <ul>
-      <li><a href="../client/macros.html#subscribe">Subscribe</a></li>
-      <li><a href="../client/macros.html#register">Register</a></li>
-      <li><a href="../client/macros.html#deserialization">Deserialization</a></li>
+      <li><a href="../client/macros.html#subscribe" class="header">Subscribe</a></li>
+      <li><a href="../client/macros.html#register" class="header">Register</a></li>
+      <li><a href="../client/macros.html#deserialization" class="header">Deserialization</a></li>
     </ul></li>
   </ul></li>
 </ul>
@@ -216,7 +218,7 @@ C16.952,7,17,6.553,17,6c0-0.553-0.048-1-0.6-1H3.6C3.048,5,3,5.447,3,6C3,6.553,3.
 
 <!--
 <div class="copyright">
-<span class="text">&copy; 2017</span>
+<span class="text">&copy; 2018</span>
 <a href="https://www.example.com" class="logo">logo</a>
 </div>
 -->

@@ -9,6 +9,7 @@
 <link href="https://fonts.googleapis.com/css?family=Roboto:100normal,100italic,300normal,300italic,400normal,400italic,500normal,500italic,700normal,700italic,900normal,900italicc" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="lib/jquery/jquery.min.js"></script>
 <script type="text/javascript" src="js/page.js"></script>
+<script type="text/javascript" src="js/groups.js"></script>
 <link rel="stylesheet" type="text/css" href="lib/normalize.css/normalize.css"/>
 <link rel="stylesheet" type="text/css" href="lib/foundation/dist/foundation.min.css"/>
 <link rel="stylesheet" type="text/css" href="css/page.css"/>
@@ -29,23 +30,23 @@
 <span class="home-icon">⌂</span>Akka Wamp
 </a>
 <div class="version-number">
-0.15.1
+0.15.2
 </div>
 </div>
 <div class="nav-toc">
 <ul>
-  <li><a href="router.html">Router</a></li>
-  <li><a href="client/index.html">Client APIs</a>
+  <li><a href="router.html" class="page">Router</a></li>
+  <li><a href="client/index.html" class="page">Client APIs</a>
   <ul>
-    <li><a href="client/actors.html">Actors</a></li>
-    <li><a href="client/futures.html">Futures</a></li>
-    <li><a href="client/streams.html">Streams</a></li>
-    <li><a href="client/macros.html">Macros</a></li>
+    <li><a href="client/actors.html" class="page">Actors</a></li>
+    <li><a href="client/futures.html" class="page">Futures</a></li>
+    <li><a href="client/streams.html" class="page">Streams</a></li>
+    <li><a href="client/macros.html" class="page">Macros</a></li>
   </ul></li>
-  <li><a href="messages.html">Messages</a></li>
-  <li><a href="payloads.html">Payloads</a></li>
-  <li><a href="logging.html">Logging</a></li>
-  <li><a href="tls.html" class="active">TLS/SSL</a></li>
+  <li><a href="messages.html" class="page">Messages</a></li>
+  <li><a href="payloads.html" class="page">Payloads</a></li>
+  <li><a href="logging.html" class="page">Logging</a></li>
+  <li><a href="tls.html" class="active page">TLS/SSL</a></li>
 </ul>
 </div>
 
@@ -77,23 +78,23 @@ C16.952,7,17,6.553,17,6c0-0.553-0.048-1-0.6-1H3.6C3.048,5,3,5.447,3,6C3,6.553,3.
 <span class="home-icon">⌂</span>Akka Wamp
 </a>
 <div class="version-number">
-0.15.1
+0.15.2
 </div>
 </div>
 <div class="nav-toc">
 <ul>
-  <li><a href="router.html">Router</a></li>
-  <li><a href="client/index.html">Client APIs</a>
+  <li><a href="router.html" class="page">Router</a></li>
+  <li><a href="client/index.html" class="page">Client APIs</a>
   <ul>
-    <li><a href="client/actors.html">Actors</a></li>
-    <li><a href="client/futures.html">Futures</a></li>
-    <li><a href="client/streams.html">Streams</a></li>
-    <li><a href="client/macros.html">Macros</a></li>
+    <li><a href="client/actors.html" class="page">Actors</a></li>
+    <li><a href="client/futures.html" class="page">Futures</a></li>
+    <li><a href="client/streams.html" class="page">Streams</a></li>
+    <li><a href="client/macros.html" class="page">Macros</a></li>
   </ul></li>
-  <li><a href="messages.html">Messages</a></li>
-  <li><a href="payloads.html">Payloads</a></li>
-  <li><a href="logging.html">Logging</a></li>
-  <li><a href="tls.html" class="active">TLS/SSL</a></li>
+  <li><a href="messages.html" class="page">Messages</a></li>
+  <li><a href="payloads.html" class="page">Payloads</a></li>
+  <li><a href="logging.html" class="page">Logging</a></li>
+  <li><a href="tls.html" class="active page">TLS/SSL</a></li>
 </ul>
 </div>
 
@@ -129,7 +130,8 @@ C16.952,7,17,6.553,17,6c0-0.553-0.048-1-0.6-1H3.6C3.048,5,3,5.447,3,6C3,6.553,3.
 }</code></pre>
 <p>The <code>cacerts</code> store contains almost all the accredited CA - Certificate Authorities that any client can happily trust. Next sections explain how to customize the above settings for both router and client special needs.</p>
 <h2><a href="#router" name="router" class="anchor"><span class="anchor-link"></span></a>Router</h2>
-<p>To properly configure a router that binds to a TLS/SSL endpoint, it is important to make a clear distinction: either the router asks for the client&rsquo;s certificate or it does not.</p><div class="callout warning "><div class="callout-title">Warning</div>Akka Wamp doesn&rsquo;t support routers asking for client&rsquo;s certificates.</div>
+<p>To properly configure a router that binds to a TLS/SSL endpoint, it is important to make a clear distinction: either the router asks for the client&rsquo;s certificate or it does not.</p><div class="callout warning "><div class="callout-title">Warning</div>
+<p>Akka Wamp doesn&rsquo;t support routers asking for client&rsquo;s certificates.</p></div>
 <h3><a href="#certificate-chain" name="certificate-chain" class="anchor"><span class="anchor-link"></span></a>Certificate chain</h3>
 <p>In either cases, the router/server must own and present itself with a certificate having its public key attached. That certificate must have been issued and signed by some CA - Certificate Authority that any client can happily trust. The CA can be an intermediate authority or a root self-certified authority. In real world scenarios, the router/server&rsquo;s (owner&rsquo;s) certificate begins a chain of certificates, maybe with one or more intermediary issuers but certainly ending to some accredited root CA.</p>
 <p><img src="tls.png" alt="tls" /></p>
@@ -234,7 +236,8 @@ keytool -import -v \
   -storetype JKS \
   -storepass $PASSWD</code></pre>
 <h2><a href="#client" name="client" class="anchor"><span class="anchor-link"></span></a>Client</h2>
-<p>To properly configure a client that connects to a TLS/SSL router, it is important to make a clear distinction: either the router asks for the client&rsquo;s certificate or it does not.</p><div class="callout warning "><div class="callout-title">Limitation</div>Akka Wamp does not support routers asking for client&rsquo;s certificates.</div>
+<p>To properly configure a client that connects to a TLS/SSL router, it is important to make a clear distinction: either the router asks for the client&rsquo;s certificate or it does not.</p><div class="callout warning "><div class="callout-title">Limitation</div>
+<p>Akka Wamp does not support routers asking for client&rsquo;s certificates.</p></div>
 <p>The only scenario supported by Akka Wamp is the one the router does <strong>not</strong> ask for any client&rsquo;s certificate. In this case, the client does not need to be configured with any <em>&ldquo;keys stores&rdquo;</em> but rather with <em>&ldquo;trust stores&rdquo;</em> only. Client&rsquo;s trust stores shall contain the certificates of all the issuers in the certificate chain of the router. </p>
 <h3><a href="#trust-stores" name="trust-stores" class="anchor"><span class="anchor-link"></span></a>Trust stores</h3>
 <p>By default, Akka Wamp loads the trust store shipped with the Java Runtime Environment, which contains almost all the globally accredited CA - Certificate Authorities. Therefore, it&rsquo;s more likely you don&rsquo;t need to change the default configuration at all.</p>
@@ -273,19 +276,19 @@ EOF</code></pre>
 <div class="nav-title">On this page:</div>
 <div class="nav-toc">
 <ul>
-  <li><a href="tls.html#tls-ssl">TLS/SSL</a>
+  <li><a href="tls.html#tls-ssl" class="header">TLS/SSL</a>
   <ul>
-    <li><a href="tls.html#configuration">Configuration</a></li>
-    <li><a href="tls.html#router">Router</a>
+    <li><a href="tls.html#configuration" class="header">Configuration</a></li>
+    <li><a href="tls.html#router" class="header">Router</a>
     <ul>
-      <li><a href="tls.html#certificate-chain">Certificate chain</a></li>
-      <li><a href="tls.html#key-stores">Key stores</a></li>
-      <li><a href="tls.html#certificate-authorities">Certificate Authorities</a></li>
-      <li><a href="tls.html#signing-request">Signing Request</a></li>
+      <li><a href="tls.html#certificate-chain" class="header">Certificate chain</a></li>
+      <li><a href="tls.html#key-stores" class="header">Key stores</a></li>
+      <li><a href="tls.html#certificate-authorities" class="header">Certificate Authorities</a></li>
+      <li><a href="tls.html#signing-request" class="header">Signing Request</a></li>
     </ul></li>
-    <li><a href="tls.html#client">Client</a>
+    <li><a href="tls.html#client" class="header">Client</a>
     <ul>
-      <li><a href="tls.html#trust-stores">Trust stores</a></li>
+      <li><a href="tls.html#trust-stores" class="header">Trust stores</a></li>
     </ul></li>
   </ul></li>
 </ul>
@@ -329,7 +332,7 @@ EOF</code></pre>
 
 <!--
 <div class="copyright">
-<span class="text">&copy; 2017</span>
+<span class="text">&copy; 2018</span>
 <a href="https://www.example.com" class="logo">logo</a>
 </div>
 -->

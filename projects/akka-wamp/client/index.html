@@ -9,6 +9,7 @@
 <link href="https://fonts.googleapis.com/css?family=Roboto:100normal,100italic,300normal,300italic,400normal,400italic,500normal,500italic,700normal,700italic,900normal,900italicc" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="../lib/jquery/jquery.min.js"></script>
 <script type="text/javascript" src="../js/page.js"></script>
+<script type="text/javascript" src="../js/groups.js"></script>
 <link rel="stylesheet" type="text/css" href="../lib/normalize.css/normalize.css"/>
 <link rel="stylesheet" type="text/css" href="../lib/foundation/dist/foundation.min.css"/>
 <link rel="stylesheet" type="text/css" href="../css/page.css"/>
@@ -29,23 +30,23 @@
 <span class="home-icon">⌂</span>Akka Wamp
 </a>
 <div class="version-number">
-0.15.1
+0.15.2
 </div>
 </div>
 <div class="nav-toc">
 <ul>
-  <li><a href="../router.html">Router</a></li>
-  <li><a href="../client/index.html" class="active">Client APIs</a>
+  <li><a href="../router.html" class="page">Router</a></li>
+  <li><a href="../client/index.html" class="active page">Client APIs</a>
   <ul>
-    <li><a href="../client/actors.html">Actors</a></li>
-    <li><a href="../client/futures.html">Futures</a></li>
-    <li><a href="../client/streams.html">Streams</a></li>
-    <li><a href="../client/macros.html">Macros</a></li>
+    <li><a href="../client/actors.html" class="page">Actors</a></li>
+    <li><a href="../client/futures.html" class="page">Futures</a></li>
+    <li><a href="../client/streams.html" class="page">Streams</a></li>
+    <li><a href="../client/macros.html" class="page">Macros</a></li>
   </ul></li>
-  <li><a href="../messages.html">Messages</a></li>
-  <li><a href="../payloads.html">Payloads</a></li>
-  <li><a href="../logging.html">Logging</a></li>
-  <li><a href="../tls.html">TLS/SSL</a></li>
+  <li><a href="../messages.html" class="page">Messages</a></li>
+  <li><a href="../payloads.html" class="page">Payloads</a></li>
+  <li><a href="../logging.html" class="page">Logging</a></li>
+  <li><a href="../tls.html" class="page">TLS/SSL</a></li>
 </ul>
 </div>
 
@@ -77,23 +78,23 @@ C16.952,7,17,6.553,17,6c0-0.553-0.048-1-0.6-1H3.6C3.048,5,3,5.447,3,6C3,6.553,3.
 <span class="home-icon">⌂</span>Akka Wamp
 </a>
 <div class="version-number">
-0.15.1
+0.15.2
 </div>
 </div>
 <div class="nav-toc">
 <ul>
-  <li><a href="../router.html">Router</a></li>
-  <li><a href="../client/index.html" class="active">Client APIs</a>
+  <li><a href="../router.html" class="page">Router</a></li>
+  <li><a href="../client/index.html" class="active page">Client APIs</a>
   <ul>
-    <li><a href="../client/actors.html">Actors</a></li>
-    <li><a href="../client/futures.html">Futures</a></li>
-    <li><a href="../client/streams.html">Streams</a></li>
-    <li><a href="../client/macros.html">Macros</a></li>
+    <li><a href="../client/actors.html" class="page">Actors</a></li>
+    <li><a href="../client/futures.html" class="page">Futures</a></li>
+    <li><a href="../client/streams.html" class="page">Streams</a></li>
+    <li><a href="../client/macros.html" class="page">Macros</a></li>
   </ul></li>
-  <li><a href="../messages.html">Messages</a></li>
-  <li><a href="../payloads.html">Payloads</a></li>
-  <li><a href="../logging.html">Logging</a></li>
-  <li><a href="../tls.html">TLS/SSL</a></li>
+  <li><a href="../messages.html" class="page">Messages</a></li>
+  <li><a href="../payloads.html" class="page">Payloads</a></li>
+  <li><a href="../logging.html" class="page">Logging</a></li>
+  <li><a href="../tls.html" class="page">TLS/SSL</a></li>
 </ul>
 </div>
 
@@ -176,7 +177,8 @@ public ActorsJavaClient() {
 </dl>
 <p>and then send command messages to it to perform basic actions as documented in the <a href="messages.html">Messages</a> section.</p>
 <p><img src="client.png" alt="client" /></p>
-<p>As the manager receives a command messages (such as <code>Connect</code>) it instantiates worker actors in response (such as <code>ConnectionHandler</code>). Worker actors present themselves to the API user in signal messages (such as <code>Connected</code>) replied to the command that was sent. </p><div class="callout note "><div class="callout-title">Note</div>Futures and streams based Client APIs will not require you to deal with the Akka I/O extension driver in such explicit manner, but rather provide you with higher level abstractions.</div>
+<p>As the manager receives a command messages (such as <code>Connect</code>) it instantiates worker actors in response (such as <code>ConnectionHandler</code>). Worker actors present themselves to the API user in signal messages (such as <code>Connected</code>) replied to the command that was sent. </p><div class="callout note "><div class="callout-title">Note</div>
+<p>Futures and streams based Client APIs will not require you to deal with the Akka I/O extension driver in such explicit manner, but rather provide you with higher level abstractions.</p></div>
 <div class="nav-next">
 <p><strong>Next:</strong> <a href="../client/actors.html">Actors</a></p>
 </div>
@@ -187,9 +189,9 @@ public ActorsJavaClient() {
 <div class="nav-title">On this page:</div>
 <div class="nav-toc">
 <ul>
-  <li><a href="../client/index.html#client-apis">Client APIs</a>
+  <li><a href="../client/index.html#client-apis" class="header">Client APIs</a>
   <ul>
-    <li><a href="../client/index.html#extension-manager">Extension manager</a></li>
+    <li><a href="../client/index.html#extension-manager" class="header">Extension manager</a></li>
   </ul></li>
 </ul>
 </div>
@@ -232,7 +234,7 @@ public ActorsJavaClient() {
 
 <!--
 <div class="copyright">
-<span class="text">&copy; 2017</span>
+<span class="text">&copy; 2018</span>
 <a href="https://www.example.com" class="logo">logo</a>
 </div>
 -->

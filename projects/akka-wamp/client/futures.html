@@ -9,6 +9,7 @@
 <link href="https://fonts.googleapis.com/css?family=Roboto:100normal,100italic,300normal,300italic,400normal,400italic,500normal,500italic,700normal,700italic,900normal,900italicc" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="../lib/jquery/jquery.min.js"></script>
 <script type="text/javascript" src="../js/page.js"></script>
+<script type="text/javascript" src="../js/groups.js"></script>
 <link rel="stylesheet" type="text/css" href="../lib/normalize.css/normalize.css"/>
 <link rel="stylesheet" type="text/css" href="../lib/foundation/dist/foundation.min.css"/>
 <link rel="stylesheet" type="text/css" href="../css/page.css"/>
@@ -29,23 +30,23 @@
 <span class="home-icon">⌂</span>Akka Wamp
 </a>
 <div class="version-number">
-0.15.1
+0.15.2
 </div>
 </div>
 <div class="nav-toc">
 <ul>
-  <li><a href="../router.html">Router</a></li>
-  <li><a href="../client/index.html">Client APIs</a>
+  <li><a href="../router.html" class="page">Router</a></li>
+  <li><a href="../client/index.html" class="page">Client APIs</a>
   <ul>
-    <li><a href="../client/actors.html">Actors</a></li>
-    <li><a href="../client/futures.html" class="active">Futures</a></li>
-    <li><a href="../client/streams.html">Streams</a></li>
-    <li><a href="../client/macros.html">Macros</a></li>
+    <li><a href="../client/actors.html" class="page">Actors</a></li>
+    <li><a href="../client/futures.html" class="active page">Futures</a></li>
+    <li><a href="../client/streams.html" class="page">Streams</a></li>
+    <li><a href="../client/macros.html" class="page">Macros</a></li>
   </ul></li>
-  <li><a href="../messages.html">Messages</a></li>
-  <li><a href="../payloads.html">Payloads</a></li>
-  <li><a href="../logging.html">Logging</a></li>
-  <li><a href="../tls.html">TLS/SSL</a></li>
+  <li><a href="../messages.html" class="page">Messages</a></li>
+  <li><a href="../payloads.html" class="page">Payloads</a></li>
+  <li><a href="../logging.html" class="page">Logging</a></li>
+  <li><a href="../tls.html" class="page">TLS/SSL</a></li>
 </ul>
 </div>
 
@@ -77,23 +78,23 @@ C16.952,7,17,6.553,17,6c0-0.553-0.048-1-0.6-1H3.6C3.048,5,3,5.447,3,6C3,6.553,3.
 <span class="home-icon">⌂</span>Akka Wamp
 </a>
 <div class="version-number">
-0.15.1
+0.15.2
 </div>
 </div>
 <div class="nav-toc">
 <ul>
-  <li><a href="../router.html">Router</a></li>
-  <li><a href="../client/index.html">Client APIs</a>
+  <li><a href="../router.html" class="page">Router</a></li>
+  <li><a href="../client/index.html" class="page">Client APIs</a>
   <ul>
-    <li><a href="../client/actors.html">Actors</a></li>
-    <li><a href="../client/futures.html" class="active">Futures</a></li>
-    <li><a href="../client/streams.html">Streams</a></li>
-    <li><a href="../client/macros.html">Macros</a></li>
+    <li><a href="../client/actors.html" class="page">Actors</a></li>
+    <li><a href="../client/futures.html" class="active page">Futures</a></li>
+    <li><a href="../client/streams.html" class="page">Streams</a></li>
+    <li><a href="../client/macros.html" class="page">Macros</a></li>
   </ul></li>
-  <li><a href="../messages.html">Messages</a></li>
-  <li><a href="../payloads.html">Payloads</a></li>
-  <li><a href="../logging.html">Logging</a></li>
-  <li><a href="../tls.html">TLS/SSL</a></li>
+  <li><a href="../messages.html" class="page">Messages</a></li>
+  <li><a href="../payloads.html" class="page">Payloads</a></li>
+  <li><a href="../logging.html" class="page">Logging</a></li>
+  <li><a href="../tls.html" class="page">TLS/SSL</a></li>
 </ul>
 </div>
 
@@ -123,7 +124,8 @@ C16.952,7,17,6.553,17,6c0-0.553-0.048-1-0.6-1H3.6C3.048,5,3,5.447,3,6C3,6.553,3.
   <li>object-oriented representations of WAMP <a href="./messages.html">Messages</a>,</li>
   <li>this Futures API built atop of <a href="./actors.html">Akka Wamp Actors</a> and the <a href="http://doc.akka.io/docs/akka/current/scala/futures.html">Akka Futures</a></li>
 </ul>
-<p>All operations are provided as <strong>direct method calls</strong> returning composable futures. You can write your client applications, in either Scala or Java, so to connect to routers, open sessions to attach realms, publish or subscribe to topics, consume events, register or call remote procedures and handle invocations in few liens of code.</p><div class="callout note "><div class="callout-title">Note</div>This shall be considered an <strong>higher level API</strong> when compared to <a href="./actors.html">Akka Wamp Actors</a> as it doesn&rsquo;t require you to know anything about how WAMP <a href="../messages.html">Messages</a> are exchanged by peers.</div>
+<p>All operations are provided as <strong>direct method calls</strong> returning composable futures. You can write your client applications, in either Scala or Java, so to connect to routers, open sessions to attach realms, publish or subscribe to topics, consume events, register or call remote procedures and handle invocations in few liens of code.</p><div class="callout note "><div class="callout-title">Note</div>
+<p>This shall be considered an <strong>higher level API</strong> when compared to <a href="./actors.html">Akka Wamp Actors</a> as it doesn&rsquo;t require you to know anything about how WAMP <a href="../messages.html">Messages</a> are exchanged by peers.</p></div>
 <h2><a href="#client" name="client" class="anchor"><span class="anchor-link"></span></a>Client</h2>
 <p>Clients are those peers that, indirectly, communicate each other through a router. The Akka Wamp client instance can be created as follows: </p>
 <dl>
@@ -259,7 +261,8 @@ validate-strict-uris = false
 </dl>
 <p>Just invoke the <code>disconnect</code> method.</p>
 <h4><a href="#accidental" name="accidental" class="anchor"><span class="anchor-link"></span></a>Accidental</h4>
-<p>Disconnection is not requested but suddenly happens (for example on mobile devices connected via wireless networks). The Akka Wamp client does not provide any mechanism to recover from this state. The connection object becomes useless and a new connection must be established.</p><div class="callout warning "><div class="callout-title">Warning</div>Please join the ongoing <em>&ldquo;<a href="https://github.com/wamp-proto/wamp-proto/pull/264/files">Session Resumption</a>&rdquo;</em> discussion as some different behaviour proposals are under review.</div>
+<p>Disconnection is not requested but suddenly happens (for example on mobile devices connected via wireless networks). The Akka Wamp client does not provide any mechanism to recover from this state. The connection object becomes useless and a new connection must be established.</p><div class="callout warning "><div class="callout-title">Warning</div>
+<p>Please join the ongoing <em>&ldquo;<a href="https://github.com/wamp-proto/wamp-proto/pull/264/files">Session Resumption</a>&rdquo;</em> discussion as some different behaviour proposals are under review.</p></div>
 <h2><a href="#sessions" name="sessions" class="anchor"><span class="anchor-link"></span></a>Sessions</h2>
 <p>A realm is a routing and administrative domain, optionally protected by authentication and authorization, that holds subscriptions to topics and registrations of procedures for all clients attached to it.</p>
 <p>A session is a transient conversation between a client and a router, running over a transport connection, that starts when the client requests to be attached to a specific realm. Attaching to a realm is also referred as <em>&ldquo;opening a session&rdquo;</em></p>
@@ -364,7 +367,7 @@ CompletionStage&lt;Subscription&gt; subscription =
   <li>
   <p><code>topic: Uri</code><br/>Is the topic to subscribe to</p></li>
   <li>
-  <p><code>consumer</code><br/>Is a consumer as explained further below.</p></li>
+  <p><code>consumer</code><br/>Is a consumer callback as explained further below.</p></li>
 </ul>
 <p>The client can provide callbacks to be invoked upon future completion so to test against success or failure.</p>
 <dl>
@@ -386,7 +389,8 @@ CompletionStage&lt;Subscription&gt; subscription =
 });</code></pre></dd>
 </dl>
 <h3><a href="#consumer" name="consumer" class="anchor"><span class="anchor-link"></span></a>Consumer</h3>
-<p>The client can subscribe any function able to consume incoming events. It can be either an event consumer or a lambda consumer as explained further below.</p>
+<p>The client can subscribe any callback function given either as an event consumer or as <em>lambda</em> consumer.</p>
+<p>Please note that, as this API is build atop of <a href="../client/actors.html">Akka Wamp Actors</a>, your callback function will be invoked in the same thread which delivers the <a href="../messages.html">Event</a> message from underlying actor&rsquo;s mailbox. Therefore, it is safe to close your callback over free variables as there&rsquo;s no risk to have multiple threads executing the handler at the same time.</p>
 <h4><a href="#lambda-consumer" name="lambda-consumer" class="anchor"><span class="anchor-link"></span></a>Lambda Consumer</h4>
 <p>The client can subscribe a lambda consumer that accepts as many parameters as it would expect to be conveyed by incoming events.</p>
 <dl>
@@ -400,13 +404,15 @@ CompletionStage&lt;Subscription&gt; subscription =
     })
   }</code></pre></dd>
 </dl>
-<p>Please refer to the <a href="macros.html#register">Macros</a> section for further details about how to access arguments conveyed by incoming events.</p><div class="callout warning "><div class="callout-title">Warning</div>Lambda consumers are supported for Scala only</div>
+<p>Please refer to the <a href="macros.html#register">Macros</a> section for further details about how to access arguments conveyed by incoming events.</p><div class="callout warning "><div class="callout-title">Warning</div>
+<p>Lambda consumers are supported for Scala only</p></div>
 <h4><a href="#event-consumer" name="event-consumer" class="anchor"><span class="anchor-link"></span></a>Event Consumer</h4>
 <p>The client can subscribe an event consumer as a function that accepts exactly one argument of type <a href="../messages.html#event"><code>Event</code></a> and returns (future of) <code>Done</code>.</p>
 <dl>
   <dt>Scala</dt>
   <dd>
-  <pre class="prettyprint"><code class="language-scala">val consumer: (Event) =&gt; Unit =
+  <pre class="prettyprint"><code class="language-scala">var freeVar: Long = 0
+val consumer: (Event) =&gt; Unit =
   event =&gt; {
     val publicationId = event.publicationId
     val subscriptionId = event.subscriptionId
@@ -414,11 +420,12 @@ CompletionStage&lt;Subscription&gt; subscription =
     val args = event.args
     val kwargs = event.kwargs
 
-    // do something with arguments ...
+    // so something with incoming args and free vars ...
   }</code></pre></dd>
   <dt>Java</dt>
   <dd>
-  <pre class="prettyprint"><code class="language-java">Consumer&lt;Event&gt; consumer =
+  <pre class="prettyprint"><code class="language-java">Long freeVar = 0l;
+Consumer&lt;Event&gt; consumer =
   event -&gt; {
     Long publicationId = event.publicationId();
     Long subscriptionId = event.subscriptionId();
@@ -426,7 +433,7 @@ CompletionStage&lt;Subscription&gt; subscription =
     List&lt;Object&gt; args = event.args();
     Map&lt;String, Object&gt; kwargs = event.kwargs();
 
-    // so something with arguments ...
+    // so something with incoming args and free vars ...
   };</code></pre></dd>
 </dl>
 <p>Please refer to the <a href="../payloads.html#arguments">Payloads</a> section for details about how to access arguments conveyed by incoming events.</p>
@@ -524,7 +531,8 @@ CompletionStage&lt;Registration&gt; registration =
 });</code></pre></dd>
 </dl>
 <h3><a href="#handler" name="handler" class="anchor"><span class="anchor-link"></span></a>Handler</h3>
-<p>The client can register any function able to handle incoming invocations. It can be either an invocation handler or a lambda handler as explained further below.</p>
+<p>The client can register any callback function given either as an invocation handler or as <em>lambda</em> handler.</p>
+<p>Please note that, as this API is build atop of <a href="../actors.html">Akka Wamp Actors</a>, your callback function will be invoked in the same thread which delivers the <a href="../messages.html">Invocation</a> message from underlying actor&rsquo;s mailbox. Therefore, it is safe to close your callback over free variables as there&rsquo;s no risk to have multiple threads executing the handler at the same time.</p>
 <h4><a href="#lambda-handler" name="lambda-handler" class="anchor"><span class="anchor-link"></span></a>Lambda Handler</h4>
 <p>The client can register a lambda handler that accepts as many parameters as you would expect to be conveyed by incoming invocations. </p>
 <dl>
@@ -539,7 +547,8 @@ CompletionStage&lt;Registration&gt; registration =
     })
   }</code></pre></dd>
 </dl>
-<p>Please refer to the <a href="macros.html#register">Macros</a> section for further details about how to access arguments conveyed by incoming invocations.</p><div class="callout warning "><div class="callout-title">Warning</div>Lambda handlers are supported for Scala only.</div>
+<p>Please refer to the <a href="macros.html#register">Macros</a> section for further details about how to access arguments conveyed by incoming invocations.</p><div class="callout warning "><div class="callout-title">Warning</div>
+<p>Lambda handlers are supported for Scala only.</p></div>
 <h4><a href="#invocation-handler" name="invocation-handler" class="anchor"><span class="anchor-link"></span></a>Invocation Handler</h4>
 <p>The client can subscribe an invocation handler as a function that accepts exactly one argument of type <a href="../messages.html#invocation"><code>Invocation</code></a> and returns a (future of) <code>Payload</code>.</p>
 <dl>
@@ -605,34 +614,34 @@ CompletionStage&lt;Registration&gt; registration =
 <div class="nav-title">On this page:</div>
 <div class="nav-toc">
 <ul>
-  <li><a href="../client/futures.html#futures">Futures</a>
+  <li><a href="../client/futures.html#futures" class="header">Futures</a>
   <ul>
-    <li><a href="../client/futures.html#client">Client</a></li>
-    <li><a href="../client/futures.html#connections">Connections</a>
+    <li><a href="../client/futures.html#client" class="header">Client</a></li>
+    <li><a href="../client/futures.html#connections" class="header">Connections</a>
     <ul>
-      <li><a href="../client/futures.html#configuration">Configuration</a></li>
-      <li><a href="../client/futures.html#disconnect">Disconnect</a></li>
+      <li><a href="../client/futures.html#configuration" class="header">Configuration</a></li>
+      <li><a href="../client/futures.html#disconnect" class="header">Disconnect</a></li>
     </ul></li>
-    <li><a href="../client/futures.html#sessions">Sessions</a>
+    <li><a href="../client/futures.html#sessions" class="header">Sessions</a>
     <ul>
-      <li><a href="../client/futures.html#open">Open</a></li>
-      <li><a href="../client/futures.html#close">Close</a></li>
+      <li><a href="../client/futures.html#open" class="header">Open</a></li>
+      <li><a href="../client/futures.html#close" class="header">Close</a></li>
     </ul></li>
-    <li><a href="../client/futures.html#topics">Topics</a>
+    <li><a href="../client/futures.html#topics" class="header">Topics</a>
     <ul>
-      <li><a href="../client/futures.html#publish">Publish</a></li>
-      <li><a href="../client/futures.html#subscribe">Subscribe</a></li>
-      <li><a href="../client/futures.html#consumer">Consumer</a></li>
-      <li><a href="../client/futures.html#unsubscribe">Unsubscribe</a></li>
+      <li><a href="../client/futures.html#publish" class="header">Publish</a></li>
+      <li><a href="../client/futures.html#subscribe" class="header">Subscribe</a></li>
+      <li><a href="../client/futures.html#consumer" class="header">Consumer</a></li>
+      <li><a href="../client/futures.html#unsubscribe" class="header">Unsubscribe</a></li>
     </ul></li>
-    <li><a href="../client/futures.html#procedures">Procedures</a>
+    <li><a href="../client/futures.html#procedures" class="header">Procedures</a>
     <ul>
-      <li><a href="../client/futures.html#call">Call</a></li>
-      <li><a href="../client/futures.html#register">Register</a></li>
-      <li><a href="../client/futures.html#handler">Handler</a></li>
-      <li><a href="../client/futures.html#unregister">Unregister</a></li>
+      <li><a href="../client/futures.html#call" class="header">Call</a></li>
+      <li><a href="../client/futures.html#register" class="header">Register</a></li>
+      <li><a href="../client/futures.html#handler" class="header">Handler</a></li>
+      <li><a href="../client/futures.html#unregister" class="header">Unregister</a></li>
     </ul></li>
-    <li><a href="../client/futures.html#putting-all-together">Putting all together</a></li>
+    <li><a href="../client/futures.html#putting-all-together" class="header">Putting all together</a></li>
   </ul></li>
 </ul>
 </div>
@@ -675,7 +684,7 @@ CompletionStage&lt;Registration&gt; registration =
 
 <!--
 <div class="copyright">
-<span class="text">&copy; 2017</span>
+<span class="text">&copy; 2018</span>
 <a href="https://www.example.com" class="logo">logo</a>
 </div>
 -->

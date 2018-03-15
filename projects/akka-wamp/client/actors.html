@@ -9,6 +9,7 @@
 <link href="https://fonts.googleapis.com/css?family=Roboto:100normal,100italic,300normal,300italic,400normal,400italic,500normal,500italic,700normal,700italic,900normal,900italicc" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="../lib/jquery/jquery.min.js"></script>
 <script type="text/javascript" src="../js/page.js"></script>
+<script type="text/javascript" src="../js/groups.js"></script>
 <link rel="stylesheet" type="text/css" href="../lib/normalize.css/normalize.css"/>
 <link rel="stylesheet" type="text/css" href="../lib/foundation/dist/foundation.min.css"/>
 <link rel="stylesheet" type="text/css" href="../css/page.css"/>
@@ -29,23 +30,23 @@
 <span class="home-icon">⌂</span>Akka Wamp
 </a>
 <div class="version-number">
-0.15.1
+0.15.2
 </div>
 </div>
 <div class="nav-toc">
 <ul>
-  <li><a href="../router.html">Router</a></li>
-  <li><a href="../client/index.html">Client APIs</a>
+  <li><a href="../router.html" class="page">Router</a></li>
+  <li><a href="../client/index.html" class="page">Client APIs</a>
   <ul>
-    <li><a href="../client/actors.html" class="active">Actors</a></li>
-    <li><a href="../client/futures.html">Futures</a></li>
-    <li><a href="../client/streams.html">Streams</a></li>
-    <li><a href="../client/macros.html">Macros</a></li>
+    <li><a href="../client/actors.html" class="active page">Actors</a></li>
+    <li><a href="../client/futures.html" class="page">Futures</a></li>
+    <li><a href="../client/streams.html" class="page">Streams</a></li>
+    <li><a href="../client/macros.html" class="page">Macros</a></li>
   </ul></li>
-  <li><a href="../messages.html">Messages</a></li>
-  <li><a href="../payloads.html">Payloads</a></li>
-  <li><a href="../logging.html">Logging</a></li>
-  <li><a href="../tls.html">TLS/SSL</a></li>
+  <li><a href="../messages.html" class="page">Messages</a></li>
+  <li><a href="../payloads.html" class="page">Payloads</a></li>
+  <li><a href="../logging.html" class="page">Logging</a></li>
+  <li><a href="../tls.html" class="page">TLS/SSL</a></li>
 </ul>
 </div>
 
@@ -77,23 +78,23 @@ C16.952,7,17,6.553,17,6c0-0.553-0.048-1-0.6-1H3.6C3.048,5,3,5.447,3,6C3,6.553,3.
 <span class="home-icon">⌂</span>Akka Wamp
 </a>
 <div class="version-number">
-0.15.1
+0.15.2
 </div>
 </div>
 <div class="nav-toc">
 <ul>
-  <li><a href="../router.html">Router</a></li>
-  <li><a href="../client/index.html">Client APIs</a>
+  <li><a href="../router.html" class="page">Router</a></li>
+  <li><a href="../client/index.html" class="page">Client APIs</a>
   <ul>
-    <li><a href="../client/actors.html" class="active">Actors</a></li>
-    <li><a href="../client/futures.html">Futures</a></li>
-    <li><a href="../client/streams.html">Streams</a></li>
-    <li><a href="../client/macros.html">Macros</a></li>
+    <li><a href="../client/actors.html" class="active page">Actors</a></li>
+    <li><a href="../client/futures.html" class="page">Futures</a></li>
+    <li><a href="../client/streams.html" class="page">Streams</a></li>
+    <li><a href="../client/macros.html" class="page">Macros</a></li>
   </ul></li>
-  <li><a href="../messages.html">Messages</a></li>
-  <li><a href="../payloads.html">Payloads</a></li>
-  <li><a href="../logging.html">Logging</a></li>
-  <li><a href="../tls.html">TLS/SSL</a></li>
+  <li><a href="../messages.html" class="page">Messages</a></li>
+  <li><a href="../payloads.html" class="page">Payloads</a></li>
+  <li><a href="../logging.html" class="page">Logging</a></li>
+  <li><a href="../tls.html" class="page">TLS/SSL</a></li>
 </ul>
 </div>
 
@@ -124,7 +125,8 @@ C16.952,7,17,6.553,17,6c0-0.553-0.048-1-0.6-1H3.6C3.048,5,3,5.447,3,6C3,6.553,3.
   <li>an <a href="http://doc.akka.io/docs/akka/current/scala/io.html">Akka I/O</a> extension driver named <code>akka.wamp.Wamp</code> that takes care of low-level network communication with the router,</li>
   <li>abstract base classes your client actor can extend from.</li>
 </ul>
-<p>All operations are implemented with <strong>message passing</strong> instead of direct method calls. You can write your own client actor, in either Scala or Java, to connect to a router, open a session, publish or subscribe to topics, consume events, process invocations and register or call procedures.</p><div class="callout note "><div class="callout-title">Note</div>This shall be considered a <strong>lower level API</strong> when compared to other Akka Wamp Client APIs such as those providing <a href="./futures.html">Futures</a> and <a href="./streams.html">Streams</a> abstractions.</div>
+<p>All operations are implemented with <strong>message passing</strong> instead of direct method calls. You can write your own client actor, in either Scala or Java, to connect to a router, open a session, publish or subscribe to topics, consume events, process invocations and register or call procedures.</p><div class="callout note "><div class="callout-title">Note</div>
+<p>This shall be considered a <strong>lower level API</strong> when compared to other Akka Wamp Client APIs such as those providing <a href="./futures.html">Futures</a> and <a href="./streams.html">Streams</a> abstractions.</p></div>
 <h2><a href="#client" name="client" class="anchor"><span class="anchor-link"></span></a>Client</h2>
 <dl>
   <dt>Scala</dt>
@@ -215,7 +217,8 @@ public ActorsJavaClient() {
 <p>Your client actor is <em>&ldquo;connected to a router&rdquo;</em>.</p>
 <h3><a href="#handle-disconnection" name="handle-disconnection" class="anchor"><span class="anchor-link"></span></a>Handle disconnection</h3>
 <p>Your connected client actor might receive the <a href="../messages.html#Disconnected">Disconnected</a> signal from the manager actor if the connection disconnects. For example, clients on mobile devices could experience accidental disconnections because of wireless networks unavailability. Or, the router could deliberately shutdown. </p>
-<p>When disconnection happens, you client actor might keep attempting to establish a new connection, then open a new session and try to restore its subscriptions/registrations.</p><div class="callout warning "><div class="callout-title">Warning</div>See <a href="https://github.com/angiolep/akka-wamp/issues/44">https://github.com/angiolep/akka-wamp/issues/44</a></div>
+<p>When disconnection happens, you client actor might keep attempting to establish a new connection, then open a new session and try to restore its subscriptions/registrations.</p><div class="callout warning "><div class="callout-title">Warning</div>
+<p>See <a href="https://github.com/angiolep/akka-wamp/issues/44">https://github.com/angiolep/akka-wamp/issues/44</a></p></div>
 <h3><a href="#open-a-session" name="open-a-session" class="anchor"><span class="anchor-link"></span></a>Open a session</h3>
 <p>Your client actor sends an <a href="../messages.html#Hello">Hello</a> message to the router to ask for a new session to be attached to the given realm (for example the <code>default</code> realm).</p>
 <dl>
@@ -432,26 +435,26 @@ public ActorsJavaClient() {
 <div class="nav-title">On this page:</div>
 <div class="nav-toc">
 <ul>
-  <li><a href="../client/actors.html#actors">Actors</a>
+  <li><a href="../client/actors.html#actors" class="header">Actors</a>
   <ul>
-    <li><a href="../client/actors.html#client">Client</a>
+    <li><a href="../client/actors.html#client" class="header">Client</a>
     <ul>
-      <li><a href="../client/actors.html#connect-to-a-router">Connect to a router</a></li>
+      <li><a href="../client/actors.html#connect-to-a-router" class="header">Connect to a router</a></li>
     </ul></li>
-    <li><a href="../client/actors.html#in-connected-state">In <code>connected</code> state</a>
+    <li><a href="../client/actors.html#in-connected-state" class="header">In <code>connected</code> state</a>
     <ul>
-      <li><a href="../client/actors.html#handle-disconnection">Handle disconnection</a></li>
-      <li><a href="../client/actors.html#open-a-session">Open a session</a></li>
+      <li><a href="../client/actors.html#handle-disconnection" class="header">Handle disconnection</a></li>
+      <li><a href="../client/actors.html#open-a-session" class="header">Open a session</a></li>
     </ul></li>
-    <li><a href="../client/actors.html#in-open-state">In <code>open</code> state</a>
+    <li><a href="../client/actors.html#in-open-state" class="header">In <code>open</code> state</a>
     <ul>
-      <li><a href="../client/actors.html#handle-session-close">Handle session close</a></li>
-      <li><a href="../client/actors.html#publish-to-a-topic">Publish to a topic</a></li>
-      <li><a href="../client/actors.html#subscribe-to-a-topic">Subscribe to a topic</a></li>
-      <li><a href="../client/actors.html#register-a-procedure">Register a procedure</a></li>
-      <li><a href="../client/actors.html#call-a-procedure">Call a procedure</a></li>
-      <li><a href="../client/actors.html#consume-events">Consume events</a></li>
-      <li><a href="../client/actors.html#process-invocations">Process invocations</a></li>
+      <li><a href="../client/actors.html#handle-session-close" class="header">Handle session close</a></li>
+      <li><a href="../client/actors.html#publish-to-a-topic" class="header">Publish to a topic</a></li>
+      <li><a href="../client/actors.html#subscribe-to-a-topic" class="header">Subscribe to a topic</a></li>
+      <li><a href="../client/actors.html#register-a-procedure" class="header">Register a procedure</a></li>
+      <li><a href="../client/actors.html#call-a-procedure" class="header">Call a procedure</a></li>
+      <li><a href="../client/actors.html#consume-events" class="header">Consume events</a></li>
+      <li><a href="../client/actors.html#process-invocations" class="header">Process invocations</a></li>
     </ul></li>
   </ul></li>
 </ul>
@@ -495,7 +498,7 @@ public ActorsJavaClient() {
 
 <!--
 <div class="copyright">
-<span class="text">&copy; 2017</span>
+<span class="text">&copy; 2018</span>
 <a href="https://www.example.com" class="logo">logo</a>
 </div>
 -->
